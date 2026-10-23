@@ -65,5 +65,10 @@
 - **教训 89**：沙箱重置后 `git fsck --lost-found` 可捞悬空 auto-commit。
 - 后台进程（nohup/setsid 常驻）会被沙箱回收——耗时任务一律前台分窗
   （≤9.5 分钟）+ 断点续传。
+- **两分法·与上条勿混**：短网络命令（ssh / git push / ls-remote）在
+  受限工具环境的 pty 下会"假挂死"——SSH 握手其实 0.5s 就完成，是 pty
+  伪影吞掉了输出，外层只看到 timeout。正解 = `setsid <cmd> </dev/null
+  >out.txt 2>&1` 后台跑 + 读文件（p84/p84b 两轮复踩实证）。判据：命令
+  秒级完成选后台+重定向，分钟级以上选前台分窗。
 - filebin：同文件反复访问会限速；直链 302 → 签名 S3 URL 可绕前端
   节流；apk 扩展名被拒用 .zip 规避。
