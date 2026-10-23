@@ -1,4 +1,4 @@
-# CDE Decomp — Children of a Dead Earth 逆向重建
+# CDE — Children of a Dead Earth 逆向重建
 
 对 **Children of a Dead Earth**（Steam，Q Switched Productions, LLC 开发）的
 32 位 x86 原生引擎进行源码级逆向重建的研究项目。目标是从官方 `CDE.exe`
@@ -10,7 +10,7 @@
 
 ---
 
-## 当前状态（诚实版）
+## 目前状态
 
 | 指标 | 数值 |
 |---|---|
