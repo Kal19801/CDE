@@ -29,6 +29,7 @@ REPO = os.path.dirname(os.path.abspath(__file__))
 TC   = os.environ.get('CDE_TOOLCHAIN', os.path.join(REPO, 'toolchain'))
 BIN  = f'{TC}/usr/lib/llvm-19/bin'
 MLIB = f'{TC}/usr/i686-w64-mingw32'
+MLIBLIB = f'{MLIB}/lib'   # pe_build.py's MLIB (CRT + import libs)
 GCCD = f'{TC}/usr/lib/gcc/i686-w64-mingw32/14-posix'
 SRC  = os.path.join(REPO, 'src')
 OBJ  = os.path.join(REPO, 'pe_obj')
@@ -61,8 +62,8 @@ CFGS = ['-x', 'c', '-std=gnu11', '-c', '-O2', '-g', '-gcodeview',
 # (game_024 = EngineCoreLoop main loop; measured per-TU, lesson 74)
 MERGE_OFF = {'game_006', 'game_010', 'game_015', 'game_016', 'game_024', 'game_026'}
 
-MINGW_LIBS = [f'{MLIB}/crt2.o', f'{MLIB}/libmingw32.a', f'{GCCD}/libgcc.a',
-              f'{MLIB}/libmingwex.a',
+MINGW_LIBS = [f'{MLIBLIB}/crt2.o', f'{MLIBLIB}/libmingw32.a', f'{GCCD}/libgcc.a',
+              f'{MLIBLIB}/libmingwex.a',
               # --- orig-derived import libs FIRST (api-ms ucrt + game dlls) ---
               f'{PLIB}/lib_api-ms-win-crt-math-l1-1-0.a',
               f'{PLIB}/lib_api-ms-win-crt-stdio-l1-1-0.a',
@@ -88,17 +89,17 @@ MINGW_LIBS = [f'{MLIB}/crt2.o', f'{MLIB}/libmingw32.a', f'{GCCD}/libgcc.a',
               f'{PLIB}/lib_SHLWAPI.a',
               f'{PLIB}/lib_imagehlp.a',
               # --- mingw CRT + system import libs ---
-              f'{MLIB}/libmsvcrt.a',
-              f'{MLIB}/libkernel32.a', f'{MLIB}/libuser32.a', f'{MLIB}/libgdi32.a',
-              f'{MLIB}/libadvapi32.a', f'{MLIB}/libshell32.a', f'{MLIB}/libole32.a',
-              f'{MLIB}/liboleaut32.a', f'{MLIB}/libwinmm.a', f'{MLIB}/libws2_32.a',
-              f'{MLIB}/libddraw.a', f'{MLIB}/libdsound.a', f'{MLIB}/libdinput.a',
-              f'{MLIB}/libdinput8.a', f'{MLIB}/libdxguid.a', f'{MLIB}/libuuid.a',
-              f'{MLIB}/libopengl32.a', f'{MLIB}/libglu32.a', f'{MLIB}/libcomctl32.a',
-              f'{MLIB}/libcomdlg32.a', f'{MLIB}/libsetupapi.a', f'{MLIB}/libversion.a',
-              f'{MLIB}/libwintrust.a', f'{MLIB}/libcrypt32.a', f'{MLIB}/libimagehlp.a',
-              f'{MLIB}/libpsapi.a', f'{MLIB}/libshlwapi.a', f'{MLIB}/librpcrt4.a',
-              f'{MLIB}/libsecur32.a', f'{MLIB}/libnetapi32.a', f'{MLIB}/libiphlpapi.a']
+              f'{MLIBLIB}/libmsvcrt.a',
+              f'{MLIBLIB}/libkernel32.a', f'{MLIBLIB}/libuser32.a', f'{MLIBLIB}/libgdi32.a',
+              f'{MLIBLIB}/libadvapi32.a', f'{MLIBLIB}/libshell32.a', f'{MLIBLIB}/libole32.a',
+              f'{MLIBLIB}/liboleaut32.a', f'{MLIBLIB}/libwinmm.a', f'{MLIBLIB}/libws2_32.a',
+              f'{MLIBLIB}/libddraw.a', f'{MLIBLIB}/libdsound.a', f'{MLIBLIB}/libdinput.a',
+              f'{MLIBLIB}/libdinput8.a', f'{MLIBLIB}/libdxguid.a', f'{MLIBLIB}/libuuid.a',
+              f'{MLIBLIB}/libopengl32.a', f'{MLIBLIB}/libglu32.a', f'{MLIBLIB}/libcomctl32.a',
+              f'{MLIBLIB}/libcomdlg32.a', f'{MLIBLIB}/libsetupapi.a', f'{MLIBLIB}/libversion.a',
+              f'{MLIBLIB}/libwintrust.a', f'{MLIBLIB}/libcrypt32.a', f'{MLIBLIB}/libimagehlp.a',
+              f'{MLIBLIB}/libpsapi.a', f'{MLIBLIB}/libshlwapi.a', f'{MLIBLIB}/librpcrt4.a',
+              f'{MLIBLIB}/libsecur32.a', f'{MLIBLIB}/libnetapi32.a', f'{MLIBLIB}/libiphlpapi.a']
 
 WIN_MAIN = r'''
 /* win_main.c - PE comparison build entry (auto-generated) */
@@ -142,6 +143,13 @@ def compile_tus():
     os.makedirs(f'{OBJ}/log', exist_ok=True)
     names = sorted(f[:-2] for f in os.listdir(SRC) if re.match(r'game_\d+\.c$', f))
     def build(name):
+        obj = f'{OBJ}/{name}.o'
+        # --resume: skip when the object is at least as new as its source
+        # (objects are per-TU deterministic; flags never change per run)
+        if ('--resume' in sys.argv and os.path.exists(obj) and
+                os.path.getmtime(obj) >= os.path.getmtime(f'{SRC}/{name}.c')):
+            print(f'{name}: cached (resume)', flush=True)
+            return name, 0, 0
         flags = BASE + (['-mllvm', '-enable-tail-merge=false'] if name in MERGE_OFF else [])
         r = subprocess.run([CC, *flags, f'{SRC}/{name}.c', '-o', f'{OBJ}/{name}.o'],
                            capture_output=True, text=True, timeout=1800)
@@ -160,10 +168,62 @@ def compile_tus():
 
 
 def compile_stubs():
-    r = sh([CC, *CFGS, f'{SRC}/cde_stubs.c', '-o', f'{OBJ}/cde_pe_stubs.o'])
-    if r.returncode:
-        print('-- cde_stubs.c compile FAIL'); print(r.stderr[:2000]); sys.exit(4)
-    print('cde_pe_stubs.o OK')
+    """PE comparison-build stubs are GENERATED (tools/pe_gen_stubs.py v3):
+    one no-op per original-exe function site not covered by the TUs, driven
+    by pdb/functions.tsv.  (src/cde_stubs.c is the Linux-port stub file and
+    is NOT part of the PE build.)  The generated file is compiled with the
+    conflict-fixing loop: on 'conflicting types' the offending `void X(void)
+    { }` stub is replaced by a definition matching the header prototype."""
+    import shutil
+    sys.path.insert(0, os.path.join(REPO, 'tools'))
+    import pe_gen_stubs as G
+    stub_c = G.generate()
+    stub_o = f'{OBJ}/cde_pe_stubs.o'
+    for _it in range(8):
+        r = sh([CC, *CFGS, stub_c, '-o', stub_o])
+        if r.returncode == 0:
+            print('cde_pe_stubs.o compiled OK after conflict fixes')
+            return
+        err = r.stderr
+        fixed = 0
+        for m in re.finditer(r"conflicting types for '(\w+)'", err):
+            nm = m.group(1)
+            note = re.search(r'(\S+\.h):(\d+):\d+: note: previous declaration', err)
+            if not note:
+                continue
+            hf, hl = note.group(1), int(note.group(2))
+            try:
+                hlines = open(hf, encoding='utf-8', errors='replace').read().split('\n')
+            except OSError:
+                continue
+            decl = hlines[hl - 1].strip()
+            decl = re.sub(r'^(GLFWAPI|GLAPI|WINGDIAPI|APIENTRY|extern|'
+                          r'FT_EXPORT\([^)]*\))\s+', '', decl)
+            decl = decl.rstrip(';').strip()
+            if decl.endswith(')') and '{' not in decl:
+                # ret type = everything before the function name token
+                # ('int FUN_x()' -> 'int ';  'void *X()' -> 'void *')
+                dm = re.match(r'^(.*?)\b([A-Za-z_]\w*)\s*\(', decl)
+                ret = (dm.group(1).strip() if dm else 'void')
+                if ret in ('int', 'long', 'char', 'float', 'double', 'unsigned',
+                           'short', 'bool', 'size_t', 'intptr_t', 'uintptr_t',
+                           'longlong', 'ulonglong', 'int32_t', 'uint32_t',
+                           'int64_t', 'uint64_t') or '*' in ret:
+                    body = '{ return 0; }'
+                else:
+                    body = '{ }'
+                newdef = decl + ' ' + body
+                t2 = open(stub_c, encoding='utf-8').read()
+                t2 = re.sub(r'void ' + re.escape(nm) + r'\(void\) \{ \}',
+                            newdef.replace('\\', '\\\\'), t2, count=1)
+                open(stub_c, 'w', encoding='utf-8').write(t2)
+                fixed += 1
+        if not fixed:
+            print('-- stub compile unresolvable; first errors:')
+            print('\n'.join(l for l in err.splitlines() if 'error' in l)[:1500])
+            sys.exit(4)
+    print('-- stub conflict fixes did not converge in 8 rounds')
+    sys.exit(4)
 
 
 def compile_support():
@@ -379,6 +439,29 @@ def write_stubs(syms, stub_path, imp_path, rets, vars_):
     return n_fn, n_imp
 
 
+def apply_imp_order(path):
+    """Pin the imp-slot emission order to tools/imp_slot_order.tsv
+    (reference-build layout recovery; see tools/fix_imp_order.py).
+    The autostubs closure would otherwise emit sorted-name order, which
+    shifts the __imp__ slot addresses versus the reference artifact."""
+    tsv = os.path.join(REPO, 'tools', 'imp_slot_order.tsv')
+    if not os.path.exists(tsv):
+        return
+    order = [ln.split('\t')[0].strip() for ln in open(tsv)
+             if ln.strip() and not ln.startswith('#')]
+    txt = open(path).read()
+    defs = re.findall(r'void \*(_[A-Za-z_]\w*) = 0;', txt)
+    have = list(dict.fromkeys(defs))
+    oset = set(order)
+    seq = [n for n in order if n in oset] + [n for n in have if n not in oset]
+    body = ['/* cde_impstubs.c - dllimport pointer slots; headerless so the',
+            ' * project data_map.h __imp__ macros cannot hijack the names.',
+            ' * Slot order pinned by tools/imp_slot_order.tsv. */\n']
+    for n in seq:
+        body.append(f'void *{n} = 0;\n')
+    open(path, 'w').write('\n'.join(body))
+
+
 def do_link():
     support = compile_support()
     games = game_objs()
@@ -408,6 +491,7 @@ def do_link():
         syms |= set(und)
         r_, v_ = decl_maps()
         n_fn, n_imp = write_stubs(syms, stub_c, imp_c, r_, v_)
+        apply_imp_order(imp_c)
         rc = sh([CC, *CFGS, stub_c, '-o', f'{OBJ}/cde_autostubs.o'])
         if rc.returncode:
             print('-- stub compile fail'); print(rc.stderr[:1500]); sys.exit(4)
