@@ -101,6 +101,6 @@ python3 tools/pe_cmp.py <参照.exe> pe_out/CDE_recomp.exe
 
 ## 致谢
 
-- [Q Switched Productions, LLC](https://store.steampowered.com/developer/QSwitchedProductions)（Zane Mankowski）—— 独立开发了这款
+- [Q Switched Productions, LLC](https://store.steampowered.com/developer/qswitched)（Zane Mankowski）—— 独立开发了这款
   迄今最严谨的硬科幻太空战争模拟器，购买是最好的支持。
 - Ghidra（NSA）+ BSim —— 本项目等价性验证的基石。
