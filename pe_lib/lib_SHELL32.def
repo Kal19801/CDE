@@ -1,0 +1,9 @@
+LIBRARY "SHELL32.dll"
+EXPORTS
+    ShellExecuteA
+    SHGetFolderPathA
+    SHFileOperationA
+    DragAcceptFiles
+    DragFinish
+    DragQueryPoint
+    DragQueryFileW

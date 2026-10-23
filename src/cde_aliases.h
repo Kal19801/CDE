@@ -1,0 +1,4 @@
+#define Darray_L_util__Reflectable_P_G_ Darray_L_util__Reflectable__P_G_
+#define Darray_L_GraphicsResource__Type_G_ Darray_L_GraphicsResourceType_G_
+#define _DAT_00960cf8 DAT_00968cf8
+#define s_Preferences s_References

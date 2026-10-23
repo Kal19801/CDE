@@ -1,0 +1,14 @@
+LIBRARY "steam_api.dll"
+EXPORTS
+    SteamAPI_UnregisterCallback
+    SteamAPI_RegisterCallback
+    SteamAPI_Shutdown
+    SteamAPI_RestartAppIfNecessary
+    SteamAPI_RunCallbacks
+    SteamAPI_Init
+    SteamUser
+    SteamAPI_RegisterCallResult
+    SteamUGC
+    SteamUtils
+    SteamUserStats
+    SteamAPI_UnregisterCallResult

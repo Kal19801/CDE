@@ -1,0 +1,8 @@
+LIBRARY "freetype6.dll"
+EXPORTS
+    FT_Load_Char
+    FT_Done_Face
+    FT_Init_FreeType
+    FT_New_Face
+    FT_Select_Charmap
+    FT_Set_Pixel_Sizes

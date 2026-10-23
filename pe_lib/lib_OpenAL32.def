@@ -1,0 +1,23 @@
+LIBRARY "OpenAL32.dll"
+EXPORTS
+    alBufferData
+    alDeleteBuffers
+    alDeleteSources
+    alGenBuffers
+    alGenSources
+    alGetError
+    alGetSourcei
+    alIsExtensionPresent
+    alListener3f
+    alListenerf
+    alListenerfv
+    alSource3f
+    alSourcePlay
+    alSourceStop
+    alSourcef
+    alSourcei
+    alcCloseDevice
+    alcCreateContext
+    alcDestroyContext
+    alcMakeContextCurrent
+    alcOpenDevice

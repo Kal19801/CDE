@@ -1,0 +1,5 @@
+LIBRARY "api-ms-win-crt-string-l1-1-0.dll"
+EXPORTS
+    strcpy_s
+    _strdup
+    strncmp

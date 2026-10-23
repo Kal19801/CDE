@@ -1,0 +1,3 @@
+GLFW_ICON ICON "iconGLFW_ICON.ico"
+MAINICON ICON "iconMAINICON.ico"
+1 24 "CDE.manifest"

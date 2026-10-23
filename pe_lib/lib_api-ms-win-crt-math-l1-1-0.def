@@ -1,0 +1,23 @@
+LIBRARY "api-ms-win-crt-math-l1-1-0.dll"
+EXPORTS
+    _CIfmod
+    _libm_sse2_tan_precise
+    _libm_sse2_log_precise
+    _libm_sse2_sin_precise
+    _libm_sse2_cos_precise
+    _libm_sse2_atan_precise
+    _CIatan2
+    _libm_sse2_sqrt_precise
+    _libm_sse2_acos_precise
+    log2
+    floor
+    ldexp
+    ceil
+    __setusermatherr
+    _libm_sse2_pow_precise
+    _libm_sse2_log10_precise
+    _except1
+    expm1
+    cbrt
+    _libm_sse2_asin_precise
+    _libm_sse2_exp_precise

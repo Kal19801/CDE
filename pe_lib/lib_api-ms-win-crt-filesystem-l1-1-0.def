@@ -1,0 +1,6 @@
+LIBRARY "api-ms-win-crt-filesystem-l1-1-0.dll"
+EXPORTS
+    remove
+    rename
+    _lock_file
+    _unlock_file

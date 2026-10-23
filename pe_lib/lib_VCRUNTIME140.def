@@ -1,0 +1,13 @@
+LIBRARY "VCRUNTIME140.dll"
+EXPORTS
+    __std_exception_destroy
+    _except_handler4_common
+    __CxxFrameHandler3
+    _purecall
+    strstr
+    memmove
+    memcpy
+    _CxxThrowException
+    _set_purecall_handler
+    __std_exception_copy
+    memset

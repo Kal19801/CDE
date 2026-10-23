@@ -1,0 +1,8 @@
+LIBRARY "libsndfile-1.dll"
+EXPORTS
+    ord#2
+    ord#50
+    ord#23
+    ord#21
+    ord#1
+    ord#3

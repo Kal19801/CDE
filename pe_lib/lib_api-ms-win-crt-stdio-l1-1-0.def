@@ -1,0 +1,25 @@
+LIBRARY "api-ms-win-crt-stdio-l1-1-0.dll"
+EXPORTS
+    _get_stream_buffer_pointers
+    fclose
+    fflush
+    fgetc
+    fgetpos
+    fputc
+    fsetpos
+    _fseeki64
+    fwrite
+    setvbuf
+    ungetc
+    _set_fmode
+    __acrt_iob_func
+    __p__commode
+    __stdio_common_vfprintf
+    __stdio_common_vsscanf
+    __stdio_common_vswprintf
+    __stdio_common_vsprintf
+    fopen
+    fread
+    ftell
+    fseek
+    feof

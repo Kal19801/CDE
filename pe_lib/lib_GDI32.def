@@ -1,0 +1,13 @@
+LIBRARY "GDI32.dll"
+EXPORTS
+    CreateDCW
+    GetDeviceCaps
+    SetDeviceGammaRamp
+    CreateBitmap
+    DeleteObject
+    CreateDIBSection
+    ChoosePixelFormat
+    DescribePixelFormat
+    SetPixelFormat
+    SwapBuffers
+    DeleteDC

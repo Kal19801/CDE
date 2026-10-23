@@ -1,0 +1,10 @@
+LIBRARY "imagehlp.dll"
+EXPORTS
+    SymGetModuleBase
+    SymInitialize
+    SymGetLineFromAddr64
+    StackWalk
+    SymSetOptions
+    SymCleanup
+    SymFunctionTableAccess
+    SymFromAddr

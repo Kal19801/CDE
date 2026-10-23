@@ -1,0 +1,5 @@
+LIBRARY "api-ms-win-crt-time-l1-1-0.dll"
+EXPORTS
+    strftime
+    _localtime64_s
+    _time64

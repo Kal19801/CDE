@@ -1,0 +1,32 @@
+/* residual scoped-static externs (auto) */
+#pragma once
+extern undefined4 cde_l2r_e55a1afd_ID;
+extern undefined1 cde_l2r_b6b45e6b_ToLowercaseDelta[16];
+extern undefined4 cde_l2r_dbcb3744_ID;
+extern undefined4 cde_l2r_7e1d145e_ID;
+extern undefined4 cde_l2r_ad082737_ID;
+extern undefined4 cde_l2r_62121265_ID;
+extern undefined4 cde_l2r_8120e699_ID;
+extern undefined4 cde_l2r_c4311662_ID;
+extern undefined4 cde_l2r_7b0793e5_ID;
+extern undefined4 cde_l2r_63721df7_ID;
+extern undefined4 cde_l2r_c6b996df_ID;
+extern undefined4 cde_l2r_c7a80f0d_ID;
+extern undefined4 cde_l2r_94dc5f65_ID;
+extern undefined4 cde_l2r_f5921323_ID;
+extern undefined4 cde_l2r_9af776d9_ID;
+extern undefined4 cde_l2r_6c7073ee_ID;
+extern undefined4 cde_l2r_68bd837b_ID;
+extern undefined4 cde_l2r_9e83e527_ID;
+extern undefined4 cde_l2r_388c44db_OptionsStorage;
+extern undefined4 cde_l2r_613ae9b6_ID;
+extern undefined4 cde_l2r_114c9736_ID;
+extern undefined4 cde_l2r_e5c9104c_ID;
+extern undefined4 cde_l2r_63ab3f5e_ID;
+extern undefined4 cde_l2r_6f994b55_ID;
+extern undefined4 cde_l2r_1c0e5faa_ID;
+extern undefined4 cde_l2r_622f9afa_ID;
+extern undefined4 cde_l2r_bde7b245_ID;
+extern undefined4 cde_l2r_4a045ed7_ID;
+extern undefined8 cde_l2r_015cf72d_TimerFrequency;
+extern undefined4 cde_l2r_eb24f806_OptionsStorage;

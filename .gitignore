@@ -1,0 +1,6 @@
+# build artifacts (fully reproducible from source)
+pe_obj/
+pe_out/
+toolchain/
+__pycache__/
+*.log

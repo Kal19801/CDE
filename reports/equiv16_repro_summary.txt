@@ -1,0 +1,15 @@
+CDE equivalence v4 (fresh BSim sigs, python cosine, full normalization)
+orig_functions,18931
+recomp_functions,24219
+joined,18785
+not_reproduced,146
+join_rate,0.9923
+fun_identity_joined,7899
+mean_similarity,0.4637
+sim_ge_0.99,2408
+sim_ge_0.95,2823
+sim_ge_0.9,3678
+sim_ge_0.8,4969
+sim_ge_0.5,8182
+sim_eq_1.0,1272
+median,0.3188
