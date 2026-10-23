@@ -4,3 +4,4 @@ pe_out/
 toolchain/
 __pycache__/
 *.log
+toolchain_debs/
