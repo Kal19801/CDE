@@ -44,7 +44,7 @@ def originals():
 
 def covered_vas():
     s = set()
-    for f in glob.glob(f'{SRC}/game_*.c'):
+    for f in glob.glob(f'{SRC}/game_*.c') + glob.glob(f'{SRC}/pilot_*.c'):
         for ln in read(f).split('\n'):
             m = re.match(r'\s*//+\s*=*\s*([0-9a-fA-F]{6,8})\b', ln)
             if m:
@@ -145,6 +145,11 @@ def generate():
             + glob.glob(f'{d}/**/GLFW/*.h', recursive=True)
     for fp in glob.glob(f'{SRC}/*.c') + glob.glob(f'{SRC}/*.h') + hdr_files:
         if fp.endswith(('cde_stubs.c', 'cde_relocs.c')):
+            continue
+        # pilot_* TUs are excluded from the used-set: their identifiers must not
+        # shift stub dedup naming (order coupling). Pilot files reference stub
+        # symbols; stub names must depend only on game TUs + headers. (p89)
+        if '/pilot_' in fp.replace('\\', '/'):
             continue
         for m in re.finditer(r'\b([A-Za-z_]\w*)\b', read(fp)):
             used.add(m.group(1))

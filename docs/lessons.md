@@ -77,3 +77,23 @@
 - p88：ResetSig 只重置报错的调用者侧；坏原型在被调/间接调用通道时同批
   函数仍炸（93 reset → 92 残留）。被调侧修复需 PoisonTrace 方案，勿重复
   ResetSig 空转。
+- p89：covered_vas 扫描的正则会吞行首注释里的裸十六进制 token——文件头
+  prose 注释写 "deferred: 647840 ..." 会造成假覆盖（该函数桩消失、.text 留洞）。
+  注释首 token 必须是 prose（如 "deferred (next round): Name -- VAs in log"）。
+- p89：pe_gen_stubs 的 used 集合若扫描 pilot TU，会产生桩命名顺序耦合
+  （TU 引用桩名 → used 含桩名 → 同名 VA 被后缀 → 引用漂移）。已修：pilot_*
+  排除出 used 扫描，桩名只由 game TU + 头决定。
+- p89：Ghidra 切片习语（local_98._0_4_ / _0_8_ / CONCAT31 / SUB84）批处理
+  方案：slice_view union（按 (offset,size) 生成成员族）+ 标量声明加宽到
+  undefined8 + 切片用法统一包 `((slice_view*)&X)->_o_s_`；SUB84 半宽对改
+  位转换；CONCAT31 改字节算术。值用法天然合法，无需逐处判型。
+- p89：重载族调用点消解——decompile 文本只有名字没有 VA；用 orig exe
+  llvm-objdump 提取函数内有序 call 目标，与文本调用点 zip。llvm-objdump
+  要 `--start-address=VA` 连写形式，call 语法是 `calll`。
+- p89：decomp2c R4 盲区：`___real_HEX` 三下划线（Ghidra 换行标签）残留
+  一个 `_` 在转换后的浮点字面量前。
+- p89：llvm-pdbutil/objdump 类工具用 subprocess 时参数必须连写
+  （--start-address=VAL）；分离形式会 rc=1 且 stderr 被吞。
+- p89（meta）：多轮 sed/python 字符串补丁会埋进字面 \x08 控制字符把正则
+  静默打死（本轮 wrap 规则假死半天的根因）——补丁后必须 cat -A 抽查或
+  用 Edit 工具而非裸字符串替换。
