@@ -208,31 +208,36 @@ util__DelegateFactory_struct_HUDItineraryInfoPanel_class_util__Str_char_____Meth
 
 //==== 0077a650 MethodCallerConst__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const__ ====
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static struct util__Color __cdecl util__DelegateFactory_L_struct_HUDItineraryInfoPanel_Cstructutil__Color_G___MethodCallerConst_L__private_structutil__Color___thiscallHUDItineraryInfoPanel__GetMissionInfoColor_void_const_G_(void const * const) */
-
-Color * util__DelegateFactory_L_HUDItineraryInfoPanel_Cutil__Color_G___MethodCallerConst_L__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const__G_
-                  (Color *__return_storage_ptr__,void *param_1)
+/* r11-fakecov-fix */
+/* disasm 77a650: cdecl(sret@8,obj@0xc); GetMissionInfoColor(obj,&local32); Reflectable vft -> Str 深拷贝 -> Color vft -> 4 dword 拷贝 -> local 清理 */
+Color * util__DelegateFactory_L_HUDItineraryInfoPanel_Cutil__Color_G___MethodCallerConst_L__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const__G_(Color *__return_storage_ptr__,void *param_1)
 
 {
-  Color *pCVar1;
-  Color local_24;
-  
-  pCVar1 = (Color *)(uintptr_t)(HUDItineraryInfoPanel__GetMissionInfoColor(&local_24));
+  Color local_20;
+  Color *pc;
+
+  pc = (Color *)(uintptr_t)
+       (HUDItineraryInfoPanel__GetMissionInfoColor(param_1,&local_20));
   __return_storage_ptr__->_pad_0x0_0 = (int)&vftable_5;
-  util__DelegateFactory_struct_HUDItineraryInfoPanel_struct_util__Color___MethodCallerConst__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const
-            ((Str_L_char_G_ *)&__return_storage_ptr__->_pad_0x4_1,(Str_L_char_G_ *)&pCVar1->_pad_0x4_1);
-  __return_storage_ptr__->_pad_0x0_0 = (int)&vftable_5;
-  __return_storage_ptr__->Hue_degrees = pCVar1->Hue_degrees;
-  __return_storage_ptr__->Saturation = pCVar1->Saturation;
-  __return_storage_ptr__->Value = pCVar1->Value;
-  __return_storage_ptr__->Alpha = pCVar1->Alpha;
-  local_24._pad_0x0_0 = (int)&vftable_5;
-  if ((void *)local_24._pad_0x4_1 != (void *)0x0) {
-    port_op_delete((void *)local_24._pad_0x4_1);
+  util__Str_char___Str_char
+            ((Str_L_char_G_ *)((char *)__return_storage_ptr__ + 4),
+            (Str_L_char_G_ *)((char *)pc + 4));
+  __return_storage_ptr__->_pad_0x0_0 = (int)&vftable_59;
+  *(undefined4 *)((int)__return_storage_ptr__ + 0x10) =
+       *(undefined4 *)((int)pc + 0x10);
+  *(undefined4 *)((int)__return_storage_ptr__ + 0x14) =
+       *(undefined4 *)((int)pc + 0x14);
+  *(undefined4 *)((int)__return_storage_ptr__ + 0x18) =
+       *(undefined4 *)((int)pc + 0x18);
+  *(undefined4 *)((int)__return_storage_ptr__ + 0x1c) =
+       *(undefined4 *)((int)pc + 0x1c);
+  local_20._pad_0x0_0 = (int)&vftable_5;
+  if (*(char **)((char *)&local_20 + 4) != (char *)0x0) {
+    port_op_delete(*(char **)((char *)&local_20 + 4));
   }
   return __return_storage_ptr__;
 }
+
 
 //==== 0077a6c0 MethodCallerConst__private__class_util__Str_char____thiscall_HUDItineraryInfoPanel__GetMissionInterceptInfo_void_const__ ====
 
@@ -6021,17 +6026,15 @@ void util__DelegateFactory_L_HUDStrategic_Cvoid_G___MethodCaller_L__private__voi
 
 //==== 007a1210 MethodCaller__private__void___thiscall_HUDStrategic__SetTurnStepToOneMonth_void__ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static void __cdecl util__DelegateFactory_L_struct_HUDStrategic_Cvoid_G___MethodCaller_L__private_void__thiscall_HUDStrategic__SetTurnStepToOneMonth_void__G_(void *) */
-
-void util__DelegateFactory_L_HUDStrategic_Cvoid_G___MethodCaller_L__private__void___thiscall_HUDStrategic__SetTurnStepToOneMonth_void__G_
-               (void *param_1)
+/* r11-fakecov-fix */
+/* disasm 7a1210: cdecl(wrap@8); obj=[wrap+8]; SetTurnStep(obj, 2592000.0) */
+void util__DelegateFactory_L_HUDStrategic_Cvoid_G___MethodCaller_L__private__void___thiscall_HUDStrategic__SetTurnStepToOneMonth_void__G_(void *param_1)
 
 {
-  util__DelegateFactory_struct_HUDStrategic_void___MethodCaller__private__void___thiscall_HUDStrategic__SetTurnStepToOneMonth_void(2592000.0);
+  StrategicManager__SetTurnStep(*(void **)((char *)param_1 + 8),2592000.0);
   return;
 }
+
 
 
 
@@ -10846,17 +10849,20 @@ double __thiscall ExplosionComponent__GetReductionFraction(ExplosionComponent *t
 
 //==== 007c4070 GetParticleRadius_m ====
 
-
-/* public: double __thiscall MatterCloudComponent__GetParticleRadius_m(void)const  */
-
+/* r11-fakecov-fix */
+/* disasm 7c4070: pow(([0x10]/[[0xc]+0x30])*3.0/4pi, 1/3) */
 double __thiscall MatterCloudComponent__GetParticleRadius_m(MatterCloudComponent *this)
 
 {
-  double dVar1;
-  
-  dVar1 = ((this->ParticleMass_kg / this->Composition->Density_kg__m3) * 3.0) / 12.566370614359172;
-  libm_sse2_pow_precise(0.0,0.0);
+  char *p;
+  double vol;
+
+  p = (char *)this;
+  vol = (*(double *)(p + 0x10) / *(double *)(*(int *)(p + 0xc) + 0x30)) * 3.0 /
+        12.566370614359172;
+  return libm_sse2_pow_precise(vol,0.3333333333333333);
 }
+
 
 
 

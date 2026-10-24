@@ -12948,10 +12948,8 @@ bool util__DelegateFactory_L_CompartmentButton_Cbool_G___MethodCallerConst_L__pr
                (void *param_1);
 bool util__DelegateFactory_L_CompartmentButton_Cbool_G___MethodCallerConst_L__private__bool___thiscall_CompartmentButton__GetControlVisibility_void_const__G_
                (void *param_1);
-Vec2_L_int_G_ util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetControlLocation_void_const__G_
-                    (void *param_1);
-Vec2_L_int_G_ util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__public__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetSize_void_const__G_
-                    (void *param_1);
+Vec2_L_int_G_ * util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetControlLocation_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1);
+Vec2_L_int_G_ * util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__public__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetSize_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1);
 Range_L_double_G_ *
 util__DelegateFactory_struct_DeltaVWidget_struct_util__Range_double_____MethodCallerConst__private__struct_util__Range_double____thiscall_DeltaVWidget__GetDeltaVPercentagesInfo_void_const
           (Range_L_double_G_ *__return_storage_ptr__,void *param_1);
@@ -13100,8 +13098,7 @@ void util__DelegateFactory_class_MainManager_void___MethodCaller__private__void_
 Str_L_char_G_ *
 util__DelegateFactory_struct_MinimapWidget_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char____thiscall_MinimapWidget__GetInfo_void_const
           (Str_L_char_G_ *__return_storage_ptr__,void *param_1);
-Vec2_L_int_G_ util__DelegateFactory_L_MinimapWidget_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const__G_
-                    (void *param_1);
+Vec2_L_int_G_ * util__DelegateFactory_L_MinimapWidget_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1);
 Range_L_double_G_ *
 util__DelegateFactory_struct_ModuleUI_struct_util__Range_double_____MethodCallerConst__private__struct_util__Range_double____thiscall_ModuleUI__GetStatusBarPercentages_void_const
           (Range_L_double_G_ *__return_storage_ptr__,void *param_1);
@@ -13172,8 +13169,7 @@ int util__DelegateFactory_L_SpacecraftButton_CWidgetShape__Type_G___MethodCaller
                (void *param_1);
 double util__DelegateFactory_L_SpacecraftButton_Cdouble_G___MethodCallerConst_L__private__double___thiscall_SpacecraftButton__GetIconDepth_void_const__G_
                  (void *param_1);
-Vec2_L_int_G_ util__DelegateFactory_L_SpacecraftButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_SpacecraftButton__GetScreenLocation_void_const__G_
-                    (void *param_1);
+Vec2_L_int_G_ * util__DelegateFactory_L_SpacecraftButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_SpacecraftButton__GetScreenLocation_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1);
 Str_L_char_G_ *
 util__DelegateFactory_struct_SpacecraftCompartmentUI_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char____thiscall_SpacecraftCompartmentUI__GetHeatingText_void_const
           (Str_L_char_G_ *__return_storage_ptr__,void *param_1);
@@ -16100,8 +16096,7 @@ Str_L_char_G_ * __cdecl util__Printf(Str_L_char_G_ *__return_storage_ptr__,wchar
 LevelRecord *__thiscall LevelRecord__LevelRecord(LevelRecord *this);
 
 /* p70-a1: missing MethodCaller thunk prototypes (32) */
-long long util__DelegateFactory_L_CoilgunModule_Cdouble_Cdouble_G___MethodCallerConst_L__public__double___thiscall_CoilgunModule__GetChartAcceleration_m__s2_double_const__C0__G_
-               (void *param_1);
+double util__DelegateFactory_L_CoilgunModule_Cdouble_Cdouble_G___MethodCallerConst_L__public__double___thiscall_CoilgunModule__GetChartAcceleration_m__s2_double_const__C0__G_(void *param_1,double param_2);
 long long util__DelegateFactory_L_CoilgunModule_Cutil__Range_L_double_G___G___MethodCallerConst_L__public__struct_util__Range_L_double_G____thiscall_CoilgunModule__GetAccelChartXLimits_void_const__C0__G_
                (void *param_1);
 long long util__DelegateFactory_L_CoilgunModule_Cutil__Range_L_double_G___G___MethodCallerConst_L__public__struct_util__Range_L_double_G____thiscall_CoilgunModule__GetAccelChartYLimits_void_const__C0__G_
@@ -16140,8 +16135,7 @@ Darray_L_util__tuple2_L_util__Str_L_char_G__Cdouble_G___G_ util__DelegateFactory
                (void *param_1);
 Str_L_char_G_ util__DelegateFactory_L_MagnetoplasmadynamicThrusterModule_Cutil__Str_L_char_G___G___MethodCallerConst_L__public__class_util__Str_L_char_G____thiscall_MagnetoplasmadynamicThrusterModule__GetVoltageTitle_void_const__C0__G_
                (void *param_1);
-long long util__DelegateFactory_L_Minimap_Cvoid_Cutil__AABB_L_util__Vec2_L_int_G___G___G___MethodCaller_L__public__void___thiscall_Minimap__OnMarqueeSelect_struct_util__AABB_L_struct_util__Vec2_L_int_G___G___G_
-               (void *param_1);
+void util__DelegateFactory_L_Minimap_Cvoid_Cutil__AABB_L_util__Vec2_L_int_G___G___G___MethodCaller_L__public__void___thiscall_Minimap__OnMarqueeSelect_struct_util__AABB_L_struct_util__Vec2_L_int_G___G___G_(void *param_1,AABB_L_util__Vec2_L_int_G___G_ param_2);
 long long util__DelegateFactory_L_ModuleDesignManager_Cvoid_G___MethodCaller_L__private__void___thiscall_ModuleDesignManager__BuildModuleList_void__G_
                (void *param_1);
 long long util__DelegateFactory_L_NewModuleDropdownButton_Cvoid_Cutil__Reflectable_P_G___MethodCaller_L__public__void___thiscall_NewModuleDropdownButton__SelectItem_class_util__Reflectable_P__G_
@@ -16154,8 +16148,7 @@ long long util__DelegateFactory_L_NuclearPayloadModule_Cutil__Range_L_double_G__
                (void *param_1);
 long long util__DelegateFactory_L_PropellantTankCompartment_Cvoid_G___MethodCaller_L__public__void___thiscall_PropellantTankCompartment__Detach_void__G_
                (void *param_1);
-long long util__DelegateFactory_L_RailgunModule_Cdouble_Cdouble_G___MethodCallerConst_L__public__double___thiscall_RailgunModule__GetChartAcceleration_m__s2_double_const__C0__G_
-               (void *param_1);
+double util__DelegateFactory_L_RailgunModule_Cdouble_Cdouble_G___MethodCallerConst_L__public__double___thiscall_RailgunModule__GetChartAcceleration_m__s2_double_const__C0__G_(void *param_1,double param_2);
 long long util__DelegateFactory_L_RailgunModule_Cutil__Range_L_double_G___G___MethodCallerConst_L__public__struct_util__Range_L_double_G____thiscall_RailgunModule__GetAccelChartXLimits_void_const__C0__G_
                (void *param_1);
 long long util__DelegateFactory_L_RailgunModule_Cutil__Range_L_double_G___G___MethodCallerConst_L__public__struct_util__Range_L_double_G____thiscall_RailgunModule__GetAccelChartYLimits_void_const__C0__G_
@@ -16173,3 +16166,10 @@ void util__tuple5_L_void____cdecl_P__void__Cutil__Str_L_char_G__Cutil__Str_L_cha
 
 UIEditWidgetAttributes * __thiscall UIEditWidgetAttributes__UIEditWidgetAttributes__o2(UIEditWidgetAttributes *this,UIEditWidgetAttributes *param_1);
 
+
+
+/* r11-fakecov-fix: __thiscall 方法 proto (真身已落地或待落地; 调用点 ABI 依 disasm) */
+void __thiscall StrategicManager__SetTurnStep(StrategicManager *this,double param_1);
+void __thiscall HUDTactical__OnMarqueeSelect(void *this,AABB_L_util__Vec2_L_int_G___G_ param_1);
+void __thiscall Minimap__OnMarqueeSelect(void *this,AABB_L_util__Vec2_L_int_G___G_ param_1);
+void __thiscall CompartmentButton__GetDimensionScreenBounds_Memoize(void *this);

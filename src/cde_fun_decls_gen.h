@@ -1829,3 +1829,8 @@ extern long long StrategicManager__GetNotifications();
 extern bool StrategicManager__PlayerFailed();
 extern bool StrategicManager__PlayerIsVictorious();
 extern Manager * StrategicManager__StrategicManager();
+
+/* r11-fakecov-fix: sret getter K&R (真身待落地; 语料约定 plain cdecl this-first) */
+extern Vec2_L_int_G_ * CompartmentButton__GetControlLocation();
+extern Vec2_L_int_G_ * MinimapWidget__GetLocationWithinMinimap();
+extern Vec2_L_int_G_ * SpacecraftButton__GetScreenLocation();

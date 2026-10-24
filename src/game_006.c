@@ -340,7 +340,7 @@ CraftBlueprintArmor__GetSurfaceIndexFromAngle(CraftBlueprintArmor *this,double p
                 (*(void **)((char *)&(this->GetOuterArmorSpline_m_MemoizedValue) + 4))) = (void *)(GetCrossSectionTrueAngles_radians_Clear);
     }
     pDVar2 = (long long int (*)())((Darray_L_double_G_ *)(uintptr_t)(GetCrossSectionTrueAngles_radians_MemoizedFunction(this,&local_38)));
-    util__Darray_double___Darray_double(&local_28,pDVar2);
+    util__Darray_double___Darray_double__00505290(&local_28,pDVar2);
     local_18 = 1;
     util__Darray_double___operator
               ((Darray_L_double_G_ *)&(this->GetOuterArmorSegments_m_MemoizedValue).Data.Data,&local_28)

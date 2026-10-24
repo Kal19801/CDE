@@ -13485,7 +13485,7 @@ void __thiscall RadiatorModule__GetPanelAndFinishMasses_kg_Memoize(RadiatorModul
         iVar4 = iVar4 + 1;
       } while (iVar4 < this[1]._pad_0x0_0);
     }
-    util__Darray_double___Darray_double(&local_40,&local_2c);
+    util__Darray_double___Darray_double__00505290(&local_40,&local_2c);
     local_30 = 1;
     util__Darray_double___operator
               ((Darray_L_double_G_ *)&this->GetHeatPipeSpacing_m_MemoizedValue,&local_40);

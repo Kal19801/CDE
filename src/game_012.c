@@ -3652,19 +3652,23 @@ ExplosiveModule__GetComposition
 
 //==== 005f63b0 GetHullRadius_m_005f63b0 ====
 
-/* public: virtual double __thiscall ExplosiveModule__GetHullRadius_m(void)const  */
-
+/* r11-fakecov-fix */
+/* disasm 5f63b0: sqrt(([0x90]/[[0x98]+0x30] + [0x80]/[[0x88]+0x30]) / ([0x78]*pi)) */
 double __thiscall ExplosiveModule__GetHullRadius_m(ExplosiveModule *this)
 
 {
-  double dVar1;
-  
-  dVar1 = ((this->Detonator).HardRange_km /
-           *(double *)(*(int *)&(this->Detonator).ActivationRange_km + 0x30) +
-          *(double *)&this->Detonator / *(double *)((this->Detonator)._pad_0x8_2 + 0x30)) /
-          (*(double *)&this->ShrapnelComposition * 3.141592653589793);
-  libm_sse2_sqrt_precise(0.0);
+  char *p;
+  double da;
+  double db;
+  double den;
+
+  p = (char *)this;
+  da = *(double *)(p + 0x90) / *(double *)(*(int *)(p + 0x98) + 0x30);
+  db = *(double *)(p + 0x80) / *(double *)(*(int *)(p + 0x88) + 0x30);
+  den = *(double *)(p + 0x78) * 3.141592653589793;
+  return libm_sse2_sqrt_precise((da + db) / den);
 }
+
 
 //==== 005f6410 GetStructuralMaterial_005f6410 ====
 

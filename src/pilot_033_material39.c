@@ -1465,7 +1465,7 @@ double __thiscall Material__GetEmissionPower_W(Material *this,double param_1,dou
                   (this->GetCategory_MemoizedValue).Data * 4) = Material__GetEmissivePowers_W_Clear;
       }
       pDVar4 = GetEmissivePowers_W_MemoizedFunction(this,(Darray_L_double_G_ *)local_28);
-      util__Darray_double___Darray_double(&local_3c,pDVar4);
+      util__Darray_double___Darray_double__00505290(&local_3c,pDVar4);
       local_2c = true;
       util__Darray_double___operator
                 ((Darray_L_double_G_ *)((int)&(this->GetCost_CU__kg_MemoizedValue).Data + 4),&local_3c);
@@ -1504,7 +1504,7 @@ double __thiscall Material__GetEmissionPower_W(Material *this,double param_1,dou
                   (this->GetCategory_MemoizedValue).Data * 4) = Material__GetEmissivePowers_W_Clear;
       }
       pDVar5 = GetEmissivePowers_W_MemoizedFunction(this,(Darray_L_double_G_ *)local_28);
-      util__Darray_double___Darray_double(&local_3c,pDVar5);
+      util__Darray_double___Darray_double__00505290(&local_3c,pDVar5);
       local_2c = true;
       util__Darray_double___operator(pDVar4,&local_3c);
       (this->GetDecompositionReaction_MemoizedValue).IsValidData = local_2c;

@@ -3367,18 +3367,15 @@ Str_L_char_G_ * ShipGroupUI__GetTargetShipVerboseTooltip__o3(Str_L_char_G_ *__re
 
 //==== 0082b0c0 MethodCaller__private__void___thiscall_HUDTactical__OnMarqueeSelect_struct_util__AABB_struct_util__Vec2_int_____ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static void __cdecl util__DelegateFactory_L_structHUDTactical_Cvoid_Cstruct_util__AABB_L_structutil__Vec2_L_int_G__G__G___MethodCaller_L__private_void__thiscall_HUDTactical__OnMarqueeSelect_structutil__AABB_L_structutil__Vec2_L_int_G__G___G_(void *,struct
-   util__AABB_L_structutil__Vec2_L_int_G__G_) */
-
-void util__DelegateFactory_L_HUDTactical_Cvoid_Cutil__AABB_L_util__Vec2_L_int_G___G___G___MethodCaller_L__private__void___thiscall_HUDTactical__OnMarqueeSelect_struct_util__AABB_L_struct_util__Vec2_L_int_G___G___G_
-               (void *param_1,AABB_L_util__Vec2_L_int_G___G_ param_2)
+/* r11-fakecov-fix */
+/* disasm 82b0c0: cdecl(obj@8, AABB@0xc); thiscall 直转 */
+void util__DelegateFactory_L_HUDTactical_Cvoid_Cutil__AABB_L_util__Vec2_L_int_G___G___G___MethodCaller_L__private__void___thiscall_HUDTactical__OnMarqueeSelect_struct_util__AABB_L_struct_util__Vec2_L_int_G___G___G_(void *param_1,AABB_L_util__Vec2_L_int_G___G_ param_2)
 
 {
-  util__DelegateFactory_struct_HUDTactical_void_struct_util__AABB_struct_util__Vec2_int_______MethodCaller__private__void___thiscall_HUDTactical__OnMarqueeSelect_struct_util__AABB_struct_util__Vec2_int(param_2);
+  HUDTactical__OnMarqueeSelect(param_1,param_2);
   return;
 }
+
 
 
 

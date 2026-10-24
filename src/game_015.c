@@ -19076,7 +19076,7 @@ Material__GetEmissivePowers_W_MemoizedFunction
     }
     *(uint32_t *)&local_24 = local_24 + 100.0;
   } while (local_24 <= 5000.0);
-  util__Darray_double___Darray_double(__return_storage_ptr__,&local_1c);
+  util__Darray_double___Darray_double__00505290(__return_storage_ptr__,&local_1c);
   local_1c._pad_0x0_0 = (int)&vftable_63;
   if (local_1c.Data != (double *)0x0) {
     port_op_delete(local_1c.Data);

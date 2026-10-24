@@ -11491,22 +11491,18 @@ int util__DelegateFactory_L_SpacecraftButton_CWidgetShape__Type_G___MethodCaller
 
 //==== 00807100 MethodCallerConst__private__struct_util__Vec2_int____thiscall_SpacecraftButton__GetScreenLocation_void_const__ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static struct util__Vec2_L_int_G_ __cdecl util__DelegateFactory_L_struct_SpacecraftButton_Cstructutil__Vec2_L_int_G__G___MethodCallerConst_L__private_structutil__Vec2_L_int_G____thiscallSpacecraftButton__GetScreenLocation_void_const_G_(void const * const) */
-
-Vec2_L_int_G_ util__DelegateFactory_L_SpacecraftButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_SpacecraftButton__GetScreenLocation_void_const__G_
-                    (void *param_1)
+/* r11-fakecov-fix */
+/* disasm 807100: cdecl(sret@8, obj@0xc); GetScreenLocation(obj,&local); 8B copy */
+Vec2_L_int_G_ * util__DelegateFactory_L_SpacecraftButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_SpacecraftButton__GetScreenLocation_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1)
 
 {
-  Vec4_L_int_G_ VVar1;
-  
-  util__DelegateFactory_struct_SpacecraftButton_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_SpacecraftButton__GetScreenLocation_void_const(&VVar1);
-  *(undefined4 *)param_1 = *(undefined4 *)VVar1.X;
-  *(undefined4 *)((int)param_1 + 4) = ((undefined4 *)VVar1.X)[1];
-  VVar1.Y = (int)param_1;
-  VVar1.X = (int)param_1;
+  Vec2_L_int_G_ local_8;
+
+  SpacecraftButton__GetScreenLocation(param_1,&local_8);
+  *__return_storage_ptr__ = local_8;
+  return __return_storage_ptr__;
 }
+
 
 
 
@@ -11608,22 +11604,18 @@ util__DelegateFactory_struct_MinimapWidget_class_util__Str_char_____MethodCaller
 
 //==== 00809560 MethodCallerConst__private__struct_util__Vec2_int____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const__ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static struct util__Vec2_L_int_G_ __cdecl util__DelegateFactory_L_structMinimapWidget_Cstruct_util__Vec2_L_int_G__G___MethodCallerConst_L__private_structutil__Vec2_L_int_G___thiscall_MinimapWidget__GetLocationWithinMinimap_void_const_G_(void const * const) */
-
-Vec2_L_int_G_ util__DelegateFactory_L_MinimapWidget_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const__G_
-                    (void *param_1)
+/* r11-fakecov-fix */
+/* disasm 809560: cdecl(sret@8, obj@0xc); GetLocationWithinMinimap(obj,&local); 8B copy */
+Vec2_L_int_G_ * util__DelegateFactory_L_MinimapWidget_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1)
 
 {
-  Vec4_L_int_G_ VVar1;
-  
-  util__DelegateFactory_struct_MinimapWidget_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_MinimapWidget__GetLocationWithinMinimap_void_const(&VVar1);
-  *(undefined4 *)param_1 = *(undefined4 *)VVar1.X;
-  *(undefined4 *)((int)param_1 + 4) = ((undefined4 *)VVar1.X)[1];
-  VVar1.Y = (int)param_1;
-  VVar1.X = (int)param_1;
+  Vec2_L_int_G_ local_8;
+
+  MinimapWidget__GetLocationWithinMinimap(param_1,&local_8);
+  *__return_storage_ptr__ = local_8;
+  return __return_storage_ptr__;
 }
+
 
 
 
@@ -12613,22 +12605,18 @@ util__DelegateFactory_struct_SpacecraftCompartmentUI_void____cdecl___void____Met
 
 //==== 0080f150 MethodCallerConst__private__struct_util__Vec2_int____thiscall_CompartmentButton__GetControlLocation_void_const__ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static struct util__Vec2_L_int_G_ __cdecl util__DelegateFactory_L_struct_CompartmentButton_Cstructutil__Vec2_L_int_G__G___MethodCallerConst_L__private_structutil__Vec2_L_int_G____thiscallCompartmentButton__GetControlLocation_void_const_G_(void const * const) */
-
-Vec2_L_int_G_ util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetControlLocation_void_const__G_
-                    (void *param_1)
+/* r11-fakecov-fix */
+/* disasm 80f150: cdecl(sret@8, obj@0xc); GetControlLocation(obj,&local); 8B copy */
+Vec2_L_int_G_ * util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__private__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetControlLocation_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1)
 
 {
-  Vec4_L_int_G_ VVar1;
-  
-  util__DelegateFactory_struct_CompartmentButton_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_CompartmentButton__GetControlLocation_void_const(&VVar1);
-  *(undefined4 *)param_1 = *(undefined4 *)VVar1.X;
-  *(undefined4 *)((int)param_1 + 4) = ((undefined4 *)VVar1.X)[1];
-  VVar1.Y = (int)param_1;
-  VVar1.X = (int)param_1;
+  Vec2_L_int_G_ local_8;
+
+  CompartmentButton__GetControlLocation(param_1,&local_8);
+  *__return_storage_ptr__ = local_8;
+  return __return_storage_ptr__;
 }
+
 
 
 
@@ -12891,33 +12879,30 @@ util__DelegateFactory_struct_SpacecraftCompartmentUI_class_util__Str_char_____Me
 
 //==== 0080f3f0 MethodCallerConst__public__struct_util__Vec2_int____thiscall_CompartmentButton__GetSize_void_const__ ====
 
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-/* public: static struct util__Vec2_L_int_G_ __cdecl util__DelegateFactory_L_struct_CompartmentButton_Cstructutil__Vec2_L_int_G__G___MethodCallerConst_L__public_structutil__Vec2_L_int_G____thiscallCompartmentButton__GetSize_void_const_G_(void const * const) */
-
-Vec2_L_int_G_ util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__public__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetSize_void_const__G_
-                    (void *param_1)
+/* r11-fakecov-fix */
+/* disasm 80f3f0: GetDimensionScreenBounds_Memoize 刷新; flag 0x1e0 断言; (int)(max-min) 两轴 -> sret */
+Vec2_L_int_G_ * util__DelegateFactory_L_CompartmentButton_Cutil__Vec2_L_int_G___G___MethodCallerConst_L__public__struct_util__Vec2_L_int_G____thiscall_CompartmentButton__GetSize_void_const__G_(Vec2_L_int_G_ *__return_storage_ptr__,void *param_1)
 
 {
-  double dVar1;
-  double dVar2;
-  Vec4_L_int_G_ VVar3;
-  int in_stack_00000008;
-  
-  util__DelegateFactory_struct_CompartmentButton_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_CompartmentButton__GetSize_void_const();
-  if (*(char *)(in_stack_00000008 + 0x1e0) == '\0') {
-    LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,"IsValid()",
-              (char *)0x0);
+  char *p;
+  double dx;
+  double dy;
+
+  p = (char *)param_1;
+  CompartmentButton__GetDimensionScreenBounds_Memoize(param_1);
+  if (*(char *)(p + 0x1e0) == '\0') {
+    util__LogAssert
+              ("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+              "IsValid()",(char *)0x0);
     DebugBreak();
   }
-  dVar1 = *(double *)(in_stack_00000008 + 0x1d8);
-  dVar2 = *(double *)(in_stack_00000008 + 0x1c8);
-  VVar3.Y = (int)(*(double *)(in_stack_00000008 + 0x1d0) - *(double *)(in_stack_00000008 + 0x1c0));
-  *(int *)param_1 = VVar3.Y;
-  *(int *)((int)param_1 + 4) = (int)(dVar1 - dVar2);
-  VVar3.X = (int)param_1;
-  return *(Vec2_L_int_G_ *)&(VVar3);
+  dx = *(double *)(p + 0x1d0) - *(double *)(p + 0x1c0);
+  dy = *(double *)(p + 0x1d8) - *(double *)(p + 0x1c8);
+  *(int *)&__return_storage_ptr__[0] = (int)dx;
+  *(int *)((int)&__return_storage_ptr__[0] + 4) = (int)dy;
+  return __return_storage_ptr__;
 }
+
 
 
 

@@ -20393,8 +20393,8 @@ Darray_L_int_G_ *  util__Darray_int___Darray_int__o3(Darray_L_int_G_ *this,int p
 
 /* public:  util__Darray_double___Darray_double(class util__Darray_L_double_G_ const &) */
 
-Darray_L_double_G_ * 
-util__Darray_double___Darray_double(Darray_L_double_G_ *this,Darray_L_double_G_ *param_1)
+Darray_L_double_G_ *
+util__Darray_double___Darray_double__00505290(Darray_L_double_G_ *this,Darray_L_double_G_ *param_1)
 
 {
   longlong lVar1;
@@ -27195,111 +27195,83 @@ void __thiscall CraftBlueprintArmor__GetArmorPlateHeights_m_Clear(CraftBlueprint
 
 //==== 0050e510 GetArmorPlateHeights_m_Memoize ====
 
-/* public: void __thiscall CraftBlueprintArmor__GetArmorPlateHeights_m_Memoize(void)const  */
-
+/* r11-fakecov-fix */
+/* disasm 50e510: flag 0x174; Clear 注册 0x38; Count_MF -> Vec3 0x18c flag 0x198; Darray ctor(Y+1) 循环 PlateHeight -> operator= 0x164; flag=1; 深拷贝清理; 原体毁于 CONCAT31 未初始化读 */
 void __thiscall CraftBlueprintArmor__GetArmorPlateHeights_m_Memoize(CraftBlueprintArmor *this)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar3;
-  undefined8 uVar2;
   bool bVar4;
   Vec3_L_int_G_ *pVVar5;
   int iVar6;
   int iVar7;
-  double dVar8;
+  int iVar8;
+  double dVar9;
+  char *p;
   Vec3_L_int_G_ local_4c;
   Darray_L_double_G_ local_40;
-  undefined1 local_30;
-  int local_2c;
-  undefined4 local_28;
-  undefined4 uStack_24;
-  int iStack_20;
-  int iStack_1c;
   Darray_L_double_G_ local_18;
   int local_8;
-  
-  if ((this->GetAxialMomentOfInertia_kg_m2_MemoizedValue).field_0xc == '\0') {
-    iVar6 = *(int *)&(this->GetOuterArmorSpline_m_MemoizedValue).IsValidData;
+
+  p = (char *)this;
+  if (*(char *)(p + 0x174) == '\0') {
+    iVar6 = *(int *)(p + 0x40);
     local_8 = iVar6 + 1;
     util__Darray_L_util__Reflectable_P_G___SetSize
-              ((Darray_L_util__Reflectable_P_G_ *)&(this->GetOuterArmorSpline_m_MemoizedValue).Data.Size,
-               &local_8);
+              ((Darray_L_util__Reflectable_P_G_ *)(p + 0x38),&local_8);
     bVar4 = util__Darray_L_GraphicsResource__Type_G___CheckSize
-                      ((Darray_L_GraphicsResource__Type_G_ *)
-                       &(this->GetOuterArmorSpline_m_MemoizedValue).Data.Size,iVar6);
+                      ((Darray_L_GraphicsResource__Type_G_ *)(p + 0x38),iVar6);
     if (bVar4) {
-      *(code **)((this->GetOuterArmorSpline_m_MemoizedValue).Data.Capacity + -4 +
-                (int)((this->GetOuterArmorSpline_m_MemoizedValue).IsValidData * 4)) = (code *)(GetArmorPlateHeights_m_Clear);
+      *(code **)(*(int *)(p + 0x3c) + iVar6 * 4 + -4) =
+           (code *)(GetArmorPlateHeights_m_Clear);
     }
-    if (*(char *)((this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 4) == '\0') {
-      iVar6 = *(int *)&(this->GetOuterArmorSpline_m_MemoizedValue).IsValidData;
+    if (*(char *)(p + 0x198) == '\0') {
+      iVar6 = *(int *)(p + 0x40);
       local_8 = iVar6 + 1;
       util__Darray_L_util__Reflectable_P_G___SetSize
-                ((Darray_L_util__Reflectable_P_G_ *)
-                 &(this->GetOuterArmorSpline_m_MemoizedValue).Data.Size,&local_8);
+                ((Darray_L_util__Reflectable_P_G_ *)(p + 0x38),&local_8);
       bVar4 = util__Darray_L_GraphicsResource__Type_G___CheckSize
-                        ((Darray_L_GraphicsResource__Type_G_ *)
-                         &(this->GetOuterArmorSpline_m_MemoizedValue).Data.Size,iVar6);
+                        ((Darray_L_GraphicsResource__Type_G_ *)(p + 0x38),iVar6);
       if (bVar4) {
-        *(code **)((this->GetOuterArmorSpline_m_MemoizedValue).Data.Capacity + -4 +
-                  (int)((this->GetOuterArmorSpline_m_MemoizedValue).IsValidData * 4)) = (code *)(GetArmorPlateCount_Clear);
+        *(code **)(*(int *)(p + 0x3c) + iVar6 * 4 + -4) =
+             (code *)(GetArmorPlateCount_Clear);
       }
-      pVVar5 = (Vec3_L_int_G_ *)(uintptr_t)(GetArmorPlateCount_MemoizedFunction(this,&local_4c));
-      iStack_1c = CONCAT31((*(uint24_t*)((char*)&(iStack_1c)+1)),1);
-      uVar1 = pVVar5->X;
-      uVar3 = pVVar5->Y;
-      iStack_20 = pVVar5->Z;
-      *(undefined4 *)((int)(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x14) =
-           uVar1;
-      *(undefined4 *)((this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 3) = uVar3;
-      *(int *)((int)(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x1c) =
-           iStack_20;
-      *(int *)((this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 4) = iStack_1c;
-      local_28 = uVar1;
-      if (*(char *)((this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 4) == '\0') {
-        uStack_24 = uVar3;
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
+      pVVar5 = (Vec3_L_int_G_ *)(uintptr_t)
+               (GetArmorPlateCount_MemoizedFunction(this,&local_4c));
+      *(char *)(p + 0x198) = 1;
+      *(undefined4 *)(p + 0x18c) = *(undefined4 *)pVVar5;
+      *(undefined4 *)(p + 0x190) = *(undefined4 *)((int)pVVar5 + 4);
+      *(undefined4 *)(p + 0x194) = *(undefined4 *)((int)pVVar5 + 8);
+      if (*(char *)(p + 0x198) == '\0') {
+        util__LogAssert
+                  ("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                  "IsValid()",(char *)0x0);
         DebugBreak();
       }
     }
-    uVar2 = *(undefined8 *)
-             ((int)(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x14);
-    iStack_1c = *(int *)((int)(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x1c)
-    ;
-    uStack_24 = (undefined4)uVar2;
-    iStack_20 = (int)((ulonglong)uVar2 >> 0x20);
-    iVar6 = iStack_20 + 1;
+    iVar8 = *(int *)(p + 0x190) + 1;
     local_18._pad_0x0_0 = 0;
     local_18.Data = (double *)0x0;
     local_18.Size = 0;
     local_18.Capacity = 0;
-    local_2c = iVar6;
-    util__Darray_double___Darray_double(&local_18,(Darray_L_double_G_*)((Darray_L_double_G_*)(iVar6)));
-    iVar7 = 0;
-    if (0 < iVar6) {
+    util__Darray_double___Darray_double
+              (&local_18,(Darray_L_double_G_ *)(iVar8));
+    if (0 < iVar8) {
+      iVar7 = 0;
       do {
-        dVar8 = GetArmorPlateHeight_m(this,iVar7);
+        dVar9 = GetArmorPlateHeight_m(this,iVar7);
         iVar6 = local_18.Size;
-        iStack_20 = SUB84(dVar8,0);
-        iStack_1c = (int)((ulonglong)dVar8 >> 0x20);
         local_8 = local_18.Size + 1;
         util__Darray_double___SetSize(&local_18,&local_8);
         bVar4 = util__Darray_double___CheckSize(&local_18,iVar6);
         if (bVar4) {
-          *(int *)(local_18.Data + local_18.Size + -1) = iStack_20;
-          *(int *)((int)(local_18.Data + local_18.Size + -1) + 4) = iStack_1c;
+          *(double *)(local_18.Data + local_18.Size + -1) = dVar9;
         }
         iVar7 = iVar7 + 1;
-      } while (iVar7 < local_2c);
+      } while (iVar7 < iVar8);
     }
-    util__Darray_double___Darray_double(&local_40,&local_18);
-    *(uint32_t *)&local_30 = 1;
-    util__Darray_double___operator
-              ((Darray_L_double_G_ *)&(this->GetRadialMomentOfInertia_kg_m2_MemoizedValue).field_0xc,
-               &local_40);
-    *(undefined4 *)&(this->GetAxialMomentOfInertia_kg_m2_MemoizedValue).field_0xc = (undefined4)local_30;
+    util__Darray_double___Darray_double__00505290(&local_40,&local_18);
+    util__Darray_double___operator((Darray_L_double_G_ *)(p + 0x164),&local_40);
+    *(char *)(p + 0x174) = 1;
     local_40._pad_0x0_0 = (int)&vftable_63;
     if (local_40.Data != (double *)0x0) {
       port_op_delete(local_40.Data);
@@ -27313,6 +27285,7 @@ void __thiscall CraftBlueprintArmor__GetArmorPlateHeights_m_Memoize(CraftBluepri
   }
   return;
 }
+
 
 //==== 0050e6d0 GetArmorPlateNormal ====
 
@@ -29067,7 +29040,7 @@ CraftBlueprintArmor__GetCrossSectionTrueAngles_radians_MemoizedFunction
         iVar3 = GetRadialSubdivisions(this);
       } while (iVar5 < iVar3);
     }
-    util__Darray_double___Darray_double(__return_storage_ptr__,&local_1c);
+    util__Darray_double___Darray_double__00505290(__return_storage_ptr__,&local_1c);
     local_1c._pad_0x0_0 = (int)&vftable_63;
     if (local_1c.Data != (double *)0x0) {
       port_op_delete(local_1c.Data);

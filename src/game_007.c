@@ -25674,20 +25674,20 @@ void * __cdecl util__Tokenize_char_1(Str_L_char_G_ *param_1,char *param_2)
 
 //==== 0056cb60 Darray_util__Str_char____0056cb60 ====
 
-
-/* public:  util__Darray_L_classutil__Str_L_char_G__G___Darray_L_classutil__Str_L_char_G__G_(void) */
-
-Darray_L_class_util__Str_L_char_G___G_ * 
+/* r11-fakecov-fix */
+/* disasm 56cb60: vftable + 3 零 dword (原体 this+4 指针算术越界 UB) */
+Darray_L_class_util__Str_L_char_G___G_ *
 util__Darray_class_util__Str_char_____Darray_class_util__Str_char
           (Darray_L_class_util__Str_L_char_G___G_ *this)
 
 {
   *(undefined ***)this = (undefined **)(&vftable_4);
-  *(undefined4 *)(this + 4) = 0;
-  *(undefined4 *)(this + 8) = 0;
-  *(undefined4 *)(this + 0xc) = 0;
+  *(undefined4 *)((int)this + 4) = 0;
+  *(undefined4 *)((int)this + 8) = 0;
+  *(undefined4 *)((int)this + 0xc) = 0;
   return this;
 }
+
 
 
 

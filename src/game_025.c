@@ -19306,18 +19306,14 @@ double CameraManager__GetCameraFieldOfViewY_radians(void)
 
 //==== 00879df0 GetCameraHeight ====
 
-
-/* WARNING: Enum "FT_Encoding_": GroupType__Some values do not have unique names */
-/* public: double __thiscall CameraManager__GetCameraHeight(void)const  */
-
+/* r11-fakecov-fix */
+/* disasm 879df0: pow(10.0, [this+0x68]) */
 double __thiscall CameraManager__GetCameraHeight(CameraManager *this)
 
 {
-  double dVar1;
-  
-  dVar1 = 10.0;
-  libm_sse2_pow_precise(0.0,0.0);
+  return libm_sse2_pow_precise(10.0,*(double *)((char *)this + 0x68));
 }
+
 
 
 

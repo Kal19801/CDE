@@ -2353,7 +2353,7 @@ void __thiscall Material__PreMemoize(Material *this)
                 (this->GetCategory_MemoizedValue).Data * 4) )= (long long int (*)())(GetEmissivePowers_W_Clear);
     }
     pDVar10 = (Darray_L_double_G_ *)(uintptr_t)(GetEmissivePowers_W_MemoizedFunction(this,(Darray_L_double_G_ *)&local_38));
-    util__Darray_double___Darray_double((Darray_L_double_G_ *)&local_24,pDVar10);
+    util__Darray_double___Darray_double__00505290((Darray_L_double_G_ *)&local_24,pDVar10);
     uStack_14 = CONCAT31((*(uint24_t*)((char*)&(uStack_14)+1)),1);
     util__Darray_double___operator
               ((Darray_L_double_G_ *)((int)&(this->GetCost_CU__kg_MemoizedValue).Data + 4),
