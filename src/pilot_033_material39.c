@@ -6,8 +6,17 @@
 #include "port_prelude.h"
 typedef union {
   struct {
+    undefined8 _8_8_;
+  };
+  struct {
+    undefined1 _0_5_[5];
+  };
+  struct {
     undefined4 _0_4_;
     undefined4 _4_4_;
+  };
+  struct {
+    undefined1 _5_3_[3];
   };
   undefined1 raw[32];
 } slice_view;
@@ -379,6 +388,146 @@ double __thiscall Material__GetDissociationFraction(Material *this,double param_
     return dVar1;
   }
   return 0.0;
+}
+
+
+//==== 006830b0 6830b0_Material__GetEmissionPower_W ====
+// decompiled by BatchDecomp @ 006830b0 name=GetEmissionPower_W conv=__thiscall body=724
+
+/* public: double __thiscall Material__GetEmissionPower_W(double,double)const  */
+
+double __thiscall Material__GetEmissionPower_W(Material *this,double param_1,double param_2)
+
+{
+  Category CVar1;
+  bool bVar2;
+  int iVar3;
+  Darray_L_double_G_ *pDVar4;
+  Darray_L_double_G_ *pDVar5;
+  double *pdVar6;
+  code *pcVar7;
+  float10 extraout_ST0;
+  Darray_L_double_G_ local_3c;
+  bool local_2c;
+  undefined1 local_28[8];
+  undefined8 local_20;
+  int local_18;
+  int local_14;
+  double local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  iVar3 = (int)((param_1 / /*40b3880000000000*/5000.0) * /*4049000000000000*/50.0);
+  if (iVar3 < 1) {
+    iVar3 = 0;
+  }
+  local_18 = 0x32;
+  if (iVar3 < 0x32) {
+    local_18 = iVar3;
+  }
+  iVar3 = local_18 + 1;
+  if (iVar3 < 1) {
+    iVar3 = 0;
+  }
+  local_14 = 0x32;
+  if (iVar3 < 0x32) {
+    local_14 = iVar3;
+  }
+  local_10 = (param_1 - (double)local_18 * /*4059000000000000*/100.0) / /*4059000000000000*/100.0;
+  if (local_10 <= /*0000000000000000*/0.0) {
+    local_10 = /*0000000000000000*/0.0;
+  }
+  if (/*3ff0000000000000*/1.0 <= local_10) {
+    local_10 = /*3ff0000000000000*/1.0;
+  }
+  bVar2 = HasEmissionSpectra(this);
+  if (bVar2) {
+    if ((this->GetDecompositionReaction_MemoizedValue).IsValidData == false) {
+      CVar1 = (this->GetCategory_MemoizedValue).Data;
+      ((slice_view *)&local_20)->_4_4_ = CVar1 + Nonmetal;
+      util__Darray_class_util__Reflectable____SetSize
+                ((Darray_L_util__Reflectable_P_G_ *)&(this->GetClasses_MemoizedValue).Data.Capacity
+                 ,(int *)((int)&local_20 + 4));
+      bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize
+                        ((Darray_L_GraphicsResource__Type_G_ *)
+                         &(this->GetClasses_MemoizedValue).Data.Capacity,CVar1);
+      if (bVar2) {
+        *(code **)(*(int *)&(this->GetClasses_MemoizedValue).IsValidData + -4 +
+                  (this->GetCategory_MemoizedValue).Data * 4) = Material__GetEmissivePowers_W_Clear;
+      }
+      pDVar4 = GetEmissivePowers_W_MemoizedFunction(this,(Darray_L_double_G_ *)local_28);
+      util__Darray_double___Darray_double(&local_3c,pDVar4);
+      local_2c = true;
+      util__Darray_double___operator
+                ((Darray_L_double_G_ *)((int)&(this->GetCost_CU__kg_MemoizedValue).Data + 4),&local_3c);
+      (this->GetDecompositionReaction_MemoizedValue).IsValidData = local_2c;
+      local_3c._pad_0x0_0 = 0x91da54;
+      if (local_3c.Data != (double *)0x0) {
+        operator_delete__(local_3c.Data);
+      }
+      local_3c.Data = (double *)0x0;
+      local_3c._pad_0x0_0 = 0x919488;
+      ((slice_view *)&local_28)->_0_4_ = 0x91da54;
+      if ((double *)((slice_view *)&local_28)->_4_4_ != (double *)0x0) {
+        operator_delete__((void *)((slice_view *)&local_28)->_4_4_);
+      }
+      ((slice_view *)&local_28)->_4_4_ = (double *)0x0;
+      ((slice_view *)&local_28)->_0_4_ = 0x919488;
+    }
+    pcVar7 = DebugBreak_exref;
+    pDVar4 = (Darray_L_double_G_ *)((int)&(this->GetCost_CU__kg_MemoizedValue).Data + 4);
+    if ((this->GetDecompositionReaction_MemoizedValue).IsValidData == false) {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(char *)0x0);
+      DebugBreak();
+    }
+    if ((this->GetDecompositionReaction_MemoizedValue).IsValidData == false) {
+      CVar1 = (this->GetCategory_MemoizedValue).Data;
+      ((slice_view *)&local_20)->_4_4_ = CVar1 + Nonmetal;
+      util__Darray_class_util__Reflectable____SetSize
+                ((Darray_L_util__Reflectable_P_G_ *)&(this->GetClasses_MemoizedValue).Data.Capacity
+                 ,(int *)((int)&local_20 + 4));
+      bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize
+                        ((Darray_L_GraphicsResource__Type_G_ *)
+                         &(this->GetClasses_MemoizedValue).Data.Capacity,CVar1);
+      if (bVar2) {
+        *(code **)(*(int *)&(this->GetClasses_MemoizedValue).IsValidData + -4 +
+                  (this->GetCategory_MemoizedValue).Data * 4) = Material__GetEmissivePowers_W_Clear;
+      }
+      pDVar5 = GetEmissivePowers_W_MemoizedFunction(this,(Darray_L_double_G_ *)local_28);
+      util__Darray_double___Darray_double(&local_3c,pDVar5);
+      local_2c = true;
+      util__Darray_double___operator(pDVar4,&local_3c);
+      (this->GetDecompositionReaction_MemoizedValue).IsValidData = local_2c;
+      local_3c._pad_0x0_0 = 0x91da54;
+      if (local_3c.Data != (double *)0x0) {
+        operator_delete__(local_3c.Data);
+      }
+      local_3c.Data = (double *)0x0;
+      local_3c._pad_0x0_0 = 0x919488;
+      ((slice_view *)&local_28)->_0_4_ = 0x91da54;
+      if ((double *)((slice_view *)&local_28)->_4_4_ != (double *)0x0) {
+        operator_delete__((void *)((slice_view *)&local_28)->_4_4_);
+      }
+      ((slice_view *)&local_28)->_4_4_ = (double *)0x0;
+      ((slice_view *)&local_28)->_0_4_ = 0x919488;
+      pcVar7 = DebugBreak_exref;
+    }
+    if ((this->GetDecompositionReaction_MemoizedValue).IsValidData == false) {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(char *)0x0);
+      (*pcVar7)();
+    }
+    pdVar6 = (double *)(**(code **)*(int *)pDVar4)(&local_18);
+    local_20 = *pdVar6;
+    pdVar6 = (double *)(**(code **)*(int *)pDVar4)(&local_14);
+    local_20 = ((/*3ff0000000000000*/1.0 - local_10) * local_20 + *pdVar6 * local_10) * param_2;
+  }
+  else {
+    local_20 = 0.0;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (double)extraout_ST0;
 }
 
 
@@ -1443,6 +1592,264 @@ Material__GetProbabilityOfFissionUponAbsorption(Material *this,FissionType param
   dVar2 = GetMicroscopicNeutronAbsorptionCrossSection_b
                     (this,param_1,param_2);
   return dVar1 / dVar2;
+}
+
+
+//==== 006865f0 6865f0_Material__GetProductionCost_c__kg ====
+// decompiled by BatchDecomp @ 006865f0 name=GetProductionCost_c__kg conv=__thiscall body=1582
+
+/* WARNING: Removing unreachable block (ram,0x00686a1f) */
+/* WARNING: Removing unreachable block (ram,0x00686ab0) */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* public: double __thiscall Material__GetProductionCost_c__kg(void)const  */
+
+double __thiscall Material__GetProductionCost_c__kg(Material *this)
+
+{
+  Darray_L_double_G_ *pDVar1;
+  Category CVar2;
+  bool bVar3;
+  int iVar4;
+  double *pdVar5;
+  int iVar6;
+  ChemicalReaction *pCVar7;
+  Maybe_L_double_G_ *pMVar8;
+  float10 extraout_ST0;
+  double dVar9;
+  double dVar10;
+  undefined1 local_34[16];
+  undefined8 local_24;
+  int local_1c;
+  double local_18;
+  undefined8 local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  pDVar1 = &this->ElementCount;
+  dVar9 = this->ThermalConductivity_W__m_K - RoomTemperature_K;
+  dVar10 = 0.0;
+  if (0.0 <= dVar9) {
+    dVar10 = dVar9;
+  }
+  local_18 = 0.0;
+  if (0.0 <= dVar10 * /*3f747ae147ae147b*/0.005) {
+    local_18 = dVar10 * /*3f747ae147ae147b*/0.005;
+  }
+  local_18 = local_18 + 0.0;
+  iVar4 = (**(code **)(*(int *)&this->Elements + 0xc))();
+  if (iVar4 == 1) {
+    local_10 = (double)((ulonglong)local_10 & 0xffffffff);
+    pdVar5 = (double *)(**(code **)*(int *)pDVar1)((int)&local_10 + 4);
+    if ((NAN(*pdVar5) || NAN(/*3ff0000000000000*/1.0)) != (*pdVar5 == /*3ff0000000000000*/1.0))
+    goto LAB_006868f2;
+  }
+  bVar3 = IsAFluid(this);
+  if (!bVar3) {
+    ((slice_view *)&local_34)->_8_8_ = util_Min_double(pDVar1);
+    dVar10 = util_Sum_double(pDVar1);
+    ((slice_view *)&local_34)->_8_8_ = (double)((slice_view *)&local_34)->_8_8_ / dVar10;
+    local_24 = (double)((slice_view *)&local_34)->_8_8_;
+    if ((double)((slice_view *)&local_34)->_8_8_ <= /*0000000000000000*/0.0) {
+      local_24 = /*0000000000000000*/0.0;
+    }
+    if (/*3ff0000000000000*/1.0 <= local_24) {
+      local_24 = /*3ff0000000000000*/1.0;
+    }
+    iVar4 = (**(code **)(*(int *)&this->ElementCount + 0xc))();
+    if (iVar4 == 0) {
+      ((slice_view *)&local_34)->_8_8_ = 0.0;
+    }
+    else {
+      local_1c = 0;
+      pdVar5 = (double *)(**(code **)*(int *)&this->ElementCount)(&local_1c);
+      local_10 = (double)((ulonglong)local_10 & 0xffffffff);
+      ((slice_view *)&local_34)->_8_8_ = *pdVar5;
+      iVar4 = (**(code **)(*(int *)&this->ElementCount + 0xc))();
+      if (((slice_view *)&local_10)->_4_4_ < iVar4) {
+        do {
+          pdVar5 = (double *)(**(code **)*(int *)&this->ElementCount)((int)&local_10 + 4);
+          if ((double)((slice_view *)&local_34)->_8_8_ <= *pdVar5) {
+            ((slice_view *)&local_34)->_8_8_ = *pdVar5;
+          }
+          local_10 = (double)CONCAT44(((slice_view *)&local_10)->_4_4_ + 1,(undefined4)local_10);
+          iVar4 = (**(code **)(*(int *)&this->ElementCount + 0xc))();
+        } while (((slice_view *)&local_10)->_4_4_ < iVar4);
+      }
+    }
+    dVar10 = util_Sum_double(pDVar1);
+    ((slice_view *)&local_34)->_8_8_ = (double)((slice_view *)&local_34)->_8_8_ / dVar10;
+    dVar10 = (double)((slice_view *)&local_34)->_8_8_;
+    if ((double)((slice_view *)&local_34)->_8_8_ <= /*0000000000000000*/0.0) {
+      dVar10 = /*0000000000000000*/0.0;
+    }
+    if (/*3ff0000000000000*/1.0 <= dVar10) {
+      dVar10 = /*3ff0000000000000*/1.0;
+    }
+    dVar10 = local_24 / dVar10;
+    local_24 = libm_sse2_pow_precise(dVar10, /*3fd0000000000000*/0.25);
+    bVar3 = IsAnAlloy(this);
+    dVar10 = /*4054000000000000*/80.0;
+    if (bVar3) {
+      dVar10 = /*4039000000000000*/25.0;
+    }
+    local_18 = local_24 * 0.0 + (/*3ff0000000000000*/1.0 - local_24) * dVar10 + local_18;
+  }
+  if (((char)(this->MaterialMemoizationHandlerInstance).ResetFunctions._pad_0x0_0 != '\0') ||
+     (((0.0 < *(double *)&(this->LasingMediumProperties).Data._pad_0x0_0 &&
+       (0.0 < this->LasingDamageThreshold_TW__m2)) &&
+      (0.0 < *(double *)&(this->LasingMediumProperties).Data)))) {
+    local_18 = local_18 + /*4044000000000000*/40.0;
+  }
+  if (((0.0 < this->Remanence_T - /*3ff0000000000000*/1.0) && (0.0 < this->BandGap_eV)) &&
+     ((bVar3 = IsAStructuralMaterial(this), bVar3 &&
+      (dVar10 = 0.0, 0.0 < this->ThermoelectricSensitivity_V__K)))) {
+    dVar9 = this->Remanence_T;
+    if (NAN(dVar9) == (dVar9 == 0.0)) {
+      dVar10 = this->BandGap_eV / (dVar9 * VacuumPermeability_H__m);
+    }
+    iVar4 = 4;
+    local_24 = dVar10;
+    do {
+      local_24 = local_24 * dVar10;
+      iVar4 = iVar4 + -1;
+    } while (iVar4 != 0);
+    dVar9 = libm_sse2_pow_precise(dVar9 - /*3ff0000000000000*/1.0, /*3fd3333333333333*/0.3);
+    dVar9 = dVar9 * /*4020000000000000*/8.0 + local_24 * /*3a2fb0f6be506019*/2e-28;
+    dVar10 = 0.0;
+    if (0.0 <= dVar9) {
+      dVar10 = dVar9;
+    }
+    local_18 = dVar10 + local_18;
+  }
+  bVar3 = IsStructural(this);
+  if (bVar3) {
+    local_18 = this->UltimateTensileStrength_MPa * /*3f60624dd2f1a9fc*/0.002 + local_18;
+  }
+LAB_006868f2:
+  iVar6 = (**(code **)(*(int *)&this->ElementCount + 0xc))();
+  iVar4 = 0;
+  if (-1 < iVar6 + -1) {
+    iVar4 = iVar6 + -1;
+  }
+  bVar3 = (char)this[1].Elements.Capacity == '\0';
+  dVar10 = 0.0;
+  if (0.0 <= (double)iVar4 * /*3fe0000000000000*/0.5) {
+    dVar10 = (double)iVar4 * /*3fe0000000000000*/0.5;
+  }
+  local_18 = dVar10 + local_18;
+  local_10 = local_18;
+  if (bVar3) {
+    CVar2 = (this->GetCategory_MemoizedValue).Data;
+    local_1c = CVar2 + Nonmetal;
+    util__Darray_class_util__Reflectable____SetSize
+              ((Darray_L_util__Reflectable_P_G_ *)&(this->GetClasses_MemoizedValue).Data.Capacity,
+               &local_1c);
+    bVar3 = util__Darray_enum_GraphicsResource__Type___CheckSize
+                      ((Darray_L_GraphicsResource__Type_G_ *)
+                       &(this->GetClasses_MemoizedValue).Data.Capacity,CVar2);
+    if (bVar3) {
+      *(code **)(*(int *)&(this->GetClasses_MemoizedValue).IsValidData + -4 +
+                (this->GetCategory_MemoizedValue).Data * 4) = Material__GetDecompositionReaction_Clear;
+    }
+    pCVar7 = GetDecompositionReaction_MemoizedFunction(this);
+    ((undefined1 *)&local_24)[4] = 1;
+    this[1].Elements.Size = (int)pCVar7;
+    bVar3 = false;
+    this[1].Elements.Capacity = ((slice_view *)&local_24)->_4_4_;
+  }
+  if (bVar3) {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(char *)0x0);
+    DebugBreak();
+  }
+  if (this[1].Elements.Size != 0) {
+    if ((char)this[1].Elements.Capacity == '\0') {
+      CVar2 = (this->GetCategory_MemoizedValue).Data;
+      local_1c = CVar2 + Nonmetal;
+      util__Darray_class_util__Reflectable____SetSize
+                ((Darray_L_util__Reflectable_P_G_ *)&(this->GetClasses_MemoizedValue).Data.Capacity
+                 ,&local_1c);
+      bVar3 = util__Darray_enum_GraphicsResource__Type___CheckSize
+                        ((Darray_L_GraphicsResource__Type_G_ *)
+                         &(this->GetClasses_MemoizedValue).Data.Capacity,CVar2);
+      if (bVar3) {
+        *(code **)(*(int *)&(this->GetClasses_MemoizedValue).IsValidData + -4 +
+                  (this->GetCategory_MemoizedValue).Data * 4) = Material__GetDecompositionReaction_Clear;
+      }
+      pCVar7 = GetDecompositionReaction_MemoizedFunction(this);
+      ((undefined1 *)&local_24)[4] = 1;
+      this[1].Elements.Size = (int)pCVar7;
+      this[1].Elements.Capacity = ((slice_view *)&local_24)->_4_4_;
+    }
+    bVar3 = ChemicalReaction__IsExplosiveComposition((ChemicalReaction *)this[1].Elements.Size);
+    if (bVar3) {
+      if ((char)this[1].Elements.Capacity == '\0') {
+        CVar2 = (this->GetCategory_MemoizedValue).Data;
+        local_1c = CVar2 + Nonmetal;
+        util__Darray_class_util__Reflectable____SetSize
+                  ((Darray_L_util__Reflectable_P_G_ *)
+                   &(this->GetClasses_MemoizedValue).Data.Capacity,&local_1c);
+        bVar3 = util__Darray_enum_GraphicsResource__Type___CheckSize
+                          ((Darray_L_GraphicsResource__Type_G_ *)
+                           &(this->GetClasses_MemoizedValue).Data.Capacity,CVar2);
+        if (bVar3) {
+          *(code **)(*(int *)&(this->GetClasses_MemoizedValue).IsValidData + -4 +
+                    (this->GetCategory_MemoizedValue).Data * 4) = Material__GetDecompositionReaction_Clear;
+        }
+        pCVar7 = GetDecompositionReaction_MemoizedFunction(this);
+        local_24 = (double)CONCAT35(((slice_view *)&local_24)->_5_3_,0x100000000);
+        this[1].Elements.Size = (int)pCVar7;
+        this[1].Elements.Capacity = ((slice_view *)&local_24)->_4_4_;
+      }
+      local_24 = *(double *)(this[1].Elements.Size + 0x68) - this->ThermalConductivity_W__m_K;
+      if (local_24 <= /*0000000000000000*/0.0) {
+        util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\logistic\\physics\\materials.cpp",
+                        0x410,"SafetyTemperatureGap_K > 0",(char *)0x0);
+        DebugBreak();
+      }
+      dVar10 = local_24 / /*406f400000000000*/250.0;
+      if (local_24 / /*406f400000000000*/250.0 <= /*0000000000000000*/0.0) {
+        dVar10 = /*0000000000000000*/0.0;
+      }
+      if (/*3ff0000000000000*/1.0 <= dVar10) {
+        dVar10 = /*3ff0000000000000*/1.0;
+      }
+      local_18 = local_10 +
+                 (/*3ff0000000000000*/1.0 - dVar10) * /*4059000000000000*/100.0 +
+                 dVar10 * /*0000000000000000*/0.0;
+      local_10 = local_18;
+    }
+  }
+  if (this->IsABiomaterial == false) {
+    dVar10 = local_10;
+    if ((/*0000000000000000*/0.0 < this->Density_kg__m3) &&
+       (iVar4 = (**(code **)(*(int *)&this->Elements + 0xc))(), dVar10 = local_10, 0 < iVar4)) {
+      local_24 = GetMolarMass_kg__mol(this);
+      local_24 = local_24 * /*408f400000000000*/1000.0;
+      pMVar8 = util__Sqrt((Maybe_L_double_G_ *)local_34,(double *)&local_24);
+      if (pMVar8->IsValidData == false) {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(char *)0x0);
+        DebugBreak();
+      }
+      dVar10 = pMVar8->Data * /*3f947ae147ae147b*/0.02;
+      local_18 = 0.0;
+      if (0.0 <= dVar10) {
+        local_18 = dVar10;
+      }
+      local_18 = local_18 + local_10;
+      dVar10 = local_18;
+    }
+    if ((this->IsPorous != false) || (this->IsFibrous != false)) {
+      dVar10 = dVar10 * /*4018000000000000*/6.0;
+      local_18 = dVar10;
+    }
+    if (this->IsNanostructured != false) {
+      local_18 = dVar10 * /*4034000000000000*/20.0;
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (double)extraout_ST0;
 }
 
 
