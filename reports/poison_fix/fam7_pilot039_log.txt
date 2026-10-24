@@ -1,0 +1,73 @@
+pool=20839 fullnames, multi=570
+oracle: 10499 stub names
+cov_name: 10168 entries
+batch=73 (defer=['70fb90', '723950', '724040', '724110', '724530', '7248b0', '724940', '724fa0', '7252c0', '725550', '725b30', '725bc0', '725df0', '7260c0', '726230', '726280', '726d30', '726e70', '727970', '727a90', '727c80', '727eb0', '727f80', '728070', '728240', '728490', '728500', '7286a0', '7288c0', '728a50', '728d70', '728f70', '729430', '7294b0', '729690', '72a8f0', '72a9d0', '72bd60', '72c4b0', '72d860', '72d910', '72db20', '72e3e0', '72e4c0', '72e8e0', '72f0b0', '72f6a0', '72f700', '72fea0', '72ffb0', '730390', '7305e0', '730e20', '730ef0', '731380', '7315b0', '731600', '7317a0', '7317b0', '7324d0', '732670', '7327d0', '732990', '732bc0', '732c20', '732e20', '732f30', '7330d0', '733200', '733360', '733450', '7335c0', '7336f0', '733730', '733810', '7339a0', '733b30', '733b70', '733be0', '733e90', '734150', '7342a0', '7342d0', '734600', '734b50', '734d40', '734e50', '735300', '7609e0', '7ca030', '7cbd60', '7cbfe0', '7cc5f0', '7cce70', '7cd650', '7cdaa0', '7cf020', '7cf5c0', '7cf820', '7d0530', '7d0a60', '7d0cb0', '7d16f0', '7d1970', '7d1d90', '7d21f0', '7d30d0', '7d32a0', '7d38a0', '7d3e40', '7d40c0', '7d4120', '7d42a0', '7d4470', '7d4560', '7d46d0', '7d4ca0', '7d4d00', '7d4f60', '7d5240', '7d5650', '7d5910', '7d5f10', '7d6220', '7d6e90', '7d6f50', '7d7160', '7d7860', '7d7c10', '7d7ca0', '7d7e70', '7d8110', '7d83b0', '7d9360', '7d9990', '7da990', '7db0c0', '7db700', '7dbba0', '7dc300', '7f7810', '7f7d50', '7fa090', '7fa0c0', '7fa430', '7fa490', '7fa950', '7fa9c0', '7fb110', '7fc380', '7fc480', '7fc640', '7fc8c0', '7fcd30', '7fd030', '7fd5b0', '7fd750', '7fd960', '7fdbf0', '7fdfb0', '7fe370', '7fe4c0', '7fe860', '7fea70', '7feb70', '7febe0', '7fee50', '7ff360', '7ff630', '7ff650', '7ff890', '7ffad0', '7ffe90', '800090', '800480', '8004d0', '800520', '800530', '800aa0', '801090', '801480', '801810', '801ea0', '802080', '802250', '802540', '8025b0', '802600', '8027b0', '803780', '803a60', '803c40', '803ea0', '804470', '804550', '804830', '804bb0', '805030', '805aa0', '806220']) tpl_defs=3
+WARN 00733fb0_Fleet__KillBody: slice local local_18: no decl found
+WROTE /tmp/pilot039_draft.c (97200B) externs=13 unresolved=64
+  UNRESOLVED: Body__GetCapitalShipComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetDebrisComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpacecraftComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: CelestialBody__GetLuminosity_W_Memoize [BARE-CLEAR]
+  UNRESOLVED: CelestialBody__GetStabilityRegionRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: CelestialObject__IsGameplayRelevant_Clear [BARE-CLEAR]
+  UNRESOLVED: CelestialObject__IsOrigin_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprint__IsAPayload_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWeaponModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 007d3680_SpacecraftComponent__GetTorque_N_m
+  UNRESOLVED: Fleet__GetMaxAcceleration_m__s2_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__GetOriginalDeltaV_km__s_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__GetRemainingDeltaV_km__s_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__GetTotalTonnage_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__IsCapitalShipFleet_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__IsDroneFleet_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__IsMissileFleet_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet__IsStationOnlyFleet_Clear [BARE-CLEAR]
+  UNRESOLVED: GetArmorCollisionShells_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCapitalShipComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCombatAxis_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCompartmentCollisionShells_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetDebrisComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetEccentricityApoapsisRoot_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetEccentricityPeriapsisRoot_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMainEngineModulePlacers_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMaxAcceleration_m__s2_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetOriginalDeltaV_km__s_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRangesAgainstFleets_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRemainingDeltaV_km__s_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSpacecraftComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalTonnage_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetWeaponModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsCapitalShipFleet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsDroneFleet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsGameplayRelevant_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsMissileFleet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsOrigin_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsStationOnlyFleet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetCombatAxis_Memoize [BARE-CLEAR]
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: class_util::SharedPtr<struct_UIWidget>
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: class_util::WeakPtr<class_DebrisComponent>
+  UNRESOLVED: class_util::WeakPtr<class_SpacecraftComponent>
+  UNRESOLVED: enum_CrewDepartment::Type
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: util::Color [TYPE]
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Body> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Fleet> >
+  UNRESOLVED: util::Maybe<struct FixedOrbit>
+  UNRESOLVED: util::Maybe<struct LibrationOrbit>
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double>
+   >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double> >
+  UNRESOLVED: util::RotationalState3<double>
+  UNRESOLVED: util::SharedPtr<class Body>
+  UNRESOLVED: util::Str<char> [TYPE]
+  UNRESOLVED: util::WeakPtr<class
+   Fleet>
+  UNRESOLVED: util::WeakPtr<class
+   SpacecraftComponent>
+  UNRESOLVED: util::WeakPtr<class Body>
+  UNRESOLVED: util::WeakPtr<class CelestialObject>
+  UNRESOLVED: util::WeakPtr<class SpacecraftComponent>
+  UNRESOLVED: util::WeakPtr<struct HUDTactical>
+  UNRESOLVED: util::WeakPtr<struct SpacecraftUIOverlay>
