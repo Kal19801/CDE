@@ -88,6 +88,70 @@ double __thiscall Material__GetAtomicMass_amu(Material *this)
 }
 
 
+//==== 0067ef00 67ef00_Material__GetAttenuatedRadiation ====
+// decompiled by BatchDecomp @ 0067ef00 name=GetAttenuatedRadiation conv=__thiscall body=496
+
+/* public: struct Radiation __thiscall Material__GetAttenuatedRadiation(struct
+   Radiation,double)const  */
+
+Radiation *__thiscall
+Material__GetAttenuatedRadiation(Material *this,Radiation *__return_storage_ptr__,Radiation param_1,
+          double param_2)
+
+{
+  int *piVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  double dVar5;
+  double dVar6;
+  double dVar7;
+  double local_10;
+  double local_18;
+  void *local_20;
+  int local_c;
+  uint local_8;
+
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_18 = AvogadroConstant__mol * this->Density_kg__m3;
+  dVar5 = local_18 / GetMolarMass_kg__mol(this);
+  dVar6 = GetMicroscopicNeutronAbsorptionCrossSection_b(this,Thermal,1.0);
+  dVar6 = b_to_m2(dVar6);
+  dVar7 = GetMacroscopicNeutronScatteringCrossSection__m(this,Thermal,1.0);
+  param_1.ThermalNeutrons_W =
+     libm_sse2_exp_precise(-((dVar7 + dVar6 * dVar5) * param_2)) *
+     param_1.ThermalNeutrons_W;
+  dVar5 = local_18 / GetMolarMass_kg__mol(this);
+  dVar6 = GetMicroscopicNeutronAbsorptionCrossSection_b(this,Fast,1.0);
+  dVar6 = b_to_m2(dVar6);
+  dVar7 = GetMacroscopicNeutronScatteringCrossSection__m(this,Fast,1.0);
+  param_1.FastNeutrons_W =
+     libm_sse2_exp_precise(-((dVar7 + dVar6 * dVar5) * param_2)) *
+     param_1.FastNeutrons_W;
+  piVar1 = (int *)GetElements(this);
+  local_c = 0;
+  local_10 = 0.0;
+  iVar3 = (**(code **)(*piVar1 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      puVar2 = (undefined4 *)(**(code **)*piVar1)(&local_c);
+      local_10 = *(double *)(*puVar2 + 0xc8) * *(double *)(puVar2 + 2) + local_10;
+      local_c = local_c + 1;
+      iVar3 = (**(code **)(*piVar1 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  if (local_20 != (void *)0x0) {
+    operator_delete__(local_20);
+  }
+  __return_storage_ptr__->ThermalNeutrons_W = param_1.ThermalNeutrons_W;
+  __return_storage_ptr__->FastNeutrons_W = param_1.FastNeutrons_W;
+  __return_storage_ptr__->GammaRays_W =
+     libm_sse2_exp_precise
+       (-((local_10 * /*408f400000000000*/1000.0 / /*40c3880000000000*/10000.0) *
+          param_2 * this->Density_kg__m3)) * param_1.GammaRays_W;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
+}
+
 //==== 0067f160 67f160_Material__GetAverageScatteringCosineComplement ====
 // decompiled by BatchDecomp @ 0067f160 name=GetAverageScatteringCosineComplement conv=__thiscall body=189
 
@@ -530,6 +594,40 @@ double __thiscall Material__GetEmissionPower_W(Material *this,double param_1,dou
   return (double)extraout_ST0;
 }
 
+
+//==== 00683a20 683a20_Material__GetEmissiveRadiativeColor ====
+// decompiled by BatchDecomp @ 00683a20 name=GetEmissiveRadiativeColor conv=__thiscall body=373
+
+/* public: struct util::Vec3<float> __thiscall
+   Material__GetEmissiveRadiativeColor(double,double,double)const  */
+
+Vec3_L_float_G_ *__thiscall
+Material__GetEmissiveRadiativeColor(Material *this,Vec3_L_float_G_ *__return_storage_ptr__,
+          double param_1,double param_2,double param_3)
+
+{
+  double dVar1;
+  double dVar5;
+  double dVar6;
+  double dVar7;
+  float fVar2;
+  float fVar3;
+  Vec3_L_float_G_ local_44;
+  Vec3_L_float_G_ local_38;
+
+  dVar5 = Physics__GetBlackbodyRadiation_W(param_2,/*3ff0000000000000*/1.0,param_1);
+  dVar1 = param_2 * param_3;
+  dVar6 = GetEmissionPower_W(this,param_1,dVar1);
+  dVar7 = Physics__GetBlackbodyRadiation_W(param_2,/*3ff0000000000000*/1.0,param_1);
+  fVar2 = (float)(dVar5 / (dVar6 + dVar7));
+  Physics__GetBlackbodyRadiationColor(&local_38,param_1);
+  Material__GetEmissionColor(this,&local_44,param_1,dVar1);
+  fVar3 = /*3f800000*/1.0f - fVar2;
+  __return_storage_ptr__->X = fVar3 * local_44.X + local_38.X * fVar2;
+  __return_storage_ptr__->Y = fVar3 * local_44.Y + local_38.Y * fVar2;
+  __return_storage_ptr__->Z = fVar3 * local_44.Z + local_38.Z * fVar2;
+  return __return_storage_ptr__;
+}
 
 //==== 00684000 684000_Material__GetFirstIonizationEnergy_kJ__mol ====
 // decompiled by BatchDecomp @ 00684000 name=GetFirstIonizationEnergy_kJ__mol conv=__thiscall body=178
