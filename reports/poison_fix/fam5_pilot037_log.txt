@@ -1,0 +1,56 @@
+pool=20839 fullnames, multi=570
+oracle: 10579 stub names
+cov_name: 10168 entries
+batch=58 (defer=['59ec00', '59ed80', '59f920', '59ffe0', '5a0490', '5a0c00', '5a0fb0', '5a1110', '5a1310', '5a1750', '5a1920', '5a19a0', '5a1ad0', '5a1b80', '5a1c10', '5a2070', '6ed370', '771640', '772b70', '776df0', '7779f0', '777cf0', '778520', '7785d0', '7786a0', '778760', '778900', '7a9080', '7a90e0', '7ca900', '7df3c0', '7e1500', '7e1e20', '7e2440', '7e2810', '7e2b30', '7e2e90', '7e33a0', '7e35a0', '7e35e0', '7e3f10', '879500', '879da0', '879e60', '879f20', '879fd0', '87a030', '87a320', '87a5b0', '87a750', '87a9e0', '87aa30', '87adb0', '87ae10', '87b010', '87b190', '889c20', '889cf0', '889d70', '889dd0', '889e50', '889f60', '88a000', '88a1c0', '88a410', '88a500', '88a5d0', '88a800', '88b0a0']) tpl_defs=0
+WROTE /tmp/pilot037_draft.c (119407B) externs=14 unresolved=49
+  UNRESOLVED: Body__GetSpacecraftComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWeaponModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWorkingCompartments_Memoize [BARE-CLEAR]
+  UNRESOLVED: Darray<struct CompartmentCollisionShell> [CAST]
+  UNRESOLVED: FindAllHeatSignatureTargets_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: FindAllViableCapitalShipTargets_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: FindAllViableShotTargets_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: FindAllViableTargetsInRange_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: FindAllViableTargets_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: Fleet_GetRemainingDeltaV_km_s_Clear [BARE-CLEAR]
+  UNRESOLVED: GetBoundingSphereRadius_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRelevantCelestials_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSpacecraftComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetWeaponModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetWorkingCompartments_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsCompartmentDamagedFromPieceDamage_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: ModuleCompartment__GetBoundingSphereRadius_m_Memoize [BARE-CLEAR]
+  UNRESOLVED: ModuleCompartment__IsCompartmentDamagedFromPieceDamage_Clear [BARE-CLEAR]
+  UNRESOLVED: SharedPtr<class_ArmorTextureHandler> [TPL-CALL] 005a0280_ModuleCompartment__GenerateTextures
+  UNRESOLVED: SpacecraftTargeting__FindAllHeatSignatureTargets_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllHeatSignatureTargets_Memoize [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableCapitalShipTargets_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableShotTargets_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableTargetsInRange_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableTargetsInRange_Memoize [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableTargetsInRange_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableTargets_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftTargeting__FindAllViableTargets_Memoize [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetRelevantCelestials_Memoize [BARE-CLEAR]
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: class_util::SharedPtr<class_ArmorTextureHandler>
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: class_util::WeakPtr<class_SpacecraftComponent>
+  UNRESOLVED: class_util::WeakPtr<struct_ModuleCompartment>
+  UNRESOLVED: class_util::WeakPtr<struct_UIWidget>
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: util::AABB<struct util::Vec3<double> >
+  UNRESOLVED: util::Darray<class util::SharedPtr<class ArmorTextureHandler> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Body> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct ModuleCompartment> >
+  UNRESOLVED: util::Darray<struct CompartmentCollisionShell>
+  UNRESOLVED: util::Darray<struct util::Vec3<double> >
+  UNRESOLVED: util::Quaternion<double> [TYPE]
+  UNRESOLVED: util::WeakPtr<class
+   Body>
+  UNRESOLVED: util::WeakPtr<class Body>
+  UNRESOLVED: util::WeakPtr<class CelestialObject>
+  UNRESOLVED: util::WeakPtr<class Fleet>
+  UNRESOLVED: util::WeakPtr<struct
+   ModuleCompartment>
+  UNRESOLVED: util::WeakPtr<struct WeaponCompartment>
