@@ -19,6 +19,7 @@ typedef union {
 } local14_pun;
 
 
+//==== 00645240 ArcLampPumpSubModule::GetCavityAbsorptionEfficiency_Percent ====
 /* public: double __thiscall ArcLampPumpSubModule__GetCavityAbsorptionEfficiency_Percent(void)const
     */
 
@@ -102,6 +103,10 @@ ArcLampPumpSubModule__GetCavityAbsorptionEfficiency_Percent(ArcLampPumpSubModule
 
 
 
+/* public: double __thiscall ArcLampPumpSubModule__GetCavityReflectanceEfficiency_Percent(void)const
+    */
+
+//==== 00645470 ArcLampPumpSubModule::GetCavityReflectanceEfficiency_Percent ====
 /* public: double __thiscall ArcLampPumpSubModule__GetCavityReflectanceEfficiency_Percent(void)const
     */
 

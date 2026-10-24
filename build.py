@@ -141,7 +141,7 @@ def sh(cmd, **kw):
 
 def compile_tus():
     os.makedirs(f'{OBJ}/log', exist_ok=True)
-    names = sorted(f[:-2] for f in os.listdir(SRC) if re.match(r'game_\d+\.c$', f))
+    names = sorted(f[:-2] for f in os.listdir(SRC) if re.match(r'(?:game_\d+|pilot_\w+)\.c$', f))
     def build(name):
         obj = f'{OBJ}/{name}.o'
         # --resume: skip when the object is at least as new as its source
@@ -253,7 +253,7 @@ def compile_support():
 
 
 def game_objs():
-    return sorted(f'{OBJ}/{f}' for f in os.listdir(OBJ) if re.match(r'game_\d+\.o$', f))
+    return sorted(f'{OBJ}/{f}' for f in os.listdir(OBJ) if re.match(r'(?:game_\d+|pilot_\w+)\.o$', f))
 
 
 def link(objs, exe, pdb):

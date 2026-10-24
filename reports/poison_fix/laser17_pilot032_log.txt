@@ -1,0 +1,22 @@
+pool=20839 fullnames, multi=570
+oracle: 10992 stub names
+cov_name: 9877 entries
+batch=14 (defer=['63e630', '6402c0', '647840'])
+WARN 63b920_LaserModule__GetGeneratedName: slice local local_14: no decl found
+WARN 63b920_LaserModule__GetGeneratedName: slice local local_20: no decl found
+WARN 63b920_LaserModule__GetGeneratedName: slice local local_2c: no decl found
+WARN 63b920_LaserModule__GetGeneratedName: slice local local_38: no decl found
+WARN 63b920_LaserModule__GetGeneratedName: slice local local_44: no decl found
+WARN 63c020_LaserModule__GetShortName: slice local local_14: no decl found
+WARN 63c020_LaserModule__GetShortName: slice local local_20: no decl found
+WARN 63c020_LaserModule__GetShortName: slice local local_2c: no decl found
+WARN 644fc0_LaserModule__GetArclampSpectraIntensity_W: slice local pMStack_10: no decl found
+WROTE /home/z/my-project/repo/CDE-decomp/src/pilot_032_laser17.c (80696B) externs=4 unresolved=8
+  UNRESOLVED: FixedOrbit_GetEccentricityApoapsisRoot_Clear [BARE-CLEAR]
+  UNRESOLVED: FixedOrbit_GetEccentricityPeriapsisRoot_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet_GetOriginalDeltaV_km_s_Clear [BARE-CLEAR]
+  UNRESOLVED: Fleet_GetRemainingDeltaV_km_s_Clear [BARE-CLEAR]
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: struct_util::tuple2<enum_Order::Type,int>
+  UNRESOLVED: util::Str<char> [TYPE]
