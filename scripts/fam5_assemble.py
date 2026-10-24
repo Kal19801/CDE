@@ -319,7 +319,7 @@ sym_externs = set()
 def targeted_pass(txt, fva):
     """zip multi-VA overload families with orig-exe call order;
     single-VA operator-name fullnames get plain global replace"""
-    cl = calls_json.get(fva, [])
+    cl = calls_json.get('00' + fva.lstrip('0'), [])  # r18 键长归一
     fams = [f for f in multi_fams if f in txt and
             (f.startswith(('util::',)) or '::~' in f or '::~' in f)]
     fams += [f for f in pool
@@ -420,7 +420,7 @@ CD_Q = re.compile(
     r')\s*\(')
 
 def fix_ctor_dtor(text, fva, disp):
-    cl = calls_json.get(fva, [])
+    cl = calls_json.get('00' + fva.lstrip('0'), [])  # r18 键长归一
     # 首扫：收集命中并按 pool fullname 分组
     hits = []   # (m, ns, sym_or_None)
     for m in CD_Q.finditer(text):

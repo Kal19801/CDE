@@ -51,8 +51,14 @@ for ln in open(ERRS, errors='replace'):
 if not cnt:
     print('NO ERRORS TO DEFER'); sys.exit(0)
 
-# top-K 策略（fam8）：同一编译内归因安全，每轮砍 3 个加速收敛（教训 am 下前台小步配合）
-TOPK = 3
+# top-K 自适应（fam8 r18）：错误面大时砍 8/轮加速，尾部收 2/轮防过度
+TOTAL_ERRS = sum(cnt.values())
+if TOTAL_ERRS > 800:
+    TOPK = 8
+elif TOTAL_ERRS > 300:
+    TOPK = 4
+else:
+    TOPK = 2
 ranked = sorted(cnt.items(), key=lambda kv: -kv[1])
 added = 0
 for va, n in ranked:
@@ -64,4 +70,4 @@ for va, n in ranked:
     added += 1
     print(f'defer {va} ({n} errs)')
 open(DEFER_F, 'w').write(','.join(deferred))
-print(f'total deferred={len(deferred)} (added {added})')
+print(f'total deferred={len(deferred)} (added {added}, pool_errs={TOTAL_ERRS})')

@@ -198,6 +198,17 @@ if _vft_p.exists():
         _p = _ln.rstrip('\n').split('\t')
         if len(_p) >= 3 and 'vftable' in _p[1]:
             VFT_VA[_ns(_p[2])] = _p[0]
+# r18 重建通道：scripts/vftable_map.tsv（llvm-undname 反修饰 + 归一化变体，
+# meta/vft_symbols.tsv 随清理丢失后的等价重建，build_vftable_map.py 生成）
+_vfm_p = REPO / 'scripts' / 'vftable_map.tsv'
+if _vfm_p.exists():
+    for _ln in open(_vfm_p, encoding='utf-8', errors='replace'):
+        if _ln.startswith('#'):
+            continue
+        _p = _ln.rstrip('\n').split('\t')
+        if len(_p) == 2 and _p[1]:
+            VFT_VA.setdefault(_ns(_p[0]), _p[1])
+    L(f'vftable_map: {len(VFT_VA)} entries')
 
 calls_json = json.load(open(CALLS))
 
@@ -318,8 +329,10 @@ sym_externs = set()
 
 def targeted_pass(txt, fva):
     """zip multi-VA overload families with orig-exe call order;
-    single-VA operator-name fullnames get plain global replace"""
-    cl = calls_json.get(fva, [])
+    single-VA operator-name fullnames get plain global replace
+    (r18 fix: calls_json keys are '00'+6位去零，传参 '00'+8位VA=10位永远 miss
+     —— zip 神谕自 fam5 起静默失效，多 VA 重载全数留 raw→defer）"""
+    cl = calls_json.get('00' + fva.lstrip('0'), [])
     fams = [f for f in multi_fams if f in txt and
             (f.startswith(('util::',)) or '::~' in f or '::~' in f)]
     fams += [f for f in pool
@@ -420,7 +433,7 @@ CD_Q = re.compile(
     r')\s*\(')
 
 def fix_ctor_dtor(text, fva, disp):
-    cl = calls_json.get(fva, [])
+    cl = calls_json.get('00' + fva.lstrip('0'), [])  # r18 键长归一（同 targeted_pass）
     # 首扫：收集命中并按 pool fullname 分组
     hits = []   # (m, ns, sym_or_None)
     for m in CD_Q.finditer(text):
@@ -672,6 +685,53 @@ def main():
             all_pairs.add((int(m.group(2)), int(m.group(3))))
         sections.append((va, disp, txt))
     body = '\n'.join(t for _, _, t in sections)
+    # ---- r18: 批内规范原型 —— 解析各段定义签名，替换 CC 缺失的 extern 声明
+    # （zip 神谕修复后大量批内符号被 extern int X(); K&R 形态提前声明，
+    #   与后续 __thiscall 定义冲突：792 例）
+    proto_map = {}
+    for va_, disp_, txt_ in sections:
+        i = txt_.find('{')
+        if i < 0:
+            continue
+        sigc = re.sub(r'/\*.*?\*/', ' ', txt_[:i], flags=re.S)
+        sigc = re.sub(r'//[^\n]*', ' ', sigc)
+        sig = re.sub(r'\s+', ' ', sigc.split(';')[-1]).strip()
+        mm = re.match(r'^(.*?)\b([A-Za-z_]\w*)\s*\(([^()]*)\)(\s*const)?$', sig)
+        if not mm or '__thiscall' not in sig:
+            continue
+        proto_map[mm.group(2)] = sig
+    L(f'prototypes: {len(proto_map)}')
+    def fix_externs(text):
+        out = []
+        for ln in text.split('\n'):
+            m = re.match(r'\s*extern\s+[A-Za-z_][\w\s\*]*\b([A-Za-z_]\w*)\s*\(', ln)
+            if m and m.group(1) in proto_map:
+                ln = proto_map[m.group(1)] + ';'
+            out.append(ln)
+        return '\n'.join(out)
+    body = fix_externs(body)
+    # ---- r18: 数据引用闭包 —— xmm 常量 / _UNK_ 数据读
+    #   xmm: 宏形式取原 VA（cde_data_map.h __real_ 惯用法，比 extern 更等价：
+    #        代码里是原址立即数，字节对齐原版）；已在 cde_undecl.h 的除外
+    #   _UNK_: 4 字节读 (*(undefined4 *)(0x<va>u))
+    hdr_ids2 = set()
+    for _h in sorted((REPO / 'src').glob('*.h')):
+        hdr_ids2 |= set(re.findall(r'\b([A-Za-z_]\w*)\b', _h.read_text(errors='replace')))
+    data_defs = []
+    xmm_ids = sorted({m.group(0) for m in re.finditer(r'___xmm_[0-9a-f]+', body)})
+    unk_ids = sorted({m.group(0) for m in re.finditer(r'_UNK_[0-9a-f]+', body)})
+    for x in xmm_ids:
+        if x in hdr_ids2:
+            continue
+        va = x[len('___xmm_'):]
+        data_defs.append(f'#define {x} (*(undefined1 (*)[16])(0x{va}u))')
+    for u in unk_ids:
+        if u in hdr_ids2:
+            continue
+        va = u[len('_UNK_'):]
+        data_defs.append(f'#define {u} (*(undefined4 *)(0x{va}u))')
+    if data_defs:
+        L(f'data defs: xmm={len(xmm_ids)} unk={len(unk_ids)}')
     # externs: only stub-VAs whose symbol is NOT already declared in headers;
     # FUN_ handled by R8 lines already present in section bodies
     hdr_ids = set()
@@ -679,7 +739,7 @@ def main():
         hdr_ids |= set(re.findall(r'\b([A-Za-z_]\w*)\b', _h.read_text(errors='replace')))
     exts = []
     for s in sorted(sym_externs):
-        if s in hdr_ids or s in INFILE_SYMS:
+        if s in hdr_ids or s in INFILE_SYMS or s in proto_map:
             continue
         if s.startswith('FUN_00'):
             if re.search(r'extern[\s\S]{0,40}' + re.escape(s), body):
@@ -697,6 +757,9 @@ def main():
     if exts:
         parts.append('/* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */\n' +
                      '\n'.join(exts) + '\n')
+    if data_defs:
+        parts.append('/* ---- data refs: xmm consts / UNK data (cde_data_map.h __real_ idiom) ---- */\n' +
+                     '\n'.join(data_defs) + '\n')
     for va, disp, txt in sections:
         parts.append(f'\n//==== 00{va} {disp} ====\n')
         parts.append(txt)
