@@ -6538,10 +6538,7 @@ double __cdecl util__Ceil(double *param_1)
 double __cdecl util__Cos(double *param_1)
 
 {
-  double dVar1;
-  
-  dVar1 = *param_1;
-  libm_sse2_cos_precise(0.0);
+  return libm_sse2_cos_precise(*param_1);
 }
 
 
@@ -6574,10 +6571,7 @@ double __cdecl util__Floor(double *param_1)
 double __cdecl util__Sin(double *param_1)
 
 {
-  double dVar1;
-  
-  dVar1 = *param_1;
-  libm_sse2_sin_precise(0.0);
+  return libm_sse2_sin_precise(*param_1);
 }
 
 
@@ -6622,10 +6616,7 @@ Maybe_L_double_G_ * __cdecl util__Sqrt(Maybe_L_double_G_ *__return_storage_ptr__
 double __cdecl util__Tan(double *param_1)
 
 {
-  double dVar1;
-  
-  dVar1 = *param_1;
-  libm_sse2_tan_precise(0.0);
+  return libm_sse2_tan_precise(*param_1);
 }
 
 

@@ -4570,10 +4570,7 @@ double __cdecl GetBlackbodyTexturePeakTemperature_K(void)
 double __cdecl Physics__GetBrightness(double param_1,double param_2)
 
 {
-  double dVar1;
-  
-  dVar1 = param_1 / param_2;
-  libm_sse2_pow_precise(0.0,0.0);
+  return libm_sse2_pow_precise(param_1 / param_2,0.42);
 }
 
 

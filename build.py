@@ -38,6 +38,7 @@ OUT  = os.path.join(REPO, 'pe_out')
 PLIB = os.path.join(REPO, 'pe_lib')
 CC   = f'{BIN}/clang'
 LLD  = f'{BIN}/lld-link'
+NM   = f'{BIN}/llvm-nm'
 
 # --- TU compile flags (pe_compile_all.py, verbatim) -----------------------
 BASE = ['--target=i686-w64-mingw32', '-m32', '-x', 'c', '-std=gnu11', '-c',
@@ -258,10 +259,10 @@ def game_objs():
     return sorted(f'{OBJ}/{f}' for f in os.listdir(OBJ) if re.match(r'(?:game_\d+|pilot_\w+)\.o$', f))
 
 
-def link(objs, exe, pdb):
+def link(objs, exe, pdb, extra=None):
     cmd = [LLD, f'-out:{exe}', f'-pdb:{pdb}', '-debug', '-subsystem:windows',
            '-safeseh:no', '-stack:0x100000', '-force:multiple', '-errorlimit:0',
-           '-entry:mainCRTStartup'] + objs + MINGW_LIBS
+           '-entry:mainCRTStartup'] + (extra or []) + objs + MINGW_LIBS
     open(f'{OUT}/link_cmd.log', 'a').write(' '.join(cmd) + '\n\n')
     return sh(cmd)
 
@@ -300,6 +301,23 @@ def undefined_from(log):
         seen.add((kind, name))
         out.append((kind, name))
     return sorted(out)
+
+
+def load_aliases():
+    """tools/alias_alternatenames.tsv: stale-name -> canonical-symbol re-bind.
+    relocs.c Ghidra-dedup names and TU-internal free names that would
+    otherwise bind to no-op autostubs are re-pointed at the real TU
+    definitions via lld-link -alternatename (symbol-level forwarding)."""
+    tsv = os.path.join(REPO, 'tools', 'alias_alternatenames.tsv')
+    aliases = {}
+    if os.path.exists(tsv):
+        for ln in open(tsv, encoding='utf-8'):
+            if ln.startswith('#') or '\t' not in ln:
+                continue
+            s, m = ln.rstrip('\n').split('\t')[:2]
+            if re.match(r'^[A-Za-z_]\w*$', s) and re.match(r'^[A-Za-z_]\w*$', m):
+                aliases[s] = m
+    return aliases
 
 
 def rename_params(params):
@@ -465,9 +483,25 @@ def apply_imp_order(path):
 
 
 def do_link():
+    aliases = load_aliases()
     support = compile_support()
     games = game_objs()
-    print(f'objects: {len(games)} game + {len(support)} support', flush=True)
+    # validate alias targets against the defined symbol set: a stale
+    # def-line parse must fall back to plain autostub, not a dead alias
+    defined = set()
+    for o in support + games:
+        r = sh([NM, '--defined-only', o])
+        for m in re.finditer(r'^[0-9a-fA-F]+ [TtWw] (_?\w+)$', r.stdout, re.M):
+            nm = m.group(1)
+            defined.add(nm[1:] if nm.startswith('_') else nm)
+    bad = {s: m for s, m in aliases.items() if m not in defined}
+    for s in bad:
+        del aliases[s]
+    if bad:
+        print(f'aliases: {len(bad)} targets undefined -> autostub fallback '
+              f'(e.g. {sorted(bad)[:3]})', flush=True)
+    print(f'objects: {len(games)} game + {len(support)} support '
+          f'(aliases={len(aliases)})', flush=True)
     exe, pdb = f'{OUT}/CDE_recomp.exe', f'{OUT}/CDE_recomp.pdb'
     stub_c, imp_c = f'{OBJ}/cde_autostubs.c', f'{OBJ}/cde_impstubs.c'
     syms = set()
@@ -476,7 +510,8 @@ def do_link():
         objs = support + games
         if stub_o: objs.append(stub_o)
         if imp_o:  objs.append(imp_o)
-        r = link(objs, exe, pdb)
+        extra = [f'-alternatename:_{s}=_{m}' for s, m in sorted(aliases.items())]
+        r = link(objs, exe, pdb, extra)
         log = r.stdout + r.stderr
         open(f'{OUT}/link_r{rnd}.log', 'w').write(log)
         if r.returncode == 0:
@@ -484,13 +519,13 @@ def do_link():
             patch_pe(exe)
             break
         und = undefined_from(log)
-        new = set(und) - syms
+        new = {s for s in und if s[1] not in aliases} - syms
         print(f'round {rnd}: rc={r.returncode} undefined={len(und)} new={len(new)}')
         if not und or not new:
             print('-- no progress possible; first errors:')
             print('\n'.join(l for l in log.splitlines() if 'error' in l)[:20])
             sys.exit(2)
-        syms |= set(und)
+        syms |= new
         r_, v_ = decl_maps()
         n_fn, n_imp = write_stubs(syms, stub_c, imp_c, r_, v_)
         apply_imp_order(imp_c)
@@ -502,7 +537,8 @@ def do_link():
             print('-- imp stub compile fail'); print(rc.stderr[:1500]); sys.exit(4)
         stub_o = f'{OBJ}/cde_autostubs.o'
         imp_o = f'{OBJ}/cde_impstubs.o'
-        print(f'  stubs regenerated: fn/data={n_fn} imp={n_imp}')
+        print(f'  stubs regenerated: fn/data={n_fn} imp={n_imp} '
+              f'(aliased {sum(1 for s in und if s[1] in aliases)})')
     else:
         print('-- link did not converge in 8 rounds'); sys.exit(5)
     for f in (exe, pdb):

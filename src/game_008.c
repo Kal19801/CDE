@@ -52455,11 +52455,8 @@ double __thiscall RemoteControlModule__GetStructuralThickness_m(RemoteControlMod
 double __thiscall RemoteControlModule__GetHullRadius_m(RemoteControlModule *this)
 
 {
-  double dVar1;
-  
-  dVar1 = ((0.4 / Material__DefaultMaterial->Density_kg__m3) * 1.1) /
-          (*(double *)&(this->HomingBehavior).BoostPhase * 0.5 * 3.141592653589793);
-  libm_sse2_pow_precise(0.0,0.0);
+  return libm_sse2_pow_precise(((0.4 / Material__DefaultMaterial->Density_kg__m3) * 1.1) /
+          (*(double *)&(this->HomingBehavior).BoostPhase * 0.5 * 3.141592653589793),0.3333333333333333);
 }
 
 
@@ -52475,11 +52472,10 @@ double __thiscall RemoteControlModule__GetHullLength_m(RemoteControlModule *this
 
 {
   double dVar1;
-  
+
   dVar1 = *(double *)&(this->HomingBehavior).BoostPhase * 0.5;
-  dVar1 = ((0.4 / Material__DefaultMaterial->Density_kg__m3) * 1.1 * dVar1 * dVar1) /
-          3.141592653589793;
-  libm_sse2_pow_precise(0.0,0.0);
+  return libm_sse2_pow_precise(((0.4 / Material__DefaultMaterial->Density_kg__m3) * 1.1 *
+          dVar1 * dVar1) / 3.141592653589793,0.3333333333333333);
 }
 
 
@@ -52937,11 +52933,8 @@ Darray_L_struct_MaterialConstituent_G_ * __thiscall FuseModule__GetComposition(F
 double __thiscall FuseModule__GetHullRadius_m(FuseModule *this)
 
 {
-  double dVar1;
-  
-  dVar1 = ((0.001 / Material__DefaultMaterial->Density_kg__m3) * 1.1) /
-          (*(double *)(this + 0x70) * 0.5 * 3.141592653589793);
-  libm_sse2_pow_precise(0.0,0.0);
+  return libm_sse2_pow_precise(((0.001 / Material__DefaultMaterial->Density_kg__m3) * 1.1) /
+          (*(double *)(this + 0x70) * 0.5 * 3.141592653589793),0.3333333333333333);
 }
 
 

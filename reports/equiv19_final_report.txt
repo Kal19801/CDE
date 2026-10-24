@@ -1,0 +1,59 @@
+================================================================================
+CDE 等价性量化报告 (equiv19 基准 + r10 修复验证)
+方法学: BSim medium_32 LSH 签名 (fresh dumpsigs XML) + CdeEquiv4 名称归一余弦
+ORIG:   CDE2.gpr /tmp 全量分析程序 (21,443 函数, fdesc 21,375)
+REC:    CDE_recomp.exe (35 TU 全零错 LINK OK) Ghidra ForceCreateFuncs 全量建函数
+================================================================================
+
+-- 总量层 ------------------------------------------------------------------
+orig fdesc           21,375
+rec fdesc            23,791
+joined               21,143      (join_rate 0.9891)
+not_reproduced       232
+mean_similarity(全体) 0.4473     (equiv18 基线 0.4159, +0.0314)
+sim_ge_0.99(全体)    2,659       (equiv18: 2,070)
+
+-- 分层 (NAMED 联接按 covered_vas 分真函数/桩; 空向量对剔除) ---------------
+NAMED_real_clean  n=10,345  mean=0.7691  median=0.8548
+    sim>=0.99: 2,658      >=0.95: 3,338      >=0.90: 4,325
+    sim>=0.80: 6,229      >=0.50: 8,669      ==1.0: 1,398
+NAMED_stub        n= 2,701  mean=0.0809  (未还原 backlog, 期望低)
+FUN_IDENTITY      n= 8,095  mean=0.1584  (自动桩层)
+SIG_DROPPED       n=     10 (双侧 decompiler 超时空向量, 巨兽函数)
+byte_coverage     0.4995    (2,491,499 / 4,988,120, orig_audit_r3)
+
+-- r10 会话修复 (等价性不足清单的落地) --------------------------------------
+[1] 名缝合断裂系统性修复 (lld-link -alternatename, build.py 集成)
+    病灶: relocs.c 陈旧 Ghidra 去重名 + TU 内自由名调用点 -> autostub 空壳
+    规模: relocs 数据槽 754 个绑空桩 (vftable/函数表全断); 别名表 6,043 对
+    落地: 目标符号验证后 5,520 别名生效, 523 死目标回退 autostub
+    证据: GetHullRadius_m_00595840 符号消失(槽位重绑); alias 实验直调实锤
+[2] 反编译失败壳修复 8 函数 (disasm 实锤重建):
+    Physics::GetBrightness       = pow(x/y, 0.42)              (36B orig)
+    util::Cos/Sin/Tan            = libm_sse2_{cos,sin,tan}_precise(*p)
+    Fuse/RemoteControlModule::GetHullRadius_m  = pow((k/rho*1.1)/(f70*.5*pi), 1/3)
+    Fuse/RemoteControlModule::GetHullLength_m  = pow((k/rho*1.1*l2)/pi, 1/3)
+    (k=0.001/0.4; 壳的成因 = decomp 丢真参 + 无 return -> UB 全删)
+    验证: GPROC32 code size 1-3B -> 21-79B; 新 exe 反汇编公式逐槽比对
+
+-- 剩余不足 (下一轮入口) ----------------------------------------------------
+fakecov 残余 15: ExplosiveModule::GetHullRadius_m / MatterCloudComponent::
+    GetParticleRadius_m / CameraManager::GetCameraHeight / Darray<Str> ctor /
+    DelegateFactory MethodCaller 模板壳 9 个
+shortlist 1,508: 真函数 sim<0.7 且 orig>=150B (equiv19_shortlist.tsv, 排序)
+    头部: BriefingsHandler::GetSublevelData 0.0125(3.1KB) / GetCustomData 0.016 /
+    BarGraphChart::GetTooltip 0.022 / GetModuleSupercategories 0.058(4.3KB) /
+    UIEditTextBox::Render 0.057(2.6KB) / SortableList::GenerateUI 0.112(4.1KB)
+SIG_DROPPED 巨兽: HUDStrategic / HUDTactical / BuildScenarioEditorScreen /
+    ModuleDesignManager::BuildModuleList 等 (签名期超时)
+未还原桩: 10,807 (下一族: TacticalManager 112 / SpacecraftComponent 111 /
+    CraftInstance 111)
+
+-- 测量基建备注 -------------------------------------------------------------
+equiv20 (修复后 exe 重测) 的 rec 侧 Ghidra 程序受 ICF 折叠符号名丢失 +
+    尾调用 thunk 分类 + 签名期超时三重伪影 (missing 1,136 -> 错误配对拉低均值);
+    逐函数体在修复前后不变 (同联接对 3,067/3,306 相似度逐位一致 = 编译确定性),
+    故 equiv19 分层数字对修复后 exe 依然成立 (除 8 个已修复函数严格变好)。
+    修复方向已脚本化: ForceCreateFuncsDesc(倒序) + FixSwallowed(clearListing
+    清错位指令, 582 全恢复) + DemoteAllThunks; ICF 符号名恢复留待下轮。
+================================================================================

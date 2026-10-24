@@ -1,0 +1,37 @@
+CDE equivalence layered quantification
+rec_missing (thunk-blocked, no rec sig): 1136
+
+equiv19 NAMED_real_clean n=10345 mean=0.7691
+equiv20 NAMED_real_clean n=9482 mean=0.5141
+  ge0.99: 19=2658 20=1194
+  ge0.95: 19=3338 20=1470
+  ge0.9: 19=4325 20=1959
+  ge0.8: 19=6229 20=2893
+  ge0.5: 19=8669 20=4888
+
+== worst 25 equiv20 NAMED_real_clean ==
+0.0001|ThermalRocketSubModule::BuildModels|5c3420|2285B
+0.0002|RadiatorModule::BuildModels|5e0420|3173B
+0.0002|RenderCustomRotatedSplineLoop|886420|3213B
+0.0002|util::DelegateFactory<class_ModuleDesignManager,bool>::MethodCallerConst<&private:_bool___thiscall_ModuleDesignManager::CanDeleteSelectedModule(void)const_>|578200|12B
+0.0002|util::DelegateFactory<class_ScenarioEditor,bool>::MethodCallerConst<&private:_bool___thiscall_ScenarioEditor::CanEditObject(void)const_>|6eba10|32B
+0.0003|FileIO::LoadShaderFile|8beb80|2606B
+0.0003|MainManager::BuildMainMenu|709870|5674B
+0.0003|ProcGenTextureManager::GetWhiteNoiseTextureCount|8bb950|6B
+0.0003|util::DelegateFactory<struct_UploadToSteamWorkshopButton,void>::MethodCaller<&public:_void___thiscall_UploadToSteamWorkshopButton::UploadItemToSteam(void)>|4d7560|12B
+0.0004|SoundEffect::ReflectionInfoStruct<struct_SoundEffect>::GetMember|8b0a50|411B
+0.0004|StrategicManager::SetupSolarProperties|76d3f0|861B
+0.0004|UILayout::Render|8a6d80|651B
+0.0005|ChemicalReaction::StaticGetPropertyGetters|66efc0|951B
+0.0005|MassProjectileSubModule::GetName|66b940|947B
+0.0005|Material::GetUnenrichedMaterial_Clear|6878a0|18B
+0.0005|PropellantTankModule::BuildModels|5ba690|1168B
+0.0006|ConventionalGunModule::ReflectionInfoStruct<class_ConventionalGunModule>::GetFactory|630c20|6B
+0.0006|EmissionSpectrum::GetReflectionInfo|678940|5B
+0.0006|FrequencyDoublerSubModule::ReflectionInfoStruct<class_FrequencyDoublerSubModule>::GetFactory|63aaa0|6B
+0.0006|GraphicsSettings::ReflectionInfoStruct<struct_GraphicsSettings>::GetMembers|6d59d0|317B
+0.0006|PostProcessBlurCrossShader::SetGaussianBlur|86d060|308B
+0.0006|PostProcessBlurCrossShader::SetGaussianBlur|86d1a0|320B
+0.0006|PostProcessBlurShader::SetGaussianBlur|86d2e0|308B
+0.0006|PostProcessBlurShader::SetGaussianBlur|86d420|320B
+0.0006|PropellantTankModule::ReflectionInfoStruct<class_PropellantTankModule>::GetFactory|5baf30|6B

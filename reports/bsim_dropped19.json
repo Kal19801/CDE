@@ -1,0 +1,19 @@
+{
+ "orig_empty": [
+  "HUDStrategic::HUDStrategic",
+  "HUDTactical::HUDTactical",
+  "ScenarioEditor::BuildScenarioEditorScreen"
+ ],
+ "rec_empty": [
+  "BriefingsHandler__GenerateBriefing",
+  "InfolinksDisplayer__InfolinksDisplayer",
+  "LevelBadgeDisplay__LevelBadgeDisplay",
+  "ModuleDesignManager__BuildModuleList",
+  "ModuleDesignManager__BuildModuleMenuUI",
+  "UIBoxLayout__UIBoxLayout",
+  "UIColumnLayout__UIColumnLayout",
+  "UIRowLayout__UIRowLayout",
+  "UIRowLayout__UIRowLayout__o2",
+  "UIShipInfo__Rebuild"
+ ]
+}

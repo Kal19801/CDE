@@ -1,0 +1,81 @@
+CDE equivalence layered quantification (equiv19, medium_32, fresh sigs)
+covered_vas=10623  total_bytes=4988120  covered_bytes=2491499
+byte_coverage=0.4995
+
+NAMED_real (covered by real TU): n=10347 mean=0.7689 median=0.8547
+  sim_ge_0.99: 2658
+  sim_ge_0.95: 3338
+  sim_ge_0.9: 4325
+  sim_ge_0.8: 6229
+  sim_ge_0.5: 8669
+  sim_eq_1.0: 1398
+  orig_bytes=2443826
+NAMED_stub: n=2701 mean=0.0809 median=0.0134
+  sim_ge_0.99: 1
+  sim_ge_0.95: 1
+  sim_ge_0.9: 3
+  sim_ge_0.8: 4
+  sim_ge_0.5: 139
+  sim_eq_1.0: 0
+  orig_bytes=1456623
+FUN_IDENTITY (auto-stubs): n=8095 mean=0.1584 median=0.1131
+  sim_ge_0.99: 1
+  sim_ge_0.95: 1
+  sim_ge_0.9: 1
+  sim_ge_0.8: 1
+  sim_ge_0.5: 1
+  sim_eq_1.0: 0
+  orig_bytes=1038217
+MISS=226  FUN_MISS=6
+
+== worst 40 NAMED_real (similarity ascending) ==
+sim|orig_name|orig_addr|rec_name|rec_addr
+0.0000|BriefingsHandler::GenerateBriefing|6c68a0|BriefingsHandler__GenerateBriefing|6ef5e0
+0.0000|InfolinksDisplayer::InfolinksDisplayer|6daf20|InfolinksDisplayer__InfolinksDisplayer|7431a0
+0.0000|LevelBadgeDisplay::LevelBadgeDisplay|6c0390|LevelBadgeDisplay__LevelBadgeDisplay|6e8820
+0.0000|ModuleDesignManager::BuildModuleList|57d7b0|ModuleDesignManager__BuildModuleList|576480
+0.0000|ModuleDesignManager::BuildModuleMenuUI|581410|ModuleDesignManager__BuildModuleMenuUI|5651a0
+0.0000|UIBoxLayout::UIBoxLayout|8a2130|UIBoxLayout__UIBoxLayout|84c4a0
+0.0000|UIBoxLayout::UIBoxLayout|8a21d0|UIBoxLayout__UIBoxLayout|84c4a0
+0.0000|UIColumnLayout::UIColumnLayout|8a2270|UIColumnLayout__UIColumnLayout|84cb60
+0.0000|UIColumnLayout::UIColumnLayout|8a2380|UIColumnLayout__UIColumnLayout|84cb60
+0.0000|UIShipInfo::Rebuild|6b8bf0|UIShipInfo__Rebuild|6d8e70
+0.0002|util::DelegateFactory<class_ModuleDesignManager,bool>::MethodCallerConst<&private:_bool___thiscall_ModuleDesignManager::CanDeleteSelectedModule(void)const_>|578200|util__DelegateFactory_class_ModuleDesignManager_bool___MethodCallerConst__private__bool___thiscall_ModuleDesignManager__CanDeleteSelectedModule_void_const|59f3a0
+0.0002|util::DelegateFactory<class_ShipDesignManager,bool>::MethodCallerConst<&private:_bool___thiscall_ShipDesignManager::CanDeleteSpacecraft(void)const_>|6a25a0|util__DelegateFactory_class_ShipDesignManager_bool___MethodCallerConst__private__bool___thiscall_ShipDesignManager__CanDeleteSpacecraft_void_const|6b2e50
+0.0003|util::DelegateFactory<struct_UploadToSteamWorkshopButton,void>::MethodCaller<&public:_void___thiscall_UploadToSteamWorkshopButton::UploadItemToSteam(void)>|4d7560|util__DelegateFactory_struct_UploadToSteamWorkshopButton_void___MethodCaller__public__void___thiscall_UploadToSteamWorkshopButton__UploadItemToSteam_void|48b9d0
+0.0006|util::Delegate<void>::MethodCaller<struct_UIDropdown<int>,&public:_void___thiscall_UIDropdown<int>::OnClick(void)>|6b0ee0|util__Delegate_void___MethodCaller_struct_UIDropdown_int___public__void___thiscall_UIDropdown_int___OnClick_void|6ca150
+0.0006|util::DelegateFactory<struct_ExportButton,void>::MethodCaller<&public:_void___thiscall_ExportButton::ExportItem(void)>|4d74c0|util__DelegateFactory_struct_ExportButton_void___MethodCaller__public__void___thiscall_ExportButton__ExportItem_void|48b020
+0.0006|util::DelegateFactory<struct_SortableList,void,class_util::Reflectable*>::MethodCaller<&private:_void___thiscall_SortableList::OnSelect(class_util::Reflectable*)>|8cb4e0|util__DelegateFactory_struct_SortableList_void_class_util__Reflectable____MethodCaller__private__void___thiscall_SortableList__OnSelect_class_util__Reflectable__o2|883f40
+0.0007|CraftBlueprintArmor::GetArmorPlateHeights_m_Memoize|50e510|CraftBlueprintArmor__GetArmorPlateHeights_m_Memoize|4f9bc0
+0.0007|util::Delegate<void>::MethodCaller<struct_UIDropButton<class_util::Str<char>_>,&public:_void___thiscall_UIDropButton<class_util::Str<char>_>::OnClick(void)>|8cb520|util__Delegate_void___MethodCaller_struct_UIDropButton_class_util__Str_char_____public__void___thiscall_UIDropButton_class_util__Str_char_____OnClick_void|8840d0
+0.0008|util::DelegateFactory<class_InfolinksManager,void>::MethodCaller<&private:_void___thiscall_InfolinksManager::ExportToSteamWorkshop(void)>|6d9e70|util__DelegateFactory_class_InfolinksManager_void___MethodCaller__private__void___thiscall_InfolinksManager__ExportToSteamWorkshop_void|73c6c0
+0.0009|Skybox::Render3D|4d2270|Skybox__Render3D|484120
+0.0010|util::DelegateFactory<struct_InfolinksDisplayer,void>::MethodCaller<&private:_void___thiscall_InfolinksDisplayer::GetMoreInfo(void)>|6d9ec0|util__DelegateFactory_struct_InfolinksDisplayer_void___MethodCaller__private__void___thiscall_InfolinksDisplayer__GetMoreInfo_void|73df10
+0.0010|util::DelegateFactory<struct_UIArmorPanel,bool>::MethodCallerConst<&private:_bool___thiscall_UIArmorPanel::CanAddNewLayer(void)const_>|6b0ef0|util__DelegateFactory_struct_UIArmorPanel_bool___MethodCallerConst__private__bool___thiscall_UIArmorPanel__CanAddNewLayer_void_const|6cb2f0
+0.0011|util::DelegateFactory<struct_PauseMenuHandler,void>::MethodCaller<&public:_void___thiscall_PauseMenuHandler::Clear(void)>|4fb5b0|util__DelegateFactory_struct_PauseMenuHandler_void___MethodCaller__public__void___thiscall_PauseMenuHandler__Clear_void|4ded90
+0.0011|util::DelegateFactory<struct_PauseMenuHandler,void>::MethodCaller<&public:_void___thiscall_PauseMenuHandler::OpenOptionsMenu(void)>|4fb6a0|util__DelegateFactory_struct_PauseMenuHandler_void___MethodCaller__public__void___thiscall_PauseMenuHandler__OpenOptionsMenu_void|4e62a0
+0.0012|util::DelegateFactory<class_ShipDesignManager,bool>::MethodCallerConst<&public:_bool___thiscall_ShipDesignManager::CanModifySelectedCraft(void)const_>|693eb0|util__DelegateFactory_class_ShipDesignManager_bool___MethodCallerConst__public__bool___thiscall_ShipDesignManager__CanModifySelectedCraft_void_const|69a290
+0.0020|util::Delegate<void>::MethodCaller<struct_UIDropdown<class_util::Reflectable*>,&public:_void___thiscall_UIDropdown<class_util::Reflectable*>::OnClick(void)>|578000|util__Delegate_void___MethodCaller_struct_UIDropdown_class_util__Reflectable____public__void___thiscall_UIDropdown_class_util__Reflectable____OnClick_void|59ddd0
+0.0021|util::Delegate<void>::MethodCaller<struct_UIDropButton<class_util::Reflectable*>,&public:_void___thiscall_UIDropButton<class_util::Reflectable*>::OnClick(void)>|6eb900|util__Delegate_void___MethodCaller_struct_UIDropButton_class_util__Reflectable____public__void___thiscall_UIDropButton_class_util__Reflectable____OnClick_void|7667e0
+0.0021|util::DelegateFactory<struct_ExportButton,bool>::MethodCallerConst<&public:_bool___thiscall_ExportButton::IsItemExportable(void)const_>|4d7cc0|util__DelegateFactory_struct_ExportButton_bool___MethodCallerConst__public__bool___thiscall_ExportButton__IsItemExportable_void_const|48efd0
+0.0021|util::DelegateFactory<struct_InfolinksDisplayer,struct_Font_const*>::MethodCallerConst<&private:_struct_Font_const*___thiscall_InfolinksDisplayer::GetTextMainFont(void)const_>|6da5a0|util__DelegateFactory_struct_InfolinksDisplayer_struct_Font_const____MethodCallerConst__private__struct_Font_const____thiscall_InfolinksDisplayer__GetTextMainFont_void_const|741cc0
+0.0021|util::DelegateFactory<struct_PauseMenuHandler,void>::MethodCaller<&public:_void___thiscall_PauseMenuHandler::OpenBriefing(void)>|4fb660|util__DelegateFactory_struct_PauseMenuHandler_void___MethodCaller__public__void___thiscall_PauseMenuHandler__OpenBriefing_void|4e1650
+0.0021|util::DelegateFactory<struct_UploadToSteamWorkshopButton,bool>::MethodCallerConst<&public:_bool___thiscall_UploadToSteamWorkshopButton::IsItemExportable(void)const_>|4d7cd0|util__DelegateFactory_struct_UploadToSteamWorkshopButton_bool___MethodCallerConst__public__bool___thiscall_UploadToSteamWorkshopButton__IsItemExportable_void_const|48f0f0
+0.0023|util::DelegateFactory<struct_PropertyWidgetData,double*>::MethodCallerConst<&public:_double*___thiscall_PropertyWidgetData::GetDecimalProperty(void)const_>|8c8450|util__DelegateFactory_struct_PropertyWidgetData_double____MethodCallerConst__public__double____thiscall_PropertyWidgetData__GetDecimalProperty_void_const|880bf0
+0.0025|ThermalRocketSubModule::PassThroughCachedData3|5c8130|ThermalRocketSubModule__PassThroughCachedData3|5da580
+0.0025|util::DelegateFactory<struct_StandaloneOptionsButton,void>::MethodCaller<&public:_void___thiscall_StandaloneOptionsButton::Open(void)>|4fb650|util__DelegateFactory_struct_StandaloneOptionsButton_void___MethodCaller__public__void___thiscall_StandaloneOptionsButton__Open_void|4df230
+0.0027|util::DelegateFactory<struct_NewModuleDropdownButton,void>::MethodCaller<&public:_void___thiscall_NewModuleDropdownButton::OpenDropdown(void)>|693db0|util__DelegateFactory_struct_NewModuleDropdownButton_void___MethodCaller__public__void___thiscall_NewModuleDropdownButton__OpenDropdown_void|699cf0
+0.0029|util::DelegateFactory<class_LevelEditor,void>::MethodCaller<&private:_void___thiscall_LevelEditor::DeleteSelectedObject(void)>|6eb600|util__DelegateFactory_class_LevelEditor_void___MethodCaller__private__void___thiscall_LevelEditor__DeleteSelectedObject_void|75a640
+0.0036|util::DelegateFactory<class_MainManager,void>::MethodCaller<&private:_void___thiscall_MainManager::BuildMainMenu(void)>|709030|util__DelegateFactory_class_MainManager_void___MethodCaller__private__void___thiscall_MainManager__BuildMainMenu_void|77db10
+0.0038|CraftBlueprint::GetSortedSpinalModules_Memoize|55a4d0|CraftBlueprint__GetSortedSpinalModules_Memoize|534b90
+0.0038|util::DelegateFactory<class_BriefingsHandler,void>::MethodCaller<&private:_void___thiscall_BriefingsHandler::BuildBriefingMenu(void)>|6bd930|util__DelegateFactory_class_BriefingsHandler_void___MethodCaller__private__void___thiscall_BriefingsHandler__BuildBriefingMenu_void|6e4680
+0.0038|util::DelegateFactory<struct_UIArrayEditButton,void>::MethodCaller<&public:_void___thiscall_UIArrayEditButton::OnUse(void)>|8c8440|util__DelegateFactory_struct_UIArrayEditButton_void___MethodCaller__public__void___thiscall_UIArrayEditButton__OnUse_void|880990
+
+== best-of-real headcount ==
+  p5=0.1854
+  p10=0.3742
+  p25=0.6466
+
+
+SIG_DROPPED (empty vector, decompiler timeout): orig=3 rec=10
+NAMED_real_clean: n=10337 mean=0.7697
