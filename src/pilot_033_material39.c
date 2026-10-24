@@ -5,10 +5,15 @@
 // Honest TODOs inline; fix log: reports/poison_fix/laser17_pilot032_log.txt
 #include "port_prelude.h"
 typedef union {
+  struct {
+    undefined4 _0_4_;
+    undefined4 _4_4_;
+  };
   undefined1 raw[32];
 } slice_view;
 /* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */
-extern int util_Sum_double(); /* K&R stub; ret by call site (honest TODO: stub is void) */
+extern double util_Min_double(); /* PDB ret double; stub era returns 0.0 */
+extern double util_Sum_double(); /* PDB ret double; stub era returns 0.0 */
 
 //==== 0067ebd0 67ebd0_Material__GetAbsorptionCrossSection_m2 ====
 // decompiled by BatchDecomp @ 0067ebd0 name=GetAbsorptionCrossSection_m2 conv=__thiscall body=119
@@ -108,6 +113,217 @@ double __thiscall Material__GetAverageScatteringCosineComplement(Material *this)
 }
 
 
+//==== 0067f280 67f280_Material__GetBareSphereCriticalRadius_m ====
+// decompiled by BatchDecomp @ 0067f280 name=GetBareSphereCriticalRadius_m conv=__thiscall body=603
+
+/* public: double __thiscall Material__GetBareSphereCriticalRadius_m(void)const  */
+
+double __thiscall Material__GetBareSphereCriticalRadius_m(Material *this)
+
+{
+  bool bVar1;
+  int *piVar2;
+  int iVar3;
+  int *piVar4;
+  Element *this_00;
+  Maybe_L_double_G_ *pMVar5;
+  Element *this_01;
+  double dVar6;
+  Maybe_L_double_G_ local_4c;
+  double local_3c;
+  double local_34;
+  undefined **local_2c;
+  void *local_28;
+  double local_1c;
+  double local_14;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  bVar1 = IsAFissile(this);
+  if (bVar1) {
+    piVar2 = (int *)GetElements(this);
+    local_c = 0;
+    local_14 = 0.0;
+    iVar3 = (**(code **)(*piVar2 + 0xc))();
+    if (local_c < iVar3) {
+      do {
+        piVar4 = (int *)(**(code **)*piVar2)(&local_c);
+        local_c = local_c + 1;
+        local_14 = (double)*(int *)(*piVar4 + 0x1c) * *(double *)(piVar4 + 2) + local_14;
+        iVar3 = (**(code **)(*piVar2 + 0xc))();
+      } while (local_c < iVar3);
+    }
+    local_2c = (undefined **)0x91e0dc;
+    if (local_28 != (void *)0x0) {
+      operator_delete__(local_28);
+    }
+    local_28 = (void *)0x0;
+    local_2c = (undefined **)0x919488;
+    dVar6 = GetMacroscopicNeutronScatteringCrossSection__m
+                      (this,Fast,
+                       /*3ff0000000000000*/1.0
+                      );
+    local_14 = /*3ff0000000000000*/1.0 /
+               (dVar6 * (/*3ff0000000000000*/1.0 -
+                        /*4000000000000000*/2.0 / (local_14 * /*4008000000000000*/3.0)) *
+               /*4008000000000000*/3.0);
+    local_1c = this->Density_kg__m3 * AvogadroConstant__mol;
+    dVar6 = GetMolarMass_kg__mol(this);
+    local_1c = local_1c / dVar6;
+    dVar6 = GetMicroscopicNeutronAbsorptionCrossSection_b
+                      (this,Fast,
+                       /*3ff0000000000000*/1.0
+                      );
+    dVar6 = b_to_m2(dVar6);
+    local_34 = local_14 / (dVar6 * local_1c);
+    this_00 = GetFissileElement(this);
+    if ((this_00 == (Element *)0x0) ||
+       (this_01 = this_00->UnenrichedElement, this_00->UnenrichedElement == (Element *)0x0)) {
+      this_01 = this_00;
+    }
+    if (this_00 == (Element *)0x0) {
+      local_1c = 0.0;
+      local_14 = 0.0;
+    }
+    else {
+      local_1c = Element__GetAverageNeutronsProducedPerFission(this_01,Fast);
+      local_1c = local_1c * /*0000000000000000*/0.0;
+      local_14 = Element__GetAverageNeutronsProducedPerFission(this_00,Fast);
+      local_14 = local_14 + local_1c;
+    }
+    local_1c = GetMicroscopicNeutronFissionCrossSection_b
+                         (this,Fast,
+                          /*3ff0000000000000*/1.0);
+    local_1c = local_1c * local_14;
+    local_14 = GetMicroscopicNeutronAbsorptionCrossSection_b
+                         (this,Fast,
+                          /*3ff0000000000000*/1.0);
+    local_3c = local_34 / (local_1c / local_14 - /*3ff0000000000000*/1.0);
+    pMVar5 = util__Sqrt(&local_4c,&local_3c);
+    if (pMVar5->IsValidData == false) {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(char *)0x0);
+      DebugBreak();
+    }
+    local_14 = pMVar5->Data * /*400921fb54442d18*/3.141592653589793;
+  }
+  else {
+    local_14 = 0.0;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_14;
+}
+
+
+//==== 006803d0 6803d0_Material__GetCost_c__kg_MemoizedFunction ====
+// decompiled by BatchDecomp @ 006803d0 name=GetCost_c__kg_MemoizedFunction conv=__thiscall body=718
+
+/* private: double __thiscall Material__GetCost_c__kg_MemoizedFunction(void)const  */
+
+double __thiscall Material__GetCost_c__kg_MemoizedFunction(Material *this)
+
+{
+  int iVar1;
+  int *piVar2;
+  undefined4 *puVar3;
+  code *pcVar4;
+  float10 extraout_ST0;
+  float10 extraout_ST0_00;
+  float10 extraout_ST0_01;
+  double dVar5;
+  double dVar6;
+  double dVar7;
+  double dVar8;
+  void *local_3c;
+  double local_28;
+  double local_18;
+  undefined8 local_10;
+  uint local_8;
+  
+  pcVar4 = DebugBreak_exref;
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if ((*(char *)&(this->GetClasses_MemoizedValue).Data.Data != '\0') &&
+     (dVar6 = *(double *)&this->Parent, 0.0 < dVar6)) {
+    local_10 = dVar6;
+    if (*(char *)&(this->GetClasses_MemoizedValue).Data.Data == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x12,
+                      "IsValid()",(char *)0x0);
+      DebugBreak();
+      local_10 = *(double *)&this->Parent;
+    }
+    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+    return local_10;
+  }
+  if ((0.0 < this->Density_kg__m3) &&
+     (iVar1 = (**(code **)(*(int *)&this->Elements + 0xc))(), 0 < iVar1)) {
+    iVar1 = (**(code **)(*(int *)&this->Elements + 0xc))();
+    if (iVar1 == 0) {
+      local_28 = 0.0;
+    }
+    else {
+      piVar2 = (int *)GetElements(this);
+      local_10 = (double)((ulonglong)local_10 & 0xffffffff);
+      local_28 = 0.0;
+      local_18 = 0.0;
+      iVar1 = (**(code **)(*piVar2 + 0xc))();
+      if (((slice_view *)&local_10)->_4_4_ < iVar1) {
+        do {
+          puVar3 = (undefined4 *)(**(code **)*piVar2)((int)&local_10 + 4);
+          dVar6 = Element__GetEffectiveSolarAbundance((Element *)*puVar3);
+          if (dVar6 <= 0.0) {
+            dVar6 = 0.0;
+          }
+          else {
+            dVar6 = /*3ff0000000000000*/1.0 / dVar6;
+          }
+          local_10 = (double)CONCAT44(((slice_view *)&local_10)->_4_4_ + 1,(undefined4)local_10);
+          local_28 = *(double *)(puVar3 + 2) * dVar6 + local_28;
+          iVar1 = (**(code **)(*piVar2 + 0xc))();
+          pcVar4 = DebugBreak_exref;
+          local_18 = local_28;
+        } while (((slice_view *)&local_10)->_4_4_ < iVar1);
+      }
+      local_28 = GetMolarMass_kg__mol(this);
+      local_28 = local_18 / local_28;
+      if (local_3c != (void *)0x0) {
+        operator_delete__(local_3c);
+      }
+    }
+    local_18 = 0.0;
+    dVar6 = GetHalfLife_s(this);
+    if (0.0 < dVar6) {
+      dVar5 = SecondsInAJulianYear_s * /*4014000000000000*/5.0;
+      dVar7 = GetHalfLife_s(this);
+      dVar6 = libm_sse2_log_precise(/*3fe0000000000000*/0.5);
+      dVar8 = libm_sse2_log_precise(/*3fefae147ae147ae*/0.99);
+      dVar6 = dVar5 / (dVar7 / (dVar6 / dVar8)) - /*3ff0000000000000*/1.0;
+      local_18 = 0.0;
+      if (0.0 <= dVar6) {
+        local_18 = dVar6;
+      }
+    }
+    dVar8 = GetStorageCost_c__kg(this);
+    dVar6 = GetProductionCost_c__kg(this);
+    dVar6 = dVar6 + dVar8 + local_18 + local_28;
+    if (dVar6 <= 0.0) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\logistic\\physics\\materials.cpp",
+                      0x462,"TotalCost_c__kg > 0.",(char *)0x0);
+      (*pcVar4)();
+    }
+    if ((NAN(dVar6)) || ((NAN(dVar6) == (dVar6 == 0.0) && (NAN(dVar6 / dVar6))))) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\logistic\\physics\\materials.cpp",
+                      0x463,"IsNumericallyValid(TotalCost_c__kg)",(char *)0x0);
+      (*pcVar4)();
+    }
+    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+    return dVar6;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return 0.0;
+}
+
+
 //==== 00680860 680860_Material__GetDecayEnergy_eV ====
 // decompiled by BatchDecomp @ 00680860 name=GetDecayEnergy_eV conv=__thiscall body=176
 
@@ -166,6 +382,206 @@ double __thiscall Material__GetDissociationFraction(Material *this,double param_
 }
 
 
+//==== 00684000 684000_Material__GetFirstIonizationEnergy_kJ__mol ====
+// decompiled by BatchDecomp @ 00684000 name=GetFirstIonizationEnergy_kJ__mol conv=__thiscall body=178
+
+/* public: double __thiscall Material__GetFirstIonizationEnergy_kJ__mol(void)const  */
+
+double __thiscall Material__GetFirstIonizationEnergy_kJ__mol(Material *this)
+
+{
+  int *piVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  double local_10;
+  void *local_28;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  piVar1 = (int *)GetElements(this);
+  local_c = 0;
+  local_10 = 0.0;
+  iVar3 = (**(code **)(*piVar1 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      puVar2 = (undefined4 *)(**(code **)*piVar1)(&local_c);
+      local_10 = *(double *)(*puVar2 + 0x38) * *(double *)(puVar2 + 2) + local_10;
+      local_c = local_c + 1;
+      iVar3 = (**(code **)(*piVar1 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  local_10 = local_10 / util_Sum_double(&this->ElementCount);
+  if (local_28 != (void *)0x0) {
+    operator_delete__(local_28);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_10;
+}
+
+
+//==== 00684230 684230_Material__GetGammaAttenuation ====
+// decompiled by BatchDecomp @ 00684230 name=GetGammaAttenuation conv=__thiscall body=210
+
+/* public: double __thiscall Material__GetGammaAttenuation(double)const  */
+
+double __thiscall Material__GetGammaAttenuation(Material *this,double param_1)
+
+{
+  int *piVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  double local_10;
+  void *local_20;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  piVar1 = (int *)GetElements(this);
+  local_c = 0;
+  local_10 = 0.0;
+  iVar3 = (**(code **)(*piVar1 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      puVar2 = (undefined4 *)(**(code **)*piVar1)(&local_c);
+      local_10 = *(double *)(*puVar2 + 0xc8) * *(double *)(puVar2 + 2) + local_10;
+      local_c = local_c + 1;
+      iVar3 = (**(code **)(*piVar1 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  if (local_20 != (void *)0x0) {
+    operator_delete__(local_20);
+  }
+  local_10 = libm_sse2_exp_precise(
+    -(local_10 * /*408f400000000000*/1000.0 / /*40c3880000000000*/10000.0 * param_1 *
+      this->Density_kg__m3));
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_10;
+}
+
+
+//==== 00684310 684310_Material__GetGammaDecay_W__kg ====
+// decompiled by BatchDecomp @ 00684310 name=GetGammaDecay_W__kg conv=__thiscall body=324
+
+/* public: double __thiscall Material__GetGammaDecay_W__kg(void)const  */
+
+double __thiscall Material__GetGammaDecay_W__kg(Material *this)
+
+{
+  int *piVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  double dVar4;
+  double local_14;
+  double local_1c;
+  double local_24;
+  double local_10;
+  void *local_34;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_10 = libm_sse2_log_precise(/*4000000000000000*/2.0);
+  dVar4 = GetHalfLife_s(this);
+  local_14 = dVar4 / local_10;
+  if (0.0 < local_14) {
+    local_14 = 1.0 / (GetHalfLife_s(this) / local_10);
+  }
+  else {
+    local_14 = 0.0;
+  }
+  piVar1 = (int *)GetElements(this);
+  local_c = 0;
+  local_24 = 0.0;
+  local_1c = 0.0;
+  iVar3 = (**(code **)(*piVar1 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      puVar2 = (undefined4 *)(**(code **)*piVar1)(&local_c);
+      local_24 = *(double *)(*puVar2 + 0x58) * /*408f400000000000*/1000.0 *
+                 *(double *)(puVar2 + 2) + local_24;
+      local_1c = local_24;
+      local_c = local_c + 1;
+      iVar3 = (**(code **)(*piVar1 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  local_1c = local_1c / util_Sum_double(&this->ElementCount);
+  if (local_34 != (void *)0x0) {
+    operator_delete__(local_34);
+  }
+  local_1c = local_1c * local_14;
+  local_14 = local_1c * JoulesInAnElectronVolt_J__eV * AvogadroConstant__mol;
+  return local_14 / GetMolarMass_kg__mol(this);
+}
+
+
+//==== 00684930 684930_Material__GetHalfLife_s ====
+// decompiled by BatchDecomp @ 00684930 name=GetHalfLife_s conv=__thiscall body=263
+
+/* public: double __thiscall Material__GetHalfLife_s(void)const  */
+
+double __thiscall Material__GetHalfLife_s(Material *this)
+
+{
+  Darray_L_Element__P_G_ *pDVar1;
+  double dVar2;
+  bool bVar3;
+  int iVar4;
+  int *piVar5;
+  float10 extraout_ST0;
+  Darray_L_double_G_ local_28;
+  undefined8 local_18;
+  undefined1 local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  pDVar1 = &this->Elements;
+  bVar3 = false;
+  local_18 = (double)(ulonglong)(uint)local_18;
+  iVar4 = (**(code **)(*(int *)pDVar1 + 0xc))();
+  if (iVar4 == 0) {
+    local_18 = 0.0;
+  }
+  else {
+    local_10 = 0;
+    local_28._pad_0x0_0 = 0;
+    local_28.Data = (double *)0x0;
+    local_28.Size = 0;
+    local_28.Capacity = 0;
+    iVar4 = (**(code **)(*(int *)pDVar1 + 0xc))();
+    util__Darray_double___Darray_double(&local_28,iVar4);
+    local_c = 0;
+    iVar4 = (**(code **)(*(int *)pDVar1 + 0xc))();
+    if (local_c < iVar4) {
+      do {
+        piVar5 = (int *)(**(code **)*(int *)pDVar1)(&local_c);
+        iVar4 = local_28.Size;
+        dVar2 = *(double *)(*piVar5 + 0x40);
+        if (0.0 < dVar2) {
+          local_18 = (double)CONCAT44(local_28.Size + 1,(uint)local_18);
+          util__Darray_double___SetSize(&local_28,(int *)((int)&local_18 + 4));
+          bVar3 = util__Darray_double___CheckSize(&local_28,iVar4);
+          if (bVar3) {
+            local_28.Data[local_28.Size + -1] = dVar2;
+          }
+        }
+        local_c = local_c + 1;
+        iVar4 = (**(code **)(*(int *)pDVar1 + 0xc))();
+      } while (local_c < iVar4);
+    }
+    local_18 = util_Min_double(&local_28);
+    bVar3 = true;
+  }
+  if ((bVar3) &&
+     (local_28._pad_0x0_0 = 0x91da54, local_28.Data != (double *)0x0)) {
+    operator_delete__(local_28.Data);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_18;
+}
+
+
 //==== 00684d80 684d80_Material__GetLogarithmicEnergyDecrement ====
 // decompiled by BatchDecomp @ 00684d80 name=GetLogarithmicEnergyDecrement conv=__thiscall body=171
 
@@ -200,6 +616,108 @@ double __thiscall Material__GetLogarithmicEnergyDecrement(Material *this)
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return (double)extraout_ST0;
+}
+
+
+//==== 00684e30 684e30_Material__GetMacroscopicNeutronAbsorptionCrossSection__m ====
+// decompiled by BatchDecomp @ 00684e30 name=GetMacroscopicNeutronAbsorptionCrossSection__m conv=__thiscall body=85
+
+/* public: double __thiscall Material__GetMacroscopicNeutronAbsorptionCrossSection__m(enum
+   FissionType,double)const  */
+
+double __thiscall
+Material__GetMacroscopicNeutronAbsorptionCrossSection__m(Material *this,FissionType param_1,double param_2)
+
+{
+  double dVar1;
+  double dVar2;
+  double dVar3;
+  
+  dVar1 = this->Density_kg__m3 * AvogadroConstant__mol;
+  dVar2 = GetMolarMass_kg__mol(this);
+  dVar3 = GetMicroscopicNeutronAbsorptionCrossSection_b
+                    (this,param_1,param_2);
+  dVar3 = b_to_m2(dVar3);
+  return dVar3 * (dVar1 / dVar2);
+}
+
+
+//==== 00684e90 684e90_Material__GetMacroscopicNeutronFissionCrossSection__m ====
+// decompiled by BatchDecomp @ 00684e90 name=GetMacroscopicNeutronFissionCrossSection__m conv=__thiscall body=85
+
+/* public: double __thiscall Material__GetMacroscopicNeutronFissionCrossSection__m(enum
+   FissionType,double)const  */
+
+double __thiscall
+Material__GetMacroscopicNeutronFissionCrossSection__m(Material *this,FissionType param_1,double param_2)
+
+{
+  double dVar1;
+  double dVar2;
+  double dVar3;
+  
+  dVar1 = this->Density_kg__m3 * AvogadroConstant__mol;
+  dVar2 = GetMolarMass_kg__mol(this);
+  dVar3 = GetMicroscopicNeutronFissionCrossSection_b
+                    (this,param_1,param_2);
+  dVar3 = b_to_m2(dVar3);
+  return dVar3 * (dVar1 / dVar2);
+}
+
+
+//==== 00684ef0 684ef0_Material__GetMacroscopicNeutronScatteringCrossSection__m ====
+// decompiled by BatchDecomp @ 00684ef0 name=GetMacroscopicNeutronScatteringCrossSection__m conv=__thiscall body=302
+
+/* public: double __thiscall Material__GetMacroscopicNeutronScatteringCrossSection__m(enum
+   FissionType,double)const  */
+
+double __thiscall
+Material__GetMacroscopicNeutronScatteringCrossSection__m(Material *this,FissionType param_1,double param_2)
+
+{
+  Element *pEVar1;
+  int *piVar2;
+  int iVar3;
+  int *piVar4;
+  Element *this_00;
+  double dVar5;
+  double dVar6;
+  double dVar7;
+  void *local_34;
+  double local_28;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  dVar5 = this->Density_kg__m3 * AvogadroConstant__mol;
+  dVar6 = GetMolarMass_kg__mol(this);
+  dVar5 = dVar5 / dVar6;
+  piVar2 = (int *)GetElements(this);
+  local_c = 0;
+  local_28 = 0.0;
+  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      piVar4 = (int *)(**(code **)*piVar2)(&local_c);
+      pEVar1 = ((Element *)*piVar4)->UnenrichedElement;
+      this_00 = (Element *)*piVar4;
+      if (pEVar1 != (Element *)0x0) {
+        this_00 = pEVar1;
+      }
+      dVar6 = Element__GetMicroscopicNeutronScatteringCrossSection_b(this_00,param_1);
+      dVar5 = /*3ff0000000000000*/1.0 - param_2;
+      dVar7 = Element__GetMicroscopicNeutronScatteringCrossSection_b((Element *)*piVar4,param_1);
+      local_c = local_c + 1;
+      local_28 = *(double *)(piVar4 + 2) *
+                 (dVar7 * param_2 + dVar6 * dVar5) +
+                 local_28;
+      iVar3 = (**(code **)(*piVar2 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  if (local_34 != (void *)0x0) {
+    operator_delete__(local_34);
+  }
+  return b_to_m2(local_28) * dVar5;
 }
 
 
@@ -508,6 +1026,67 @@ double __cdecl Material__GetMixtureDensity_kg__m3(Darray_L_struct_MaterialConsti
 }
 
 
+//==== 006859e0 6859e0_Material__GetMixtureIndexOfRefraction ====
+// decompiled by BatchDecomp @ 006859e0 name=GetMixtureIndexOfRefraction conv=__cdecl body=243
+
+/* public: static double __cdecl Material__GetMixtureIndexOfRefraction(class util::Darray<struct
+   MaterialConstituent> const &,double) */
+
+double __cdecl
+Material__GetMixtureIndexOfRefraction(Darray_L_struct_MaterialConstituent_G_ *param_1,double param_2)
+
+{
+  int iVar1;
+  int *piVar2;
+  IndexOfRefraction *pIVar3;
+  double dVar4;
+  int *piVar5;
+  IndexOfRefraction local_38;
+  double local_28;
+  double local_20;
+  double local_18;
+  int local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_28 = 0.0;
+  local_20 = 0.0;
+  local_c = 0;
+  iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
+  if (local_c < iVar1) {
+    do {
+      piVar5 = &local_c;
+      piVar2 = (int *)(*(code *)**(undefined4 **)param_1)(piVar5);
+      local_18 = *(double *)(piVar2 + 2);
+      dVar4 = /*3ff0000000000000*/1.0;
+      if (*(RefractiveIndexSpectrum **)(*piVar2 + 0x134) != (RefractiveIndexSpectrum *)0x0) {
+        pIVar3 = RefractiveIndexSpectrum__GetIndexOfRefraction(*(RefractiveIndexSpectrum **)(*piVar2 + 0x134),&local_38,
+                            param_2);
+        dVar4 = pIVar3->RefractionIndex;
+      }
+      local_c = local_c + 1;
+      local_20 = dVar4 * local_18 + local_20;
+      iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
+    } while (local_c < iVar1);
+  }
+  local_18 = 0.0;
+  local_10 = 0;
+  iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
+  if (local_10 < iVar1) {
+    do {
+      iVar1 = (*(code *)**(undefined4 **)param_1)(&local_10);
+      local_28 = *(double *)(iVar1 + 8) + local_28;
+      local_10 = local_10 + 1;
+      local_18 = local_28;
+      iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
+    } while (local_10 < iVar1);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_20 / local_18;
+}
+
+
 //==== 00685ae0 685ae0_Material__GetMixtureMolarMass_kg__mol ====
 // decompiled by BatchDecomp @ 00685ae0 name=GetMixtureMolarMass_kg__mol conv=__cdecl body=215
 
@@ -740,6 +1319,71 @@ Material__GetMixtureThermalDiffusivity_m2__s(Darray_L_struct_MaterialConstituent
 }
 
 
+//==== 00685fc0 685fc0_Material__GetMolarMass_kg__mol ====
+// decompiled by BatchDecomp @ 00685fc0 name=GetMolarMass_kg__mol conv=__thiscall body=161
+
+/* public: double __thiscall Material__GetMolarMass_kg__mol(void)const  */
+
+double __thiscall Material__GetMolarMass_kg__mol(Material *this)
+
+{
+  int *piVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  double local_10;
+  void *local_20;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  piVar1 = (int *)GetElements(this);
+  local_c = 0;
+  local_10 = 0.0;
+  iVar3 = (**(code **)(*piVar1 + 0xc))();
+  if (local_c < iVar3) {
+    do {
+      puVar2 = (undefined4 *)(**(code **)*piVar1)(&local_c);
+      local_10 = *(double *)(*puVar2 + 0x28) * *(double *)(puVar2 + 2) + local_10;
+      local_c = local_c + 1;
+      iVar3 = (**(code **)(*piVar1 + 0xc))();
+    } while (local_c < iVar3);
+  }
+  local_10 = local_10 / /*408f400000000000*/1000.0;
+  if (local_20 != (void *)0x0) {
+    operator_delete__(local_20);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return local_10;
+}
+
+
+//==== 00686070 686070_Material__GetNeutronAttenuation ====
+// decompiled by BatchDecomp @ 00686070 name=GetNeutronAttenuation conv=__thiscall body=145
+
+/* public: double __thiscall Material__GetNeutronAttenuation(double,enum FissionType)const  */
+
+double __thiscall Material__GetNeutronAttenuation(Material *this,double param_1,FissionType param_2)
+
+{
+  double dVar1;
+  double dVar2;
+  double dVar3;
+  double dVar4;
+  
+  dVar1 = this->Density_kg__m3 * AvogadroConstant__mol;
+  dVar2 = GetMolarMass_kg__mol(this);
+  dVar3 = GetMicroscopicNeutronAbsorptionCrossSection_b
+                    (this,param_2,
+                     /*3ff0000000000000*/1.0);
+  dVar3 = b_to_m2(dVar3);
+  dVar4 = GetMacroscopicNeutronScatteringCrossSection__m
+                    (this,param_2,
+                     /*3ff0000000000000*/1.0);
+  dVar1 = (dVar4 + dVar3 * (dVar1 / dVar2)) * param_1;
+  return libm_sse2_exp_precise(-dVar1);
+}
+
+
 //==== 006863d0 6863d0_Material__GetPowerEmittedForWavelength_W ====
 // decompiled by BatchDecomp @ 006863d0 name=GetPowerEmittedForWavelength_W conv=__thiscall body=256
 
@@ -778,6 +1422,27 @@ Material__GetPowerEmittedForWavelength_W(Material *this,double param_1,double pa
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return (double)extraout_ST0;
+}
+
+
+//==== 006865a0 6865a0_Material__GetProbabilityOfFissionUponAbsorption ====
+// decompiled by BatchDecomp @ 006865a0 name=GetProbabilityOfFissionUponAbsorption conv=__thiscall body=66
+
+/* public: double __thiscall Material__GetProbabilityOfFissionUponAbsorption(enum
+   FissionType,double)const  */
+
+double __thiscall
+Material__GetProbabilityOfFissionUponAbsorption(Material *this,FissionType param_1,double param_2)
+
+{
+  double dVar1;
+  double dVar2;
+  
+  dVar1 = GetMicroscopicNeutronFissionCrossSection_b
+                    (this,param_1,param_2);
+  dVar2 = GetMicroscopicNeutronAbsorptionCrossSection_b
+                    (this,param_1,param_2);
+  return dVar1 / dVar2;
 }
 
 
