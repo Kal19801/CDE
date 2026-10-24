@@ -24582,7 +24582,7 @@ util__SerializationManagerInterface__GetDataOfType_class_Faction__o2
 
 void 
 util__SerializationManagerInterface__GetTypedDataOfType_struct_SoundEffect__o2
-          (SerializationManagerInterface *this,bool param_1)
+          (SerializationManagerInterface *this,undefined4 *param_1,bool param_2)
 
 {
   undefined8 stack0xfffffffc;
@@ -24592,8 +24592,6 @@ util__SerializationManagerInterface__GetTypedDataOfType_struct_SoundEffect__o2
   void *pvVar4;
   undefined4 *puVar5;
   int iVar6;
-  undefined3 in_stack_00000005;
-  undefined1 in_stack_00000008;
   Str_L_char_G_ SStack_2c;
   int iStack_20;
   undefined **ppuStack_1c;
@@ -24602,7 +24600,7 @@ util__SerializationManagerInterface__GetTypedDataOfType_struct_SoundEffect__o2
   uint uStack_8;
   
   uStack_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iStack_c = CONCAT31((*(uint24_t*)((char*)&(iStack_c)+1)),in_stack_00000008);
+  iStack_c = CONCAT31((*(uint24_t*)((char*)&(iStack_c)+1)),param_2);
   util__DelegateFactory_struct_HUDItineraryInfoPanel_struct_util__Color___MethodCallerConst__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const(&SStack_2c,"SoundEffect");
   (**(code **)(*(int *)this + 4))(&ppuStack_1c,&SStack_2c,iStack_c);
   if (SStack_2c.Data != (char *)0x0) {

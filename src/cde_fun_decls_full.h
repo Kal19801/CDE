@@ -15178,7 +15178,7 @@ util__GetPointBarycenterInTriangle_double
           double param_4,double param_5,double param_6,double param_7,double param_8,double param_9,
           double param_10,undefined4 param_11,undefined4 param_12,undefined4 param_13,
           undefined4 param_14,undefined4 param_15,undefined4 param_16);
-void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1);
+void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1,undefined4 *param_2);
 Str_L_char_G_ * __cdecl util__GetSignalName(Str_L_char_G_ *__return_storage_ptr__,int param_1);
 uint __cdecl util__GetSizeOfType(int param_1);
 int __cdecl util__GetTypeFromTypeString(Str_L_char_G_ *param_1);
@@ -15658,10 +15658,10 @@ util__SerializationManagerInterface__GetTypedDataOfType_L_struct_Level_G_
           (SerializationManagerInterface *this,bool param_1);
 void __thiscall
 util__SerializationManagerInterface__GetTypedDataOfType_struct_SoundEffect__o2
-          (SerializationManagerInterface *this,bool param_1);
+          (SerializationManagerInterface *this,undefined4 *param_1,bool param_2);
 void __thiscall
 util__SerializationManagerInterface__GetTypedDataOfType_struct_Speaker__o2
-          (SerializationManagerInterface *this,bool param_1);
+          (SerializationManagerInterface *this,undefined4 *param_1,bool param_2);
 extern tuple2_L_bool_Cutil__Str_L_char_G___G_ *  util__SerializationManagerInterface__LoadDataFile();
 bool __thiscall
 util__SerializationManagerInterface__SaveDataToFile

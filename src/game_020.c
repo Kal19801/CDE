@@ -8352,7 +8352,7 @@ MilitaryDoctrine__StaticGetReflectionInfo(void)
 
 /* class util__Darray_L_classutil__WeakPtr_L_classBody_G__G_ __cdecl util__GetPrunedWeakArray_class_Body(class util__Darray_L_classutil__WeakPtr_L_classBody_G__G_ const &) */
 
-void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1)
+void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1,undefined4 *param_2)
 
 {
   undefined8 stack0xfffffffc;
@@ -8360,7 +8360,6 @@ void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_
   bool bVar1;
   int iVar2;
   int *piVar3;
-  int *in_stack_00000008;
   ReferenceController *pRStack_14;
   undefined1 uStack_10;
   int iStack_c;
@@ -8372,13 +8371,13 @@ void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_
   *(undefined4 *)(param_1 + 8) = 0;
   *(undefined4 *)(param_1 + 0xc) = 0;
   uStack_10 = 0;
-  iVar2 = (**(code **)(uintptr_t)(*in_stack_00000008 + 0xc))();
+  iVar2 = (**(code **)(uintptr_t)(*param_2 + 0xc))();
   Darray_L_class_util__WeakPtr_L_class_Body_G___G___Darray_L_class_util__WeakPtr_L_class_Body_G___G_(param_1,iVar2);
   iStack_c = 0;
-  iVar2 = (**(code **)(uintptr_t)(*in_stack_00000008 + 0xc))();
+  iVar2 = (**(code **)(uintptr_t)(*param_2 + 0xc))();
   if (iStack_c < iVar2) {
     do {
-      piVar3 = (int *)(**(code **)*in_stack_00000008)(&iStack_c);
+      piVar3 = (int *)(**(code **)*param_2)(&iStack_c);
       if (((*piVar3 != 0) && ((ReferenceController *)piVar3[1] != (ReferenceController *)0x0)) &&
          (bVar1 = ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]), bVar1)) {
         iVar2 = *(int *)(param_1 + 8);
@@ -8400,7 +8399,7 @@ void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_
         }
       }
       iStack_c = iStack_c + 1;
-      iVar2 = (**(code **)(uintptr_t)(*in_stack_00000008 + 0xc))();
+      iVar2 = (**(code **)(uintptr_t)(*param_2 + 0xc))();
     } while (iStack_c < iVar2);
   }
   __security_check_cookie(uStack_8 ^ (uint)&stack0xfffffffc);
@@ -8419,7 +8418,7 @@ void __cdecl util__GetPrunedWeakArray_class_Body(Darray_L_class_util__WeakPtr_L_
 
 void 
 util__SerializationManagerInterface__GetTypedDataOfType_struct_Speaker__o2
-          (SerializationManagerInterface *this,bool param_1)
+          (SerializationManagerInterface *this,undefined4 *param_1,bool param_2)
 
 {
   undefined8 stack0xfffffffc;
@@ -8427,8 +8426,6 @@ util__SerializationManagerInterface__GetTypedDataOfType_struct_Speaker__o2
   bool bVar2;
   int iVar3;
   undefined4 *puVar4;
-  undefined3 in_stack_00000005;
-  undefined1 in_stack_00000008;
   Str_L_char_G_ SStack_2c;
   int iStack_20;
   undefined **ppuStack_1c;
@@ -8437,7 +8434,7 @@ util__SerializationManagerInterface__GetTypedDataOfType_struct_Speaker__o2
   uint uStack_8;
   
   uStack_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iStack_c = CONCAT31((*(uint24_t*)((char*)&(iStack_c)+1)),in_stack_00000008);
+  iStack_c = CONCAT31((*(uint24_t*)((char*)&(iStack_c)+1)),param_2);
   util__DelegateFactory_struct_HUDItineraryInfoPanel_struct_util__Color___MethodCallerConst__private__struct_util__Color___thiscall_HUDItineraryInfoPanel__GetMissionInfoColor_void_const(&SStack_2c,"Speaker");
   (**(code **)((int)*(int *)this + 4))(&ppuStack_1c,&SStack_2c,iStack_c);
   if (SStack_2c.Data != (char *)0x0) {

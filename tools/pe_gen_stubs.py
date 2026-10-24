@@ -46,7 +46,7 @@ def covered_vas():
     s = set()
     for f in glob.glob(f'{SRC}/game_*.c') + glob.glob(f'{SRC}/pilot_*.c'):
         for ln in read(f).split('\n'):
-            m = re.match(r'\s*//+\s*=*\s*([0-9a-fA-F]{6,8})\b', ln)
+            m = re.match(r'\s*//+\s*=*\s*([0-9a-fA-F]{6,10})\b', ln)
             if m:
                 s.add(int(m.group(1), 16))
     return s

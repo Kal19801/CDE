@@ -54,6 +54,8 @@ CFGS = ['-x', 'c', '-std=gnu11', '-c', '-O2', '-g', '-gcodeview',
         '-ftrivial-auto-var-init=pattern',
         '--target=i686-w64-mingw32', '-m32',
         '-ferror-limit=0', '-w', '-Wno-error=implicit-function-declaration',
+        '-Wno-error=incompatible-function-pointer-types',
+        '-Wno-error=incompatible-pointer-types', '-Wno-error=int-conversion',
         f'-I{SRC}', f'-I{SRC}/../third_party/GL', f'-I{SRC}/../third_party/AL',
         f'-I{SRC}/../third_party/glfw-3.3.10/include',
         f'-I{INC}', f'-I{INC}/freetype2', '-isystem', f'{TC}/usr/i686-w64-mingw32/include']

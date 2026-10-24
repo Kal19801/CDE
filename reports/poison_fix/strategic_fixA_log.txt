@@ -1,0 +1,2 @@
+vft map: 1221 normalized type keys
+stats: {"chain-firstva": 32, "chain-sym": 154, "decl-inject": 33, "field-deref": 24, "param-slice": 8, "vft-unresolved": 58, "vft-va": 18, "vftbare-starved": 1}

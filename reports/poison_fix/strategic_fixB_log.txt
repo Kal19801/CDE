@@ -1,0 +1,1 @@
+stats: {"chain-sym": 149, "decl-inject": 33, "dlg-starved": 1, "field-skip": 24, "l2-statics": 4, "padding-join": 1, "slice-chainpun": 312, "slice-varpun": 217, "slice-walk": 27, "vft-unresolved": 58, "vft-va": 18, "vftbare-starved": 1}

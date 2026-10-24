@@ -1,0 +1,33 @@
+no errfile /tmp/errs_b.txt
+stats: {"auvar-bigW": 2, "auvar-memcpy": 13, "chain-firstva": 22, "chain-sym": 139, "dlg-zip": 1, "field-deref": 34, "l2-statics": 5, "padding-join": 1, "slice-bigW": 9, "slice-chainpun": 224, "slice-region": 33, "slice-varpun": 84, "slice-walk": 20, "sret-split": 1, "sub4824": 8, "type-escape": 38, "type-unresolved": 17, "vft-va": 56, "vftbare-zip": 1}
+UNRESOLVED 28
+  0075eeb0 auvarW auVar16.0_24
+  0075eeb0 bigW auVar16.0_24
+  00760fe0 type util::Darray<class util::SharedPtr<class Body> >
+  00760fe0 type util::PhysicalState<struct
+   util::Vec3<double> >
+  007621a0 type util::Darray<class util::WeakPtr<class Fleet> >
+  007622b0 type util::Darray<class util::WeakPtr<class CelestialObject> >
+  00762670 type util::Darray<class util::WeakPtr<struct OrbiterInterface> >
+  007630c0 type util::Darray<class util::WeakPtr<class SpacecraftComponent> >
+  00763310 type util::Darray<class util::WeakPtr<class SpacecraftComponent> >
+  007641b0 bigW VVar4.0_16
+  00764910 type util::PhysicalState<struct util::Vec3<double> >
+  00764e30 type util::Darray<class util::WeakPtr<class Fleet> >
+  00764eb0 type util::Maybe<struct util::Vec3<double> >
+  00765290 type util::Darray<class util::WeakPtr<class CelestialObject> >
+  00765510 type util::Darray<class util::WeakPtr<class CelestialObject> >
+  007656e0 type util::Darray<class util::WeakPtr<class CelestialObject> >
+  00765f10 type util::PhysicalState<struct util::Vec3<double> >
+  00766200 bigW QVar5.0_28
+  00766870 type util::PhysicalState<struct util::Vec3<double> >
+  00766b00 bigW QVar1.0_28
+  00766ce0 type util::Darray<class util::WeakPtr<class Fleet> >
+  00767bd0 type util::tuple2<struct
+   ItineraryNode,double>
+  0076a5e0 bigW VVar1.0_20
+  0076b450 auvarW auVar11.0_24
+  0076b450 bigW auVar11.0_24
+  0076d3b0 bigW VVar1.0_20
+  0076d750 bigW VVar1.0_16
+  0076e090 bigW IVar3.0_324

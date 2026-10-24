@@ -1,0 +1,127 @@
+pool=20839 fullnames, multi=570
+oracle: 10951 stub names
+cov_name: 9933 entries
+batch=144 (defer=['760b40', '7616d0', '763590', '763d60', '764d10', '764f20', '765850', '765880', '765d00', '766080', '7672f0', '768470', '769570', '7699e0', '76a890', '76b760', '76cab0', '76d0b0', '76e340', '76e4e0'])
+WARN 000075ed80 util::Equals<double>: text=3 disasm=0 — leave raw
+WARN 0000760470 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 0000760fe0 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 0000761f60 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 0000762da0 util::Darray<struct_WorldObject>::Darray<struct_WorldObject>: text=1 disasm=0 — leave raw
+WARN 0000763670 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 0000763710 util::Darray<struct_WorldObject>::Darray<struct_WorldObject>: text=1 disasm=0 — leave raw
+WARN 00007663e0 util::Darray<struct_PendingBattle>::Darray<struct_PendingBattle>: text=1 disasm=0 — leave raw
+WARN 00766560_GetRefIrradiance_W__m2: slice local local_c: no decl found
+WARN 00766900_GetReferenceIrradiance: slice local local_c: no decl found
+WARN 0000767250 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 000076c9f0 util::Str<char>::Str<char>: text=2 disasm=0 — leave raw
+WARN 000076d900 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WARN 000076dbf0 util::Str<char>::Str<char>: text=1 disasm=0 — leave raw
+WROTE /tmp/pilot034_draft.c (426029B) externs=13 unresolved=90
+  UNRESOLVED: CustomObjective::_vftable_
+  UNRESOLVED: Darray<struct
+   LevelTutorialMessage> [CAST]
+  UNRESOLVED: ItineraryNode::operator
+  UNRESOLVED: Manager::_vftable_
+  UNRESOLVED: Physics::SecondsInAJulianDay_s
+  UNRESOLVED: Physics::SecondsInAJulianYear_s
+  UNRESOLVED: PostProcessor::ShadowBuffer
+  UNRESOLVED: SessionState::operator
+  UNRESOLVED: StrategicManager__GetTacticalGame_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager_GetAllBodies_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager_GetAllColliders_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager_GetFutureCelestials_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager_GetRelevantCelestials_Clear [BARE-CLEAR]
+  UNRESOLVED: WorldObject::operator
+  UNRESOLVED: __l2
+                         ::_thread_safe_static_guard_0__
+  UNRESOLVED: __l2
+                ::ID
+  UNRESOLVED: __l2::
+              _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::
+             _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::
+           _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::
+          _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::
+        _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::
+      _thread_safe_static_guard_0__
+  UNRESOLVED: __l2::ID
+  UNRESOLVED: __l2::_thread_safe_static_guard_0__
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: class_util::WeakPtr<class_SpacecraftComponent>
+  UNRESOLVED: class_util::WeakPtr<struct_MinimapRangeWidget>
+  UNRESOLVED: class_util::WeakPtr<struct_ModuleCompartment>
+  UNRESOLVED: class_util::WeakPtr<struct_OrbiterInterface>
+  UNRESOLVED: enum_CrewDepartment::Type
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: util::Color [TYPE]
+  UNRESOLVED: util::Color::_vftable_
+  UNRESOLVED: util::Darray<bool>::_vftable_
+  UNRESOLVED: util::Darray<class util::SharedPtr<class Body> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class CelestialObject> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Fleet> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class SpacecraftComponent> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct OrbiterInterface> >
+  UNRESOLVED: util::Darray<class_util::Reflectable*>::_vftable_
+  UNRESOLVED: util::Darray<class_util::WeakPtr<class_Body>_> [TYPE]
+  UNRESOLVED: util::Darray<class_util::WeakPtr<class_Body>_>::_vftable_
+  UNRESOLVED: util::Darray<class_util::WeakPtr<class_SpacecraftComponent>_> [TYPE]
+  UNRESOLVED: util::Darray<class_util::WeakPtr<class_SpacecraftComponent>_>::
+      Darray<class_util::WeakPtr<class_SpacecraftComponent>_> [MULTI/NOVA]
+  UNRESOLVED: util::Darray<class_util::WeakPtr<class_SpacecraftComponent>_>::
+  Darray<class_util::WeakPtr<class_SpacecraftComponent>_> [MULTI/NOVA]
+  UNRESOLVED: util::Darray<double>::_vftable_
+  UNRESOLVED: util::Darray<enum_CrewDepartment::Type>::_vftable_
+  UNRESOLVED: util::Darray<struct
+   LevelTutorialMessage>
+  UNRESOLVED: util::Darray<struct PendingBattle>
+  UNRESOLVED: util::Darray<struct WorldLight>
+  UNRESOLVED: util::Darray<struct WorldObject>
+  UNRESOLVED: util::Darray<struct_PendingBattle>::Darray<struct_PendingBattle> [00007663e0 count 1vs0]
+  UNRESOLVED: util::Darray<struct_PendingBattle>::Darray<struct_PendingBattle> [MULTI/NOVA]
+  UNRESOLVED: util::Darray<struct_WorldObject> [TYPE]
+  UNRESOLVED: util::Darray<struct_WorldObject>::Darray<struct_WorldObject> [0000762da0 count 1vs0]
+  UNRESOLVED: util::Darray<struct_WorldObject>::Darray<struct_WorldObject> [0000763710 count 1vs0]
+  UNRESOLVED: util::Darray<struct_WorldObject>::Darray<struct_WorldObject> [MULTI/NOVA]
+  UNRESOLVED: util::Darray<struct_WorldObject>::_vftable_
+  UNRESOLVED: util::DelegateFactory<class_StrategicManager,bool>::
+       MethodCallerConst<&public:_bool___thiscall_StrategicManager__IsSkippingTutorialAllowed(void)const_>
+  UNRESOLVED: util::Equals<double> [000075ed80 count 3vs0]
+  UNRESOLVED: util::Equals<double> [MULTI/NOVA]
+  UNRESOLVED: util::IArray<enum_CrewDepartment::Type>::_vftable_
+  UNRESOLVED: util::Maybe<struct CustomObjective>
+  UNRESOLVED: util::Maybe<struct util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct
+   util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double> >
+  UNRESOLVED: util::Quaternion<double> [TYPE]
+  UNRESOLVED: util::Reflectable::_vftable_
+  UNRESOLVED: util::SharedPtr<struct UIWidget>
+  UNRESOLVED: util::Str<char> [TYPE]
+  UNRESOLVED: util::Str<char>::Str<char> [0000760470 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [0000760fe0 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [0000761f60 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [0000763670 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [0000767250 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [000076c9f0 count 2vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [000076d900 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [000076dbf0 count 1vs0]
+  UNRESOLVED: util::Str<char>::Str<char> [MULTI/NOVA]
+  UNRESOLVED: util::WeakPtr<class
+   CelestialObject>
+  UNRESOLVED: util::WeakPtr<class
+   Fleet>
+  UNRESOLVED: util::WeakPtr<class
+   SpacecraftComponent>
+  UNRESOLVED: util::WeakPtr<class Body>
+  UNRESOLVED: util::WeakPtr<class CelestialObject>
+  UNRESOLVED: util::WeakPtr<class Fleet>
+  UNRESOLVED: util::WeakPtr<class SpacecraftComponent>
+  UNRESOLVED: util::WeakPtr<struct HUDStrategic>
+  UNRESOLVED: util::WeakPtr<struct PauseMenuHandler>
+  UNRESOLVED: util::tuple2<struct
+   ItineraryNode,double>
