@@ -1,0 +1,49 @@
+pool=20839 fullnames, multi=570
+oracle: 10426 stub names
+cov_name: 10168 entries
+batch=68 (defer=['50cac0', '50dfc0', '50e8f0', '50ed20', '50f2e0', '50f870', '50fcb0', '50ff00', '511c30', '5131f0', '5136c0', '513820', '513980', '513b40', '513d50', '514200', '5149e0', '5152d0', '515890', '515c30', '515cc0', '5160d0', '516360', '517710', '5178a0', '517eb0', '5184b0', '518620', '5187a0', '518d60', '51aa50', '525250', '5254c0', '525670', '528800', '52a670', '52a940', '52b350', '52bc10', '52c310', '52c780', '52c900', '52cc10', '52d060', '52d470', '52d960', '52dbe0', '52dd90', '52e460', '52e8b0', '52ed40', '52f200', '52f630', '52f680', '52f720', '52fd00', '52fd20', '530310', '530670', '5306c0', '530cc0', '530fd0', '531180', '531420', '5315a0', '5317d0', '531890', '531ff0', '532270', '532280', '532880', '532910', '546d60', '5474f0', '547ed0', '548b20', '5493b0', '54b9d0', '54c800', '54cea0', '54d870', '54da40', '54e410', '551f80', '552400', '553380', '5534a0', '553590', '553c40', '553db0', '553ee0', '554320', '555470', '555c20', '5568d0', '557290', '557570', '557b20', '557fd0', '558af0', '559ed0', '55bbf0', '55c1b0', '55c8d0', '55d0f0', '65de00', '65e1d0', '65eb10', '65fac0', '6615e0', '661a00', '661ae0', '662290', '6623d0', '6627e0', '662ba0', '665e60', '666570', '6668b0', '666cd0', '666fb0', '667230', '6675b0', '69faa0', '785970', '785e80', '785f30', '7860a0', '786630', '786b50', '786ed0', '7870d0', '7877e0', '787a50', '787d50', '787e20', '787fc0', '788060', '788770', '7896f0', '789900', '789ba0', '78aab0', '78ac50', '78cd80', '78f5a0', '790380', '790880', '790be0', '791f40', '7921d0', '792250', '792340', '7928a0', '792b80', '7930c0', '793330', '793b70', '793bd0', '793f10', '7944a0', '7954e0', '795770', '796260', '796ab0', '796db0', '797390', '797e30', '798d30', '799600', '79af80', '7aec20', '7aefd0', '7af650', '7b0110', '7b1120', '7b19c0', '7b1e40', '7b2140', '7b2370', '7b24c0', '7b2830', '7b2a40', '7b30a0', '7b3280', '7b35f0', '7b3790', '7b3850', '7b39a0', '7b39f0', '7b3d10', '7b40e0', '7b45b0', '7b4780', '7b4e20', '7b51c0', '7b5380', '7b5500', '7b5a30', '7b6010', '7b6af0', '7b6c30', '7b6e90', '7b7920', '7ca700', '8194b0', '825df0', '827730', '827a10', '827ae0', '827c30', '827e10', '828880', '828a50', '828c60', '828e10', '828ed0', '829160', '829810', '82a160', '82a650', '82a9d0', '82ac90']) tpl_defs=3
+WARN 007b6650_Body__ShiftState: slice local local_1c: no decl found
+WROTE /tmp/pilot040_draft.c (119679B) externs=8 unresolved=39
+  UNRESOLVED: Body__GetControllableComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetMass_kg_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpacecraftComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprintArmor__GetTotalArmorMass_kg_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalReactionMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: GetControllableComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetInnerArmorSegments_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetOuterArmorSpline_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetPathCameraDistances_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: GetRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRelevantCelestials_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSpacecraftComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasDeltaVLeft_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: ItineraryNodeUI__GetPathCameraDistances_km_Clear [BARE-CLEAR]
+  UNRESOLVED: ShipGroupUI::GroupType
+  UNRESOLVED: SpacecraftComponent__GetEstimatedMaxAngularAcceleration_radians__s2_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasDeltaVLeft_Memoize [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetRelevantCelestials_Memoize [BARE-CLEAR]
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: class_util::WeakPtr<class_SpacecraftComponent>
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: struct_Body::RadialImpulse
+  UNRESOLVED: struct_util::Line2<double>
+  UNRESOLVED: struct_util::tuple2<enum_Order::Type,int>
+  UNRESOLVED: util::Color [TYPE]
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct AmmoCompartment> >
+  UNRESOLVED: util::Darray<struct util::Line2<double> >
+  UNRESOLVED: util::Maybe<struct util::Vec3<double> >
+  UNRESOLVED: util::Maybe<struct util::tuple3<struct util::Vec3<double>,struct
+   util::Vec3<double>,double> >
+  UNRESOLVED: util::PhysicalState<struct
+   util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double>
+   >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double> >
+  UNRESOLVED: util::SharedPtr<class
+   Body>
+  UNRESOLVED: util::WeakPtr<class Body>
+  UNRESOLVED: util::tuple2<enum util::SampleColor::Preset,enum util::SampleColor::Preset>
+  UNRESOLVED: util::tuple2<struct util::Vec3<double>,struct util::Vec3<double> >
