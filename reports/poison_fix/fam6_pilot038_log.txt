@@ -1,0 +1,21 @@
+pool=20839 fullnames, multi=570
+oracle: 10446 stub names
+cov_name: 10168 entries
+batch=22 (defer=['618210', '72c240', '72c320', '72c6c0', '736ac0', '7379f0', '737b90', '7387e0', '7388e0', '738d50', '739570', '739650', '739920', '7399b0', '739a80', '739b00', '739d20', '73ae30', '73d0a0', '73e650', '73e9f0', '73ed40', '73ee20', '73ef30', '73f470', '73fca0', '73ff10', '7400d0', '740100', '7403e0', '7405c0', '7406f0', '741960', '741a20', '741c60', '741d80', '741e30', '741f50', '7421f0', '7424c0', '742550', '742810', '742c20', '743090', '7436e0', '743d60', '744020', '744730', '745120', '745900', '746d60', '7472e0', '747850', '747bf0', '748020', '748040']) tpl_defs=1
+WARN 00742080_Itinerary__GetNode: slice local local_18: no decl found
+WROTE /tmp/pilot038_draft.c (57407B) externs=1 unresolved=13
+  UNRESOLVED: Fleet__GetRemainingDeltaV_km__s_Memoize [BARE-CLEAR]
+  UNRESOLVED: Fleet__IsMissileFleet_Memoize [BARE-CLEAR]
+  UNRESOLVED: GetRemainingDeltaV_km__s_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsMissileFleet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: Physics::SecondsInAJulianMonth_s
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Fleet> >
+  UNRESOLVED: util::Maybe<struct ItineraryNode>
+  UNRESOLVED: util::PhysicalState<struct
+   util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double> >
+  UNRESOLVED: util::WeakPtr<class Fleet>
+  UNRESOLVED: util::tuple3<class util::WeakPtr<class Fleet>,double,double>
+  UNRESOLVED: util::tuple3<class util::WeakPtr<class Fleet>,struct util::PhysicalState<struct
+   util::Vec3<double> >,double>
