@@ -1,0 +1,290 @@
+pool=20839 fullnames, multi=570
+oracle: 10807 stub names
+cov_name: 9940 entries
+batch=228 (defer=['525250', '5254c0', '525670', '528800', '52a670', '52a940', '52b350', '52bc10', '52c310', '52c780', '52c900', '52cc10', '52d060', '52d470', '52d960', '52dbe0', '52dd90', '52e460', '52e8b0', '52ed40', '52f200', '52f630', '52f680', '52f720', '52fd00', '52fd20', '530310', '530670', '5306c0', '530cc0', '530fd0', '531180', '531420', '5315a0', '5317d0', '531890', '531ff0', '532270', '532280', '532880', '532910', '69faa0', '70fb90', '7609e0', '7aec20', '7aefd0', '7af650', '7b0110', '7b1120', '7b19c0', '7b1e40', '7b2140', '7b2370', '7b24c0', '7b2830', '7b2a40', '7b30a0', '7b3280', '7b35f0', '7b3790', '7b3850', '7b39a0', '7b39f0', '7b3ba0', '7b3d10', '7b40e0', '7b45b0', '7b4780', '7b4d60', '7b4e20', '7b51c0', '7b5250', '7b5380', '7b5500', '7b5a30', '7b6010', '7b6320', '7b6650', '7b6af0', '7b6c30', '7b6e90', '7b7920', '7ca030', '7ca700', '7cbd60', '7cbed0', '7cbfe0', '7cc5f0', '7cce70', '7cd650', '7cdaa0', '7cf020', '7cf5c0', '7cf820', '7d0530', '7d0a60', '7d0cb0', '7d16f0', '7d1970', '7d1d90', '7d21f0', '7d30d0', '7d32a0', '7d3680', '7d38a0', '7d3e40', '7d40c0', '7d4120', '7d42a0', '7d4470', '7d4560', '7d46d0', '7d4ca0', '7d4d00', '7d4f60', '7d5240', '7d5650', '7d5910', '7d5f10', '7d6220', '7d6e90', '7d6f50', '7d7160', '7d7860', '7d7c10', '7d7ca0', '7d7e70', '7d8110', '7d83b0', '7d9360', '7d9990', '7da990', '7db0c0', '7db700', '7dbba0', '7dc300', '7f7810', '7f7d50', '7fa090', '7fa0c0', '7fa430', '7fa490', '7fa950', '7fa9c0', '7fb110', '7fc380', '7fc480', '7fc640', '7fc870', '7fc8c0', '7fcd30', '7fd030', '7fd5b0', '7fd750', '7fd960', '7fdbf0', '7fdfb0', '7fe0b0', '7fe370', '7fe480', '7fe4c0', '7fe860', '7fea70', '7feb70', '7febe0', '7fec40', '7fee50', '7fefb0', '7ff360', '7ff630', '7ff650', '7ff890', '7ffad0', '7ffe30', '7ffe90', '800060', '800090', '800480', '8004d0', '800520', '800530', '800aa0', '800b40', '801090', '801350', '801480', '801780', '801810', '801ea0', '802080', '802250', '802540', '8025b0', '802600', '8027b0', '803780', '8039f0', '803a60', '803c40', '803ea0', '804470', '804550', '804830', '804bb0', '805030', '805aa0', '806220']) tpl_defs=6
+WARN 7d1120_SpacecraftComponent__GetName: slice local local_14: no decl found
+WARN 7d1120_SpacecraftComponent__GetName: slice local local_20: no decl found
+WARN 7d1120_SpacecraftComponent__GetName: slice local local_2c: no decl found
+WARN 7da170_SpacecraftComponent__TriggerCompartmentDestroyedPopup: slice local local_14: no decl found
+WROTE /tmp/pilot036_draft.c (504999B) externs=111 unresolved=275
+  UNRESOLVED: Body__GetBoundingCylinderLine_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetBoundingCylinderLine_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetBoundingCylinder_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetBulletComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetCapitalShipComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetCapitalShipComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetColliderComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetColliderComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetCollisionAABB_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetCollisionAABB_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetControllableComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetControllableComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetCrossSection_m2_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetCrossSection_m2_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetDebrisComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetShotComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpacecraftComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpacecraftComponent_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpawner_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetSpawner_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetTargetableRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetTargetableRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetTightRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetTightRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__GetUnrotatedCenterOfMass_km_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__GetUntrackComponent_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__HasPhysicality_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__HasPhysicality_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__IsABullet_Clear [BARE-CLEAR]
+  UNRESOLVED: Body__IsABullet_Memoize [BARE-CLEAR]
+  UNRESOLVED: Body__IsAlive_Memoize [BARE-CLEAR]
+  UNRESOLVED: CanRoll_Clear [BARE-CLEAR]
+  UNRESOLVED: CanRoll_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprint__CanMove_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprint__GetCrossSection_m2_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprint__GetForwardDirection_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftBlueprint__IsAWarship_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__CanRoll_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__CanRoll_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetAllMainEnginePropellantsUsed_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetAmmoModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetBoundingCylinder_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetBoundingCylinder_m_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCapableEngineModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCapableEngineModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCapableMainEngineModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCenterOfMass_km_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCenterOfMass_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCenterZDelta_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCenterZDelta_m_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCommandModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetCommandModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetEngineModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetEngineModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetEstimatedTurnTorque_N_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetFullBurnTimeLeft_s_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetFullBurnTimeLeft_s_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetHeatSignatureOffset_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetHeatSignatureOffset_m_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetHeatSignature_W_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetHeatSignature_W_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetInverseMomentOfInertiaTensor_kg_m2_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetMainEngineModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetMainEngineModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetMainEngineModules_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetPayloadModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetPayloadModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetPowerModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetPowerModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetRadiatorModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetRadiatorModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetReactionMassModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetReactionMassModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetStagingWetMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTightenedRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTightenedRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalLength_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalMass_kg_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalRadius_m_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalRadius_m_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetTotalReactionMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetUnstagedWetMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWeaponModules_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWeaponModules_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWorkingCompartments_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__GetWorkingCompartments_Memoize [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__HoleInArmorExists_Clear [BARE-CLEAR]
+  UNRESOLVED: CraftInstance__HoleInArmorExists_Memoize [BARE-CLEAR]
+  UNRESOLVED: Darray<double> [TPL-CALL] 7b3440_Body__GetCrossSection_m2_Memoize
+  UNRESOLVED: Darray<double> [TPL-CALL] 7b4a60_Body__GetTargetableRadius_km_Memoize
+  UNRESOLVED: Darray<double> [TPL-CALL] 7b4be0_Body__GetTightRadius_km_Memoize
+  UNRESOLVED: Darray<double> [TPL-CALL] 7d02e0_SpacecraftComponent__GetCombatIntersectRadius_km_MemoizedFunction
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 7cf320_SpacecraftComponent__ExpendReactionMass
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 7d2e60_SpacecraftComponent__GetThrustForce_N
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 7d3080_SpacecraftComponent__GetThrusterLayouts_Clear
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 7d35b0_SpacecraftComponent__GetThrustersThatNeedToFire_Clear
+  UNRESOLVED: Darray<struct_ThrusterLayout> [TPL-CALL] 7d6b20_SpacecraftComponent__PreTick
+  UNRESOLVED: GetAllBodies_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetAllColliders_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetAllMainEnginePropellantsUsed_Clear [BARE-CLEAR]
+  UNRESOLVED: GetAllMainEnginePropellantsUsed_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetAmmoModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetArmorCollisionShells_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetAvoidanceDirection_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetBoundingCylinderLine_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetBoundingCylinder_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetBoundingCylinder_m_Clear [BARE-CLEAR]
+  UNRESOLVED: GetBoundingCylinder_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetBulletComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCameraFocusedBodies_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCapableEngineModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCapableMainEngineModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCapitalShipComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCenterOfMass_km_Clear [BARE-CLEAR]
+  UNRESOLVED: GetCenterOfMass_km_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: GetCenterOfMass_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCenterZDelta_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetColliderComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCollisionAABB_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCombatAxis_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCombatIntersectRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCommandModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCompartmentCollisionShells_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetControllableComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetCrossSection_m2_Clear [BARE-CLEAR]
+  UNRESOLVED: GetCrossSection_m2_Memoize [BARE-CLEAR]
+  UNRESOLVED: GetCrossSection_m2_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetDebrisComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetDesiredOrientation_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetDesiredThrustDirection_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetDryMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetEngineModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetEstimatedTurnTorque_N_m_Clear [BARE-CLEAR]
+  UNRESOLVED: GetEstimatedTurnTorque_N_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetFullBurnTimeLeft_s_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetFutureCelestials_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetHeatSignatureOffset_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetHeatSignature_W_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetLengthRange_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMainEngineModulePlacers_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMainEngineModules_Clear [BARE-CLEAR]
+  UNRESOLVED: GetMainEngineModules_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: GetMainEngineModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetMomentOfInertiaTensor_kg_m2_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetPayloadModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetPowerModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetPower_W_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetPowerableMainEngineModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRadiatorModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: GetRadius_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: GetRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetReactionMassModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetReactionMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetRelevantCelestials_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSelectedBodiesCenter_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSelectedBodiesVelocity_km__s_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetShotComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSpacecraftComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetSpawner_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetStagingWetMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: GetStagingWetMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTargetableRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetThrusterLayouts_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetThrustersThatNeedToFire_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTightRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTightenedRadius_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalDryMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalLength_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalRadius_m_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetTotalReactionMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetUnrotatedCenterOfMass_km_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetUnstagedWetMass_kg_Clear [BARE-CLEAR]
+  UNRESOLVED: GetUnstagedWetMass_kg_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetUntrackComponent_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetWeaponModules_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: GetWorkingCompartments_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasDeltaVLeft_Clear [BARE-CLEAR]
+  UNRESOLVED: HasDeltaVLeft_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasFuelForTurningLeft_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasPayloadsLeft_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasPhysicality_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: HasWeaponsLeft_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsABullet_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsAlive_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: IsThreatening_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: PowerCompartment__GetHeat_W_Clear [BARE-CLEAR]
+  UNRESOLVED: PowerCompartment__GetPower_W_Memoize [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__CanRoll_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetArmorCollisionShells_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetAvoidanceDirection_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetCombatIntersectRadius_km_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetCombatIntersectRadius_km_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetDesiredThrustDirection_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetDesiredThrustDirection_Memoize [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetEstimatedMaxAngularAcceleration_radians__s2_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetThrusterLayouts_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__GetThrustersThatNeedToFire_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasDeltaVLeft_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasFuelForTurningLeft_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasFuelForTurningLeft_MemoizedFunction [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasPayloadsLeft_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__HasWeaponsLeft_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__IsThreatening_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__NeedsToThrust_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__NeedsToTorque_Clear [BARE-CLEAR]
+  UNRESOLVED: SpacecraftComponent__WillIntersectWithTargetsInTheFuture_Clear [BARE-CLEAR]
+  UNRESOLVED: Str<char> [TPL-CALL] 7d1120_SpacecraftComponent__GetName
+  UNRESOLVED: Str<char> [TPL-CALL] 7da170_SpacecraftComponent__TriggerCompartmentDestroyedPopup
+  UNRESOLVED: TacticalManager__GetAllBodies_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetAllColliders_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetCameraFocusedBodies_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetCombatAxis_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetFutureCelestials_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetRelevantCelestials_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetSelectedBodiesCenter_km_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetSelectedBodiesCenter_km_Memoize [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetSelectedBodiesVelocity_km__s_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetSelectedBodiesVelocity_km__s_Memoize [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetStrategicGame_Clear [BARE-CLEAR]
+  UNRESOLVED: TacticalManager__GetStrategicGame_Memoize [BARE-CLEAR]
+  UNRESOLVED: WillIntersectWithTargetsInTheFuture_MemoizedValue [BARE-CLEAR]
+  UNRESOLVED: class_util::Reflectable
+  UNRESOLVED: class_util::SharedPtr<struct_ModuleCompartment>
+  UNRESOLVED: class_util::SharedPtr<struct_UIWidget>
+  UNRESOLVED: class_util::WeakPtr<class_Body>
+  UNRESOLVED: class_util::WeakPtr<class_SpacecraftComponent>
+  UNRESOLVED: class_util::WeakPtr<struct_ModuleCompartment>
+  UNRESOLVED: class_util::WeakPtr<struct_UIWidget>
+  UNRESOLVED: enum_CrewDepartment::Type
+  UNRESOLVED: enum_GraphicsResource::Type
+  UNRESOLVED: struct_util::Quaternion<double>
+  UNRESOLVED: struct_util::Vec3<double>
+  UNRESOLVED: util::Darray<class
+   util::WeakPtr<class Fleet> >
+  UNRESOLVED: util::Darray<class util::SharedPtr<struct
+   ModuleCompartment> >
+  UNRESOLVED: util::Darray<class util::SharedPtr<struct ModuleCompartment> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class Body> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class CapitalShipComponent> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<class SpacecraftComponent> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct AmmoCompartment> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct EngineCompartment> >
+  UNRESOLVED: util::Darray<class util::WeakPtr<struct WeaponCompartment> >
+  UNRESOLVED: util::Maybe<struct util::Cylinder<double> >
+  UNRESOLVED: util::Maybe<struct util::Matrix3x3<double> >
+  UNRESOLVED: util::Maybe<struct util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct
+   util::Vec3<double> >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double>
+   >
+  UNRESOLVED: util::PhysicalState<struct util::Vec3<double> >
+  UNRESOLVED: util::Quaternion<double> [TYPE]
+  UNRESOLVED: util::SharedPtr<class ExplosionComponent>
+  UNRESOLVED: util::SharedPtr<struct ModuleCompartment>
+  UNRESOLVED: util::Str<char> [TYPE]
+  UNRESOLVED: util::WeakPtr<class
+   Body>
+  UNRESOLVED: util::WeakPtr<class Body>
+  UNRESOLVED: util::WeakPtr<class Component>
+  UNRESOLVED: util::WeakPtr<class ExplosionComponent>
+  UNRESOLVED: util::WeakPtr<class Skybox>
+  UNRESOLVED: util::WeakPtr<class SpacecraftComponent>
+  UNRESOLVED: util::WeakPtr<struct
+   ModuleCompartment>
+  UNRESOLVED: util::WeakPtr<struct CraftInstance>
+  UNRESOLVED: util::WeakPtr<struct ModuleCompartment>
+  UNRESOLVED: util::WeakPtr<struct OrderModeOverlay>
+  UNRESOLVED: util::WeakPtr<struct PauseMenuHandler>
+  UNRESOLVED: util::WeakPtr<struct WeaponCompartment>
+  UNRESOLVED: util::tuple3<class HomingProperties const *,enum ForceMissilePhase::Type,bool>
+  UNRESOLVED: util__GetCombatIntersectRadius_km_MemoizedFunction [BARE-CLEAR]

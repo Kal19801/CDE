@@ -5,3 +5,7 @@ toolchain/
 __pycache__/
 *.log
 toolchain_debs/
+orig/
+pdb/CDE.exe
+pdb/CDE_orig_p81.pdb
+pdb/CDE.pdb
