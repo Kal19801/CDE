@@ -1,9 +1,12 @@
 pool=20839 fullnames, multi=570
 oracle: 10951 stub names
 cov_name: 9877 entries
-batch=36 (defer=['67ef00', '680c60', '683a20'])
-WROTE /tmp/pilot033_draft.c (67730B) externs=2 unresolved=13
+batch=37 (defer=['63e630', '6402c0', '647840', '67ef00', '683a20'])
+WROTE /tmp/pilot033_draft.c (116486B) externs=2 unresolved=18
   UNRESOLVED: Physics::AvogadroConstant__mol
+  UNRESOLVED: Physics::BohrMagneton_J__T
+  UNRESOLVED: Physics::IdealGasConstant_J__mol_K
+  UNRESOLVED: Physics::JoulesInAnElectronVolt_J__eV
   UNRESOLVED: Physics::RoomTemperature_K
   UNRESOLVED: Physics::SecondsInAJulianYear_s
   UNRESOLVED: Physics::VacuumPermeability_H__m
@@ -16,4 +19,6 @@ WROTE /tmp/pilot033_draft.c (67730B) externs=2 unresolved=13
   UNRESOLVED: util::Darray<struct MaterialConstituent>
   UNRESOLVED: util::Darray<struct_MaterialComposition>::_vftable_
   UNRESOLVED: util::IArray<enum_CrewDepartment::Type>::_vftable_
+  UNRESOLVED: util::LocStr [TYPE]
+  UNRESOLVED: util::Str<char> [TYPE]
   UNRESOLVED: util::tuple2<struct util::Vec3<float>,struct util::Vec3<float> >
