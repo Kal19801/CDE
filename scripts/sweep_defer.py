@@ -50,7 +50,7 @@ if TOT > 3000:
 elif TOT > 800:
     cand, cap = ranked, 16
 elif TOT > 300:
-    cand, cap = ranked, 8
+    cand, cap = ranked, 24
 elif TOT > 100:
     cand, cap = ranked, 6
 else:

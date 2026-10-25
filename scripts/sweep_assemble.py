@@ -118,8 +118,10 @@ def main():
         if not mm:
             continue
         nm, sg = mm.group(2), re.sub(r'\s+', '', sig)
-        if nm in proto_map and re.sub(r'\s+', '', proto_map[nm]) != sg:
-            proto_map[nm] = None  # 碰撞互斥 → 弃用，回落 K&R
+        if nm in proto_map:
+            # 碰撞互斥 → 弃用防误替换；None（已弃用）不再复比较（r19 崩溃修复）
+            if proto_map[nm] is None or re.sub(r'\s+', '', proto_map[nm]) != sg:
+                proto_map[nm] = None
         else:
             proto_map[nm] = sig
     proto_map = {k: v for k, v in proto_map.items() if v}
@@ -297,10 +299,15 @@ def main():
         A.L(f'data closure v2: {len(data_defs)} macros (skipped {data_skipped}) '
             f'pfn={len(used_td)}')
     # xmm/_UNK_ 兜底（fam8 r18 形态：dump 无标签时按名取 VA）
+    # 注意：___xmm_<32hex> 是 Ghidra 折叠的 128 位常量值名（非地址），其字节序
+    # 与 game_024 静态惯例对不上——不猜，留编译错→defer（等价纪律优先）
     have = {d.split()[1] for d in data_defs}
-    for m in sorted({m.group(0) for m in re.finditer(r'___xmm_[0-9a-f]+', body)}):
-        if m not in hdr_ids2 and m not in have:
-            data_defs.append(f'#define {m} (*(undefined1 (*)[16])(0x{m[7:]}u))')
+    for m in sorted({m.group(0) for m in re.finditer(r'___xmm_[0-9a-f]{6,16}\b', body)}):
+        if m in hdr_ids2 or m in have:
+            continue
+        hx = m[7:]
+        if len(hx) <= 16:
+            data_defs.append(f'#define {m} (*(undefined1 (*)[16])(0x{hx}u))')
     for m in sorted({m.group(0) for m in re.finditer(r'_UNK_[0-9a-f]+', body)}):
         if m not in hdr_ids2 and m not in have:
             data_defs.append(f'#define {m} (*(undefined4 *)(0x{m[5:]}u))')
