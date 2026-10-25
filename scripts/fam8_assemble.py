@@ -522,7 +522,9 @@ def fix_dtors(text, disp):
 
 # ---------------- vftable refs -> data VA literals ---------------------------
 VFT_Q = re.compile(
-    r'&\s*((?:util::)?[A-Za-z_]\w*(?:<[^<>]*(?:<[^<>]*>[^<>]*)*>[^<>]*)*)\s*::\s*_vftable_')
+    r'&[ \t]*((?:util::)?[A-Za-z_]\w*(?:<[^\n<>]*(?:<[^\n<>]*>[^\n<>]*)*>[^\n<>]*)*)[ \t]*::[ \t]*_vftable_')
+# r19: [^<>] -> [^\n<>] 且 \s -> [ \t]——贪婪跨行匹配会把下一条语句并进组名
+# （'..._vftable_;\n if(...' 拼成一个"名字"导致查表必败），vftable 引用恒为单行
 def fix_vftables(text, disp):
     mcls = re.match(r'^[0-9a-f]+_([A-Za-z_][\w]*)__', disp)
     cls = mcls.group(1) if mcls else None
