@@ -56,6 +56,7 @@ def norm6(va):
 #   C 类型 token  后随非 ( → type_escape 变体链（含 class-key 剥离），命中
 #                 hdr_names 才换，防错名注入
 _T2 = lambda s: re.sub(r'[\s_]+', '', re.sub(r'\b(class|struct|enum)\b', '', s))
+_L3 = lambda s: re.sub(r'[^A-Za-z0-9]', '', s)   # r21: 全剥离归一（::/__/_/空格差异通吃）
 
 
 def _fname_esc(raw):
@@ -82,7 +83,7 @@ if _fn_p.exists():
                 _va = int(_p[0], 16)
             except ValueError:
                 continue
-            FUNC_IDX.setdefault(_T2(_p[1]), []).append((_va, _p[1]))
+            FUNC_IDX.setdefault(_L3(_p[1]), []).append((_va, _p[1]))
 
 # 规范名登记表：VA -> 已发出的名字（本进程内一致性防护）
 _QNAMES = {}
@@ -266,7 +267,7 @@ def stack_pseudo_fix(txt):
 # ---- r20: 未声明类型不完整 typedef（指针位置可编译；值位置诚实报错 defer）----
 _TYPEDEF_POOL = set()
 _typedef_pool = _TYPEDEF_POOL
-_ESCTYPE_SHAPE = re.compile(r'\b([A-Za-z_]\w*(?:_L_[^\s;(),\[\]]*)+)\b')
+_ESCTYPE_SHAPE = re.compile(r'\b([A-Za-z_][A-Za-z0-9_]*(?:_L_[A-Za-z0-9_]*)+)\b')  # r21: 纯标识符字符（碎片/:://& 拒收）
 _SHORT_TMPL = {'Vec2', 'Vec3', 'Maybe', 'Str', 'SharedPtr', 'WeakPtr', 'Darray',
                'IArray', 'tuple2', 'AssocArray', 'Reflectable', 'LocStr'}
 
@@ -344,7 +345,9 @@ def funcptr_esc_fix(txt):
     def rep(m):
         t = A.type_escape(m.group(2))
         if t:
-            TYPEFUNC_POOL.add(f'{m.group(1)}_L_{t}_G_{m.group(3)}')
+            _full = f'{m.group(1)}_L_{t}_G_{m.group(3)}'
+            if _full not in STRICT_TYPES and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', _full):
+                TYPEFUNC_POOL.add(_full)
         return f'{m.group(1)}_L_{t}_G_{m.group(3)}' if t else m.group(0)
     return _FUNCPTR_RAW.sub(rep, txt)
 
@@ -356,7 +359,7 @@ _BARE_DTOR = re.compile(r'(?<![\w:])~([A-Za-z_]\w*)\s*\(')
 def bare_dtor_fix(txt, disp):
     def rep(m):
         cls = m.group(1)
-        cands = FUNC_IDX.get(_T2(f'{cls}::~{cls}'))
+        cands = FUNC_IDX.get(_L3(f'{cls}::~{cls}'))
         if cands and len(cands) == 1:
             sym = _calleename(cands[0][0])
             if sym:
@@ -366,36 +369,30 @@ def bare_dtor_fix(txt, disp):
     return _BARE_DTOR.sub(rep, txt)
 
 TYPE_ALIAS = set()
+# ---- r21: hdr 冲突改名表（持久化；组装时对出现在本批文本中的 OLD 发 #define）----
+RENAMES = set()
+
+def load_renames():
+    _rn = {}
+    _rnp = REPO / 'tools' / 'r20_renames.tsv'
+    if _rnp.exists():
+        for _ln in open(_rnp, encoding='utf-8'):
+            if _ln.startswith('#') or '\t' not in _ln:
+                continue
+            _pp = _ln.rstrip('\n').split('\t')
+            if len(_pp) >= 2 and re.match(r'^[A-Za-z_]\w*$', _pp[0]) and re.match(r'^[A-Za-z_]\w*$', _pp[1]):
+                _rn[_pp[0]] = _pp[1]
+    return _rn
+
+RENAMES_MAP = {}
 
 _NM = r'~?[A-Za-z_]\w*(?:<(?:[^<>{};]*(?:<[^<>{};]*>[^<>{};]*)*)>)?'
 # f-string 内必须 (?:::{_NM})：渲染后组内容 = '::'（(?: 吃掉第一个冒，剩两个才是分隔符）
 _QFQN = re.compile(rf'\b{_NM}(?:::{_NM})+')
 
 
-def _qrep(m):
-    tok = m.group(0)
-    if tok.endswith('_vftable_'):
-        return tok  # vftable 尾交回 fix_vftables（已扩 tnorm2 兜底）
-    cands = FUNC_IDX.get(_T2(tok))
-    if not cands or len(cands) > 1:
-        # Data-Q 兜底：限定名静态数据 → (*(T *)&VA)（成员链由真实 struct 承接）
-        d = QDATA_IDX.get(_T2(tok))
-        if d and d[0] != 'AMBIG' and d[1]:
-            t = A.type_escape(d[1])
-            if t and (t in STRICT_TYPES or not STRICT_TYPES):
-                return f'(*({t} *)&0x{d[0]:08x}u)'
-        return tok
-    va, full = cands[0]
-    after = m.string[m.end():m.end() + 1]
-    before = m.string[max(0, m.start() - 1):m.start()]
-    sym = None
-    if after == '(' or before == '&' or after == ',' or after == ')':
-        # 调用/取址/实参位置 → 函数名
-        sym = _calleename(va)
-        if after == '(':
-            A.sym_externs.add(sym)
-        return sym or tok
-    # 类型位置：esc 变体链，命中严格类型名集才换（防 hdr_names 注释/member 误报）
+def _type_rewrite(tok):
+    """类型位置的统一改写：esc 变体链 → Data-Q cast → 确定性转义+不完整 typedef"""
     base = re.sub(r'\b(class|struct|enum)_', '', tok)
     for cand in (tok,
                  base,
@@ -406,7 +403,39 @@ def _qrep(m):
         t = A.type_escape(cand)
         if t and (t in STRICT_TYPES or not STRICT_TYPES):
             return t
+    # Data-Q 兜底：限定名静态数据 → (*(T *)&VA)（成员链由真实 struct 承接）
+    d = QDATA_IDX.get(_T2(tok))
+    if d and d[0] != 'AMBIG' and d[1]:
+        t = A.type_escape(d[1])
+        if t and (t in STRICT_TYPES or not STRICT_TYPES):
+            return f'(*({t} *)&0x{d[0]:08x}u)'
+    # r21: 确定性转义 + 不完整 typedef（指针位编译，值位诚实报错 defer）
+    esc = re.sub(r'[^A-Za-z0-9_]', '_', tok.replace('::', '__').replace('<', '_L_')
+                 .replace('>', '_G_').replace(' ', '_')).strip('_')
+    if esc and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,160}', esc):
+        if esc not in STRICT_TYPES:
+            _TYPEDEF_POOL.add(esc)
+        return esc
     return tok
+
+
+def _qrep(m):
+    tok = m.group(0)
+    if tok.endswith('_vftable_'):
+        return tok  # vftable 尾交回 fix_vftables（已扩 tnorm2 兜底）
+    cands = FUNC_IDX.get(_L3(tok))
+    if cands and len(cands) == 1:
+        va, full = cands[0]
+        after = m.string[m.end():m.end() + 1]
+        before = m.string[max(0, m.start() - 1):m.start()]
+        if after == '(' or before == '&' or after == ',' or after == ')':
+            # 调用/取址/实参位置 → 函数名
+            sym = _calleename(va)
+            if after == '(':
+                A.sym_externs.add(sym)
+            return sym or tok
+    # 类型位置（无论函数命中与否——ctor 名同时是类型形态）
+    return _type_rewrite(tok)
 
 
 def qual_pass(txt, disp):
@@ -420,7 +449,7 @@ def qual_pass(txt, disp):
     if '::operator' in txt:
         def orep(m):
             tok = m.group(1)
-            cands = FUNC_IDX.get(_T2(tok))
+            cands = FUNC_IDX.get(_L3(tok))
             if cands and len(cands) == 1:
                 sym = _calleename(cands[0][0])
                 if sym:
@@ -465,7 +494,9 @@ def build_strict_types():
     import glob as _g
     pats = [re.compile(r'\btypedef\s+[^;{}]*?([A-Za-z_]\w*)\s*;'),
             re.compile(r'\}\s*([A-Za-z_]\w*)\s*;'),
-            re.compile(r'\b(?:struct|union|enum)\s+([A-Za-z_]\w*)\s*\{')]
+            re.compile(r'\b(?:struct|union|enum)\s+([A-Za-z_]\w*)\s*\{'),
+            # 函数指针 typedef：typedef RET NAME(ARGS); —— 名在 '(' 前
+            re.compile(r'\btypedef\s+[^;{}]*?\b([A-Za-z_]\w*)\s*\([^;{}]*\)\s*;')]
     for h in _g.glob(f'{REPO}/src/cde_types_*.h'):
         t = Path(h).read_text(errors='replace')
         for pat in pats:
@@ -514,6 +545,7 @@ def main():
     files = sorted(f for f in glob.glob(str(IN / '*.tu.c'))
                    if Path(f).name.split('_')[0].lstrip('0') not in DEFER_ALL)
     n_total = len(glob.glob(str(IN / '*.tu.c')))
+    RENAMES_MAP.update(load_renames())   # r21: hdr 冲突改名表
     scan_inbatch_defs(files)      # r20b: VA->批内 def 名
     build_strict_types()          # r20b: 严格类型名集
     A.scan_templates(files)
@@ -579,7 +611,7 @@ def main():
 
     # ---- r20b: 头签名冲突检测（等价纪律：头 = game TU 的既验证契约，绝不改写）----
     # 批内 def 签名 ≠ 头声明 → 该函数本批 defer（r20 教训：写头破坏 game TU 调用）
-    _conflict_vas = set()
+    _conflict_names = set()
     try:
         _genp = REPO / 'src' / 'cde_fun_decls_gen.h'
         _gl = _genp.read_text(errors='replace').split('\n')
@@ -597,15 +629,44 @@ def main():
             if _old != _new:
                 _va = PROTO_VA.get(_nm)
                 if _va is not None:
-                    _conflict_vas.add(_va)
-        if _conflict_vas:
-            A.L(f'hdr sig conflicts deferred: {len(_conflict_vas)}')
+                    # r21: 冲突仲裁 = #define 重命名 + 链接别名（-alternatename）。
+                    # 头声明保持不动（game TU 契约），pilot 内 #define OLD NEW 使
+                    # 头声明与批内 def 各归其名；链接期 OLD→NEW 转发到真身。
+                    _newnm = _nm + '__r20'
+                    RENAMES.add((_nm, _newnm))
+                    _conflict_names.add(_nm)
+        if _conflict_names:
+            A.L(f'hdr sig conflicts renamed: {len(_conflict_names)}')
     except Exception as _e:
         A.L(f'hdr conflict check failed: {_e}')
-    if _conflict_vas:
-        auto_now |= {f'{v:06x}' for v in _conflict_vas}
-        sections = [s for s in sections if int(s[0], 16) not in _conflict_vas]
-        AUTO_F.write_text(','.join(sorted(auto_prev | auto_now)))
+    # r21: 冲突改名落盘（重命名表 + 链接别名表）
+    if RENAMES:
+        _rnp = REPO / 'tools' / 'r20_renames.tsv'
+        _have = set()
+        if _rnp.exists():
+            for _ln in open(_rnp, encoding='utf-8'):
+                if '\t' in _ln and not _ln.startswith('#'):
+                    _have.add(tuple(_ln.rstrip('\n').split('\t')[:2]))
+        _newr = sorted(set(RENAMES) - _have)
+        if _newr:
+            with open(_rnp, 'a', encoding='utf-8') as _rf:
+                if not _rnp.exists():
+                    _rf.write('# hdr-conflict renames: gen.h name -> pilot impl name\n')
+                for _o, _n in _newr:
+                    _rf.write(f'{_o}\t{_n}\n')
+        _alp = REPO / 'tools' / 'alias_alternatenames.tsv'
+        _havea = set()
+        if _alp.exists():
+            for _ln in open(_alp, encoding='utf-8'):
+                if '\t' in _ln and not _ln.startswith('#'):
+                    _havea.add(tuple(_ln.rstrip('\n').split('\t')[:2]))
+        _newa = sorted({(_o, _n) for _o, _n in RENAMES} - _havea)
+        if _newa:
+            with open(_alp, 'a', encoding='utf-8') as _af:
+                for _o, _n in _newa:
+                    _af.write(f'{_o}\t{_n}\n')
+        A.L(f'renames: +{len(_newr)} (alias +{len(_newa)})')
+    RENAMES_MAP.update({o: n for o, n in RENAMES})   # r21: 首轮即时生效
 
     hdr_ids2 = set()
     for _h in sorted((REPO / 'src').glob('*.h')):
@@ -850,6 +911,15 @@ def main():
         '#include "cde_types_r20.h"\n',
         A.build_slice_view(all_pairs) + '\n',
     ]
+    # r21: hdr 冲突改名——必须 AFTER port_prelude：头声明以 OLD 落地（本 TU 无
+    # 人引用），#undef+define 后批内 def/调用走 NEW；链接期 alias OLD→NEW
+    _ren_used = sorted((o, n) for o, n in RENAMES_MAP.items()
+                       if re.search(r'\b' + re.escape(o) + r'\b', body))
+    if _ren_used:
+        parts.append('/* ---- r21 hdr-conflict renames (decl stays OLD for game TUs; '
+                     'pilot impl+calls = NEW; linker aliases OLD -> NEW) ---- */\n' +
+                     '\n'.join(f'#undef {o}\n#define {o} {n}' for o, n in _ren_used) + '\n')
+        A.L(f'renames applied: {len(_ren_used)}')
     if exts:
         parts.append('/* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */\n' +
                      '\n'.join(exts) + '\n')

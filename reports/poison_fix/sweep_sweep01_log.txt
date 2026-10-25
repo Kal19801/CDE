@@ -1,10 +1,13 @@
 pool=20839 fullnames, multi=570
-oracle: 1995 stub names
+oracle: 1728 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep01 total=799 in=347 (env_defer=185 auto_prev=267) tpl_defs=1
-prescreen: auto-defer now=0 total=267
-prototypes: 347 (all-CC)
-typedef forwards: 8 (alias 1)
+batch=sweep01 total=799 in=105 (env_defer=574 auto_prev=120) tpl_defs=4
+prescreen: auto-defer now=0 total=120
+prototypes: 105 (all-CC)
+hdr sig conflicts renamed: 42
+renames: +0 (alias +0)
+typedef forwards: 9 (alias 0)
+renames applied: 53
 l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep01_draft.c (222341B) sections=347 externs=10 unresolved=59
+WROTE /tmp/sweep_sweep01_draft.c (119884B) sections=105 externs=9 unresolved=154

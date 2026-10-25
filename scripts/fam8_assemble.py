@@ -100,7 +100,7 @@ def build_cov_name():
           'signed','if','for','while','switch','return','sizeof','undefined',
           'undefined4','undefined8','static','const','struct','enum'}
     out = {}
-    for fp in g.glob(f'{pgs.SRC}/game_*.c') + g.glob(f'{pgs.SRC}/pilot_0*.c'):
+    for fp in g.glob(f'{pgs.SRC}/game_*.c') + g.glob(f'{pgs.SRC}/pilot_*.c'):
         va = None; cands = []; bare = None
         def flush():
             if va is not None:
@@ -111,6 +111,10 @@ def build_cov_name():
             m = re.match(r'\s*//+\s*=*\s*([0-9a-fA-F]{6,8})\b', ln)
             if m:
                 flush(); va = m.group(1); cands = []; bare = None
+                # r21: disp 名兜底（<hex>_<Name> 的 Name 段是合法 C 标识符）
+                _dm = re.match(r'\s*//+\s*=*\s*[0-9a-fA-F]{6,8}\s+[0-9a-fA-F]{6,8}_([A-Za-z_][\w]*)', ln)
+                if _dm and _dm.group(1) not in ('FUN', 'thunk'):
+                    bare = _dm.group(1)
                 continue
             if ln.startswith((' ', '\t')):
                 continue
@@ -375,7 +379,10 @@ def targeted_pass(txt, fva):
             out.append(txt[pos:m.start()]); pos = m.end()
             sym = name_for_va(c)
             if sym is None:
-                L(f'ERR {fva}: no symbol for call {c}'); sys.exit(1)
+                # r21: 留原文本优雅降级（该调用随函数 defer），不再 exit 崩整个组装
+                L(f'WARN {fva}: no symbol for call {c} - leave raw')
+                out.append(txt[pos:m.end()]); pos = m.end()
+                continue
             sym_externs.add(sym)
             out.append(sym)
         out.append(txt[pos:])

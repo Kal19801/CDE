@@ -9,7 +9,7 @@ REPO=/home/z/my-project/repo/CDE-decomp
 cd "$REPO"   # FLAGS 全是相对 -I（src/pe_inc/third_party），cwd 必须在 REPO（r20 教训：绝对路径调用时相对 -I 全灭）
 TC=$REPO/toolchain/usr/lib/llvm-19/bin/clang
 FLAGS="--target=i686-w64-mingw32 -m32 -x c -std=gnu11 -c -O2 -g -gcodeview -ferror-limit=0 -w -Wno-error=implicit-function-declaration -Wno-error=incompatible-function-pointer-types -Wno-error=incompatible-pointer-types -Wno-error=int-conversion -Isrc -Isrc/../third_party/GL -Isrc/../third_party/AL -Isrc/../third_party/glfw-3.3.10/include -Ipe_inc -Ipe_inc/freetype2 -isystem $REPO/toolchain/usr/i686-w64-mingw32/include"
-NUM=$((60 + 10#${BATCH#sweep}))   # r20 用 60+ 段——r19 已占 41-53，重号会覆盖已入库真身（r20 事故教训）
+NUM=$((80 + 10#${BATCH#sweep}))   # r21 用 80+ 段（r19:41-53 / r20:61-64 已占——跨会话重号=覆盖真身，教训 bb）
 PILOT=$REPO/src/pilot_${NUM}_${BATCH}.c
 DRAFT=/tmp/sweep_${BATCH}_draft.c
 ERRS=/tmp/sweep_${BATCH}_errs.txt
