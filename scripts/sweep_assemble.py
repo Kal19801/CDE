@@ -340,9 +340,255 @@ def stack_pseudo_fix(txt):
 # ---- r20: 未声明类型不完整 typedef（指针位置可编译；值位置诚实报错 defer）----
 _TYPEDEF_POOL = set()
 _typedef_pool = _TYPEDEF_POOL
+
+# ---- r23: PDB 完整类型直供（llvm-pdbutil TPI 真值；值位可编译，字节精确）----
+R23_UDT_P = Path('/tmp/my-project/work/r23_udt.tsv')
+R23_LIB = {}    # display -> {size,kind,mems,bases,vtab}
+R23_ESC = {}    # esc 变体 -> display
+R23_ESC_NORM = {}  # r23b: 下划线折叠归一（多产 esc 链的字面差异）-> display
+R23_DEFINED = set()
+R23_DEF_ESC = {}   # r23c: display -> 首发定义所用 esc 名（双形态别名桥接用）
+R23_ESC_TAKEN = set()  # r23h: 同 esc 异名去重（防重定义）
+R23_PRIM = {'dword': 'unsigned int', 'word': 'unsigned short', 'byte': 'unsigned char',
+            'qword': 'unsigned long long', 'longlong': 'long long', 'ushort': 'unsigned short',
+            'int': 'int', 'char': 'char', 'short': 'short', 'float': 'float',
+            'double': 'double', 'bool': 'unsigned char'}
+
+def _r23_esc_variants(base):
+    b = re.sub(r'\s+', '', base)
+    return [b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'),
+            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C_'),
+            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_'),
+            re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9_]', '_', b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_'))),
+            re.sub(r'[^A-Za-z0-9_]', '_', base.replace('::', '__').replace('<', '_L_').replace('>', '_G_').replace(' ', '_')).strip('_')]
+
+def _r23_load():
+    if R23_LIB or not R23_UDT_P.exists():
+        return
+    _cur = None
+    for _ln in open(R23_UDT_P, encoding='utf-8', errors='replace'):
+        _p = _ln.rstrip('\n').split('\t')
+        if _p[0] == 'UDT' and len(_p) >= 4:
+            _cur = _p[1]
+            R23_LIB[_cur] = {'size': int(_p[2]), 'kind': _p[3], 'mems': [], 'bases': [], 'vtab': False}
+        elif _p[0] == 'MEMB' and len(_p) >= 6 and _cur:
+            R23_LIB[_cur]['mems'].append((_p[2], int(_p[3]), _p[4], int(_p[5])))
+        elif _p[0] == 'BASE' and len(_p) >= 5 and _cur:
+            R23_LIB[_cur]['bases'].append((_p[2], int(_p[3]), int(_p[4])))
+        elif _p[0] == 'VTAB' and _cur:
+            R23_LIB[_cur]['vtab'] = True
+    for _d in R23_LIB:
+        for _v in _r23_esc_variants(_d):
+            R23_ESC.setdefault(_v, _d)
+            R23_ESC_NORM.setdefault(re.sub(r'_+', '_', _v).strip('_'), _d)
+        # r23b: 文本用短名（Ghidra 去命名空间显示）——逐级剥前缀登记
+        _s = _d
+        while '::' in _s:
+            _s = _s.split('::', 1)[1]
+            for _v in _r23_esc_variants(_s):
+                R23_ESC.setdefault(_v, _d)
+                R23_ESC_NORM.setdefault(re.sub(r'_+', '_', _v).strip('_'), _d)
+_r23_load()
+
+def _r23_esc(disp):
+    return _r23_esc_variants(disp)[0]
+
+def _r23_bases_of(ts):
+    ts = ts.strip()
+    out = []
+    if ts.endswith('*'):
+        b = ts[:-1].strip()
+        if b in R23_LIB:
+            out.append(b)
+        return out
+    m = re.fullmatch(r'(.*)\[(\d+)\]', ts)
+    if m:
+        b = m.group(1).strip()
+        if b in R23_LIB:
+            out.append(b)
+        return out
+    if ts in R23_LIB:
+        out.append(ts)
+    return out
+
+def _r23_elem_c(b, sz):
+    b = b.strip()
+    if b in R23_PRIM:
+        return R23_PRIM[b]
+    if b in R23_LIB:
+        return _r23_esc(b)
+    if b in STRICT_TYPES:
+        return b
+    return None
+
+def _r23_member_decl(ts, tsz, name):
+    if re.match(r'^__|^(this|struct|union|enum|const|volatile|signed|unsigned|register|typedef)$', name or ''):
+        name = name + '_m'
+    ts = ts.strip()
+    if not ts:
+        return f'unsigned char {name}[{max(tsz, 1)}];'
+    if ts.endswith('*'):
+        b = ts[:-1].strip()
+        e = _r23_elem_c(b, 4)
+        return f'{e if e else "void"} *{name};'
+    m = re.fullmatch(r'(.*)\[(\d+)\]', ts)
+    if m:
+        n = int(m.group(2))
+        e = _r23_elem_c(m.group(1).strip(), max(tsz // max(n, 1), 1))
+        if e is None:
+            return f'unsigned char {name}[{max(tsz, 1)}];'
+        return f'{e} {name}[{n}];'
+    e = _r23_elem_c(ts, tsz)
+    if e is None:
+        return f'unsigned char {name}[{max(tsz, 1)}];'
+    return f'{e} {name};'
+
+def r23_complete_def(disp, out, depth=0, esc=None):
+    """发射完整 struct/union 定义（前置 fwd typedef 供指针位/自引用）"""
+    if disp in R23_DEFINED or disp not in R23_LIB or depth > 10:
+        return False
+    ent = R23_LIB[disp]
+    if esc is None:
+        esc = _r23_esc(disp)
+    if esc in STRICT_DEFINED or esc in STRICT_ALIAS or esc in R23_ESC_TAKEN \
+            or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', esc):
+        return False
+    R23_DEFINED.add(disp)
+    R23_ESC_TAKEN.add(esc)
+    R23_DEF_ESC[disp] = esc
+    out.append(f'typedef struct {esc} {esc};')
+    for (mn, off, ts, tsz) in ent['mems']:
+        for b in _r23_bases_of(ts):
+            r23_complete_def(b, out, depth + 1)
+    for (bd, boff, bsz) in ent['bases']:
+        if bd in R23_LIB:
+            r23_complete_def(bd, out, depth + 1)
+    kw = 'union' if ent['kind'] == 'union' else 'struct'
+    lines = []
+    mems = sorted(ent['mems'], key=lambda x: x[1])
+    cur = 0
+    if kw == 'struct':
+        zero = any(m[1] == 0 for m in mems) or any(b[1] == 0 for b in ent['bases'])
+        if ent['vtab'] and not zero:
+            lines.append('  void *_vftable;')
+            cur = 4
+        items = [('b', b) for b in ent['bases']] + [('m', m) for m in mems]
+        items.sort(key=lambda x: x[1][1])
+        i = 0
+        while i < len(items):
+            off = items[i][1][1]
+            if off > cur:
+                lines.append(f'  unsigned char _pad{cur}[{off - cur}];')
+                cur = off
+            if off < cur:
+                i += 1
+                continue
+            grp = []
+            while i < len(items) and items[i][1][1] == off:
+                grp.append(items[i]); i += 1
+            if len(grp) == 1:
+                k2, it = grp[0]
+                if k2 == 'b':
+                    be = _r23_esc(it[0])
+                    lines.append(f'  {be} _base_{be};')
+                    cur += R23_LIB.get(it[0], {}).get('size', it[2])
+                else:
+                    lines.append('  ' + _r23_member_decl(it[2], it[3], it[0]))
+                    cur += it[3]
+            else:
+                lines.append('  union {')
+                mx = 0
+                for k2, it in grp:
+                    if k2 == 'b':
+                        be = _r23_esc(it[0])
+                        lines.append(f'    {be} _base_{be};')
+                        mx = max(mx, R23_LIB.get(it[0], {}).get('size', it[2]))
+                    else:
+                        lines.append('    ' + _r23_member_decl(it[2], it[3], it[0]))
+                        mx = max(mx, it[3])
+                lines.append('  };')
+                cur += mx
+        if cur < ent['size']:
+            lines.append(f'  unsigned char _tail[{ent["size"] - cur}];')
+    else:
+        for (mn, off, ts, tsz) in ent['mems']:
+            lines.append('  ' + _r23_member_decl(ts, tsz, mn))
+        mx = max([m[3] for m in ent['mems']] + [0])
+        if mx < ent['size']:
+            lines.append(f'  unsigned char _pad[{ent["size"] - mx}];')
+    out.append(f'{kw} {esc} {{')
+    out.extend(lines)
+    out.append('};')
+    return True
 _ESCTYPE_SHAPE = re.compile(r'\b([A-Za-z_][A-Za-z0-9_]*(?:_L_[A-Za-z0-9_]*)+)\b')  # r21: 纯标识符字符（碎片/:://& 拒收）
 _SHORT_TMPL = {'Vec2', 'Vec3', 'Maybe', 'Str', 'SharedPtr', 'WeakPtr', 'Darray',
                'IArray', 'tuple2', 'AssocArray', 'Reflectable', 'LocStr'}
+
+def r23_bare_bases():
+    """裸模板基名（lib 基名短形 + _SHORT_TMPL）与非模板库短名集"""
+    bases, nonames = set(), set()
+    for d in R23_LIB:
+        if '<' in d:
+            b = d.split('<', 1)[0]
+            while '::' in b:
+                b = b.split('::', 1)[1]
+            if re.fullmatch(r'[A-Za-z_]\w*', b):
+                bases.add(b)
+        else:
+            for form in (d, d.split('::')[-1]):
+                if re.fullmatch(r'[A-Za-z_]\w*', form):
+                    nonames.add(form)
+    return bases, nonames
+
+_BARE_BASES, _BARE_NONAMES = r23_bare_bases()
+_BARE_BASES |= _SHORT_TMPL
+_BARE_EXT = set()   # r23d: 运行期发现的 Ghidra 自产模板基名
+_BARE_TOK = re.compile(r'\b([A-Z][A-Za-z0-9_]*)<')
+
+def bare_template_fix(txt):
+    """r23c: 裸模板类型（Maybe<double>/Vec2<double>）→ esc 名 —— _QFQN 只吃 :: 名，
+    声明位裸模板留在原文则声明全灭，下游 undeclared 级联"""
+    out, i, n = [], 0, len(txt)
+    while True:
+        m = _BARE_TOK.search(txt, i)
+        if not m:
+            out.append(txt[i:])
+            break
+        base = m.group(1)
+        if base not in _BARE_BASES and base not in _BARE_EXT:
+            # r23d: 未见过的模板基名也 esc 化（VecN 等 Ghidra 自产类型）——
+            # 前向 typedef 保指针位；值位诚实报错 defer
+            if re.fullmatch(r'[A-Z][A-Za-z0-9_]*', base) and not _fidx_any(base):
+                _BARE_EXT.add(base)
+            else:
+                out.append(txt[i:m.end()])
+                i = m.end()
+                continue
+        j, depth = m.end(), 1
+        while j < n and depth:
+            c = txt[j]
+            if c == '<':
+                depth += 1
+            elif c == '>':
+                depth -= 1
+            j += 1
+        if depth:
+            out.append(txt[i:m.end()])
+            i = m.end()
+            continue
+        raw = txt[m.start():j]
+        esc = re.sub(r'[^A-Za-z0-9_]', '_', raw.replace('::', '__').replace('<', '_L_')
+                     .replace('>', '_G_').replace(' ', '_')).strip('_')
+        if esc and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,160}', esc) \
+                and esc not in STRICT_TYPES and not _fidx_any(raw):
+            _TYPEDEF_POOL.add(esc)
+            out.append(txt[i:m.start()])
+            out.append(esc)
+            i = j
+        else:
+            out.append(txt[i:m.end()])
+            i = m.end()
+    return ''.join(out)
 
 def typedef_scan(txt):
     out = set()
@@ -359,6 +605,9 @@ def typedef_scan(txt):
             out.add(nm)
     for w in re.findall(r'\b([A-Za-z_]\w*)\b', txt):
         if w in _SHORT_TMPL and w not in STRICT_TYPES:
+            out.add(w)
+        elif w in _BARE_NONAMES and w not in STRICT_TYPES and not _fidx_any(w):
+            # r23c: 裸非模板库名（CraftBlueprint/Radiation...）—— 值位声明需要 typedef
             out.add(w)
     return out
 
@@ -578,6 +827,9 @@ def scan_inbatch_defs(files):
 
 # r20b: 严格类型名集（typedef/struct 定义形态），防 hdr_names 注释/member 误报
 STRICT_TYPES = set()
+STRICT_DEFINED = set()   # r23: 头部已有完整定义的 tag（struct/union X {）—— r23 完整定义仅对这类让位
+STRICT_ALIAS = {}        # r23f: 头部别名 typedef（typedef A B; → B 映射 A）—— esc 名撞别名时让位
+STRICT_SELFHDR = set()   # r23i: 头部已有 typedef struct X X;（含 cde_types_r23.h）—— 该名由头部提供
 
 def build_strict_types():
     import glob as _g
@@ -586,11 +838,22 @@ def build_strict_types():
             re.compile(r'\b(?:struct|union|enum)\s+([A-Za-z_]\w*)\s*\{'),
             # 函数指针 typedef：typedef RET NAME(ARGS); —— 名在 '(' 前
             re.compile(r'\btypedef\s+[^;{}]*?\b([A-Za-z_]\w*)\s*\([^;{}]*\)\s*;')]
-    for h in _g.glob(f'{REPO}/src/cde_types_*.h'):
+    _p_alias = re.compile(r'\btypedef\s+([A-Za-z_][A-Za-z0-9_]*)\s+([A-Za-z_][A-Za-z0-9_]*)\s*;')
+    _scal = {'int', 'char', 'short', 'long', 'float', 'double', 'void', 'signed', 'unsigned',
+             'struct', 'union', 'enum', 'const', 'bool'}
+    _p_self = re.compile(r'\btypedef\s+(?:struct|union)\s+([A-Za-z_][A-Za-z0-9_]*)\s+\1\s*(?:,[^;]*)?;')
+    for h in _g.glob(f'{REPO}/src/cde_*.h'):
         t = Path(h).read_text(errors='replace')
         for pat in pats:
             for mm in pat.finditer(t):
                 STRICT_TYPES.add(mm.group(1))
+                if pat is pats[2]:
+                    STRICT_DEFINED.add(mm.group(1))
+        for mm in _p_self.finditer(t):
+            STRICT_SELFHDR.add(mm.group(1))
+        for mm in _p_alias.finditer(t):
+            if mm.group(1) not in _scal and mm.group(2) not in _scal:
+                STRICT_ALIAS[mm.group(2)] = mm.group(1)
 
 
 
@@ -649,6 +912,7 @@ def main():
         va, disp, txt = A.process(f)
         txt = libm_fix(txt)
         txt = qual_pass(txt, disp)   # r20: 限定名闭包（模板方法/operator/dtor/跨行名）
+        txt = bare_template_fix(txt)  # r23c: 裸模板类型 esc 化（声明位生存的前提）
         # r20c: 编译级机械修复链（错误面驱动，等价语义保持）
         txt = funcptr_esc_fix(txt)
         txt = slice_path_fix(txt)
@@ -988,19 +1252,44 @@ def main():
         '// reuses fam8_assemble fix passes (zip oracle/in-batch protos/vft channel/data closure)\n',
     ]
     # r20: 未声明类型不完整 typedef —— 必须在 port_prelude 之前（gen.h 引用它们）
+    _r23defs = []
+    _r23bridges = []
     if _TYPEDEF_POOL or TYPE_ALIAS or TYPEFUNC_POOL:
-        tds = [f'typedef struct {t} {t};' for t in sorted(_TYPEDEF_POOL)]
-        tds += [f'typedef struct {k} {v};' for k, v in sorted(TYPE_ALIAS)]
+        tds = []
+        _n23 = 0
+        for t in sorted(_TYPEDEF_POOL):
+            _disp = R23_ESC.get(t) or R23_ESC_NORM.get(re.sub(r'_+', '_', t).strip('_'))
+            if t in STRICT_SELFHDR or t in STRICT_DEFINED or t in STRICT_ALIAS:
+                pass  # r23i: 头部已提供（tag/自指 typedef/别名）—— 静默跳过
+            elif _disp and _disp not in R23_DEFINED and r23_complete_def(_disp, _r23defs, esc=t):
+                _n23 += 1
+            elif _disp and _disp in R23_DEF_ESC and R23_DEF_ESC[_disp] != t:
+                # r23c: 同类型多 esc 形态 —— 已有定义，别名桥接（须在定义后，r23i 移桩）
+                _r23bridges.append(f'typedef {R23_DEF_ESC[_disp]} {t};')
+            else:
+                tds.append(f'typedef struct {t} {t};')
+        for k, v in sorted(TYPE_ALIAS):
+            _disp = R23_ESC.get(v) or R23_ESC_NORM.get(re.sub(r'_+', '_', v).strip('_'))
+            if _disp:
+                r23_complete_def(_disp, _r23defs, esc=k)
+            tds.append(f'typedef struct {k} {v};')
         tds += [f'typedef void *{t};' for t in sorted(TYPEFUNC_POOL)]
         parts.append('/* ---- r20 incomplete-type forward decls (pointer-position only) ---- */\n' +
                      '\n'.join(tds) + '\n')
-        A.L(f'typedef forwards: {len(tds)} (alias {len(TYPE_ALIAS)})')
+        A.L(f'typedef forwards: {len(tds)} (r23 complete {_n23}) (alias {len(TYPE_ALIAS)})')
     parts += [
         '#include "port_prelude.h"\n',
         '#include "cde_win32_compat.h"\n',
         '#include "cde_types_r20.h"\n',
         A.build_slice_view(all_pairs) + '\n',
     ]
+    # r23: 完整定义必须在 includes 之后（成员可能引用 STRICT_TYPES 头内类型）
+    if _r23defs:
+        parts.append('/* ---- r23 PDB complete types (value-position layouts, byte-exact) ---- */\n' +
+                     '\n'.join(_r23defs) + '\n')
+    if _r23bridges:
+        parts.append('/* ---- r23i esc-form bridges (after defs they reference) ---- */\n' +
+                     '\n'.join(_r23bridges) + '\n')
     # r21: hdr 冲突改名——必须 AFTER port_prelude：头声明以 OLD 落地（本 TU 无
     # 人引用），#undef+define 后批内 def/调用走 NEW；链接期 alias OLD→NEW
     _ren_used = sorted((o, n) for o, n in RENAMES_MAP.items()

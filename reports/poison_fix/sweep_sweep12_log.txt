@@ -1,0 +1,16 @@
+pool=20839 fullnames, multi=570
+oracle: 1783 stub names
+cov_name: 10236 entries
+vftable_map: 1749 entries
+batch=sweep12 total=620 in=24 (env_defer=452 auto_prev=144) tpl_defs=0
+WARN 0000734110 util::Darray<struct_ItineraryNode>::Last: text=1 disasm=0 — leave raw
+WARN 0000768430 util::Darray<struct_WorldObject>::Last: text=1 disasm=0 — leave raw
+WARN 0000778a00 util::Darray<struct_ActorDropdownAction>::Last: text=1 disasm=0 — leave raw
+WARN 00779a40_FUN_00779a40: slice local local_2d0: no decl found
+WARN 00784950_UIListBox_struct_ItineraryNode___OnChangedSearchString: slice local local_160: no decl found
+WARN 007849f0_UIListBox_struct_ItineraryNode___OnCommitSearchString: slice local local_160: no decl found
+prescreen: auto-defer now=0 total=144
+prototypes: 24 (all-CC)
+typedef forwards: 9 (r23 complete 5) (alias 0)
+renames applied: 1
+WROTE /tmp/sweep_sweep12_draft.c (68286B) sections=24 externs=20 unresolved=71

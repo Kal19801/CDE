@@ -292,6 +292,7 @@ typedef void _func___cdecl_void_void_ptr_tuple2_L_util__Str_L_char_G__Cvoid____c
 
 
 #include "cde_stackdefs.h"
+#include "cde_types_r23.h"
 
 /* ---- 4z. Ghidra vector/sret scratch helpers (session-g) ---- */
 static unsigned char cde_z16_pool[16][16];
