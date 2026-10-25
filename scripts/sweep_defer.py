@@ -50,9 +50,9 @@ if TOT > 3000:
 elif TOT > 800:
     cand, cap = ranked, 16
 elif TOT > 300:
-    cand, cap = ranked, 24
+    cand, cap = ranked, 40
 elif TOT > 100:
-    cand, cap = ranked, 6
+    cand, cap = ranked, 24
 else:
     # 尾部清仓：错误面已收敛到硬化病灶（栈伪符号/SSE 向量/未解析模板），
     # 逐轮 top-K 只是无谓轮次——全数 defer（这些函数无论如何都到不了真身）

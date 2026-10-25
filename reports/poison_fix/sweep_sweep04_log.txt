@@ -1,0 +1,46 @@
+pool=20839 fullnames, multi=570
+oracle: 1938 stub names
+cov_name: 10168 entries
+vftable_map: 1749 entries
+batch=sweep04 total=400 in=29 (env_defer=176 auto_prev=195) tpl_defs=2
+WARN 005a4620_GetGeneratedName: slice local local_14: no decl found
+WARN 005a4620_GetGeneratedName: slice local local_20: no decl found
+WARN 005a4620_GetGeneratedName: slice local local_2c: no decl found
+WARN 005ad430_GetGeneratedName: slice local local_14: no decl found
+WARN 005ad430_GetGeneratedName: slice local local_20: no decl found
+WARN 005ad430_GetGeneratedName: slice local local_2c: no decl found
+WARN 005ad430_GetGeneratedName: slice local local_38: no decl found
+WARN 005ad430_GetGeneratedName: slice local local_44: no decl found
+WARN 005b6280_GetGeneratedName: slice local local_14: no decl found
+WARN 005b6280_GetGeneratedName: slice local local_20: no decl found
+WARN 005b6280_GetGeneratedName: slice local local_2c: no decl found
+WARN 005b8970_GetGeneratedName: slice local local_14: no decl found
+WARN 005b8970_GetGeneratedName: slice local local_20: no decl found
+WARN 005bef30_GetGeneratedName: slice local local_14: no decl found
+WARN 005bef30_GetGeneratedName: slice local local_20: no decl found
+WARN 005bef30_GetGeneratedName: slice local local_2c: no decl found
+WARN 005bef30_GetGeneratedName: slice local local_38: no decl found
+WARN 005bef30_GetGeneratedName: slice local local_44: no decl found
+WARN 005dde50_GetGeneratedName: slice local local_14: no decl found
+WARN 005dde50_GetGeneratedName: slice local local_20: no decl found
+WARN 005dde50_GetGeneratedName: slice local local_2c: no decl found
+WARN 005dde50_GetGeneratedName: slice local local_38: no decl found
+WARN 005dde50_GetGeneratedName: slice local local_44: no decl found
+WARN 006b63b0_GetHeatSignatureTitle: slice local local_20: no decl found
+WARN 006b63b0_GetHeatSignatureTitle: slice local local_2c: no decl found
+WARN 006b63b0_GetHeatSignatureTitle: slice local local_38: no decl found
+WARN 006b72f0_GetPowerUseTitle: slice local local_20: no decl found
+WARN 006b72f0_GetPowerUseTitle: slice local local_2c: no decl found
+WARN 006b72f0_GetPowerUseTitle: slice local local_38: no decl found
+WARN 00726e70_GetQuickInfo: slice local local_20: no decl found
+WARN 007d9990_TriggerArmorHitPopup: slice local local_14: no decl found
+WARN 007da990_TriggerDestroyedPopup: slice local local_14: no decl found
+WARN 007db0c0_TriggerDisarmedPopup: slice local local_14: no decl found
+WARN 007db700_TriggerOutOfFuelPopup: slice local local_14: no decl found
+WARN 007dbba0_TriggerOutOfPowerPopup: slice local local_14: no decl found
+prescreen: auto-defer now=0 total=195
+prototypes: 29 (all-CC)
+decls_gen refreshed: 0 sigs, 0 templates, 154 K&R
+typedef forwards: 8 (alias 1)
+l2 statics: +0 (of 1)
+WROTE /tmp/sweep_sweep04_draft.c (303407B) sections=29 externs=4 unresolved=59

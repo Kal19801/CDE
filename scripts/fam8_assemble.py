@@ -210,6 +210,20 @@ if _vfm_p.exists():
             VFT_VA.setdefault(_ns(_p[0]), _p[1])
     L(f'vftable_map: {len(VFT_VA)} entries')
 
+# r20: tnorm2 归一键（去 class/struct/enum key + 去全部 _/空白）——Ghidra 存储
+# 类型名的下划线变体（class_Body/_> 尾）与 map 原始键失配的兜底
+def tnorm2(s):
+    s = re.sub(r'\b(class|struct|enum)\b', '', s)
+    return re.sub(r'[\s_]+', '', s)
+
+VFT_VA_T = {}
+for _k, _v in VFT_VA.items():
+    _t = tnorm2(_k)
+    if _t in VFT_VA_T and VFT_VA_T[_t] != _v:
+        VFT_VA_T[_t] = 'AMBIG'
+    else:
+        VFT_VA_T.setdefault(_t, _v)
+
 calls_json = json.load(open(CALLS))
 
 # ---------------- template def/call rewrite (C++ template syntax -> C names) --
@@ -531,13 +545,17 @@ def fix_vftables(text, disp):
     def rep(m):
         ns = nospace(m.group(1))
         va = VFT_VA.get(ns)
-        if va:
+        if va is None:
+            # r20: tnorm2 兜底——Ghidra 存储类型名带下划线变体（class_Body/_> 尾），
+            # 与 map 的原始去空格键失配；双端归一（去 class-key + 去全部 _/空白）
+            va = VFT_VA_T.get(tnorm2(m.group(1)))
+        if va and va != 'AMBIG':
             return f'((void *)(0x{va.lstrip("0").zfill(8)}u))'
         unresolved.add(m.group(1) + f' [VFT] {disp}')
         return m.group(0)
     text = VFT_Q.sub(rep, text)
     if cls:
-        va = VFT_VA.get(nospace(cls))
+        va = VFT_VA.get(nospace(cls)) or VFT_VA_T.get(tnorm2(cls))
         if va:
             text = re.sub(r'&_vftable_\b', f'((void *)(0x{va.lstrip("0").zfill(8)}u))', text)
             text = re.sub(r'(?<![(\w])_vftable_\b(?!\s*\()',

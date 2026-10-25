@@ -1,0 +1,11 @@
+pool=20839 fullnames, multi=570
+oracle: 2015 stub names
+cov_name: 10168 entries
+vftable_map: 1749 entries
+batch=sweep01 total=799 in=358 (env_defer=227 auto_prev=214) tpl_defs=4
+prescreen: auto-defer now=0 total=214
+prototypes: 358 (all-CC)
+decls_gen refreshed: 0 sigs, 0 templates, 154 K&R
+typedef forwards: 7 (alias 1)
+l2 statics: +0 (of 1)
+WROTE /tmp/sweep_sweep01_draft.c (229080B) sections=358 externs=8 unresolved=58
