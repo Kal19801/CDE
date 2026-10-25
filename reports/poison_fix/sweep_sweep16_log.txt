@@ -1,0 +1,20 @@
+pool=20839 fullnames, multi=570
+oracle: 1703 stub names
+cov_name: 10236 entries
+vftable_map: 1749 entries
+batch=sweep16 total=1764 in=61 (env_defer=1406 auto_prev=297) tpl_defs=10
+WARN 005e9b90_RefuelerModule__GetOneLineStatus: slice local local_30: no decl found
+WARN 006c9fd0_FleetCustomizationReadout__GetCostBarInfo: slice local local_14: no decl found
+WARN 006ca2b0_FleetCustomizationReadout__GetCostHeader: slice local local_14: no decl found
+WARN 006cb990_FleetCustomizationReadout__GetMassBarInfo: slice local local_14: no decl found
+WARN 006cbc70_FleetCustomizationReadout__GetMassHeader: slice local local_14: no decl found
+WARN 0070ec50_FixedOrbit__GetAbsoluteVelocityNeededToPhaseAtPeriapsis_km__s: slice local local_5c: no decl found
+prescreen: auto-defer now=0 total=297
+prototypes: 61 (all-CC)
+hdr sig conflicts renamed: 11
+renames: +0 (alias +0)
+data closure v2: 1 macros (skipped 22) pfn=0
+typedef forwards: 12 (r23 complete 5) (alias 0)
+renames applied: 16
+l2 statics: +0 (of 1)
+WROTE /tmp/sweep_sweep16_draft.c (216534B) sections=61 externs=14 unresolved=80
