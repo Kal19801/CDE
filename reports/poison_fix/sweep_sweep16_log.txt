@@ -2,19 +2,538 @@ pool=20839 fullnames, multi=570
 oracle: 1703 stub names
 cov_name: 10236 entries
 vftable_map: 1749 entries
-batch=sweep16 total=1764 in=61 (env_defer=1406 auto_prev=297) tpl_defs=10
-WARN 005e9b90_RefuelerModule__GetOneLineStatus: slice local local_30: no decl found
-WARN 006c9fd0_FleetCustomizationReadout__GetCostBarInfo: slice local local_14: no decl found
-WARN 006ca2b0_FleetCustomizationReadout__GetCostHeader: slice local local_14: no decl found
-WARN 006cb990_FleetCustomizationReadout__GetMassBarInfo: slice local local_14: no decl found
-WARN 006cbc70_FleetCustomizationReadout__GetMassHeader: slice local local_14: no decl found
+batch=sweep16 total=1753 in=1753 (env_defer=0 auto_prev=0) tpl_defs=70
+AUTODEFER 47eb60 0047eb60_FUN_0047eb60: ::-residue
+AUTODEFER 47ec80 0047ec80_FUN_0047ec80: ::-residue
+AUTODEFER 4d0c40 004d0c40_FUN_004d0c40: ::-residue
+AUTODEFER 4da530 004da530_DeltaVWidget__DeltaVWidget: ::-residue
+AUTODEFER 4db6c0 004db6c0_GameOverUI__GameOverUI: ::-residue
+WARN 004f6240_NotificationManager__GetCurrentNotification: slice local local_14: no decl found
+WARN 004f7550_NotificationManager__IsCurrentNotificationFullyWritten: slice local local_34: no decl found
+AUTODEFER 4fb730 004fb730_util__DelegateFactory_class_MainManager_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_MainManager__GetOptionsSize_void_const__: ::-residue
+WARN 004fb970_PauseMenuUI__PauseMenuUI: slice local local_78: no decl found
+AUTODEFER 4fb970 004fb970_PauseMenuUI__PauseMenuUI: ::-residue
+AUTODEFER 4fda60 004fda60_StandaloneOptionsButton__Open: ::-residue
+AUTODEFER 4fe0a0 004fe0a0_PauseMenuHandler__OpenBriefing: ::-residue
+AUTODEFER 4ff0d0 004ff0d0_PauseMenuHandler__OpenOptionsMenu: ::-residue
+WARN 00507ba0_FUN_00507ba0: slice local local_280: no decl found
+WARN 00507ba0_FUN_00507ba0: slice local local_298: no decl found
+WARN 00507ba0_FUN_00507ba0: slice local local_2d0: no decl found
+WARN 00507ba0_FUN_00507ba0: slice local local_2e0: no decl found
+WARN 00507ba0_FUN_00507ba0: slice local local_310: no decl found
+WARN 00507ba0_FUN_00507ba0: slice local local_320: no decl found
+WARN 00509930_FUN_00509930: slice local local_d0: no decl found
+WARN 0050f2e0_CraftBlueprintArmor__GetArmorRadiiAndHeightPerPlatePerLayer_m_MemoizedFunction: slice local local_a0: no decl found
+AUTODEFER 50f2e0 0050f2e0_CraftBlueprintArmor__GetArmorRadiiAndHeightPerPlatePerLayer_m_MemoizedFunction: ::-residue
+WARN 00511c30_CraftBlueprintArmor__GetIndicesFromParametricLocation: slice local local_7c: no decl found
+WARN 005131f0_CraftBlueprintArmor__GetMassOfArmorLayer_kg: slice local uStack_20: no decl found
+WARN 00517710_CraftBlueprintArmor__GetStartEndLayerPlates: slice local local_48: no decl found
+AUTODEFER 51eda0 0051eda0_ArmorMatrix__GetTotalMass_kg: ::-residue
+WARN 0000528390 util::Quaternion<double>::Quaternion<double>: text=2 disasm=0 — leave raw
+WARN 00528390_util__Quaternion_double___Quaternion_double_: slice local local_20: no decl found
+WARN 00528390_util__Quaternion_double___Quaternion_double_: slice local local_50: no decl found
+WARN 005291e0_FUN_005291e0: slice local local_138: no decl found
+AUTODEFER 52c780 0052c780_CraftInstance__GetArmorlessSplit: ::-residue
+WARN 0052f720_CraftInstance__GetInverseMomentOfInertiaTensor_kg_m2_MemoizedFunction: slice local local_58: no decl found
+WARN 005362b0_FUN_005362b0: slice local local_18: no decl found
+WARN 005362b0_FUN_005362b0: slice local local_24: no decl found
+WARN 005362b0_FUN_005362b0: slice local local_30: no decl found
+WARN 0053db30_FUN_0053db30: slice local local_50: no decl found
+WARN 0053db30_FUN_0053db30: slice local pMStack_7c: no decl found
+AUTODEFER 53fcf0 0053fcf0_FUN_0053fcf0: ::-residue
+WARN 00540460_FUN_00540460: slice local local_98: no decl found
+AUTODEFER 5493b0 005493b0_CraftBlueprint__GetCostInfo: ::-residue
+WARN 0054b9d0_CraftBlueprint__GetDeltaVInfo: slice local local_24: no decl found
+AUTODEFER 54cea0 0054cea0_CraftBlueprint__GetEstimatedTorque_N_m: ::-residue
+WARN 0054e410_CraftBlueprint__GetHeatInfo: slice local local_c: no decl found
+AUTODEFER 54e410 0054e410_CraftBlueprint__GetHeatInfo: ::-residue
+AUTODEFER 551f80 00551f80_CraftBlueprint__GetMassInfo: ::-residue
+AUTODEFER 552400 00552400_CraftBlueprint__GetMassRatioInfo: ::-residue
+AUTODEFER 559ed0 00559ed0_CraftBlueprint__GetSizeInfo: ::-residue
+WARN 0056b510_FUN_0056b510: slice local local_18: no decl found
+WARN 0056e520_MetagameManager__GenerateNewRefractiveIndexSpectrum: slice local local_50: no decl found
+WARN 00576dd0_FUN_00576dd0: slice local local_50: no decl found
+WARN 00577020_FUN_00577020: slice local local_18: no decl found
+WARN 00577020_FUN_00577020: slice local local_24: no decl found
+AUTODEFER 577e10 00577e10_util__DelegateFactory_class_ModuleDesignManager_void_class_util__Reflectable____MethodCaller__private__void___thiscall_ModuleDesignManager__RefreshReflectable_class_util__Reflectable___: ::-residue
+AUTODEFER 5784a0 005784a0_util__DelegateFactory_class_ModuleDesignManager_class_util__Str_char__double_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char____thiscall_ModuleDesignManager: ::-residue
+WARN 0057c4f0_FUN_0057c4f0: slice local local_44: no decl found
+AUTODEFER 585620 00585620_UIListBox_class_util__Reflectable____Generate: ::-residue
+AUTODEFER 586140 00586140_UIListBox_class_util__SharedPtr_struct_ModuleCategory_____Generate: ::-residue
+AUTODEFER 58d190 0058d190_FUN_0058d190: ::-residue
+AUTODEFER 58d790 0058d790_FUN_0058d790: ::-residue
+AUTODEFER 58ddb0 0058ddb0_util__DelegateFactory_struct_UIShipInfo_class_util__Str_char__double___MethodCallerConst__private__class_util__Str_char____thiscall_UIShipInfo__GetPowerOrHeatTooltipPrint_double_const__: ::-residue
+WARN 0058e800_FUN_0058e800: slice local local_3c: no decl found
+AUTODEFER 58f380 0058f380_UIModuleList__FullRebuild: ::-residue
+WARN 0059ba00_CrewCompartment__SendCrewKilledMessage: slice local local_14: no decl found
+AUTODEFER 59ba00 0059ba00_CrewCompartment__SendCrewKilledMessage: ::-residue
+AUTODEFER 5a3020 005a3020_EngineCompartment___scalar_deleting_destructor_: ::-residue
+AUTODEFER 5a6770 005a6770_ResistojetCompartment___scalar_deleting_destructor_: ::-residue
+AUTODEFER 5b1430 005b1430_EngineCompartment__EngineCompartment: ::-residue
+WARN 005b3010_EngineModule__GetGimbalInfo: slice local local_c: no decl found
+WARN 005b5970_EngineCompartment__SetGimbalTowards: slice local local_5c: no decl found
+WARN 005b6f30_NuclearThermalRocketModule__GetAdvancedInfo: slice local local_20: no decl found
+WARN 005b6f30_NuclearThermalRocketModule__GetAdvancedInfo: slice local local_2c: no decl found
+WARN 005bb870_PropellantTankCompartment__GenerateCompartmentPieces: slice local local_4c: no decl found
+WARN 005c2990_ThermalRocketSubModule__BuildExhaustPlumeModel: slice local local_dc: no decl found
+WARN 005c5360_ThermalRocketSubModule__GetGasExpansionPlume_MemoizedFunction: slice local local_4c: no decl found
+AUTODEFER 5ccac0 005ccac0_Module__GetCostInfo: ::-residue
+AUTODEFER 5cda90 005cda90_Module__GetMassInfo: ::-residue
+AUTODEFER 5cdf80 005cdf80_Module__GetPowerUseInfo: ::-residue
+WARN 005ce530_Module__GetSizeInfo: slice local local_c: no decl found
+AUTODEFER 5ce530 005ce530_Module__GetSizeInfo: ::-residue
+WARN 005cfa80_GasExpansionPlume__AppendModel: slice local local_30: no decl found
+WARN 005f1860_TurretSubModule__BuildModels: slice local local_58: no decl found
+WARN 005f2500_TurretSubModule__GenerateNewCompartmentPieces: slice local local_160: no decl found
+WARN 005f2500_TurretSubModule__GenerateNewCompartmentPieces: slice local local_3c: no decl found
+WARN 005f8f70_ExplosiveCompartment__RunActions: slice local local_44: no decl found
+WARN 005f8f70_ExplosiveCompartment__RunActions: slice local local_48: no decl found
+AUTODEFER 5f8f70 005f8f70_ExplosiveCompartment__RunActions: ::-residue
+WARN 005fd7b0_FlareCompartment__Tick: slice local local_58: no decl found
+WARN 005fd7b0_FlareCompartment__Tick: slice local local_e0: no decl found
+WARN 00603860_NuclearPayloadModule__GetFusionFuelStress_Pa: slice local local_c: no decl found
+WARN 00608bc0_FUN_00608bc0: slice local local_110: no decl found
+WARN 00608bc0_FUN_00608bc0: slice local local_60: no decl found
+WARN 00608bc0_FUN_00608bc0: slice local local_b8: no decl found
+AUTODEFER 60fc10 0060fc10_RadioisotopeThermoelectricGeneratorModule__RenderDiagram: ::-residue
+AUTODEFER 6129c0 006129c0_ThermoelectricFissionReactorModule__RenderDiagram: ::-residue
+AUTODEFER 615bd0 00615bd0_TurboelectricFissionReactorModule__GetAllFlowPoints: ::-residue
+WARN 00625cf0_FUN_00625cf0: slice local local_2c: no decl found
+WARN 00625cf0_FUN_00625cf0: slice local local_a0: no decl found
+AUTODEFER 625cf0 00625cf0_FUN_00625cf0: ::-residue
+WARN 00626200_FUN_00626200: slice local local_2c: no decl found
+WARN 00626200_FUN_00626200: slice local local_a0: no decl found
+AUTODEFER 626200 00626200_FUN_00626200: ::-residue
+WARN 0062b4e0_CoilgunModule__GetGeneratedName: slice local local_14: no decl found
+WARN 0062b4e0_CoilgunModule__GetGeneratedName: slice local local_30: no decl found
+AUTODEFER 638530 00638530_ConventionalGunModule__SetCachedData: ::-residue
+WARN 00640560_LaserModule__BuildModels: slice local local_b4: no decl found
+WARN 00640560_LaserModule__BuildModels: slice local local_c4: no decl found
+AUTODEFER 648490 00648490_LaserCompartment__GetUIToggleActions: ::-residue
+AUTODEFER 64cb50 0064cb50_LauncherSubCompartment__GetUIActions: ::-residue
+AUTODEFER 64d460 0064d460_LauncherSubCompartment__GetUIToggleActions: ::-residue
+AUTODEFER 64da00 0064da00_LauncherSubCompartment__LaunchOnce: ::-residue
+WARN 0064f080_FUN_0064f080: slice local local_2c: no decl found
+WARN 0064f080_FUN_0064f080: slice local local_a0: no decl found
+AUTODEFER 64f080 0064f080_FUN_0064f080: ::-residue
+WARN 0064f5a0_FUN_0064f5a0: slice local local_2c: no decl found
+WARN 0064f5a0_FUN_0064f5a0: slice local local_a0: no decl found
+AUTODEFER 64f5a0 0064f5a0_FUN_0064f5a0: ::-residue
+WARN 00650350_RailgunModule__BuildModels: slice local local_54: no decl found
+WARN 00653c70_RailgunModule__GetGeneratedName: slice local local_14: no decl found
+AUTODEFER 65d840 0065d840_FUN_0065d840: ::-residue
+WARN 0065eb10_WeaponCompartment__DetermineAimDirection: slice local local_168: no decl found
+WARN 0065eb10_WeaponCompartment__DetermineAimDirection: slice local local_1d0: no decl found
+WARN 0065fac0_WeaponCompartment__FireWeaponAtTarget: slice local local_c4: no decl found
+WARN 00662ba0_WeaponCompartment__GetInaccurateShotDirection: slice local local_48: no decl found
+WARN 006649f0_WeaponModule__GetReloadInfo: slice local local_1c: no decl found
+WARN 00664e50_WeaponModule__GetShotInfo: slice local local_14: no decl found
+WARN 00664e50_WeaponModule__GetShotInfo: slice local local_2c: no decl found
+WARN 00664e50_WeaponModule__GetShotInfo: slice local local_38: no decl found
+AUTODEFER 665e60 00665e60_WeaponCompartment__GetUIToggleActions: ::-residue
+WARN 0068dc60_InstantiateSpectraTexture: slice local local_40: no decl found
+AUTODEFER 691420 00691420_FUN_00691420: ::-residue
+AUTODEFER 691e90 00691e90_FUN_00691e90: ::-residue
+WARN 00692570_FUN_00692570: slice local local_58: no decl found
+WARN 00693060_FUN_00693060: slice local local_54: no decl found
+AUTODEFER 694a90 00694a90_util__DelegateFactory_struct_UICompartmentInfo_class_util__Str_char__double___MethodCallerConst__private__class_util__Str_char____thiscall_UICompartmentInfo__PrintModuleRotation_doub: ::-residue
+AUTODEFER 694f30 00694f30_UICompartmentInfo__UICompartmentInfo: ::-residue
+AUTODEFER 699260 00699260_FUN_00699260: ::-residue
+WARN 0069e7a0_UICompartmentInfo__GetQuickStats: slice local local_2c: no decl found
+WARN 0069e7a0_UICompartmentInfo__GetQuickStats: slice local local_38: no decl found
+WARN 0069e7a0_UICompartmentInfo__GetQuickStats: slice local local_44: no decl found
+AUTODEFER 6a6de0 006a6de0_ShipDesignManager__BuildCraftList: ::-residue
+WARN 006abb40_UIListBox_enum_BriefingSubject__Type___Generate: slice local local_44: no decl found
+AUTODEFER 6abb40 006abb40_UIListBox_enum_BriefingSubject__Type___Generate: ::-residue
+WARN 006ae110_ShipDesignManager__GetModuleInfoCustomLabel: slice local local_c: no decl found
+AUTODEFER 6afc70 006afc70_ShipDesignManager__Refresh: ::-residue
+AUTODEFER 6b1600 006b1600_util__DelegateFactory_struct_UIArmorLayerPanel_class_util__Str_char__double___MethodCallerConst__public__class_util__Str_char____thiscall_UIArmorLayerPanel__PrintPercentage_double_const__: ::-residue
+AUTODEFER 6b1650 006b1650_util__DelegateFactory_struct_UIArmorLayerPanel_class_util__Str_char__double___MethodCallerConst__public__class_util__Str_char____thiscall_UIArmorLayerPanel__PrintThicknessOrSpacing_d: ::-residue
+AUTODEFER 6b4ee0 006b4ee0_UIListBox_int___Generate: ::-residue
+WARN 006bc7d0_FUN_006bc7d0: slice local local_18: no decl found
+WARN 006bc7d0_FUN_006bc7d0: slice local local_24: no decl found
+WARN 006bcb10_FUN_006bcb10: slice local local_18: no decl found
+WARN 006bcb10_FUN_006bcb10: slice local local_24: no decl found
+AUTODEFER 6bd1a0 006bd1a0_GameManager__GetManager_class_StrategicManager_: ::-residue
+AUTODEFER 6bdbf0 006bdbf0_util__DelegateFactory_struct_FleetCustomizationReadout_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_FleetCustomizationReadout__GetBarSize_vo: ::-residue
+AUTODEFER 6be610 006be610_util__DelegateFactory_class_BriefingsHandler_class_util__Reflectable____MethodCallerConst__private__class_util__Reflectable____thiscall_BriefingsHandler__GetSelectedLevel_void_const__: ::-residue
+AUTODEFER 6cb330 006cb330_BriefingsHandler__GetLevel: ::-residue
+WARN 006cd930_FleetCustomizationReadout__GetTextInfo: slice local local_3c: no decl found
+WARN 006d0190_FUN_006d0190: slice local local_18: no decl found
+WARN 006d0190_FUN_006d0190: slice local local_24: no decl found
+AUTODEFER 6e1140 006e1140_UIListBox_class_util__Str_char_____Generate: ::-residue
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_14: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_20: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_2c: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_38: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_6c: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_84: no decl found
+WARN 006e5db0_InfolinksDisplayer__GetTitleText: slice local local_c0: no decl found
+AUTODEFER 6ebab0 006ebab0_util__DelegateFactory_class_ScenarioEditor_class_util__Str_char__double_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char____thiscall_ScenarioEditor__GetDecim: ::-residue
+AUTODEFER 6ebc90 006ebc90_util__DelegateFactory_class_LevelEditor_struct_WorldObject___MethodCallerConst__private__struct_WorldObject___thiscall_LevelEditor__GetSelection_void_const__: ::-residue
+AUTODEFER 6ebda0 006ebda0_util__DelegateFactory_struct_LevelEditorBodyUI_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_LevelEditorBodyUI__GetSize_void_const__: ::-residue
+WARN 00006ed410 util::Maybe<struct_FixedOrbit>::operator->: text=1 disasm=0 — leave raw
+AUTODEFER 6edc10 006edc10_LevelEditor__BuildLevelEditorScreen: ::-residue
+AUTODEFER 6ee340 006ee340_ScenarioEditor__BuildScenarioEditorScreen: ::-residue
+AUTODEFER 6f1590 006f1590_LevelEditorBody__Construct: ::-residue
+AUTODEFER 6f2bd0 006f2bd0_LevelEditor__GenerateUI: ::-residue
+AUTODEFER 70aea0 0070aea0_MainManager__BuildOptionsMenu: ::-residue
 WARN 0070ec50_FixedOrbit__GetAbsoluteVelocityNeededToPhaseAtPeriapsis_km__s: slice local local_5c: no decl found
-prescreen: auto-defer now=0 total=297
-prototypes: 61 (all-CC)
-hdr sig conflicts renamed: 11
+WARN 00710ba0_FixedOrbit__GetPointsToMatchPlane: slice local local_198: no decl found
+WARN 00714a80_Astrogation__GetTimeOfBattle_s: slice local local_1b0: no decl found
+WARN 00714a80_Astrogation__GetTimeOfBattle_s: slice local local_1b8: no decl found
+WARN 00718b20_CelestialBody__GenerateModels: slice local local_178: no decl found
+WARN 00718b20_CelestialBody__GenerateModels: slice local local_24: no decl found
+WARN 00718b20_CelestialBody__GenerateModels: slice local local_30: no decl found
+WARN 00718b20_CelestialBody__GenerateModels: slice local local_38: no decl found
+WARN 00718b20_CelestialBody__GenerateModels: slice local local_80: no decl found
+AUTODEFER 71b7e0 0071b7e0_CelestialBody__GetSortedListing: ::-residue
+WARN 0000724000 util::Maybe<struct_FixedOrbit>::operator->: text=1 disasm=0 — leave raw
+WARN 00729690_CelestialObject__RenderTransparent: slice local local_1c: no decl found
+WARN 000072b890 util::Darray<struct_ItineraryNode>::Darray<struct_ItineraryNode>: text=1 disasm=0 — leave raw
+AUTODEFER 72d7c0 0072d7c0_util__Darray_struct_ItineraryNode____scalar_deleting_destructor_: ::-residue
+WARN 0072f700_Fleet__ExecuteOrbitalBurn: slice local local_1f8: no decl found
+WARN 0072f700_Fleet__ExecuteOrbitalBurn: slice local local_240: no decl found
+WARN 007305e0_Fleet__GetExtendedInfo: slice local local_2c: no decl found
+WARN 007305e0_Fleet__GetExtendedInfo: slice local local_38: no decl found
+AUTODEFER 7305e0 007305e0_Fleet__GetExtendedInfo: ::-residue
+WARN 007317b0_Fleet__GetName: slice local local_18: no decl found
+WARN 007317b0_Fleet__GetName: slice local local_24: no decl found
+WARN 007317b0_Fleet__GetName: slice local local_30: no decl found
+WARN 00735300_Fleet__Tick: slice local local_10: no decl found
+WARN 00735300_Fleet__Tick: slice local local_20: no decl found
+WARN 0000736750 util::Darray<struct_ItineraryNode>::Darray<struct_ItineraryNode>: text=1 disasm=0 — leave raw
+WARN 00739d20_Itinerary__ExecuteCircularInjection: slice local local_3c: no decl found
+WARN 0073ae30_Itinerary__ExecuteIntercept: slice local local_24: no decl found
+WARN 0073ae30_Itinerary__ExecuteIntercept: slice local local_c: no decl found
+AUTODEFER 73ae30 0073ae30_Itinerary__ExecuteIntercept: ::-residue
+WARN 0073d0a0_Itinerary__ExecuteMatchOrbit: slice local local_14: no decl found
+WARN 0073d0a0_Itinerary__ExecuteMatchOrbit: slice local local_3c: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_44: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_50: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_5c: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_68: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_74: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_80: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_8c: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_98: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_a4: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_b0: no decl found
+WARN 007406f0_Itinerary__GetInterceptStatus: slice local local_bc: no decl found
+WARN 00744020_Itinerary__GetTimeStep_s: slice local local_58: no decl found
+WARN 00744730_Itinerary__IsFleetNearToNode: slice local local_18: no decl found
+WARN 00745120_Itinerary__OnCompleted: slice local local_14: no decl found
+WARN 00745120_Itinerary__OnCompleted: slice local local_20: no decl found
+WARN 00748040_Itinerary__Update: slice local local_6c: no decl found
+WARN 0074b280_FUN_0074b280: slice local local_14: no decl found
+WARN 0074b280_FUN_0074b280: slice local local_20: no decl found
+WARN 0074dcb0_StrategicAI__AttemptOrbitalInclinationChange: slice local local_210: no decl found
+WARN 0074e4e0_OrbitalInterception__AttemptPeriapsisPhasing: slice local local_10: no decl found
+WARN 0074ee80_StrategicAI__FollowInterceptionProtocol: slice local local_140: no decl found
+WARN 0074ee80_StrategicAI__FollowInterceptionProtocol: slice local local_180: no decl found
+WARN 00752850_StrategicAI__Launch: slice local local_5c: no decl found
+AUTODEFER 752850 00752850_StrategicAI__Launch: ::-residue
+AUTODEFER 755ab0 00755ab0_FUN_00755ab0: ::-residue
+AUTODEFER 758b90 00758b90_FUN_00758b90: ::-residue
+WARN 000075a920 util::Darray<struct_WorldObject>::Darray<struct_WorldObject>: text=1 disasm=0 — leave raw
+AUTODEFER 75adf0 0075adf0_StrategicManager__SessionState__SessionState: ::-residue
+AUTODEFER 75b2f0 0075b2f0_util__Darray_struct_util__tuple2_class_util__WeakPtr_class_Fleet__struct_util__tuple2_class_util__WeakPtr_class_Fleet__double________Darray_struct_util__tuple2_class_util__WeakPtr_cl: ::-residue
+AUTODEFER 75b3e0 0075b3e0_util__Darray_struct_WorldObject____Darray_struct_WorldObject_: ::-residue
+AUTODEFER 75b4f0 0075b4f0_StrategicManager__SessionState___SessionState: ::-residue
+AUTODEFER 75c0e0 0075c0e0_FUN_0075c0e0: ::-residue
+AUTODEFER 75c270 0075c270_FUN_0075c270: ::-residue
+AUTODEFER 75e700 0075e700_util__Darray_struct_util__tuple2_class_util__WeakPtr_class_Fleet__struct_util__tuple2_class_util__WeakPtr_class_Fleet__double________scalar_deleting_destructor_: ::-residue
+AUTODEFER 75e740 0075e740_util__Darray_struct_PendingBattle____scalar_deleting_destructor_: ::-residue
+AUTODEFER 75f170 0075f170_util__Darray_struct_util__tuple2_class_util__WeakPtr_class_Fleet__struct_util__tuple2_class_util__WeakPtr_class_Fleet__double_______CheckSize: ::-residue
+AUTODEFER 760b40 00760b40_StrategicManager__DetermineTimeStep_s: ::-residue
+AUTODEFER 765880 00765880_StrategicManager__GetHoveredObject: ::-residue
+WARN 00765d00_StrategicManager__GetLookaheadTimeSinceJ2000_s: slice local local_168: no decl found
+WARN 0076a890_StrategicManager__ResetWidgetScreen: slice local local_10: no decl found
+AUTODEFER 76e680 0076e680_CreateDropMenu_struct_ActorDropdownAction_: ::-residue
+AUTODEFER 76f6f0 0076f6f0_util__MakeTuple_class_util__Str_char__class_util__Darray_struct_ActorDropdownAction___: ::-residue
+AUTODEFER 76f790 0076f790_util__DelegateFactory_struct_ActorDropdown_void_struct_ActorDropdownAction___MethodCaller__public__void___thiscall_ActorDropdown__GetDropdownOnSelect_struct_ActorDropdownAction__: ::-residue
+AUTODEFER 76f7f0 0076f7f0_util__DelegateFactory_struct_ActorDropButton_void_struct_ActorDropdownAction___MethodCaller__private__void___thiscall_ActorDropButton__TranslatedAction_struct_ActorDropdownAction__: ::-residue
+AUTODEFER 76f860 0076f860_util__Delegate_void___MethodCaller_struct_UIListBox_struct_ActorDropdownAction___ListButton__public__void___thiscall_UIListBox_struct_ActorDropdownAction___ListButton__OnClick_void__: ::-residue
+AUTODEFER 76f890 0076f890_util__DelegateFactory_struct_ActorDropdown_struct_util__Color_struct_ActorDropdownAction___MethodCallerConst__public__struct_util__Color___thiscall_ActorDropdown__GetDropdownColor_st: ::-residue
+AUTODEFER 76f940 0076f940_util__DelegateFactory_struct_ActorDropdown_void____cdecl___void__struct_ActorDropdownAction___MethodCallerConst__public__void____cdecl___thiscall_ActorDropdown__GetDropdownIcon_struc: ::-residue
+AUTODEFER 76f990 0076f990_util__DelegateFactory_struct_ActorDropdown_class_util__Str_char__struct_ActorDropdownAction___MethodCallerConst__public__class_util__Str_char____thiscall_ActorDropdown__GetDropdownLa: ::-residue
+AUTODEFER 76fa10 0076fa10_util__DelegateFactory_struct_ActorDropdown_int_struct_ActorDropdownAction___MethodCallerConst__public__int___thiscall_ActorDropdown__GetDropdownRowHeight_struct_ActorDropdownAction_const__: ::-residue
+AUTODEFER 76fa60 0076fa60_util__DelegateFactory_struct_ActorDropdown_struct_ActorDropdownAction___MethodCallerConst__public__struct_ActorDropdownAction___thiscall_ActorDropdown__GetDropdownSelected_void_const__: ::-residue
+AUTODEFER 76fac0 0076fac0_util__DelegateFactory_struct_ActorDropdown_class_util__Str_char__struct_ActorDropdownAction___MethodCallerConst__public__class_util__Str_char____thiscall_ActorDropdown__GetDropdownTa: ::-residue
+AUTODEFER 76ff00 0076ff00_util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_struct_ActorDropdownAction_______Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_struct_: ::-residue
+WARN 00007700f0 util::Darray<struct_ActorDropdownAction>::Darray<struct_ActorDropdownAction>: text=1 disasm=0 — leave raw
+WARN 0000770280 util::Darray<struct_ActorDropdownAction>::Darray<struct_ActorDropdownAction>: text=1 disasm=0 — leave raw
+WARN 00007704a0 util::Darray<struct_WorldObject>::Darray<struct_WorldObject>: text=1 disasm=0 — leave raw
+AUTODEFER 7709d0 007709d0_ActorDropButton__ActorDropButton: ::-residue
+WARN 00770df0_UIListBox_struct_ActorDropdownAction___ListButton__ListButton: slice local local_40: no decl found
+WARN 00770df0_UIListBox_struct_ActorDropdownAction___ListButton__ListButton: slice local pMStack_50: no decl found
+AUTODEFER 770df0 00770df0_UIListBox_struct_ActorDropdownAction___ListButton__ListButton: ::-residue
+AUTODEFER 772320 00772320_util__tuple2_class_util__Str_char__class_util__Darray_struct_ActorDropdownAction______vector_deleting_destructor_: ::-residue
+AUTODEFER 772530 00772530_util__Darray_struct_ActorDropdownAction____scalar_deleting_destructor_: ::-residue
+AUTODEFER 772860 00772860_util__HashMap_struct_ActorDropdownAction_class_util__WeakPtr_struct_UIWidget_____Add: ::-residue
+AUTODEFER 773510 00773510_ActorDropdown__ConvertActorList: ::-residue
+AUTODEFER 774270 00774270_UIListBox_struct_ActorDropdownAction___Generate: ::-residue
+AUTODEFER 774d90 00774d90_ActorDropdown__Generate: ::-residue
+WARN 00776df0_WorldObject__GetName: slice local local_c: no decl found
+AUTODEFER 7775c0 007775c0_UIListBox_struct_ActorDropdownAction___GetSearchedValue: ::-residue
+AUTODEFER 777800 00777800_UIListBox_struct_ActorDropdownAction___GetSelectedIndices: ::-residue
+WARN 007779f0_WorldObject__GetStateAt: slice local local_24: no decl found
+AUTODEFER 7780b0 007780b0_UIListBox_struct_ActorDropdownAction___HandleKeyInput: ::-residue
+AUTODEFER 778520 00778520_WorldObject__IsCelestialObject: ::-residue
+AUTODEFER 7785d0 007785d0_WorldObject__IsFleet: ::-residue
+AUTODEFER 7786a0 007786a0_WorldObject__IsLPoint: ::-residue
+AUTODEFER 778760 00778760_WorldObject__IsLevelEditorBody: ::-residue
+AUTODEFER 7792a0 007792a0_util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_struct_ActorDropdownAction_______SetSize: ::-residue
+AUTODEFER 779800 00779800_AsListing_struct_ItineraryNode_: ::-residue
+AUTODEFER 77a0b0 0077a0b0_util__DelegateFactory_struct_HUDItineraryInfoPanel_void_struct_ItineraryNode___MethodCaller__private__void___thiscall_HUDItineraryInfoPanel__OnSelectBurn_struct_ItineraryNode__: ::-residue
+AUTODEFER 77a150 0077a150_util__Delegate_void___MethodCaller_struct_UIListBox_struct_ItineraryNode___ListButton__public__void___thiscall_UIListBox_struct_ItineraryNode___ListButton__OnClick_void__: ::-residue
+AUTODEFER 77a180 0077a180_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__AreMissionBurnsVisible_void_const__: ::-residue
+AUTODEFER 77a1b0 0077a1b0_util__DelegateFactory_class_StrategicManager_bool___MethodCallerConst__public__bool___thiscall_StrategicManager__CanShiftCameraToCurrentSelection_void_const__: ::-residue
+AUTODEFER 77a260 0077a260_util__DelegateFactory_struct_HUDItineraryInfoPanel_struct_ItineraryNode___MethodCallerConst__private__struct_ItineraryNode___thiscall_HUDItineraryInfoPanel__GetBurnCurrentlySelected_: ::-residue
+AUTODEFER 77a2e0 0077a2e0_util__DelegateFactory_struct_HUDItineraryInfoPanel_struct_UIWidget__struct_ItineraryNode___MethodCallerConst__private__struct_UIWidget____thiscall_HUDItineraryInfoPanel__GetBurnCusto: ::-residue
+AUTODEFER 77a350 0077a350_util__DelegateFactory_struct_HUDItineraryInfoPanel_void____cdecl___void__struct_ItineraryNode___MethodCallerConst__private__void____cdecl___thiscall_HUDItineraryInfoPanel__GetBurnIco: ::-residue
+AUTODEFER 77a3c0 0077a3c0_util__DelegateFactory_struct_HUDItineraryInfoPanel_int_struct_ItineraryNode___MethodCallerConst__private__int___thiscall_HUDItineraryInfoPanel__GetBurnRowHeight_struct_ItineraryNode_const__: ::-residue
+AUTODEFER 77a4d0 0077a4d0_util__DelegateFactory_struct_HUDItineraryInfoPanel_class_util__Str_char__struct_ItineraryNode___MethodCallerConst__private__class_util__Str_char____thiscall_HUDItineraryInfoPanel__Ge: ::-residue
+AUTODEFER 77a580 0077a580_util__DelegateFactory_struct_HUDFleetInfoPanel_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_HUDFleetInfoPanel__GetIconSize_void_const__: ::-residue
+AUTODEFER 77a820 0077a820_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__IsBeginCancelItineraryEnabled_void_const__: ::-residue
+AUTODEFER 77a880 0077a880_util__DelegateFactory_struct_HUDFleetInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDFleetInfoPanel__IsInspectFleetButtonEnabled_void_const__: ::-residue
+AUTODEFER 77a890 0077a890_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__IsItineraryStatusBarVisible_void_const__: ::-residue
+AUTODEFER 77a8a0 0077a8a0_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__IsMissionButtonVisible_void_const__: ::-residue
+AUTODEFER 77a8b0 0077a8b0_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__IsMissionInfoVisible_void_const__: ::-residue
+AUTODEFER 77a8e0 0077a8e0_util__DelegateFactory_struct_HUDItineraryInfoPanel_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryInfoPanel__IsMissionInterceptInfoVisible_void_const__: ::-residue
+WARN 000077ac40 util::Maybe<struct_Itinerary>::Maybe<struct_Itinerary>: text=1 disasm=0 — leave raw
+WARN 000077ad20 util::Maybe<struct_Itinerary>::Maybe<struct_Itinerary>: text=1 disasm=0 — leave raw
+AUTODEFER 77ad20 0077ad20_util__Maybe_struct_Itinerary___Maybe_struct_Itinerary_: ::-residue
+AUTODEFER 77b060 0077b060_BurnInfoCustomWidget__BurnInfoCustomWidget: ::-residue
+AUTODEFER 77ba00 0077ba00_HUDFleetInfoPanel__HUDFleetInfoPanel: ::-residue
+AUTODEFER 77ca30 0077ca30_HUDItineraryInfoPanel__HUDItineraryInfoPanel: ::-residue
+WARN 0077d940_UIListBox_struct_ItineraryNode___ListButton__ListButton: slice local local_40: no decl found
+WARN 0077d940_UIListBox_struct_ItineraryNode___ListButton__ListButton: slice local pMStack_50: no decl found
+AUTODEFER 77d940 0077d940_UIListBox_struct_ItineraryNode___ListButton__ListButton: ::-residue
+AUTODEFER 77e840 0077e840_util__Delegate_struct_util__Color_struct_ItineraryNode___operator__: ::-residue
+AUTODEFER 77ee20 0077ee20_util__tuple2_class_util__Str_char__class_util__Darray_struct_ItineraryNode______vector_deleting_destructor_: ::-residue
+AUTODEFER 77f2d0 0077f2d0_util__HashMap_struct_ItineraryNode_class_util__WeakPtr_struct_UIWidget_____Add: ::-residue
+AUTODEFER 77fc90 0077fc90_UIListBox_struct_ItineraryNode___Generate: ::-residue
+AUTODEFER 780d30 00780d30_HUDItineraryInfoPanel__GetAllTrajectoryBurns: ::-residue
+AUTODEFER 782fe0 00782fe0_UIListBox_struct_ItineraryNode___GetSearchedValue: ::-residue
+AUTODEFER 783300 00783300_UIListBox_struct_ItineraryNode___GetSelectedIndices: ::-residue
+AUTODEFER 783c20 00783c20_UIListBox_struct_ItineraryNode___HandleKeyInput: ::-residue
+AUTODEFER 784bb0 00784bb0_HUDItineraryInfoPanel__Rebuild: ::-residue
+AUTODEFER 7853f0 007853f0_util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_struct_ItineraryNode_______SetSize: ::-residue
+AUTODEFER 785880 00785880_util__DelegateFactory_struct_HUDItineraryNodeDragger_bool___MethodCallerConst__private__bool___thiscall_HUDItineraryNodeDragger__GetVisibility_void_const__: ::-residue
+AUTODEFER 785970 00785970_HUDItineraryNodeDragger__HUDItineraryNodeDragger: ::-residue
+WARN 00788770_HUDItineraryNodeDragger__MouseCapturedMove: slice local local_20: no decl found
+WARN 00788770_HUDItineraryNodeDragger__MouseCapturedMove: slice local local_2c0: no decl found
+WARN 00789900_HUDItineraryNodeDragger__MouseUp: slice local local_2ac: no decl found
+WARN 00789ba0_HUDItineraryNodeDragger__Render3DTransparent: slice local local_6c: no decl found
+AUTODEFER 78b780 0078b780_FUN_0078b780: ::-residue
+AUTODEFER 78c460 0078c460_util__DelegateFactory_struct_ItineraryMarker_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_ItineraryMarker__GetScreenPosition_void_const__: ::-residue
+AUTODEFER 78c4d0 0078c4d0_util__DelegateFactory_struct_ItineraryMarker_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_ItineraryMarker__GetSize_void_const__: ::-residue
+AUTODEFER 78cbd0 0078cbd0_ItineraryMarker__ItineraryMarker: ::-residue
+WARN 0078ed00_FUN_0078ed00: slice local local_70: no decl found
+AUTODEFER 790880 00790880_ItineraryNodeUI__GetExtraNotificationNodes: ::-residue
+AUTODEFER 790be0 00790be0_ItineraryNodeUI__GetFleetNotificationNodes: ::-residue
+AUTODEFER 792b80 00792b80_ItineraryNodeUI__GetOrbitNotificationNodes: ::-residue
+WARN 007944a0_ItineraryNodeUI__GetTooltip: slice local local_1b8: no decl found
+WARN 007944a0_ItineraryNodeUI__GetTooltip: slice local local_1c8: no decl found
+WARN 00796260_ItineraryNodeUI__Render3DTransparent: slice local local_10: no decl found
+AUTODEFER 797e30 00797e30_ItineraryNodeUI__RenderPath: ::-residue
+WARN 00799600_ItineraryNodeUI__Select: slice local local_320: no decl found
+AUTODEFER 79af80 0079af80_ItineraryNodeUI__Tick: ::-residue
+AUTODEFER 79b670 0079b670_OrbitDirectionArrow__OrbitDirectionArrow: ::-residue
+AUTODEFER 79e070 0079e070_OrbitUI__RenderLibrationLookaheadArrows: ::-residue
+AUTODEFER 7a0b60 007a0b60_BalloonPopupNodePayload__OnDestroyPreviousPopups: ::-residue
+AUTODEFER 7a1050 007a1050_util__DelegateFactory_class_StrategicManager_void_struct_WorldObject___MethodCaller__public__void___thiscall_StrategicManager__SelectObject_struct_WorldObject__: ::-residue
+AUTODEFER 7a1130 007a1130_util__DelegateFactory_class_StrategicManager_void_struct_WorldObject___MethodCaller__public__void___thiscall_StrategicManager__SetReferenceObject_struct_WorldObject__: ::-residue
+AUTODEFER 7a12c0 007a12c0_util__DelegateFactory_class_StrategicManager_void_struct_WorldObject___MethodCaller__public__void___thiscall_StrategicManager__ShiftCameraTo_struct_WorldObject__: ::-residue
+AUTODEFER 7a13a0 007a13a0_util__DelegateFactory_class_StrategicManager_class_util__Darray_struct_WorldObject_____MethodCallerConst__public__class_util__Darray_struct_WorldObject____thiscall_StrategicManager__: ::-residue
+AUTODEFER 7a13d0 007a13d0_util__DelegateFactory_class_StrategicManager_class_util__Darray_struct_WorldObject_____MethodCallerConst__public__class_util__Darray_struct_WorldObject____thiscall_StrategicManager__: ::-residue
+AUTODEFER 7a14d0 007a14d0_util__DelegateFactory_class_StrategicManager_double___MethodCallerConst__public__double___thiscall_StrategicManager__GetLookaheadTimeSinceJ2000_s_void_const__: ::-residue
+AUTODEFER 7a15b0 007a15b0_util__DelegateFactory_class_StrategicManager_struct_WorldObject___MethodCallerConst__public__struct_WorldObject___thiscall_StrategicManager__GetSelectedObject_void_const__: ::-residue
+AUTODEFER 7a1a90 007a1a90_HUDStrategic__HUDStrategic: ::-residue
+WARN 007a69b0_HUDStrategic__GetAdditionalTooltip: slice local local_c: no decl found
+WARN 007a7090_HUDStrategic__GetRulerPointsAndVelocity_km: slice local local_40: no decl found
+WARN 007aa4c0_GhostedUIButton__GetTooltip: slice local local_18: no decl found
+AUTODEFER 7ac660 007ac660_FUN_007ac660: ::-residue
+AUTODEFER 7ac7f0 007ac7f0_FUN_007ac7f0: ::-residue
+AUTODEFER 7ac980 007ac980_FUN_007ac980: ::-residue
+AUTODEFER 7acb10 007acb10_FUN_007acb10: ::-residue
+AUTODEFER 7acca0 007acca0_FUN_007acca0: ::-residue
+AUTODEFER 7ace30 007ace30_FUN_007ace30: ::-residue
+AUTODEFER 7acfc0 007acfc0_FUN_007acfc0: ::-residue
+WARN 007adb30_FUN_007adb30: slice local local_50: no decl found
+WARN 007ae5d0_FUN_007ae5d0: slice local local_e8: no decl found
+AUTODEFER 7aec20 007aec20_Body__Body: ::-residue
+AUTODEFER 7b0110 007b0110_Body___scalar_deleting_destructor_: ::-residue
+WARN 007b5500_Body__IsSignificantlyVisibleOnScreen: slice local local_1c: no decl found
+AUTODEFER 7b7950 007b7950_FUN_007b7950: ::-residue
+WARN 007b8290_FUN_007b8290: slice local local_d8: no decl found
+WARN 007b8290_FUN_007b8290: slice local local_f0: no decl found
+AUTODEFER 7b8290 007b8290_FUN_007b8290: ::-residue
+WARN 007b8910_FUN_007b8910: slice local local_e0: no decl found
+WARN 007b8910_FUN_007b8910: slice local local_f8: no decl found
+AUTODEFER 7b8910 007b8910_FUN_007b8910: ::-residue
+AUTODEFER 7b8f90 007b8f90_FUN_007b8f90: ::-residue
+WARN 007b9620_FUN_007b9620: slice local uStack_94: no decl found
+AUTODEFER 7b9620 007b9620_FUN_007b9620: ::-residue
+AUTODEFER 7b9d60 007b9d60_FUN_007b9d60: ::-residue
+AUTODEFER 7b9e40 007b9e40_FUN_007b9e40: ::-residue
+AUTODEFER 7ba0d0 007ba0d0_FUN_007ba0d0: ::-residue
+AUTODEFER 7ba2f0 007ba2f0_FUN_007ba2f0: ::-residue
+AUTODEFER 7ba570 007ba570_FUN_007ba570: ::-residue
+AUTODEFER 7bcad0 007bcad0_Collision__FindCollision: ::-residue
+AUTODEFER 7bd200 007bd200_Collision__MatterImpact: ::-residue
+WARN 007bdb30_Collision__ShipVsExplosion: slice local local_140: no decl found
+AUTODEFER 7be6c0 007be6c0_Collision__ShipVsMatter: ::-residue
+AUTODEFER 7bedc0 007bedc0_Collision__ShipVsPhotons: ::-residue
+AUTODEFER 7bf3f0 007bf3f0_Collision__ShipVsShip: ::-residue
+AUTODEFER 7c0d80 007c0d80_FUN_007c0d80: ::-residue
+WARN 007c1fc0_CapitalShipComponent__OnDestroy: slice local local_18: no decl found
+WARN 007c4250_MatterCloudComponent__GetRandomParticlePosition_km: slice local local_38: no decl found
+WARN 007c6610_ShotComponent__OnDestroy: slice local local_18: no decl found
+WARN 007c8360_FUN_007c8360: slice local local_1c: no decl found
+WARN 007c8360_FUN_007c8360: slice local local_5c: no decl found
+WARN 007c8360_FUN_007c8360: slice local local_7c: no decl found
+AUTODEFER 7ca700 007ca700_CraftInstance___CraftInstance: ::-residue
+WARN 007cafa0_FUN_007cafa0: slice local local_194: no decl found
+AUTODEFER 7cc5f0 007cc5f0_SpacecraftComponent__CollideDamageRayWithShip: ::-residue
+AUTODEFER 7cdaa0 007cdaa0_SpacecraftComponent__DivideUpSplittingCraft: ::-residue
+WARN 007cf020_SpacecraftComponent__DoesRayCollideWithBoundingCylinder: slice local local_50: no decl found
+WARN 007cf820_SpacecraftComponent__GetAvoidanceDirection_MemoizedFunction: slice local local_a0: no decl found
+WARN 007d0530_SpacecraftComponent__GetDesiredOrientation_MemoizedFunction: slice local local_84: no decl found
+AUTODEFER 7d4f60 007d4f60_SpacecraftComponent__ManageSplitting: ::-residue
+WARN 007d7860_SpacecraftComponent__RenderArmor: slice local local_24: no decl found
+WARN 007df710_FUN_007df710: slice local local_10: no decl found
+WARN 007dfd50_FUN_007dfd50: slice local local_1c: no decl found
+AUTODEFER 7e35a0 007e35a0_SpacecraftTargeting__GetWeaponTargetsList_Clear: ::-residue
+WARN 007e35e0_SpacecraftTargeting__GetWeaponTargetsList_Memoize: slice local local_24: no decl found
+AUTODEFER 7e35e0 007e35e0_SpacecraftTargeting__GetWeaponTargetsList_Memoize: ::-residue
+WARN 007e4870_FUN_007e4870: slice local local_24: no decl found
+AUTODEFER 7ed150 007ed150_FUN_007ed150: ::-residue
+AUTODEFER 7ed460 007ed460_FUN_007ed460: ::-residue
+AUTODEFER 7ed8c0 007ed8c0_FUN_007ed8c0: ::-residue
+AUTODEFER 7f05f0 007f05f0_TacticalAI__DroneSearchAndDestroy: ::-residue
+AUTODEFER 7f5060 007f5060_FUN_007f5060: ::-residue
+AUTODEFER 7f67d0 007f67d0_FUN_007f67d0: ::-residue
+AUTODEFER 7f6c00 007f6c00_util__DelegateFactory_class_TacticalManager_void_class_util__WeakPtr_class_Actor_____MethodCaller__private__void___thiscall_TacticalManager__DeleteActorTrigger_class_util__WeakPtr_cl: ::-residue
+AUTODEFER 7f7810 007f7810_TacticalManager__TacticalManager: ::-residue
+WARN 007f81a0_FUN_007f81a0: slice local local_20: no decl found
+WARN 007f8b10_FUN_007f8b10: slice local local_f0: no decl found
+AUTODEFER 7fa0c0 007fa0c0_TacticalManager__CacheBattlespaceData: ::-residue
+WARN 007fa490_TacticalManager__ConflictExists: slice local local_58: no decl found
+WARN 007fb110_TacticalManager__FocusCameraOnCombat: slice local local_58: no decl found
+WARN 007ff360_TacticalManager__GetShadowRelevantSpacecrafts: slice local local_7c: no decl found
+AUTODEFER 7ffe90 007ffe90_TacticalManager__GetStrategicGame_Memoize: ::-residue
+WARN 00801090_TacticalManager__NotifyOfAllEnemiesDisabled: slice local local_14: no decl found
+AUTODEFER 801480 00801480_TacticalManager__OnComponentRemoved: ::-residue
+WARN 00802600_TacticalManager__ResetData: slice local local_7c: no decl found
+WARN 008027b0_TacticalManager__ResetWidgetScreen: slice local local_10: no decl found
+AUTODEFER 807080 00807080_util__DelegateFactory_struct_MinimapWidget_void_struct_InputModifiers___MethodCaller__private__void___thiscall_MinimapWidget__Select_struct_InputModifiers__: ::-residue
+AUTODEFER 807130 00807130_util__DelegateFactory_struct_SpacecraftButton_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_SpacecraftButton__GetSize_void_const__: ::-residue
+AUTODEFER 807230 00807230_SpacecraftButton__SpacecraftButton: ::-residue
+WARN 00807640_OrderModeOverlay__DrawDirectionCircles: slice local local_68: no decl found
+AUTODEFER 808bf0 00808bf0_FUN_00808bf0: ::-residue
+AUTODEFER 809590 00809590_util__DelegateFactory_struct_MinimapRangeWidget_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_MinimapRangeWidget__GetSize_void_const__: ::-residue
+AUTODEFER 8095b0 008095b0_util__DelegateFactory_struct_MinimapWidget_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_MinimapWidget__GetSize_void_const__: ::-residue
+AUTODEFER 809c50 00809c50_MinimapWidget__MinimapWidget: ::-residue
+WARN 0080c410_Minimap__Render: slice local local_5c: no decl found
+WARN 0080dfc0_FUN_0080dfc0: slice local local_18: no decl found
+WARN 0080dfc0_FUN_0080dfc0: slice local local_24: no decl found
+WARN 0080dfc0_FUN_0080dfc0: slice local local_30: no decl found
+AUTODEFER 80e720 0080e720_FUN_0080e720: ::-residue
+AUTODEFER 80e880 0080e880_FUN_0080e880: ::-residue
+AUTODEFER 80ebf0 0080ebf0_FUN_0080ebf0: ::-residue
+AUTODEFER 80f0e0 0080f0e0_util__DelegateFactory_struct_SpacecraftCompartmentUI_bool___MethodCallerConst__private__bool___thiscall_SpacecraftCompartmentUI__CanVisualizeArmor_void_const__: ::-residue
+AUTODEFER 80f340 0080f340_util__DelegateFactory_struct_SpacecraftCompartmentUI_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char_____thiscall_SpacecraftCompartmentUI__GetSelectionName_: ::-residue
+AUTODEFER 80f650 0080f650_util__DelegateFactory_struct_SpacecraftCompartmentUI_bool___MethodCallerConst__private__bool___thiscall_SpacecraftCompartmentUI__ShowChangeSelectionNameBox_void_const__: ::-residue
+AUTODEFER 80f660 0080f660_util__DelegateFactory_struct_SpacecraftCompartmentUI_bool___MethodCallerConst__private__bool___thiscall_SpacecraftCompartmentUI__ShowImmutableNameBox_void_const__: ::-residue
+AUTODEFER 80f670 0080f670_CompartmentButton__CompartmentButton: ::-residue
+WARN 0080fe90_ModuleUI__ModuleUI: slice local local_100: no decl found
+WARN 0080fe90_ModuleUI__ModuleUI: slice local local_f4: no decl found
+AUTODEFER 80fe90 0080fe90_ModuleUI__ModuleUI: ::-residue
+WARN 00813510_FUN_00813510: slice local local_10: no decl found
+AUTODEFER 813fa0 00813fa0_ModuleUI___scalar_deleting_destructor_: ::-residue
+WARN 00816030_ModuleUI__GetGeneralModuleInfo: slice local local_20: no decl found
+WARN 00816030_ModuleUI__GetGeneralModuleInfo: slice local local_2c: no decl found
+WARN 00816030_ModuleUI__GetGeneralModuleInfo: slice local local_50: no decl found
+WARN 00816030_ModuleUI__GetGeneralModuleInfo: slice local local_c0: no decl found
+WARN 00818720_ModuleUI__GetOutOfPowerString: slice local local_2c: no decl found
+WARN 00818720_ModuleUI__GetOutOfPowerString: slice local local_38: no decl found
+WARN 00818720_ModuleUI__GetOutOfPowerString: slice local local_44: no decl found
+AUTODEFER 81bc60 0081bc60_SpacecraftCompartmentUI__Regenerate: ::-residue
+AUTODEFER 822b80 00822b80_OrderButton__OrderButton: ::-residue
+AUTODEFER 8254b0 008254b0_FUN_008254b0: ::-residue
+AUTODEFER 825680 00825680_util__DelegateFactory_struct_ShipGroupUI_struct_UIWidget__struct_util__Vec2_int__struct_util__Vec2_int_____MethodCaller__private__struct_UIWidget____thiscall_ShipGroupUI__GenerateOrd: ::-residue
+AUTODEFER 825890 00825890_util__DelegateFactory_struct_ShipGroupUI_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_ShipGroupUI__GetIconSize_void_const__: ::-residue
+AUTODEFER 825960 00825960_util__DelegateFactory_struct_ShipGroupUI_class_util__Str_char_____MethodCallerConst__private__class_util__Str_char____thiscall_ShipGroupUI__GetShipGroupInfo_void_const__: ::-residue
+AUTODEFER 825df0 00825df0_ShipGroupUI__ShipGroupUI: ::-residue
+WARN 00827230_FUN_00827230: slice local local_44: no decl found
+WARN 00827230_FUN_00827230: slice local local_6c: no decl found
+WARN 00827e10_ShipGroupUI__GetChangeOrderIconTooltip: slice local local_18: no decl found
+WARN 00827e10_ShipGroupUI__GetChangeOrderIconTooltip: slice local local_24: no decl found
+WARN 00827e10_ShipGroupUI__GetChangeOrderIconTooltip: slice local local_48: no decl found
+WARN 00827e10_ShipGroupUI__GetChangeOrderIconTooltip: slice local local_64: no decl found
+WARN 00827e10_ShipGroupUI__GetChangeOrderIconTooltip: slice local local_70: no decl found
+AUTODEFER 829940 00829940_ShipListUI__GetSubdividedSpacecraft: ::-residue
+AUTODEFER 82a430 0082a430_ShipListUI__RegenerateChildren: ::-residue
+AUTODEFER 82b040 0082b040_util__DelegateFactory_struct_HUDTactical_struct_UIWidget__struct_util__Vec2_int__struct_util__Vec2_int_____MethodCaller__private__struct_UIWidget____thiscall_HUDTactical__GenerateOrd: ::-residue
+AUTODEFER 82b2f0 0082b2f0_util__DelegateFactory_class_TacticalManager_class_util__Darray_class_util__WeakPtr_class_SpacecraftComponent_______MethodCallerConst__public__class_util__Darray_class_util__WeakPtr_c: ::-residue
+AUTODEFER 82b380 0082b380_HUDTactical__HUDTactical: ::-residue
+WARN 0085dc90_FUN_0085dc90: slice local local_18: no decl found
+WARN 0085dc90_FUN_0085dc90: slice local local_34: no decl found
+AUTODEFER 862040 00862040_DefaultPrintFunction: ::-residue
+WARN 00884bc0_RenderCustomRotatedSplineLoop: slice local local_2d0: no decl found
+AUTODEFER 88b310 0088b310_util__FindToken_char32_t_: ::-residue
+WARN 0088d0e0_Font__GetTextSize: slice local local_34: no decl found
+WARN 0088fb00_util__FileReader__ReadAll: slice local local_10: no decl found
+WARN 00891e40_FUN_00891e40: slice local local_18: no decl found
+WARN 008972b0_FUN_008972b0: slice local local_14: no decl found
+WARN 00897630_FUN_00897630: slice local local_18: no decl found
+WARN 0089fc80_FUN_0089fc80: slice local local_18: no decl found
+WARN 008af2f0_Interface__RenderTooltip: slice local local_5c: no decl found
+AUTODEFER 8bbcd0 008bbcd0_EndLoading: ::-residue
+AUTODEFER 8bc130 008bc130_StartLoading: ::-residue
+AUTODEFER 8bf5c0 008bf5c0_FUN_008bf5c0: ::-residue
+AUTODEFER 8bf990 008bf990_FUN_008bf990: ::-residue
+WARN 008c1740_UIEditTextBox__GetCursorPixelPosition: slice local local_20: no decl found
+AUTODEFER 8c84b0 008c84b0_util__DelegateFactory_struct_PropertyWidgetData_class_util__Str_char__double___MethodCallerConst__public__class_util__Str_char____thiscall_PropertyWidgetData__GetDecimalPrint_double_const__: ::-residue
+AUTODEFER 8c8500 008c8500_util__DelegateFactory_struct_PropertyWidgetData_double___MethodCallerConst__public__double___thiscall_PropertyWidgetData__GetDecimalTextMultiplier_void_const__: ::-residue
+AUTODEFER 8c8550 008c8550_util__DelegateFactory_struct_PropertyWidgetData_struct_util__Range_int_____MethodCallerConst__public__struct_util__Range_int____thiscall_PropertyWidgetData__GetIntegerBounds_void_const__: ::-residue
+AUTODEFER 8caaa0 008caaa0_FUN_008caaa0: ::-residue
+AUTODEFER 8d0080 008d0080_util__DelegateFactory_struct_BarGraph_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_BarGraph__GetChartDesiredSize_void_const__: ::-residue
+WARN 008d0f10_BarGraphChart__GetHoveredLine: slice local local_1c: no decl found
+WARN 008d1260_BarGraphChart__Render: slice local local_28: no decl found
+AUTODEFER 8d1e90 008d1e90_util__DelegateFactory_struct_PieChart_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_PieChart__GetChartSize_void_const__: ::-residue
+AUTODEFER 8d3050 008d3050_PieChartUI__Render: ::-residue
+WARN 008d5470_LineGraphChart__Render: slice local local_50: no decl found
+WARN 008d5470_LineGraphChart__Render: slice local local_5c: no decl found
+AUTODEFER 8d5470 008d5470_LineGraphChart__Render: ::-residue
+AUTODEFER 8d7fe0 008d7fe0_util__DelegateFactory_struct_BalloonPopup_struct_util__Vec2_int_____MethodCallerConst__private__struct_util__Vec2_int____thiscall_BalloonPopup__GetScreenPositionResult_void_const__: ::-residue
+WARN 008dadd0_CameraRoller__MouseCapturedMove: slice local local_28: no decl found
+AUTODEFER 8dd560 008dd560_util__DelegateFactory_struct_ChartLegend_struct_util__Vec2_int_____MethodCallerConst__public__struct_util__Vec2_int____thiscall_ChartLegend__GetSizeOfChart_void_const__: ::-residue
+AUTODEFER 8e98c0 008e98c0_FUN_008e98c0: ::-residue
+AUTODEFER 8ec810 008ec810_FUN_008ec810: ::-residue
+AUTODEFER 8ee7b0 008ee7b0_FUN_008ee7b0: ::-residue
+AUTODEFER 8f04d0 008f04d0_FUN_008f04d0: ::-residue
+AUTODEFER 8f23e0 008f23e0_FUN_008f23e0: ::-residue
+AUTODEFER 8f5b90 008f5b90_FUN_008f5b90: ::-residue
+AUTODEFER 8fb7d0 008fb7d0_FUN_008fb7d0: ::-residue
+AUTODEFER 8fc4c0 008fc4c0_FUN_008fc4c0: ::-residue
+AUTODEFER 8fcd30 008fcd30_FUN_008fcd30: ::-residue
+AUTODEFER 8fcfe0 008fcfe0_FUN_008fcfe0: ::-residue
+AUTODEFER 907830 00907830_FUN_00907830: ::-residue
+AUTODEFER 90fff0 0090fff0_FUN_0090fff0: ::-residue
+AUTODEFER 910530 00910530_FUN_00910530: ::-residue
+AUTODEFER 910550 00910550_FUN_00910550: ::-residue
+AUTODEFER 910570 00910570_FUN_00910570: ::-residue
+AUTODEFER 9105b0 009105b0_FUN_009105b0: ::-residue
+prescreen: auto-defer now=278 total=278
+prototypes: 1438 (all-CC)
+hdr sig conflicts renamed: 203
 renames: +0 (alias +0)
-data closure v2: 1 macros (skipped 22) pfn=0
-typedef forwards: 12 (r23 complete 5) (alias 0)
-renames applied: 16
-l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep16_draft.c (216534B) sections=61 externs=14 unresolved=80
+exref defines: 2
+data closure v2: 253 macros (skipped 1130) pfn=244
+typedef forwards: 724 (r23 complete 87) (alias 6)
+renames applied: 231
+l2 statics: +0 (of 46)
+WROTE /tmp/sweep17_census.c (8848392B) sections=1475 externs=337 unresolved=2323

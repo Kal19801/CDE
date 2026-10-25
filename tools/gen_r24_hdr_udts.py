@@ -37,6 +37,27 @@ def load_lib():
 
 LIB = load_lib()
 
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location('g23', str(REPO / 'tools' / 'gen_r23_types_header.py'))
+_g23 = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_g23)
+_ESCN = _g23.ESC_NORM
+
+
+def fold(k):
+    return __import__('re').sub(r'_+', '_', k).strip('_')
+
+
+def resolve_tag(tag):
+    """pdb.h tag text -> LIB display name (via r23 ESC_NORM chain)"""
+    if tag in LIB:
+        return tag
+    d = _ESCN.get(fold(tag))
+    if d:
+        return d
+    return None
+
+
 
 def escname(disp):
     """display name -> C esc name (same chain as the sweep pipeline)"""
@@ -133,7 +154,7 @@ def member_type_size(decl):
     base = m.group(1).strip()
     ptr = base.count('*')
     bt = base.replace('*', '').strip()
-    bt = re.sub(r'^(?:const|volatile|mutable)\s+', '', bt)
+    bt = re.sub(r'^(?:(?:const|volatile|mutable|struct|union|enum)\s+)+', '', bt)
     esz = PRIM_SIZE.get(bt)
     if esz is None:
         # esc name -> lib size
@@ -171,10 +192,7 @@ def type_size_from_text(bt, ptr, arr):
     if bt in PRIM_SIZE:
         es = PRIM_SIZE[bt]
     else:
-        d = LIB_ESC.get(bt)
-        if not d:
-            # try text already in display form (lib keys)
-            d = bt if bt in LIB else None
+        d = resolve_tag(bt) or (bt if bt in LIB else None)
         if not d:
             return None
         es = LIB[d]['size']
@@ -280,6 +298,23 @@ def compute_layout(tag, kind, body):
             cur = nxt if nxt > off0 else off0 + e[4]
         else:
             _, name, bt, ptr, arr, sz = e
+            mpad = re.match(r'_pad_0x([0-9a-fA-F]+)_\d+$', name)
+            if mpad:
+                # pdb.h pad anchor: offset encoded in the name
+                o = int(mpad.group(1), 16)
+                if o < cur:
+                    # already covered by previous member (drift overlap) - drop pad
+                    continue
+                if o > cur:
+                    # drift gap: clamp previous member to end at this pad
+                    prev = out[-1] if out else None
+                    if prev is not None and prev[1] < o:
+                        out[-1] = (prev[0], prev[1], prev[2], o - prev[1])
+                    cur = o
+                ts = bt if bt in PRIM_SIZE else bt
+                out.append((name, cur, ts, 4))
+                cur += 4
+                continue
             if sz is None:
                 sz = max(nxt - cur, 1)
             ts = bt if bt in PRIM_SIZE else bt
