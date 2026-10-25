@@ -1,0 +1,28 @@
+pool=20839 fullnames, multi=570
+oracle: 1879 stub names
+cov_name: 10206 entries
+vftable_map: 1749 entries
+batch=sweep05 total=798 in=37 (env_defer=663 auto_prev=98) tpl_defs=0
+WARN 0041e410 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 004206e0 util::Str<char>::Str<char>: text=1 disasm=11 — leave raw
+WARN 004291d0 util::Str<char>::Str<char>: text=1 disasm=11 — leave raw
+WARN 0042a370 util::Str<char>::Str<char>: text=1 disasm=11 — leave raw
+WARN 00430c60 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 00432f70 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 004341a0 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 0043f980 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 0044b8a0 util::Str<char>::Str<char>: text=1 disasm=4 — leave raw
+WARN 0044e3b0 util::Str<char>::Str<char>: text=1 disasm=12 — leave raw
+WARN 004817d0 util::Str<char>::Str<char>: text=1 disasm=2 — leave raw
+WARN 00532b40 util::Darray<struct_CompartmentCollisionShell>::Last: text=1 disasm=0 — leave raw
+WARN 7a91e0_FUN_007a91e0: slice local local_14: no decl found
+WARN 7a91e0_FUN_007a91e0: slice local local_20: no decl found
+WARN 7a91e0_FUN_007a91e0: slice local local_2c: no decl found
+WARN 83a790_FUN_0083a790: slice local local_38: no decl found
+prescreen: auto-defer now=0 total=98
+prototypes: 37 (all-CC)
+hdr sig conflicts renamed: 4
+renames: +0 (alias +0)
+typedef forwards: 3 (alias 1)
+renames applied: 5
+WROTE /tmp/sweep_sweep05_draft.c (63451B) sections=37 externs=7 unresolved=56

@@ -1,0 +1,14 @@
+pool=20839 fullnames, multi=570
+oracle: 1810 stub names
+cov_name: 10275 entries
+vftable_map: 1749 entries
+batch=sweep08 total=150 in=16 (env_defer=103 auto_prev=31) tpl_defs=1
+WARN 007683f0 util::Darray<struct_WorldObject>::Last: text=1 disasm=0 — leave raw
+WARN 007789c0 util::Darray<struct_ActorDropdownAction>::Last: text=1 disasm=0 — leave raw
+prescreen: auto-defer now=0 total=31
+prototypes: 16 (all-CC)
+hdr sig conflicts renamed: 2
+renames: +0 (alias +0)
+typedef forwards: 7 (alias 0)
+renames applied: 2
+WROTE /tmp/sweep_sweep08_draft.c (51961B) sections=16 externs=3 unresolved=37

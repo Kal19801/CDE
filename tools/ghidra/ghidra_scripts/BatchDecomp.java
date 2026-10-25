@@ -46,6 +46,10 @@ public class BatchDecomp extends GhidraScript {
 				continue;
 			}
 			String safe = rawName.replaceAll("[^A-Za-z0-9_]", "_");
+			// r22: filesystem 255-byte limit -- truncate long template-esc names
+			if ((va + "_" + safe + ".c").getBytes().length > 200) {
+				safe = safe.substring(0, Math.max(1, 190 - va.length()));
+			}
 			File out = new File(outDir, va + "_" + safe + ".c");
 			PrintWriter w = new PrintWriter(new FileWriter(out));
 			w.println("// decompiled by BatchDecomp @ " + va +

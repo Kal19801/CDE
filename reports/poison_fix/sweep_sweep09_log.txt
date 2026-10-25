@@ -1,0 +1,12 @@
+pool=20839 fullnames, multi=570
+oracle: 1826 stub names
+cov_name: 10259 entries
+vftable_map: 1749 entries
+batch=sweep09 total=150 in=4 (env_defer=131 auto_prev=15) tpl_defs=1
+prescreen: auto-defer now=0 total=15
+prototypes: 4 (all-CC)
+hdr sig conflicts renamed: 1
+renames: +0 (alias +0)
+typedef forwards: 2 (alias 0)
+renames applied: 1
+WROTE /tmp/sweep_sweep09_draft.c (12836B) sections=4 externs=3 unresolved=10

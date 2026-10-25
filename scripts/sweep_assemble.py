@@ -56,7 +56,58 @@ def norm6(va):
 #   C 类型 token  后随非 ( → type_escape 变体链（含 class-key 剥离），命中
 #                 hdr_names 才换，防错名注入
 _T2 = lambda s: re.sub(r'[\s_]+', '', re.sub(r'\b(class|struct|enum)\b', '', s))
-_L3 = lambda s: re.sub(r'[^A-Za-z0-9]', '', s)   # r21: 全剥离归一（::/__/_/空格差异通吃）
+_L3 = lambda s: re.sub(r'[^A-Za-z0-9~]', '', s)   # r22: 保留 ~（dtor/ctor 键分离）   # r21: 全剥离归一（::/__/_/空格差异通吃）
+
+# r22: esc 名 -> 原名还原变体（_L_/_G_ 模板标记 + __ -> ::），L3 表多形命中
+def _deesc_variants(tok):
+    outs = [tok]
+    if '_L_' in tok or '_G_' in tok:
+        t = tok.replace('_L_', '\x01').replace('_G_', '\x02')
+        t = t.replace('__', '\x03')
+        t = t.replace('\x01', '<').replace('\x02', '>').replace('\x03', '::')
+        outs.append(t)
+        base = re.sub(r'^(?:util|std)::', '', t)
+        if base != t:
+            outs.append(base)
+    else:
+        base = re.sub(r'^(?:util|std)__', '', tok)
+        if base != tok:
+            outs.append(base)
+    return outs
+
+# r22: esc 名 -> 原名还原变体（_L_/_G_ 模板标记 + __ -> ::），L3 表多形命中
+def _deesc_variants(tok):
+    outs = [tok]
+    if '_L_' in tok or '_G_' in tok:
+        t = tok.replace('_L_', '\x01').replace('_G_', '\x02')
+        t = t.replace('__', '\x03')
+        t = t.replace('\x01', '<').replace('\x02', '>').replace('\x03', '::')
+        outs.append(t)
+        base = re.sub(r'^(?:util|std)::', '', t)
+        if base != t:
+            outs.append(base)
+    else:
+        base = re.sub(r'^(?:util|std)__', '', tok)
+        if base != tok:
+            outs.append(base)
+    return outs
+
+def _fidx_any(tok):
+    c = FUNC_ESC_IDX.get(_L3(tok))
+    if c:
+        return c
+    vs = _deesc_variants(tok)
+    for v in vs:
+        c = FUNC_IDX.get(_L3(v))
+        if c:
+            return c
+    # 原名可能带命名空间前缀（token 转义前被剥过 util__/std__）
+    for pre in ('util::', 'std::'):
+        for v in vs:
+            c = FUNC_IDX.get(_L3(pre + v))
+            if c:
+                return c
+    return None
 
 
 def _fname_esc(raw):
@@ -96,6 +147,17 @@ for _k, _vs in FUNC_IDX.items():
             _FNAME_VA[_n] = None  # 歧义
         else:
             _FNAME_VA.setdefault(_n, _vs[0][0])
+
+# r22: esc 键直查索引（esc strip('_') 破坏 _G_ 闭合 -> de-esc 不可逆，反向索引兜底）
+# 双形态登记：fname_esc（<> -> _）与 _type_rewrite 转义（< -> _L_，> -> _G_）
+FUNC_ESC_IDX = {}
+for _k, _vs in FUNC_IDX.items():
+    for _va, _nm in _vs:
+        FUNC_ESC_IDX.setdefault(_L3(_fname_esc(_nm)), []).append((_va, _nm))
+        _e2 = re.sub(r'[^A-Za-z0-9_]', '_', _nm.replace('::', '__').replace('<', '_L_')
+                     .replace('>', '_G_').replace(' ', '_')).strip('_')
+        if _e2 != _fname_esc(_nm):
+            FUNC_ESC_IDX.setdefault(_L3(_e2), []).append((_va, _nm))
 
 
 def _calleename(va):
@@ -154,7 +216,7 @@ if _dn_p.exists():
 # 等价重建沿用 game_000 先例：守卫/ID/对象 → cde_l2_<VA>_<member> 命名（VA 基，
 # 现网主导形态），extern 声明追加进 src/cde_l2_statics.h（build decl_maps→
 # write_stubs 据此生成 BSS 定义）。_Init_thread_header/footer 已有块内定义。
-_L3 = lambda s: re.sub(r'[^A-Za-z0-9]', '', s)
+_L3 = lambda s: re.sub(r'[^A-Za-z0-9~]', '', s)   # r22: 保留 ~（dtor/ctor 键分离）
 
 def _l2_canon(s):
     """文本/dump 双端成员拼写归一：{0}↔_0__ 等"""
@@ -286,7 +348,9 @@ def typedef_scan(txt):
     out = set()
     for m in _ESCTYPE_SHAPE.finditer(txt):
         nm = m.group(1)
-        if nm not in STRICT_TYPES and not nm.startswith(('undefined', 'slice_', 'cde_')):
+        if nm not in STRICT_TYPES and not nm.startswith(('undefined', 'slice_', 'cde_')) \
+                and not _fidx_any(nm):
+            # r22: 函数名（含多候选重载）绝不 typedef（与 _type_rewrite 同纪律）
             # r20: 转义 typo 折叠探测——若折叠后是已知类型，登记为别名需求
             fold = nm.replace('_P__G_', '_P_G_').replace('_L__', '_L_')
             if fold != nm and fold in STRICT_TYPES:
@@ -435,9 +499,10 @@ def _type_rewrite(tok):
     esc = re.sub(r'[^A-Za-z0-9_]', '_', tok.replace('::', '__').replace('<', '_L_')
                  .replace('>', '_G_').replace(' ', '_')).strip('_')
     if esc and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,160}', esc):
-        _isfn = FUNC_IDX.get(_L3(tok))
-        if esc not in STRICT_TYPES and not (_isfn and len(_isfn) == 1):
-            # r21: 函数名（ctor 等）绝不 typedef——typedef 后调用位变语法错
+        _isfn = _fidx_any(tok)
+        if esc not in STRICT_TYPES and not _isfn:
+            # r21/r22: 函数名绝不 typedef（r22 收紧：多候选重载也不 typedef——
+            # typedef 后调用位必语法错；esc 名引用靠 stub oracle 链接兜底）
             _TYPEDEF_POOL.add(esc)
         return esc
     return tok
@@ -447,7 +512,7 @@ def _qrep(m):
     tok = m.group(0)
     if tok.endswith('_vftable_'):
         return tok  # vftable 尾交回 fix_vftables（已扩 tnorm2 兜底）
-    cands = FUNC_IDX.get(_L3(tok))
+    cands = _fidx_any(tok)
     if cands and len(cands) == 1:
         va, full = cands[0]
         after = m.string[m.end():m.end() + 1]
@@ -473,7 +538,7 @@ def qual_pass(txt, disp):
     if '::operator' in txt:
         def orep(m):
             tok = m.group(1)
-            cands = FUNC_IDX.get(_L3(tok))
+            cands = _fidx_any(tok)
             if cands and len(cands) == 1:
                 sym = _calleename(cands[0][0])
                 if sym:

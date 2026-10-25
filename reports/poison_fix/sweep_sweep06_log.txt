@@ -1,0 +1,13 @@
+pool=20839 fullnames, multi=570
+oracle: 1797 stub names
+cov_name: 10288 entries
+vftable_map: 1749 entries
+batch=sweep06 total=375 in=7 (env_defer=332 auto_prev=36) tpl_defs=3
+WARN 007340d0 util::Darray<struct_ItineraryNode>::Last: text=1 disasm=0 — leave raw
+prescreen: auto-defer now=0 total=36
+prototypes: 7 (all-CC)
+hdr sig conflicts renamed: 3
+renames: +0 (alias +0)
+typedef forwards: 3 (alias 0)
+renames applied: 4
+WROTE /tmp/sweep_sweep06_draft.c (28980B) sections=7 externs=4 unresolved=12

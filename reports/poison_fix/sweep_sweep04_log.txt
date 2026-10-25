@@ -1,39 +1,12 @@
 pool=20839 fullnames, multi=570
-oracle: 2135 stub names
+oracle: 1900 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep04 total=400 in=22 (env_defer=156 auto_prev=222) tpl_defs=0
-WARN 005a4620_GetGeneratedName: slice local local_14: no decl found
-WARN 005a4620_GetGeneratedName: slice local local_20: no decl found
-WARN 005a4620_GetGeneratedName: slice local local_2c: no decl found
-WARN 005ad430_GetGeneratedName: slice local local_14: no decl found
-WARN 005ad430_GetGeneratedName: slice local local_20: no decl found
-WARN 005ad430_GetGeneratedName: slice local local_2c: no decl found
-WARN 005ad430_GetGeneratedName: slice local local_38: no decl found
-WARN 005ad430_GetGeneratedName: slice local local_44: no decl found
-WARN 005b6280_GetGeneratedName: slice local local_14: no decl found
-WARN 005b6280_GetGeneratedName: slice local local_20: no decl found
-WARN 005b6280_GetGeneratedName: slice local local_2c: no decl found
-WARN 005b8970_GetGeneratedName: slice local local_14: no decl found
-WARN 005b8970_GetGeneratedName: slice local local_20: no decl found
-WARN 005bef30_GetGeneratedName: slice local local_14: no decl found
-WARN 005bef30_GetGeneratedName: slice local local_20: no decl found
-WARN 005bef30_GetGeneratedName: slice local local_2c: no decl found
-WARN 005bef30_GetGeneratedName: slice local local_38: no decl found
-WARN 005bef30_GetGeneratedName: slice local local_44: no decl found
-WARN 005dde50_GetGeneratedName: slice local local_14: no decl found
-WARN 005dde50_GetGeneratedName: slice local local_20: no decl found
-WARN 005dde50_GetGeneratedName: slice local local_2c: no decl found
-WARN 005dde50_GetGeneratedName: slice local local_38: no decl found
-WARN 005dde50_GetGeneratedName: slice local local_44: no decl found
-WARN 00726e70_GetQuickInfo: slice local local_20: no decl found
-WARN 007d9990_TriggerArmorHitPopup: slice local local_14: no decl found
-WARN 007da990_TriggerDestroyedPopup: slice local local_14: no decl found
-WARN 007db0c0_TriggerDisarmedPopup: slice local local_14: no decl found
-WARN 007db700_TriggerOutOfFuelPopup: slice local local_14: no decl found
-WARN 007dbba0_TriggerOutOfPowerPopup: slice local local_14: no decl found
-prescreen: auto-defer now=0 total=222
-prototypes: 22 (all-CC)
-typedef forwards: 5 (alias 0)
-l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep04_draft.c (241699B) sections=22 externs=3 unresolved=46
+batch=sweep04 total=104 in=33 (env_defer=3 auto_prev=68) tpl_defs=0
+AUTODEFER 76f840 0076f840_MethodCaller_UIListBox_ActorDropdownAction___private__void___thiscall_UIListBox_struct_ActorDropdownAction___OnChangedSearchString_void__: ::-residue
+AUTODEFER 77a130 0077a130_MethodCaller_UIListBox_ItineraryNode___private__void___thiscall_UIListBox_struct_ItineraryNode___OnChangedSearchString_void__: ::-residue
+prescreen: auto-defer now=2 total=70
+prototypes: 31 (all-CC)
+typedef forwards: 2 (alias 0)
+renames applied: 4
+WROTE /tmp/sweep_sweep04_draft.c (36702B) sections=31 externs=33 unresolved=70
