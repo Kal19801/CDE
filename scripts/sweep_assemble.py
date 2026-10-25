@@ -52,6 +52,32 @@ def prescreen(txt):
     return '::' in txt
 
 
+_LIBM_CALL = re.compile(r'^(\s*)(?:([A-Za-z_]\w*)\s*=\s*)?libm_sse2_(\w+)\(\);\s*$')
+_LIBM_DVAR = re.compile(r'^\s*((?:dVar|unaff_d|in_d|extraout_d)[A-Za-z0-9_]*)\s*=\s*(.+?);\s*$')
+
+
+def libm_fix(txt):
+    """libm_sse2 零参调用修复（r19）：MSVC SSE2 数学内建 xmm0 约定。
+    port_prelude 已把 libm_sse2_* 宏映射到 libc（sqrt/exp/...，double ABI）。
+    Ghidra 对无 callspec 的站点发零参调用；但数据流可证明：xmm0 是
+    caller-saved，紧邻赋值的 dVar 跨调用后仍被读 ⇒ 其新值只能是返回值。
+    'dVarK = expr;' + 'libm_fn();' ⇒ 'dVarK = expr;' + 'dVarK = fn(dVarK);'"""
+    lines = txt.split('\n')
+    lastd = None
+    for i, ln in enumerate(lines):
+        md = _LIBM_DVAR.match(ln)
+        if md:
+            lastd = (i, md.group(1))
+            continue
+        mc = _LIBM_CALL.match(ln)
+        if mc and lastd and i - lastd[0] == 1:
+            ind, dst, fn = mc.group(1), mc.group(2), mc.group(3)
+            if dst is None or dst == lastd[1]:
+                lines[i] = f'{ind}{lastd[1]} = libm_sse2_{fn}({lastd[1]});'
+                lastd = (i, lastd[1])
+    return '\n'.join(lines)
+
+
 def main():
     DEFER_ALL = {d.lstrip('0') for d in (ENV_DEFER | auto_prev)}
     files = sorted(f for f in glob.glob(str(IN / '*.tu.c'))
@@ -67,6 +93,7 @@ def main():
     auto_now = set()
     for f in files:
         va, disp, txt = A.process(f)
+        txt = libm_fix(txt)
         if prescreen(txt):
             auto_now.add(norm6(va))
             A.L(f'AUTODEFER {norm6(va)} {disp}: ::-residue')
