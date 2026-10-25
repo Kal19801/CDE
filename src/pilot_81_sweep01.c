@@ -4,11 +4,13 @@
 typedef struct Astrogation__AstrogateResult Astrogation__AstrogateResult;
 typedef struct Darray_L_GraphicsResource__Type_G_ Darray_L_GraphicsResource__Type_G_;
 typedef struct Max_L_double_G_ Max_L_double_G_;
+typedef struct util__Darray_L_class_util__WeakPtr_L_struct_RadiatorCompartment_G___G util__Darray_L_class_util__WeakPtr_L_struct_RadiatorCompartment_G___G;
 typedef struct util__PhysicalState_L_struct_util__Vec3_L_double_G___G util__PhysicalState_L_struct_util__Vec3_L_double_G___G;
 typedef struct util__WeakPtr_L_class_Body_G util__WeakPtr_L_class_Body_G;
 typedef struct util__WeakPtr_L_class_CelestialObject_G util__WeakPtr_L_class_CelestialObject_G;
 typedef struct util__WeakPtr_L_class_Fleet_G util__WeakPtr_L_class_Fleet_G;
 typedef struct util__WeakPtr_L_class_LevelEditorBody_G util__WeakPtr_L_class_LevelEditorBody_G;
+typedef struct util__WeakPtr_L_class_SpacecraftComponent_G util__WeakPtr_L_class_SpacecraftComponent_G;
 typedef struct util__WeakPtr_L_struct_UIWidget_G util__WeakPtr_L_struct_UIWidget_G;
 #include "port_prelude.h"
 #include "cde_win32_compat.h"
@@ -29,16 +31,10 @@ typedef union {
 /* ---- r21 hdr-conflict renames (decl stays OLD for game TUs; pilot impl+calls = NEW; linker aliases OLD -> NEW) ---- */
 #undef AmmoBaySubModule__GetAmmoMass_kg
 #define AmmoBaySubModule__GetAmmoMass_kg AmmoBaySubModule__GetAmmoMass_kg__r20
-#undef BriefingsHandler__GetLevelIcon
-#define BriefingsHandler__GetLevelIcon BriefingsHandler__GetLevelIcon__r20
 #undef BriefingsHandler__PlaySelectedLevel
 #define BriefingsHandler__PlaySelectedLevel BriefingsHandler__PlaySelectedLevel__r20
-#undef BurnInfoCustomWidget__GetBurnStatusBarText
-#define BurnInfoCustomWidget__GetBurnStatusBarText BurnInfoCustomWidget__GetBurnStatusBarText__r20
 #undef CapitalShipComponent__GetID
 #define CapitalShipComponent__GetID CapitalShipComponent__GetID__r20
-#undef CapitalShipComponent__HasBeenDamaged
-#define CapitalShipComponent__HasBeenDamaged CapitalShipComponent__HasBeenDamaged__r20
 #undef CombatNotifier__TickPopups
 #define CombatNotifier__TickPopups CombatNotifier__TickPopups__r20
 #undef CraftBlueprintArmor__GetPolygonalArmorScaling
@@ -51,6 +47,10 @@ typedef union {
 #define CraftBlueprint__GetRadiatorInterreflectionEfficiency_Percent CraftBlueprint__GetRadiatorInterreflectionEfficiency_Percent__r20
 #undef DrawAntialiasedRect
 #define DrawAntialiasedRect DrawAntialiasedRect__r20
+#undef FUN_0048faf0
+#define FUN_0048faf0 FUN_0048faf0__r20
+#undef FUN_0059d050
+#define FUN_0059d050 FUN_0059d050__r20
 #undef FUN_005ab410
 #define FUN_005ab410 FUN_005ab410__r20
 #undef FUN_005d9910
@@ -134,9 +134,6 @@ typedef union {
 #undef _ftol3_except
 #define _ftol3_except _ftol3_except__r20
 /* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */
-extern int Icons_Lock(); /* K&R stub; ret by call site */
-extern int Icons_LockWithSmallUnlock(); /* K&R stub; ret by call site */
-extern int Itinerary_Itinerary__o3(); /* K&R stub; ret by call site */
 extern int TacticalManager_GetStrategicGame_Memoize(); /* K&R stub; ret by call site */
 extern int TacticalManager__GetAllBodies_Clear(); /* K&R stub; ret by call site */
 extern int util__Attribute_struct_util__Color___Get(); /* K&R stub; ret by call site */
@@ -178,6 +175,46 @@ undefined4 __fastcall _SOIL_direct_load_DDS(char *param_1,undefined4 param_2,und
   uVar1 = _SOIL_direct_load_DDS_from_memory(param_2,param_3);
   free(_DstBuf);
   return uVar1;
+}
+
+
+//==== 000048f8c0 0048f8c0_FUN_0048f8c0 ====
+extern undefined4 FUN_0048f780(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+void FUN_0048f8c0(void);
+
+// decompiled by BatchDecomp @ 0048f8c0 name=FUN_0048f8c0 conv=unknown body=23
+
+void FUN_0048f8c0(void)
+
+{
+  undefined4 stack0x0000000c;
+  FUN_0048f780(&stack0x0000000c);
+  return;
+}
+
+
+//==== 000048faf0 0048faf0_FUN_0048faf0 ====
+extern undefined4 FUN_0048f780(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+extern undefined4 FUN_0048f8e0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+bool FUN_0048faf0(char *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4, undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8, undefined4 param_9);
+
+// decompiled by BatchDecomp @ 0048faf0 name=FUN_0048faf0 conv=unknown body=92
+
+bool FUN_0048faf0(char *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+                 undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
+                 undefined4 param_9)
+
+{
+  undefined4 stack0x0000002c;
+  FILE *_File;
+  
+  _File = fopen(param_1,"wb");
+  if (_File != (FILE *)0x0) {
+    FUN_0048f780(&stack0x0000002c);
+    FUN_0048f8e0(param_3,param_4,param_5,param_6,param_7,param_8,param_9);
+    fclose(_File);
+  }
+  return _File != (FILE *)0x0;
 }
 
 
@@ -477,6 +514,32 @@ util__DelegateFactory_class_ModuleDesignManager_void___MethodCaller__private__vo
   *(undefined1 *)(*(int *)((int)param_1 + 0x10) + 0x68) = 1;
   ModuleDesignManager__RefreshCurrentModule((ModuleDesignManager *)param_1);
   return;
+}
+
+
+//==== 00005a0c00 005a0c00_GetRadiatorsCoolingThis ====
+extern undefined4 FUN_0059e5f0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 005a0c00 name=GetRadiatorsCoolingThis conv=__thiscall body=64
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: class util__Darray_L_class_util__WeakPtr_L_struct_RadiatorCompartment_G___G __thiscall
+   ModuleCompartment__GetRadiatorsCoolingThis(bool)const  */
+
+undefined4 __thiscall
+ModuleCompartment__GetRadiatorsCoolingThis(ModuleCompartment *this,bool param_1)
+
+{
+  undefined4 stack0x00000008;
+  undefined3 in_stack_00000005;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_18[16];
+  uint local_8;
+  
+  local_8 = local_8 & 0xffffff00;
+  FUN_0059d050(local_18,&this->TargetingCompartments,local_8);
+  FUN_0059e5f0(_param_1,local_18,&stack0x00000008);
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_18);
+  return _param_1;
 }
 
 
@@ -1221,50 +1284,6 @@ UIAttributes * __thiscall FUN_006c2b50(undefined4 *param_1,UIAttributes *param_2
 }
 
 
-//==== 00006cb590 006cb590_GetLevelIcon ====
-// decompiled by BatchDecomp @ 006cb590 name=GetLevelIcon conv=__thiscall body=153
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: void (__cdecl*__thiscall BriefingsHandler__GetLevelIcon(class util__Reflectable *)const
-   )(void) */
-
-_func_void * __thiscall BriefingsHandler__GetLevelIcon(BriefingsHandler *this,Reflectable *param_1)
-
-{
-  bool bVar1;
-  bool bVar2;
-  GameManager *this_00;
-  DataParser *pDVar3;
-  Campaign *this_01;
-  LevelRecord *this_02;
-  Type TVar4;
-  _func_void *p_Var5;
-  code *pcVar6;
-  HWND unaff_EDI;
-  
-  this_00 = (GameManager *)Manager__GetParent(unaff_EDI);
-  pDVar3 = GameManager__GetDataManager(this_00);
-  this_01 = GetCurrentCampaign(pDVar3);
-  bVar1 = DoesLevelUnlockContent(this,(Level *)param_1);
-  bVar2 = Campaign__IsAllowedToPlayLevel(this_01,pDVar3,(Level *)param_1);
-  if (!bVar2) {
-    pcVar6 = Icons_Lock;
-    if (bVar1) {
-      pcVar6 = Icons_LockWithSmallUnlock;
-    }
-    return pcVar6;
-  }
-  this_02 = LevelRecord__GetLevelRecord((Level *)param_1,pDVar3,false);
-  bVar1 = CapitalShipComponent__HasBeenDamaged((CapitalShipComponent *)this_02);
-  if (bVar1) {
-    TVar4 = LevelRecord__GetRatingForLevel(pDVar3,(Level *)param_1);
-    p_Var5 = LevelRecord__GetRatingIcon(TVar4);
-    return p_Var5;
-  }
-  return _guard_check_icall_nop;
-}
-
-
 //==== 00006eb5b0 006eb5b0_MethodCaller__private__void___thiscall_LevelEditor__AddFleet_void__ ====
 // decompiled by BatchDecomp @ 006eb5b0 name=MethodCaller<&private:_void___thiscall_LevelEditor__AddFleet(void)> conv=__cdecl body=12
 
@@ -1679,66 +1698,6 @@ util__DelegateFactory_struct_HUDFleetInfoPanel_void___MethodCaller__private__voi
 }
 
 
-//==== 0000781570 00781570_GetBurnStatusBarText ====
-// decompiled by BatchDecomp @ 00781570 name=GetBurnStatusBarText conv=__thiscall body=217
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class Str_L_char_G_ __thiscall BurnInfoCustomWidget__GetBurnStatusBarText(void)const
-    */
-
-Str_L_char_G_ * __thiscall
-BurnInfoCustomWidget__GetBurnStatusBarText(BurnInfoCustomWidget *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xfffffd30;
-  Str_L_char_G_ SVar1;
-  Itinerary *this_00;
-  Str_L_char_G_ *pSVar2;
-  int unaff_EDI;
-  char *in_stack_fffffd30;
-  int iVar3;
-  char *pcVar4;
-  Itinerary local_2bc[2];
-  Str_L_char_G_ local_24;
-  Str_L_char_G_ local_18;
-  double local_c;
-  
-  this_00 = (Itinerary *)GetMission(this);
-  if (*(char *)&this_00[2].FinalOrbit.Data.Elements.SemiMajorAxis_km == '\0') {
-    in_stack_fffffd30 = (char *)0x17;
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x17,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  local_c = Itinerary__GetConsolidatedNodeBurnLength_km__s(this_00,&this->Node);
-  Itinerary_Itinerary__o3(local_2bc);
-  pcVar4 = "NodeDeltaV_km__s";
-  iVar3 = 0x7815d9;
-  util__Str_char___Str_char__o5(&local_24,"NodeDeltaV_km__s");
-  GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffd30,&local_24);
-  SVar1.Capacity = (int)pcVar4;
-  SVar1.Data = (char *)iVar3;
-  SVar1.Length = unaff_EDI;
-  pSVar2 = Print(&local_18,(double)CONCAT44(in_stack_fffffd30,(int)((ulonglong)local_c >> 0x20)),
-                 SVar1);
-  if (pSVar2->Capacity < 1) {
-    pcVar4 = "";
-  }
-  else {
-    pcVar4 = pSVar2->Data;
-  }
-  util__Str_char___Str_char__o5(__return_storage_ptr__,pcVar4);
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-    local_18.Data = (char *)0x0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
 //==== 000078c400 0078c400_MethodCaller__private__void___thiscall_ItineraryMarker__Select_void__ ====
 // decompiled by BatchDecomp @ 0078c400 name=MethodCaller<&private:_void___thiscall_ItineraryMarker__Select(void)> conv=__cdecl body=12
 
@@ -1785,6 +1744,68 @@ util__DelegateFactory_struct_ItineraryMarker_bool___MethodCallerConst__private__
   
   bVar1 = ItineraryMarker__IsOnScreen((ItineraryMarker *)param_1);
   return bVar1;
+}
+
+
+//==== 000078cf00 0078cf00_NodeMouseOver ====
+#undef t /* auto(v2): compat 僵尸宏撞成员名 */
+
+// decompiled by BatchDecomp @ 0078cf00 name=NodeMouseOver conv=__thiscall body=203
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: __thiscall NodeMouseOver__NodeMouseOver(struct ItineraryNode,struct ItineraryNode,double)
+    */
+
+NodeMouseOver * __thiscall
+NodeMouseOver__NodeMouseOver(NodeMouseOver *this,undefined4 param_1,ReferenceController *param_3)
+
+{
+  undefined4 stack0x00000154;
+  ReferenceController *in_stack_000000f8;
+  ReferenceController *in_stack_00000100;
+  ReferenceController *in_stack_00000108;
+  ReferenceController *in_stack_00000130;
+  ReferenceController *in_stack_00000158;
+  ReferenceController *in_stack_00000248;
+  ReferenceController *in_stack_00000250;
+  ReferenceController *in_stack_00000258;
+  ReferenceController *in_stack_00000280;
+  double in_stack_000002a4;
+  
+  ItineraryNode__ItineraryNode(&this->LastNode,(ItineraryNode *)&param_1);
+  ItineraryNode__ItineraryNode(&this->NextNode,(ItineraryNode *)&stack0x00000154);
+  this->t = in_stack_000002a4;
+  if (in_stack_00000130 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000130);
+  }
+  if (in_stack_00000108 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000108);
+  }
+  if (in_stack_00000100 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000100);
+  }
+  if (in_stack_000000f8 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_000000f8);
+  }
+  if (param_3 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(param_3);
+  }
+  if (in_stack_00000280 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000280);
+  }
+  if (in_stack_00000258 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000258);
+  }
+  if (in_stack_00000250 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000250);
+  }
+  if (in_stack_00000248 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000248);
+  }
+  if (in_stack_00000158 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_00000158);
+  }
+  return this;
 }
 
 
@@ -2157,6 +2178,78 @@ void __thiscall TacticalManager__GetAllBodies_Memoize(TacticalManager *this)
     util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_2c);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00007fea70 007fea70_GetNearestOppositionCraftOfType ====
+extern undefined4 FUN_007f4eb0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007fea70 name=GetNearestOppositionCraftOfType conv=__thiscall body=242
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: class util__WeakPtr_L_class_SpacecraftComponent_G __thiscall
+   TacticalManager__GetNearestOppositionCraftOfType(struct Vec3_L_double_G_,class Faction *,class
+   CraftBlueprint const *)const  */
+
+void __thiscall
+TacticalManager__GetNearestOppositionCraftOfType(TacticalManager *this,Vec3_L_double_G_ param_1,Faction *param_2,CraftBlueprint *param_3)
+
+{
+  undefined4 stack0x00000024;
+  undefined4 stack0xfffffffc;
+  bool bVar1;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  undefined4 local_38;
+  ReferenceController *local_34;
+  char local_28;
+  ReferenceController *local_20;
+  undefined4 *local_1c;
+  int local_18[4];
+  char *local_8;
+  
+  local_8 = (char *)(__security_cookie ^ (uint)&stack0xfffffffc);
+  local_1c = ((slice_view *)&param_1.X)->_0_4_;
+  local_20 = (ReferenceController *)0x0;
+  if (param_3 == (CraftBlueprint *)0x0) {
+    util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\tacticalmanager.cpp",0x64a,
+                    "TargetAlliance != nullptr",(char *)0x0);
+    DebugBreak();
+  }
+  local_18[0] = 0;
+  local_18[1] = 0;
+  local_18[2] = 0;
+  local_18[3] = 0;
+  GetSpacecraftComponentsOfAlliance(this,(Faction *)local_18);
+  FUN_007f4eb0(&local_38,local_18,&stack0x00000024,(undefined1 *)((int)&param_1.X + 4));
+  if (local_28 == '\0') {
+    local_38 = 0;
+    bVar1 = false;
+    this_00 = (ReferenceController *)0x0;
+    this_01 = local_20;
+  }
+  else {
+    if (local_34 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(local_34);
+    }
+    bVar1 = true;
+    this_00 = local_34;
+    this_01 = local_34;
+  }
+  *local_1c = local_38;
+  local_1c[1] = this_00;
+  if (this_00 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(this_00);
+  }
+  if ((this_01 != (ReferenceController *)0x0) && (bVar1)) {
+    util__ReferenceController__ReleaseWeakReference(this_01);
+  }
+  if (local_34 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_34);
+  }
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)local_18);
+  __security_check_cookie((uint)local_8 ^ (uint)&stack0xfffffffc);
   return;
 }
 
@@ -3011,6 +3104,36 @@ void __cdecl _ftol3_except(void)
   if ((in_EDX == 8) || ((*(byte *)((int)&_MinSubInexact + in_EDX + 7) & in_FPUControlWord) == 0)) {
     except1();
   }
+  return;
+}
+
+
+//==== 00008e41b0 008e41b0___SEH_prolog4 ====
+// decompiled by BatchDecomp @ 008e41b0 name=__SEH_prolog4 conv=__cdecl body=70
+
+/* WARNING: This is an inlined function */
+/* WARNING: Unable to track spacebase fully for stack */
+
+void __cdecl __SEH_prolog4(void)
+
+{
+  undefined4 stack0x00000008;
+  int iVar1;
+  undefined4 unaff_EBX;
+  undefined4 unaff_ESI;
+  undefined4 unaff_EDI;
+  undefined4 unaff_retaddr;
+  int in_stack_00000008;
+  uint auStack_1c[5];
+  undefined1 local_8[8];
+  
+  iVar1 = -in_stack_00000008;
+  *(undefined4 *)((int)auStack_1c + iVar1 + 0x10) = unaff_EBX;
+  *(undefined4 *)((int)auStack_1c + iVar1 + 0xc) = unaff_ESI;
+  *(undefined4 *)((int)auStack_1c + iVar1 + 8) = unaff_EDI;
+  *(uint *)((int)auStack_1c + iVar1 + 4) = __security_cookie ^ (uint)&stack0x00000008;
+  *(undefined4 *)((int)auStack_1c + iVar1) = unaff_retaddr;
+  ExceptionList = local_8;
   return;
 }
 

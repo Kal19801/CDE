@@ -1,8 +1,8 @@
 pool=20839 fullnames, multi=570
-oracle: 1894 stub names
+oracle: 1489 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep03 total=569 in=16 (env_defer=453 auto_prev=100) tpl_defs=4
+batch=sweep03 total=569 in=18 (env_defer=451 auto_prev=100) tpl_defs=4
 WARN 006b5c30_GetCostChartTitle: slice local local_20: no decl found
 WARN 006b63b0_GetHeatSignatureTitle: slice local local_20: no decl found
 WARN 006b63b0_GetHeatSignatureTitle: slice local local_2c: no decl found
@@ -13,10 +13,10 @@ WARN 006b72f0_GetPowerUseTitle: slice local local_2c: no decl found
 WARN 006b72f0_GetPowerUseTitle: slice local local_38: no decl found
 WARN 00835600_FUN_00835600: slice local local_1c: no decl found
 prescreen: auto-defer now=0 total=100
-prototypes: 16 (all-CC)
+prototypes: 18 (all-CC)
 hdr sig conflicts renamed: 13
 renames: +0 (alias +0)
-typedef forwards: 6 (alias 1)
+typedef forwards: 8 (alias 1)
 renames applied: 16
 l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep03_draft.c (152480B) sections=16 externs=5 unresolved=52
+WROTE /tmp/sweep_sweep03_draft.c (168911B) sections=18 externs=7 unresolved=56

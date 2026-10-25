@@ -251,10 +251,21 @@ _STACK_RE = re.compile(r'\bstack0x([0-9a-fA-F]+)\b')
 def stack_pseudo_fix(txt):
     offs = {m.group(1) for m in _STACK_RE.finditer(txt)}
     neg = [o for o in offs if int(o, 16) >= 0x80000000]
-    if not neg:
+    # r21: 正偏移仅 & 取址（sret 槽传出、结果未读）→ scratch 局部声明等价；
+    # 有裸读（值消费）的一律不碰（转发语义，需参数恢复）
+    pos_ok = []
+    for o in offs:
+        v = int(o, 16)
+        if 0 < v < 0x80000000:
+            nm = f'stack0x{o}'
+            uses = re.findall(r'[&]?\b' + nm + r'\b', txt)
+            if all(u.startswith('&') for u in uses):
+                pos_ok.append(o)
+    targets = neg + pos_ok
+    if not targets:
         return txt, 0
     have = set(re.findall(r'\bundefined\d*\s+(stack0x[0-9a-fA-F]+)\s*[;=\[]', txt))
-    decls = [f'  undefined4 stack0x{o};' for o in sorted(neg)
+    decls = [f'  undefined4 stack0x{o};' for o in sorted(targets)
              if f'stack0x{o}' not in have]
     if not decls:
         return txt, 0
@@ -335,6 +346,17 @@ def slice_path_fix(txt):
 # F5: vcall 基址 cast（(*_param_2 + 0xc) —— param 为 u32 值形态）
 _VCALL_BASE = re.compile(r'\(\*([A-Za-z_]\w*) \+ (0x[0-9a-fA-F]+)\)')
 
+_SUB168_ARR = re.compile(
+    r'SUB168\(\(\(slice_view \*\)&([^,()]+?)\)->_(\d+)_(\d+)_,\s*(\d+)\)')
+
+def sub168_arr_fix(txt):
+    def rep(m):
+        e, n, s, k = m.groups()
+        if int(s) > 8:
+            return f'((slice_view *)&{e})->_{n}_{s}_[{k}]'
+        return m.group(0)
+    return _SUB168_ARR.sub(rep, txt)
+
 def vcall_base_fix(txt):
     return _VCALL_BASE.sub(r'(*(int *)(uintptr_t)\1 + \2)', txt)
 
@@ -413,7 +435,9 @@ def _type_rewrite(tok):
     esc = re.sub(r'[^A-Za-z0-9_]', '_', tok.replace('::', '__').replace('<', '_L_')
                  .replace('>', '_G_').replace(' ', '_')).strip('_')
     if esc and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,160}', esc):
-        if esc not in STRICT_TYPES:
+        _isfn = FUNC_IDX.get(_L3(tok))
+        if esc not in STRICT_TYPES and not (_isfn and len(_isfn) == 1):
+            # r21: 函数名（ctor 等）绝不 typedef——typedef 后调用位变语法错
             _TYPEDEF_POOL.add(esc)
         return esc
     return tok
@@ -567,6 +591,7 @@ def main():
         txt = slice_cast_fix(txt)
         txt = slice_deref_fix(txt)
         txt = vcall_base_fix(txt)
+        txt = sub168_arr_fix(txt)
         txt = bare_dtor_fix(txt, disp)
         # r20: 批内 vftable 兼底（按函数所属类，data_names 的 ::vftable' 行）
         txt = vft_bare_fix(txt, va)

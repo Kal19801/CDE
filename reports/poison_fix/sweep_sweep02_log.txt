@@ -1,22 +1,23 @@
 pool=20839 fullnames, multi=570
-oracle: 1886 stub names
+oracle: 1393 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep02 total=800 in=87 (env_defer=627 auto_prev=86) tpl_defs=5
+batch=sweep02 total=800 in=108 (env_defer=606 auto_prev=86) tpl_defs=4
 WARN 0056b290_FUN_0056b290: slice local local_18: no decl found
 WARN 0056b790_FUN_0056b790: slice local local_18: no decl found
 WARN 006a1af0_FUN_006a1af0: slice local local_1c: no decl found
 WARN 006a1af0_FUN_006a1af0: slice local local_28: no decl found
+WARN 006d95f0_FUN_006d95f0: slice local local_48: no decl found
 WARN 00781420_GetBurnStatusBarRanges: slice local local_1c: no decl found
 WARN 0085d3b0_FUN_0085d3b0: slice local local_18: no decl found
 WARN 0085d990_FUN_0085d990: slice local local_18: no decl found
 WARN 008bc180_FUN_008bc180: slice local local_18: no decl found
 WARN 008bc9c0_FUN_008bc9c0: slice local local_3c: no decl found
 prescreen: auto-defer now=0 total=86
-prototypes: 87 (all-CC)
-hdr sig conflicts renamed: 76
+prototypes: 108 (all-CC)
+hdr sig conflicts renamed: 81
 renames: +0 (alias +0)
-typedef forwards: 10 (alias 4)
-renames applied: 79
+typedef forwards: 16 (alias 4)
+renames applied: 84
 l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep02_draft.c (359365B) sections=87 externs=17 unresolved=82
+WROTE /tmp/sweep_sweep02_draft.c (452620B) sections=108 externs=18 unresolved=88

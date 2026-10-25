@@ -5,6 +5,8 @@ typedef struct Darray_L_GraphicsResource__Type_G_ Darray_L_GraphicsResource__Typ
 typedef struct util__Darray util__Darray;
 typedef struct util__Maybe_L_struct_FixedOrbit_G util__Maybe_L_struct_FixedOrbit_G;
 typedef struct util__PhysicalState_L_struct_util__Vec3_L_double_G______G util__PhysicalState_L_struct_util__Vec3_L_double_G______G;
+typedef struct util__WeakPtr_L_class_Body_G util__WeakPtr_L_class_Body_G;
+typedef struct util__WeakPtr_L_class____Fleet_G util__WeakPtr_L_class____Fleet_G;
 typedef struct util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class____util__Reflectable___G___G util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class____util__Reflectable___G___G;
 typedef struct Darray_L_struct_CelestialBody_P_G_ Darray_L_struct_CelestialBody_P__G_;
 #include "port_prelude.h"
@@ -18,6 +20,9 @@ typedef union {
     undefined4 _0_4_;
     undefined4 _4_4_;
     undefined4 _8_4_;
+    undefined4 _12_4_;
+    undefined4 _16_4_;
+    undefined4 _24_4_;
   };
   struct {
     undefined1 _1_3_[3];
@@ -63,8 +68,10 @@ typedef union {
 /* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */
 extern int TacticalManager_GetStrategicGame_Memoize(); /* K&R stub; ret by call site */
 extern int TacticalManager__GetAllBodies_Clear(); /* K&R stub; ret by call site */
+extern int util_Maybe_struct_FixedOrbit_operator(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__WeakPtr_struct_UIWidget_____Darray_class_util__WeakPtr_struct_UIWidget__o2(); /* K&R stub; ret by call site */
+extern int util__Maybe_struct_util__PhysicalState_struct_util__Vec3_double_______operator(); /* K&R stub; ret by call site */
 extern int util__Reflectable__IsType_struct_Campaign(); /* K&R stub; ret by call site */
 
 //==== 000048aad0 0048aad0_FUN_0048aad0 ====
@@ -2596,6 +2603,159 @@ LAB_0073117f:
 }
 
 
+//==== 00007515f0 007515f0_IsApproachingCoplanarNode ====
+extern undefined4 FUN_0074c890(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007515f0 name=IsApproachingCoplanarNode conv=__thiscall body=809
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: bool __thiscall StrategicAI__IsApproachingCoplanarNode(class util__WeakPtr_L_class____Fleet_G,struct FixedOrbit,double,double,double)const  */
+
+bool __thiscall
+StrategicAI__IsApproachingCoplanarNode(StrategicAI *this,Fleet *param_2,ReferenceController *param_3)
+
+{
+  undefined4 stack0x0000000c;
+  undefined4 stack0xfffffffc;
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  bool bVar5;
+  char cVar6;
+  undefined1 uVar7;
+  FixedOrbit *pFVar8;
+  PhysicalState_L_struct_util__Vec3_L_double_G___G_ *pPVar9;
+  double dVar10;
+  ReferenceController *in_stack_00000018;
+  ReferenceController *in_stack_0000001c;
+  undefined **in_stack_00000024;
+  void *in_stack_00000028;
+  undefined **in_stack_0000006c;
+  void *in_stack_00000070;
+  double in_stack_000000f4;
+  double in_stack_000000fc;
+  double in_stack_00000104;
+  Fleet *pFVar11;
+  ReferenceController *pRVar12;
+  FixedOrbit FStack_288;
+  undefined4 local_1a8;
+  undefined4 uStack_1a4;
+  undefined1 local_148[28];
+  void *local_12c;
+  undefined **local_e8;
+  void *local_e4;
+  char local_60;
+  Maybe_L_struct_util__PhysicalState_L_struct_util__Vec3_L_double_G___G___G_ local_58[48];
+  char local_28;
+  double local_20;
+  double local_18;
+  double local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  FixedOrbit__FixedOrbit(&FStack_288,(FixedOrbit *)&stack0x0000000c);
+  pFVar11 = param_2;
+  pRVar12 = param_3;
+  if (param_3 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(param_3);
+  }
+  bVar5 = IsCoplanar(this,pFVar11,pRVar12);
+  if (bVar5) {
+    uVar7 = 0;
+    goto LAB_007518aa;
+  }
+  if ((param_3 != (ReferenceController *)0x0) &&
+     (bVar5 = util__ReferenceController__IsDataStillValid(param_3), !bVar5)) {
+    param_2 = (Fleet *)0x0;
+  }
+  pFVar8 = (FixedOrbit *)Fleet__GetOrbitParameters(param_2);
+  FixedOrbit__FixedOrbit((FixedOrbit *)local_148,pFVar8);
+  local_60 = *(char *)&pFVar8[1].OrbitedBody.Pointer;
+  if (((local_60 == '\0') || (in_stack_0000001c != (ReferenceController *)((slice_view *)&local_148)->_16_4_)) ||
+     (in_stack_00000018 != (ReferenceController *)((slice_view *)&local_148)->_12_4_)) {
+LAB_00751841:
+    uVar7 = 0;
+  }
+  else {
+    if (local_60 == '\0') {
+      uStack_1a4 = 0x7516dc;
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(char *)0x0);
+      DebugBreak();
+    }
+    FixedOrbit__GetPointsToMatchPlane((FixedOrbit *)&stack0x0000000c,(FixedOrbit *)local_58);
+    if (local_28 == '\0') goto LAB_00751841;
+    pPVar9 = util__Maybe_struct_util__PhysicalState_struct_util__Vec3_double_______operator
+                       (local_58);
+    uVar1 = *(undefined4 *)pPVar9;
+    uVar2 = *(undefined4 *)(pPVar9 + 4);
+    pPVar9 = util__Maybe_struct_util__PhysicalState_struct_util__Vec3_double_______operator
+                       (local_58);
+    uVar3 = *(undefined4 *)(pPVar9 + 0x18);
+    uVar4 = *(undefined4 *)(pPVar9 + 0x1c);
+    pFVar8 = util_Maybe_struct_FixedOrbit_operator((Maybe_L_struct_FixedOrbit_G_ *)local_148);
+    dVar10 = FixedOrbit__GetMeanMotion__s(pFVar8);
+    local_10 = /*400921fb54442d18*/3.141592653589793;
+    if (dVar10 * in_stack_00000104 <= /*400921fb54442d18*/3.141592653589793) {
+      local_10 = dVar10 * in_stack_00000104;
+    }
+    dVar10 = in_stack_000000f4;
+    pFVar8 = util_Maybe_struct_FixedOrbit_operator((Maybe_L_struct_FixedOrbit_G_ *)local_148);
+    local_18 = FixedOrbit__GetMeanAnomaly_radians(pFVar8,dVar10);
+    dVar10 = in_stack_000000f4 + in_stack_000000fc;
+    pFVar8 = util_Maybe_struct_FixedOrbit_operator((Maybe_L_struct_FixedOrbit_G_ *)local_148);
+    local_20 = FixedOrbit__GetMeanAnomaly_radians(pFVar8,dVar10);
+    ((slice_view *)&FStack_288.GetEccentricityApoapsisRoot_MemoizedValue)->_12_4_ = 0x75180e;
+    local_1a8 = uVar1;
+    uStack_1a4 = uVar2;
+    cVar6 = FUN_0074c890();
+    if (cVar6 == '\0') {
+      ((slice_view *)&FStack_288.GetEccentricityApoapsisRoot_MemoizedValue)->_12_4_ = 0x751839;
+      local_1a8 = uVar3;
+      uStack_1a4 = uVar4;
+      cVar6 = FUN_0074c890();
+      if (cVar6 == '\0') goto LAB_00751841;
+    }
+    uVar7 = 1;
+  }
+  local_e8 = ((void *)(0x009194a4u));
+  if (local_e4 != (void *)0x0) {
+    operator_delete__(local_e4);
+  }
+  local_e4 = (void *)0x0;
+  local_e8 = ((void *)(0x00919488u));
+  ((slice_view *)&local_148)->_24_4_ = ((void *)(0x00919980u));
+  if (local_12c != (void *)0x0) {
+    operator_delete__(local_12c);
+    local_12c = (void *)0x0;
+  }
+  if ((ReferenceController *)((slice_view *)&local_148)->_16_4_ != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference((ReferenceController *)((slice_view *)&local_148)->_16_4_);
+  }
+LAB_007518aa:
+  if (param_3 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(param_3);
+  }
+  in_stack_0000006c = ((void *)(0x009194a4u));
+  if (in_stack_00000070 != (void *)0x0) {
+    operator_delete__(in_stack_00000070);
+  }
+  in_stack_00000070 = (void *)0x0;
+  in_stack_0000006c = ((void *)(0x00919488u));
+  in_stack_00000024 = ((void *)(0x00919980u));
+  if (in_stack_00000028 != (void *)0x0) {
+    operator_delete__(in_stack_00000028);
+    in_stack_00000028 = (void *)0x0;
+  }
+  if (in_stack_0000001c != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(in_stack_0000001c);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (bool)uVar7;
+}
+
+
 //==== 0000786630 00786630_GetDraggerName ====
 // decompiled by BatchDecomp @ 00786630 name=GetDraggerName conv=__thiscall body=1301
 
@@ -2881,6 +3041,252 @@ HUDItineraryNodeDragger__GetDraggerName(HUDItineraryNodeDragger *this,Str_L_char
     operator_delete__(local_c8.Data);
   }
   return __return_storage_ptr__;
+}
+
+
+//==== 00007d1970 007d1970_GetNearestFutureCollision ====
+extern undefined4 FUN_007c7720(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+extern undefined4 FUN_007cad00(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007d1970 name=GetNearestFutureCollision conv=__thiscall body=1052
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: class util__WeakPtr_L_class_Body_G __thiscall
+   SpacecraftComponent__GetNearestFutureCollision(bool)const  */
+
+void __thiscall
+SpacecraftComponent__GetNearestFutureCollision(SpacecraftComponent *this,bool param_1)
+
+{
+  undefined4 stack0x00000008;
+  undefined4 stack0xfffffffc;
+  Body *this_00;
+  ReferenceController *pRVar1;
+  ReferenceController *pRVar2;
+  bool bVar3;
+  TacticalManager *pTVar4;
+  int *piVar5;
+  int iVar6;
+  int *piVar7;
+  undefined4 uVar8;
+  int iVar9;
+  undefined4 *puVar10;
+  undefined4 *puVar11;
+  undefined3 in_stack_00000005;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_c4[16];
+  undefined4 local_b4;
+  ReferenceController *local_b0;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_ac[8];
+  char local_a4;
+  undefined4 local_9c;
+  int iStack_98;
+  int iStack_94;
+  undefined4 uStack_90;
+  undefined4 *local_8c;
+  SpacecraftComponent *local_88;
+  int local_84;
+  undefined4 *puStack_80;
+  int iStack_7c;
+  undefined4 uStack_78;
+  int local_74;
+  Line3_L_double_G_ local_70;
+  double local_40;
+  SpacecraftComponent *local_38;
+  undefined1 *local_34;
+  SpacecraftComponent *local_30;
+  ReferenceController *pRStack_2c;
+  char local_28;
+  undefined1 local_24;
+  undefined4 local_20;
+  int iStack_1c;
+  int iStack_18;
+  undefined4 uStack_14;
+  int local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_8c = _param_1;
+  local_88 = this;
+  if (((ReferenceController *)this->_pad_0x0_0 != (ReferenceController *)0x0) &&
+     (bVar3 = util__ReferenceController__IsDataStillValid((ReferenceController *)this->_pad_0x0_0),
+     !bVar3)) {
+    this->_pad_0x0_0 = 0;
+  }
+  Body__GetTrajectoryLine_km((Body *)this->_pad_0x0_0,&local_70);
+  if (((ReferenceController *)this->_pad_0x0_0 != (ReferenceController *)0x0) &&
+     (bVar3 = util__ReferenceController__IsDataStillValid((ReferenceController *)this->_pad_0x0_0),
+     !bVar3)) {
+    this->_pad_0x0_0 = 0;
+  }
+  this_00 = (Body *)this->_pad_0x0_0;
+  Body__GetRadius_km_Memoize(this_00);
+  if ((this_00->GetRadius_km_MemoizedValue).IsValidData == false) {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(char *)0x0);
+    DebugBreak();
+  }
+  local_40 = (this_00->GetRadius_km_MemoizedValue).Data;
+  local_24 = 0;
+  local_20 = 0;
+  iStack_1c = 0;
+  iStack_18 = 0;
+  uStack_14 = 0;
+  pTVar4 = Component__GetManager((Component *)this);
+  piVar5 = (int *)TacticalManager__GetDebrisComponents(pTVar4);
+  local_84 = 0;
+  puStack_80 = (undefined4 *)0x0;
+  iStack_7c = 0;
+  uStack_78 = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_84,iVar6);
+  local_10 = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  if (local_10 < iVar6) {
+    do {
+      piVar7 = (int *)(**(code **)*piVar5)(&local_10);
+      if (((ReferenceController *)piVar7[1] != (ReferenceController *)0x0) &&
+         (bVar3 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar7[1]),
+         !bVar3)) {
+        *piVar7 = 0;
+      }
+      pRVar1 = *(ReferenceController **)(*piVar7 + 8);
+      local_74 = *(int *)(*piVar7 + 4);
+      if (pRVar1 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(pRVar1);
+        util__ReferenceController__AddWeakReference(pRVar1);
+        util__ReferenceController__ReleaseWeakReference(pRVar1);
+      }
+      iVar6 = iStack_7c;
+      local_c = iStack_7c + 1;
+      util__Darray_class_util__WeakPtr_class_Body_____SetSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_84,&local_c);
+      bVar3 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_84,iVar6);
+      if (bVar3) {
+        pRVar2 = (ReferenceController *)puStack_80[iStack_7c * 2 + -1];
+        puStack_80[iStack_7c * 2 + -2] = local_74;
+        puStack_80[iStack_7c * 2 + -1] = pRVar1;
+        if (pRVar1 != (ReferenceController *)0x0) {
+          util__ReferenceController__AddWeakReference(pRVar1);
+        }
+        if (pRVar2 != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(pRVar2);
+        }
+      }
+      if (pRVar1 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(pRVar1);
+      }
+      local_10 = local_10 + 1;
+      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+      this = local_88;
+    } while (local_10 < iVar6);
+  }
+  local_34 = &stack0x00000008;
+  local_38 = this;
+  pTVar4 = Component__GetManager((Component *)this);
+  piVar5 = (int *)TacticalManager__GetSpacecraftComponents(pTVar4);
+  local_9c = 0;
+  iStack_98 = 0;
+  iStack_94 = 0;
+  uStack_90 = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_9c,iVar6);
+  local_c = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  if (local_c < iVar6) {
+    do {
+      uVar8 = (**(code **)*piVar5)(&local_c);
+      FUN_007cad00(&local_30,uVar8);
+      pRVar1 = pRStack_2c;
+      iVar6 = iStack_94;
+      if (local_28 != '\0') {
+        local_74 = iStack_94 + 1;
+        util__Darray_class_util__WeakPtr_class_Body_____SetSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_9c,&local_74);
+        bVar3 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_9c,iVar6);
+        if (bVar3) {
+          pRVar2 = *(ReferenceController **)(iStack_98 + -4 + iStack_94 * 8);
+          *(SpacecraftComponent **)(iStack_98 + -8 + iStack_94 * 8) = local_30;
+          *(ReferenceController **)(iStack_98 + -4 + iStack_94 * 8) = pRVar1;
+          if (pRVar1 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(pRVar1);
+          }
+          if (pRVar2 != (ReferenceController *)0x0) {
+            util__ReferenceController__ReleaseWeakReference(pRVar2);
+          }
+        }
+      }
+      if (pRVar1 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(pRVar1);
+      }
+      local_c = local_c + 1;
+      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+    } while (local_c < iVar6);
+  }
+  local_20 = 0;
+  iStack_1c = 0;
+  iStack_18 = 0;
+  uStack_14 = 0;
+  util__Darray_class_util__WeakPtr_struct_ModuleCompartment_____Darray_class_util__WeakPtr_struct_ModuleCompartment((Darray_L_class_util__WeakPtr_L_struct_ModuleCompartment_G___G_ *)&local_20,
+             (Darray_L_class_util__WeakPtr_L_struct_ModuleCompartment_G___G_ *)&local_9c);
+  if (iStack_18 == 0) {
+    util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+              ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_20,
+               (Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_84);
+  }
+  else {
+    iVar9 = (**(code **)(local_84 + 0xc))();
+    iVar6 = iStack_18;
+    if (iVar9 != 0) {
+      local_74 = (**(code **)(local_84 + 0xc))();
+      local_74 = local_74 + iStack_18;
+      util__Darray_class_util__WeakPtr_class_Body_____SetSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_20,&local_74);
+      util__Darray_class_util__WeakPtr_class_Body_____CheckSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_20,iVar6);
+      puVar10 = (undefined4 *)(iStack_1c + iVar6 * 8);
+      puVar11 = puStack_80;
+      if (puVar10 != (undefined4 *)(iStack_1c + iStack_18 * 8)) {
+        do {
+          pRVar1 = (ReferenceController *)puVar10[1];
+          *puVar10 = *puVar11;
+          pRVar2 = (ReferenceController *)puVar11[1];
+          puVar10[1] = pRVar2;
+          if (pRVar2 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(pRVar2);
+          }
+          if (pRVar1 != (ReferenceController *)0x0) {
+            util__ReferenceController__ReleaseWeakReference(pRVar1);
+          }
+          puVar10 = puVar10 + 2;
+          puVar11 = puVar11 + 2;
+        } while (puVar10 != (undefined4 *)(iStack_1c + iStack_18 * 8));
+      }
+    }
+  }
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_9c);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_c4);
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_84);
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_ac);
+  if (0 < iStack_18) {
+    local_30 = local_88;
+    pRStack_2c = (ReferenceController *)&local_40;
+    FUN_007c7720(&local_b4,&local_20,CONCAT44(pRStack_2c,local_88),&local_70);
+    if (local_a4 != '\0') {
+      *local_8c = local_b4;
+      local_8c[1] = local_b0;
+      if (local_b0 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(local_b0);
+        util__ReferenceController__ReleaseWeakReference(local_b0);
+      }
+      goto LAB_007d1d6f;
+    }
+    if (local_b0 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(local_b0);
+    }
+  }
+  *local_8c = 0;
+  local_8c[1] = 0;
+LAB_007d1d6f:
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_20);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
 }
 
 
