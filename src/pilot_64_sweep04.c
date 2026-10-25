@@ -1,14 +1,11 @@
 // pilot_sweep_sweep04.c - assembled by scripts/sweep_assemble.py (r19)
 // reuses fam8_assemble fix passes (zip oracle/in-batch protos/vft channel/data closure)
 /* ---- r20 incomplete-type forward decls (pointer-position only) ---- */
-typedef struct Darray Darray;
 typedef struct Darray_L_GraphicsResource__Type_G_ Darray_L_GraphicsResource__Type_G_;
 typedef struct Maybe Maybe;
 typedef struct Str Str;
 typedef struct Vec3 Vec3;
 typedef struct WeakPtr WeakPtr;
-typedef struct tuple2 tuple2;
-typedef struct Darray_L_struct_CelestialBody_P_G_ Darray_L_struct_CelestialBody_P__G_;
 #include "port_prelude.h"
 #include "cde_win32_compat.h"
 #include "cde_types_r20.h"
@@ -33,7 +30,6 @@ typedef union {
 extern int FixedOrbit__dtor(); /* K&R stub; ret by call site */
 extern int NodeMouseOver__dtor(); /* K&R stub; ret by call site */
 extern int util_Maybe_struct_FixedOrbit_operator(); /* K&R stub; ret by call site */
-extern int util__Reflectable__IsType_struct_Campaign(); /* K&R stub; ret by call site */
 
 //==== 0000489780 00489780_FUN_00489780 ====
 extern undefined4 FUN_00488d70(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -1036,203 +1032,6 @@ void __fastcall FUN_00490220(uint *param_1,uint *param_2,uint *param_3,uint *par
   }
 LAB_00490909:
   __security_check_cookie(local_c ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00004df9a0 004df9a0_FUN_004df9a0 ====
-extern undefined4 FUN_004d6d60(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-void FUN_004df9a0(Reflectable *param_1);
-
-// decompiled by BatchDecomp @ 004df9a0 name=FUN_004df9a0 conv=unknown body=1097
-
-void FUN_004df9a0(Reflectable *param_1)
-
-{
-  undefined4 stack0xfffffffc;
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  bool bVar4;
-  undefined4 *puVar5;
-  char *pcVar6;
-  Str_L_char_G_ *this;
-  undefined4 uVar7;
-  undefined1 *puVar8;
-  Str_L_char_G_ *pSVar9;
-  Darray_L_class_util__Str_L_char_G___G_ local_74[16];
-  undefined4 local_64;
-  undefined4 local_60;
-  Str_L_char_G_ *pSStack_5c;
-  undefined ***pppuStack_58;
-  undefined4 uStack_54;
-  undefined4 *local_4c;
-  Str_L_char_G_ local_48;
-  int local_3c;
-  undefined **local_38;
-  int iStack_34;
-  int iStack_30;
-  undefined4 uStack_2c;
-  undefined **local_28;
-  void *pvStack_24;
-  int iStack_20;
-  undefined4 uStack_1c;
-  undefined **local_18;
-  void *pvStack_14;
-  int iStack_10;
-  undefined4 uStack_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  puVar5 = (undefined4 *)(**(code **)(*(int *)param_1 + 0x58))(&pvStack_24);
-  if ((int)puVar5[1] < 1) {
-    puVar8 = &cde_l2_0091985b_NullString;
-  }
-  else {
-    puVar8 = (undefined1 *)*puVar5;
-  }
-  pcVar6 = "Module";
-  while( true ) {
-    if ((pcVar6[(int)(puVar8 + -0x91e100)] == '\0') && (*pcVar6 == '\0')) goto LAB_004dfa63;
-    if (pcVar6[(int)(puVar8 + -0x91e100)] != *pcVar6) break;
-    pcVar6 = pcVar6 + 1;
-  }
-  bVar4 = Reflectable__FUN_004df9a0(param_1);
-  if ((!bVar4) && (bVar4 = util__Reflectable__IsType_struct_Campaign(param_1), !bVar4)) {
-    puVar5 = (undefined4 *)(**(code **)*(int *)param_1)();
-    util__Str_char___Str_char__o5(&local_48,"CelestialBody");
-    pSVar9 = &local_48;
-    this = (Str_L_char_G_ *)(**(code **)*puVar5)(&pvStack_14);
-    bVar4 = util__Str_char___operator__o9(this,pSVar9);
-    if (pvStack_14 != (void *)0x0) {
-      operator_delete__(pvStack_14);
-      pvStack_14 = (void *)0x0;
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    if (!bVar4) goto LAB_004dfa65;
-  }
-LAB_004dfa63:
-  bVar4 = true;
-LAB_004dfa65:
-  if (pvStack_24 != (void *)0x0) {
-    operator_delete__(pvStack_24);
-  }
-  if (bVar4 != false) {
-    local_64 = local_4c[1];
-    uVar1 = *local_4c;
-    local_4c = (undefined4 *)local_4c[2];
-    local_38 = ((void *)(0x0091995cu));
-    iStack_34 = 0;
-    iStack_30 = 0;
-    uStack_2c = 0;
-    local_18 = ((void *)(0x0091995cu));
-    pvStack_14 = (void *)0x0;
-    iStack_10 = 0;
-    uStack_c = 0;
-    local_28 = ((void *)(0x0091995cu));
-    pvStack_24 = (void *)0x0;
-    iStack_20 = 0;
-    uStack_1c = 0;
-    util__Str_char___Str_char__o5(&local_48,"obj");
-    iVar3 = iStack_30;
-    local_3c = iStack_30 + 1;
-    util__Darray_class_util__Str_char_____SetSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_38,&local_3c);
-    bVar4 = util__Darray_class_util__Str_char_____CheckSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_38,iVar3);
-    if (bVar4) {
-      util__Str_char___operator__o8((Str_L_char_G_ *)(iStack_34 + (iStack_30 * 3 + -3) * 4),&local_48);
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"jpg");
-    iVar3 = iStack_10;
-    local_3c = iStack_10 + 1;
-    util__Darray_class_util__Str_char_____SetSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_18,&local_3c);
-    bVar4 = util__Darray_class_util__Str_char_____CheckSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_18,iVar3);
-    if (bVar4) {
-      util__Str_char___operator__o8
-                ((Str_L_char_G_ *)((int)pvStack_14 + (iStack_10 * 3 + -3) * 4),&local_48);
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"png");
-    iVar3 = iStack_10;
-    local_3c = iStack_10 + 1;
-    util__Darray_class_util__Str_char_____SetSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_18,&local_3c);
-    bVar4 = util__Darray_class_util__Str_char_____CheckSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_18,iVar3);
-    if (bVar4) {
-      util__Str_char___operator__o8
-                ((Str_L_char_G_ *)((int)pvStack_14 + (iStack_10 * 3 + -3) * 4),&local_48);
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"wav");
-    iVar3 = iStack_20;
-    local_3c = iStack_20 + 1;
-    util__Darray_class_util__Str_char_____SetSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_28,&local_3c);
-    bVar4 = util__Darray_class_util__Str_char_____CheckSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_28,iVar3);
-    if (bVar4) {
-      util__Str_char___operator__o8
-                ((Str_L_char_G_ *)((int)pvStack_24 + (iStack_20 * 3 + -3) * 4),&local_48);
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"ogg");
-    iVar3 = iStack_20;
-    local_3c = iStack_20 + 1;
-    util__Darray_class_util__Str_char_____SetSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_28,&local_3c);
-    bVar4 = util__Darray_class_util__Str_char_____CheckSize((Darray_L_class_util__Str_L_char_G___G_ *)&local_28,iVar3);
-    if (bVar4) {
-      util__Str_char___operator__o8
-                ((Str_L_char_G_ *)((int)pvStack_24 + (iStack_20 * 3 + -3) * 4),&local_48);
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"Models");
-    uVar7 = (**(code **)(param_1->_pad_0x0_0 + 100))(local_74);
-    uVar2 = local_64;
-    pSStack_5c = &local_48;
-    pppuStack_58 = &local_38;
-    uStack_54 = local_64;
-    local_60 = uVar1;
-    FUN_004d6d60(uVar7,uVar1,pSStack_5c,pppuStack_58,local_64,local_4c);
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char(local_74);
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"Textures");
-    uVar7 = (**(code **)(*(int *)param_1 + 0x68))(local_74);
-    pSStack_5c = &local_48;
-    pppuStack_58 = &local_18;
-    uStack_54 = uVar2;
-    local_60 = uVar1;
-    FUN_004d6d60(uVar7,uVar1,pSStack_5c,pppuStack_58,uVar2,local_4c);
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char(local_74);
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Str_char___Str_char__o5(&local_48,"Audio");
-    uVar7 = (**(code **)(*(int *)param_1 + 0x6c))(local_74);
-    pSStack_5c = &local_48;
-    pppuStack_58 = &local_28;
-    uStack_54 = uVar2;
-    local_60 = uVar1;
-    FUN_004d6d60(uVar7,uVar1,pSStack_5c,pppuStack_58,uVar2,local_4c);
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char(local_74);
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char((Darray_L_class_util__Str_L_char_G___G_ *)&local_28);
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char((Darray_L_class_util__Str_L_char_G___G_ *)&local_18);
-    util__Darray_class_util__Str_char______Darray_class_util__Str_char((Darray_L_class_util__Str_L_char_G___G_ *)&local_38);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
 }
 
@@ -2286,7 +2085,7 @@ NuclearThermalRocketModule__GetGeneratedName(NuclearThermalRocketModule *this,St
     operator_delete__(local_20.Data);
     ((slice_view *)&local_20)->_0_8_ = ((slice_view *)&local_20)->_0_8_ & 0xffffffff00000000;
   }
-  pSVar5 = (Str_L_char_G_ *)(**(code **)(*local_60 + 0x48))();
+  pSVar5 = (Str_L_char_G_ *)(**(code **)(*(int *)(uintptr_t)local_60 + 0x48))();
   local_2c.Length = 0;
   local_2c.Data = (char *)0x0;
   local_2c.Capacity = 0;
@@ -3778,1195 +3577,6 @@ WeaponModule__GetRangeInfo(WeaponModule *this,Str_L_char_G_ *__return_storage_pt
 }
 
 
-//==== 00006655e0 006655e0_GetStatuses ====
-// decompiled by BatchDecomp @ 006655e0 name=GetStatuses conv=__thiscall body=1771
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* public: virtual class DesignStatusBuffer __thiscall WeaponModule__GetStatuses(class DataParser
-   *)const  */
-
-DesignStatusBuffer * __thiscall
-WeaponModule__GetStatuses(WeaponModule *this,DesignStatusBuffer *__return_storage_ptr__,DataParser *param_1)
-
-{
-  undefined4 stack0xffffff94;
-  Str_L_char_G_ SVar1;
-  char cVar2;
-  undefined4 uVar3;
-  uint3 uVar7;
-  char *pcVar4;
-  Str_L_char_G_ *pSVar5;
-  Str_L_char_G_ *pSVar6;
-  bool bVar8;
-  int unaff_EDI;
-  float10 fVar9;
-  Str_L_char_G_ *pSVar10;
-  Str_L_char_G_ *pSVar11;
-  ModulePlacer *pMVar12;
-  Str_L_char_G_ local_48;
-  Str_L_char_G_ local_3c;
-  Str_L_char_G_ local_30;
-  Str_L_char_G_ local_24;
-  Str_L_char_G_ local_18;
-  double local_c;
-  
-  __return_storage_ptr__->DataManager = (DataParser *)0x0;
-  (__return_storage_ptr__->Messages)._pad_0x0_0 = 0;
-  (__return_storage_ptr__->Messages).Data = (DesignStatusMessage *)0x0;
-  (__return_storage_ptr__->Messages).Size = 0;
-  *(undefined8 *)&(__return_storage_ptr__->Messages).Capacity = 0;
-  Module__GetStatuses((Module *)this,__return_storage_ptr__,param_1);
-  util__Str_char___Str_char__o5(&local_3c,"WeaponModuleNoSpeed");
-  pMVar12 = (ModulePlacer *)0x0;
-  pSVar5 = &local_30;
-  local_30.Data = (char *)0x0;
-  pSVar10 = &local_24;
-  local_30.Capacity = 0;
-  pSVar11 = &local_18;
-  local_30.Length = 0;
-  pSVar6 = &local_3c;
-  local_24.Data = (char *)0x0;
-  local_24.Capacity = 0;
-  local_24.Length = 0;
-  local_18.Data = (char *)0x0;
-  local_18.Capacity = 0;
-  local_18.Length = 0;
-  fVar9 = (float10)(**(code **)(*(int *)this + 0x154))();
-  local_c = (double)fVar9;
-  DesignStatusBuffer__CheckError(__return_storage_ptr__,local_c <= 0.0,pSVar6,pSVar11,pSVar10,pSVar5,pMVar12);
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-    local_18.Data = (char *)0x0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-    local_24.Data = (char *)0x0;
-  }
-  if (local_30.Data != (char *)0x0) {
-    operator_delete__(local_30.Data);
-    local_30.Data = (char *)0x0;
-  }
-  if (local_3c.Data != (char *)0x0) {
-    operator_delete__(local_3c.Data);
-  }
-  uVar3 = util__Str_char___Str_char__o5(&local_3c,"WeaponModuleNoTargeting");
-  uVar7 = (uint3)((uint)uVar3 >> 8);
-  if (((char)this[1]._pad_0x0_0 == '\0') && (*(char *)((int)&this[1]._pad_0x0_0 + 1) == '\0')) {
-    pcVar4 = (char *)CONCAT31(uVar7,1);
-  }
-  else {
-    pcVar4 = (char *)((uint)uVar7 << 8);
-  }
-  local_18.Data = (char *)0x0;
-  local_18.Capacity = 0;
-  pSVar5 = &local_30;
-  local_18.Length = 0;
-  pSVar10 = &local_3c;
-  local_24.Data = (char *)0x0;
-  local_24.Capacity = 0;
-  local_24.Length = 0;
-  local_30.Data = (char *)0x0;
-  local_30.Capacity = 0;
-  local_30.Length = 0;
-  DesignStatusBuffer__CheckWarning(__return_storage_ptr__,SUB41(pcVar4,0),pSVar10,pSVar5,&local_24,&local_18,
-             (ModulePlacer *)0x0);
-  if (local_30.Data != (char *)0x0) {
-    operator_delete__(local_30.Data);
-    local_30.Data = (char *)0x0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-    local_24.Data = (char *)0x0;
-  }
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-    local_18.Data = (char *)0x0;
-  }
-  if (local_3c.Data != (char *)0x0) {
-    operator_delete__(local_3c.Data);
-  }
-  cVar2 = (**(code **)(*(int *)this + 0x1a4))();
-  if (cVar2 != '\0') {
-    util__Str_char___Str_char__o5(&local_48,"GetFiringVelocity_km__s()");
-    util__Str_char___Str_char__o5(&local_18,"WeaponModuleLowSpeed");
-    fVar9 = (float10)(**(code **)(*(int *)this + 0x154))();
-    local_c = (double)fVar9;
-    if (/*3fe0000000000000*/0.5 < local_c) {
-LAB_0066581b:
-      bVar8 = false;
-    }
-    else {
-      fVar9 = (float10)(**(code **)(*(int *)this + 0x154))();
-      local_c = (double)fVar9;
-      if (local_c <= /*0000000000000000*/0.0) goto LAB_0066581b;
-      bVar8 = true;
-    }
-    pMVar12 = (ModulePlacer *)0x0;
-    pSVar11 = &local_24;
-    local_24.Data = (char *)0x0;
-    pSVar6 = &local_30;
-    local_24.Capacity = 0;
-    local_24.Length = 0;
-    local_30.Data = (char *)0x0;
-    local_30.Capacity = 0;
-    local_30.Length = 0;
-    GetUnitsOfType((Str_L_char_G_ *)&stack0xffffff94,&local_48);
-    fVar9 = (float10)(**(code **)(*(int *)this + 0x154))();
-    SVar1.Capacity = (int)pSVar5;
-    SVar1.Data = (char *)pSVar10;
-    SVar1.Length = (int)pSVar6;
-    pSVar5 = Print(&local_3c,(double)CONCAT44(pcVar4,(int)((ulonglong)(double)fVar9 >> 0x20)),SVar1)
-    ;
-    DesignStatusBuffer__CheckWarning(__return_storage_ptr__,bVar8,&local_18,pSVar5,pSVar6,pSVar11,pMVar12);
-    if (local_3c.Data != (char *)0x0) {
-      operator_delete__(local_3c.Data);
-      local_3c.Data = (char *)0x0;
-    }
-    if (local_30.Data != (char *)0x0) {
-      operator_delete__(local_30.Data);
-      local_30.Data = (char *)0x0;
-    }
-    if (local_24.Data != (char *)0x0) {
-      operator_delete__(local_24.Data);
-      local_24.Data = (char *)0x0;
-    }
-    if (local_18.Data != (char *)0x0) {
-      operator_delete__(local_18.Data);
-      local_18.Data = (char *)0x0;
-    }
-    if (local_48.Data != (char *)0x0) {
-      operator_delete__(local_48.Data);
-    }
-    fVar9 = (float10)(**(code **)(*(int *)this + 0x198))();
-    local_c = (double)fVar9;
-    if (/*0000000000000000*/0.0 < local_c) {
-      fVar9 = (float10)(**(code **)(*(int *)this + 0x19c))();
-      local_c = (double)fVar9;
-      if (/*0000000000000000*/0.0 < local_c) {
-        fVar9 = (float10)(**(code **)(*(int *)this + 0x198))();
-        local_c = (double)fVar9;
-        util__Str_char___Str_char__o5(&local_18,"WeaponModuleNarrowAngle");
-        local_24.Data = (char *)0x0;
-        local_24.Capacity = 0;
-        local_24.Length = 0;
-        local_30.Data = (char *)0x0;
-        local_30.Capacity = 0;
-        local_30.Length = 0;
-        PrintSigFigures(&local_3c,
-                        (double)CONCAT44(GlobalSignificantFigures,
-                                         (int)((ulonglong)(local_c * /*404ca5dc1a63c1f8*/57.29577951308232) >>
-                                              0x20)),unaff_EDI);
-        pMVar12 = (ModulePlacer *)0x0;
-        pSVar5 = &local_24;
-        pSVar10 = &local_30;
-        pSVar6 = util__Printf(&local_48,s__s_);
-        pSVar11 = &local_18;
-        fVar9 = (float10)(**(code **)(*(int *)this + 0x198))();
-        local_c = (double)fVar9;
-        DesignStatusBuffer__CheckWarning(__return_storage_ptr__,local_c < /*3ff38c35418a5bf6*/1.2217304763960306,pSVar11,pSVar6,pSVar10,
-                   pSVar5,pMVar12);
-        if (local_48.Data != (char *)0x0) {
-          operator_delete__(local_48.Data);
-          local_48.Data = (char *)0x0;
-        }
-        if (local_3c.Data != (char *)0x0) {
-          operator_delete__(local_3c.Data);
-          local_3c.Data = (char *)0x0;
-        }
-        if (local_30.Data != (char *)0x0) {
-          operator_delete__(local_30.Data);
-          local_30.Data = (char *)0x0;
-        }
-        if (local_24.Data != (char *)0x0) {
-          operator_delete__(local_24.Data);
-          local_24.Data = (char *)0x0;
-        }
-        if (local_18.Data != (char *)0x0) {
-          operator_delete__(local_18.Data);
-        }
-        fVar9 = (float10)(**(code **)(*(int *)this + 0x19c))();
-        local_c = (double)fVar9;
-        util__Str_char___Str_char__o5(&local_18,"WeaponModuleSlowTurnSpeed");
-        local_24.Data = (char *)0x0;
-        local_24.Capacity = 0;
-        local_24.Length = 0;
-        local_30.Data = (char *)0x0;
-        local_30.Capacity = 0;
-        local_30.Length = 0;
-        PrintSigFigures(&local_3c,
-                        (double)CONCAT44(GlobalSignificantFigures,
-                                         (int)((ulonglong)(local_c * /*404ca5dc1a63c1f8*/57.29577951308232) >>
-                                              0x20)),unaff_EDI);
-        pMVar12 = (ModulePlacer *)0x0;
-        pSVar5 = &local_24;
-        pSVar10 = &local_30;
-        pSVar6 = util__Printf(&local_48,s__s___s);
-        pSVar11 = &local_18;
-        fVar9 = (float10)(**(code **)(*(int *)this + 0x19c))();
-        local_c = (double)fVar9;
-        DesignStatusBuffer__CheckWarning(__return_storage_ptr__,local_c < /*3fd657184ae74487*/0.3490658503988659,pSVar11,pSVar6,pSVar10,
-                   pSVar5,pMVar12);
-        if (local_48.Data != (char *)0x0) {
-          operator_delete__(local_48.Data);
-          local_48.Data = (char *)0x0;
-        }
-        if (local_3c.Data != (char *)0x0) {
-          operator_delete__(local_3c.Data);
-          local_3c.Data = (char *)0x0;
-        }
-        if (local_30.Data != (char *)0x0) {
-          operator_delete__(local_30.Data);
-          local_30.Data = (char *)0x0;
-        }
-        if (local_24.Data != (char *)0x0) {
-          operator_delete__(local_24.Data);
-          local_24.Data = (char *)0x0;
-        }
-        if (local_18.Data != (char *)0x0) {
-          operator_delete__(local_18.Data);
-        }
-      }
-    }
-  }
-  cVar2 = (**(code **)(*(int *)this + 0x1c8))();
-  if (cVar2 == '\0') {
-    return __return_storage_ptr__;
-  }
-  util__Str_char___Str_char__o5(&local_48,"WeaponModuleCantCool");
-  fVar9 = (float10)(**(code **)(*(int *)this + 0x1c4))();
-  local_c = (double)fVar9;
-  if (local_c <= 0.0) {
-    fVar9 = (float10)(**(code **)(*(int *)this + 0x194))();
-    local_c = (double)fVar9;
-    if (/*0000000000000000*/0.0 < local_c) {
-      bVar8 = true;
-      goto LAB_00665c12;
-    }
-  }
-  bVar8 = false;
-LAB_00665c12:
-  local_18.Data = (char *)0x0;
-  local_18.Capacity = 0;
-  local_18.Length = 0;
-  local_24.Data = (char *)0x0;
-  local_24.Capacity = 0;
-  local_24.Length = 0;
-  local_30.Data = (char *)0x0;
-  local_30.Capacity = 0;
-  local_30.Length = 0;
-  DesignStatusBuffer__CheckError(__return_storage_ptr__,bVar8,&local_48,&local_30,&local_24,&local_18,
-             (ModulePlacer *)0x0);
-  if (local_30.Data != (char *)0x0) {
-    operator_delete__(local_30.Data);
-    local_30.Data = (char *)0x0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-    local_24.Data = (char *)0x0;
-  }
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-    local_18.Data = (char *)0x0;
-  }
-  if (local_48.Data != (char *)0x0) {
-    operator_delete__(local_48.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
-//==== 00006b63b0 006b63b0_GetHeatSignatureTitle ====
-// decompiled by BatchDecomp @ 006b63b0 name=GetHeatSignatureTitle conv=__thiscall body=1537
-
-/* WARNING: Removing unreachable block (ram,0x006b687e) */
-/* WARNING: Removing unreachable block (ram,0x006b688e) */
-/* WARNING: Removing unreachable block (ram,0x006b68a1) */
-/* WARNING: Removing unreachable block (ram,0x006b68ab) */
-/* private: class util::Str<char> __thiscall UIShipInfo__GetHeatSignatureTitle(void)const  */
-
-Str_L_char_G_ * __thiscall
-UIShipInfo__GetHeatSignatureTitle(UIShipInfo *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xfffffebc;
-  undefined4 stack0xfffffffc;
-  void *pvVar1;
-  _func___cdecl_CraftBlueprint_ptr_void_ptr *p_Var2;
-  Str_L_char_G_ SVar3;
-  Str_L_char_G_ SVar4;
-  bool bVar5;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  bool bVar10;
-  bool bVar11;
-  bool bVar12;
-  bool bVar13;
-  bool bVar14;
-  bool bVar15;
-  bool bVar16;
-  bool bVar17;
-  bool bVar18;
-  bool bVar19;
-  bool bVar20;
-  bool bVar21;
-  CraftBlueprint *pCVar22;
-  LocStr *pLVar23;
-  Str_L_char_G_ *pSVar24;
-  Str_L_char_G_ *pSVar25;
-  int unaff_EDI;
-  double dVar26;
-  char *pcVar27;
-  int iVar28;
-  LocStr local_12c[24];
-  void *local_114[3];
-  void *local_108;
-  void *local_fc[3];
-  void *local_f0;
-  Str_L_char_G_ local_e4;
-  Str_L_char_G_ local_d8;
-  Str_L_char_G_ local_cc;
-  Str_L_char_G_ local_c0;
-  Str_L_char_G_ local_b4;
-  Str_L_char_G_ local_a8;
-  Str_L_char_G_ local_9c;
-  Str_L_char_G_ local_90;
-  Str_L_char_G_ local_84;
-  Str_L_char_G_ local_78;
-  Str_L_char_G_ local_6c;
-  Str_L_char_G_ local_60;
-  Str_L_char_G_ local_54;
-  Str_L_char_G_ local_48;
-  CraftBlueprint *local_3c;
-  Str_L_char_G_ local_38;
-  Str_L_char_G_ local_2c;
-  Str_L_char_G_ local_20;
-  Str_L_char_G_ local_14;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_3c = (CraftBlueprint *)0x0;
-  pvVar1 = (this->Ship).Getter.Callee;
-  if ((pvVar1 == (void *)0x0) ||
-     (p_Var2 = (this->Ship).Getter.CallbackFunction,
-     p_Var2 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-    pCVar22 = (this->Ship).Value;
-  }
-  else {
-    pCVar22 = (*p_Var2)(pvVar1);
-  }
-  if (pCVar22 == (CraftBlueprint *)0x0) {
-    pcVar27 = (char *)0x0;
-    pSVar24 = &local_14;
-    bVar21 = false;
-    bVar20 = false;
-    bVar19 = true;
-    bVar18 = false;
-    bVar17 = false;
-    bVar16 = false;
-    bVar15 = false;
-    bVar14 = false;
-    bVar13 = false;
-    bVar12 = false;
-    bVar11 = false;
-    bVar10 = false;
-    bVar9 = false;
-    bVar8 = false;
-    bVar7 = false;
-    bVar6 = false;
-    bVar5 = false;
-    local_14.Data = (char *)0x0;
-    local_14.Capacity = 0;
-    local_14.Length = 0;
-  }
-  else {
-    util__Str_char___Str_char__o5(&local_e4,"GetCraft()->GetPeakHeatSignature_W()");
-    util__Str_char___Str_char__o5(&local_90,"Dash");
-    util__Str_char___Str_char__o5(&local_84,"GetCraft()->GetAmbientHeatSignature_W()");
-    util__Str_char___Str_char__o5(&local_78,"Colon");
-    util__Str_char___Str_char__o5(&local_6c,"Heat");
-    pvVar1 = (this->Ship).Getter.Callee;
-    if ((pvVar1 == (void *)0x0) ||
-       (p_Var2 = (this->Ship).Getter.CallbackFunction,
-       p_Var2 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-      local_3c = (this->Ship).Value;
-    }
-    else {
-      local_3c = (*p_Var2)(pvVar1);
-    }
-    pvVar1 = (this->Ship).Getter.Callee;
-    local_60.Data = (char *)0x0;
-    local_60.Capacity = 0;
-    local_60.Length = 0;
-    if ((pvVar1 == (void *)0x0) ||
-       (p_Var2 = (this->Ship).Getter.CallbackFunction,
-       p_Var2 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-      pCVar22 = (this->Ship).Value;
-    }
-    else {
-      pCVar22 = (*p_Var2)(pvVar1);
-    }
-    local_54.Data = (char *)0x0;
-    local_54.Capacity = 0;
-    local_54.Length = 0;
-    local_48.Data = (char *)0x0;
-    local_48.Capacity = 0;
-    local_48.Length = 0;
-    pLVar23 = (LocStr *)util__LocStr__LocStr((LocStr *)local_114,&local_78,&local_54);
-    pSVar24 = util__LocStr__operator__o3(pLVar23);
-    pcVar27 = (char *)0x6b64fa;
-    pLVar23 = (LocStr *)util__LocStr__LocStr((LocStr *)local_fc,&local_6c,&local_48);
-    pSVar25 = util__LocStr__operator__o3(pLVar23);
-    local_20.Length = 0;
-    local_20.Data = (char *)0x0;
-    local_20.Capacity = 0;
-    util__Str_char___Str_char(&local_20,pSVar25);
-    util__Str_char___operator__o10(&local_20,pSVar24);
-    pSVar24 = &local_20;
-    iVar28 = 0x6b6531;
-    util__Str_char___Str_char(&local_c0,pSVar24);
-    if ((Str_L_char_G_ *)local_20.Data != (Str_L_char_G_ *)0x0) {
-      iVar28 = 0x6b653e;
-      pSVar24 = (Str_L_char_G_ *)local_20.Data;
-      operator_delete__(local_20.Data);
-      ((slice_view *)&local_20)->_0_8_ = ((slice_view *)&local_20)->_0_8_ & 0xffffffff00000000;
-    }
-    GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffebc,&local_84);
-    dVar26 = CraftBlueprint__GetAmbientHeatSignature_W(pCVar22);
-    SVar3.Capacity = (int)pSVar24;
-    SVar3.Data = (char *)iVar28;
-    SVar3.Length = unaff_EDI;
-    pSVar24 = Print(&local_cc,(double)CONCAT44(pcVar27,(int)((ulonglong)dVar26 >> 0x20)),SVar3);
-    local_2c.Length = 0;
-    local_2c.Data = (char *)0x0;
-    local_2c.Capacity = 0;
-    util__Str_char___Str_char(&local_2c,&local_c0);
-    util__Str_char___operator__o10(&local_2c,pSVar24);
-    util__Str_char___Str_char(&local_b4,&local_2c);
-    if (local_2c.Data != (char *)0x0) {
-      operator_delete__(local_2c.Data);
-      ((slice_view *)&local_2c)->_0_8_ = ((slice_view *)&local_2c)->_0_8_ & 0xffffffff00000000;
-    }
-    pcVar27 = (char *)0x6b65db;
-    pLVar23 = (LocStr *)util__LocStr__LocStr(local_12c,&local_90,&local_60);
-    pSVar24 = util__LocStr__operator__o3(pLVar23);
-    local_38.Length = 0;
-    local_38.Data = (char *)0x0;
-    local_38.Capacity = 0;
-    util__Str_char___Str_char(&local_38,&local_b4);
-    util__Str_char___operator__o10(&local_38,pSVar24);
-    pSVar24 = &local_38;
-    iVar28 = 0x6b661a;
-    util__Str_char___Str_char(&local_a8,pSVar24);
-    if ((Str_L_char_G_ *)local_38.Data != (Str_L_char_G_ *)0x0) {
-      iVar28 = 0x6b6627;
-      pSVar24 = (Str_L_char_G_ *)local_38.Data;
-      operator_delete__(local_38.Data);
-      ((slice_view *)&local_38)->_0_8_ = ((slice_view *)&local_38)->_0_8_ & 0xffffffff00000000;
-    }
-    GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffebc,&local_e4);
-    dVar26 = CraftBlueprint__GetPeakHeatSignature_W(local_3c);
-    SVar4.Capacity = (int)pSVar24;
-    SVar4.Data = (char *)iVar28;
-    SVar4.Length = unaff_EDI;
-    pSVar24 = Print(&local_d8,(double)CONCAT44(pcVar27,(int)((ulonglong)dVar26 >> 0x20)),SVar4);
-    local_14.Length = 0;
-    local_14.Data = (char *)0x0;
-    local_14.Capacity = 0;
-    util__Str_char___Str_char(&local_14,&local_a8);
-    util__Str_char___operator__o10(&local_14,pSVar24);
-    util__Str_char___Str_char(&local_9c,&local_14);
-    if (local_14.Data != (char *)0x0) {
-      operator_delete__(local_14.Data);
-    }
-    pSVar24 = &local_9c;
-    bVar21 = true;
-    bVar20 = true;
-    bVar19 = false;
-    bVar18 = true;
-    bVar17 = true;
-    bVar16 = true;
-    bVar15 = true;
-    bVar14 = true;
-    bVar13 = true;
-    bVar12 = true;
-    bVar11 = true;
-    bVar10 = true;
-    bVar9 = true;
-    bVar8 = true;
-    bVar7 = true;
-    bVar6 = true;
-    bVar5 = true;
-    pcVar27 = local_14.Data;
-  }
-  util__Str_char___Str_char(__return_storage_ptr__,pSVar24);
-  if (bVar19) {
-    if (pcVar27 != (char *)0x0) {
-      operator_delete__(pcVar27);
-    }
-  }
-  if ((bVar20) && (local_9c.Data != (char *)0x0)) {
-    operator_delete__(local_9c.Data);
-  }
-  if ((bVar21) && (local_a8.Data != (char *)0x0)) {
-    operator_delete__(local_a8.Data);
-  }
-  if ((bVar12) && (local_b4.Data != (char *)0x0)) {
-    operator_delete__(local_b4.Data);
-  }
-  if ((bVar13) && (local_c0.Data != (char *)0x0)) {
-    operator_delete__(local_c0.Data);
-  }
-  if (bVar14) {
-    if (local_f0 != (void *)0x0) {
-      operator_delete__(local_f0);
-      local_f0 = (void *)0x0;
-    }
-    if (local_fc[0] != (void *)0x0) {
-      operator_delete__(local_fc[0]);
-      local_fc[0] = (void *)0x0;
-    }
-  }
-  if ((bVar15) && (local_48.Data != (char *)0x0)) {
-    operator_delete__(local_48.Data);
-    local_48.Data = (char *)0x0;
-  }
-  if (bVar16) {
-    if (local_108 != (void *)0x0) {
-      operator_delete__(local_108);
-      local_108 = (void *)0x0;
-    }
-    if (local_114[0] != (void *)0x0) {
-      operator_delete__(local_114[0]);
-      local_114[0] = (void *)0x0;
-    }
-  }
-  if ((bVar17) && (local_54.Data != (char *)0x0)) {
-    operator_delete__(local_54.Data);
-    local_54.Data = (char *)0x0;
-  }
-  if ((bVar18) && (local_cc.Data != (char *)0x0)) {
-    operator_delete__(local_cc.Data);
-    local_cc.Data = (char *)0x0;
-  }
-  if ((bVar6) && (local_60.Data != (char *)0x0)) {
-    operator_delete__(local_60.Data);
-    local_60.Data = (char *)0x0;
-  }
-  if ((bVar7) && (local_d8.Data != (char *)0x0)) {
-    operator_delete__(local_d8.Data);
-    local_d8.Data = (char *)0x0;
-  }
-  if ((bVar8) && (local_6c.Data != (char *)0x0)) {
-    operator_delete__(local_6c.Data);
-    local_6c.Data = (char *)0x0;
-  }
-  if ((bVar9) && (local_78.Data != (char *)0x0)) {
-    operator_delete__(local_78.Data);
-    local_78.Data = (char *)0x0;
-  }
-  if ((bVar10) && (local_84.Data != (char *)0x0)) {
-    operator_delete__(local_84.Data);
-    local_84.Data = (char *)0x0;
-  }
-  if ((bVar11) && (local_90.Data != (char *)0x0)) {
-    operator_delete__(local_90.Data);
-    local_90.Data = (char *)0x0;
-  }
-  if ((local_e4.Data != (char *)0x0) && (bVar5)) {
-    operator_delete__(local_e4.Data);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return __return_storage_ptr__;
-}
-
-
-//==== 00006b72f0 006b72f0_GetPowerUseTitle ====
-// decompiled by BatchDecomp @ 006b72f0 name=GetPowerUseTitle conv=__thiscall body=1626
-
-/* WARNING: Removing unreachable block (ram,0x006b7817) */
-/* WARNING: Removing unreachable block (ram,0x006b7827) */
-/* WARNING: Removing unreachable block (ram,0x006b783a) */
-/* WARNING: Removing unreachable block (ram,0x006b7844) */
-/* private: class util::Str<char> __thiscall UIShipInfo__GetPowerUseTitle(void)const  */
-
-Str_L_char_G_ * __thiscall
-UIShipInfo__GetPowerUseTitle(UIShipInfo *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xfffffeb8;
-  undefined4 stack0xfffffffc;
-  undefined8 uVar1;
-  void *pvVar2;
-  _func___cdecl_CraftBlueprint_ptr_void_ptr *p_Var3;
-  Str_L_char_G_ SVar4;
-  Str_L_char_G_ SVar5;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  bool bVar10;
-  bool bVar11;
-  bool bVar12;
-  bool bVar13;
-  bool bVar14;
-  bool bVar15;
-  bool bVar16;
-  bool bVar17;
-  bool bVar18;
-  bool bVar19;
-  bool bVar20;
-  bool bVar21;
-  bool bVar22;
-  CraftBlueprint *pCVar23;
-  CraftBlueprint *this_00;
-  LocStr *pLVar24;
-  Str_L_char_G_ *pSVar25;
-  Str_L_char_G_ *pSVar26;
-  int unaff_EDI;
-  char *pcVar27;
-  int iVar28;
-  LocStr local_130[24];
-  void *local_118[3];
-  void *local_10c;
-  void *local_100[3];
-  void *local_f4;
-  Str_L_char_G_ local_e8;
-  Str_L_char_G_ local_dc;
-  Str_L_char_G_ local_d0;
-  Str_L_char_G_ local_c4;
-  Str_L_char_G_ local_b8;
-  Str_L_char_G_ local_ac;
-  Str_L_char_G_ local_a0;
-  undefined4 local_94;
-  Str_L_char_G_ local_90;
-  Str_L_char_G_ local_84;
-  Str_L_char_G_ local_78;
-  Str_L_char_G_ local_6c;
-  Str_L_char_G_ local_60;
-  Str_L_char_G_ local_54;
-  Str_L_char_G_ local_48;
-  Str_L_char_G_ *local_3c;
-  Str_L_char_G_ local_38;
-  Str_L_char_G_ local_2c;
-  Str_L_char_G_ local_20;
-  Str_L_char_G_ local_14;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_94 = 0;
-  local_3c = __return_storage_ptr__;
-  pvVar2 = (this->Ship).Getter.Callee;
-  if ((pvVar2 == (void *)0x0) ||
-     (p_Var3 = (this->Ship).Getter.CallbackFunction,
-     p_Var3 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-    pCVar23 = (this->Ship).Value;
-  }
-  else {
-    pCVar23 = (*p_Var3)(pvVar2);
-  }
-  if (pCVar23 == (CraftBlueprint *)0x0) {
-    pcVar27 = (char *)0x0;
-    pSVar25 = &local_14;
-    bVar22 = false;
-    bVar21 = false;
-    bVar20 = true;
-    bVar19 = false;
-    bVar18 = false;
-    bVar17 = false;
-    bVar16 = false;
-    bVar15 = false;
-    bVar14 = false;
-    bVar13 = false;
-    bVar12 = false;
-    bVar11 = false;
-    bVar10 = false;
-    bVar9 = false;
-    bVar8 = false;
-    bVar7 = false;
-    bVar6 = false;
-    local_14.Data = (char *)0x0;
-    local_14.Capacity = 0;
-    local_14.Length = 0;
-  }
-  else {
-    util__Str_char___Str_char__o5(&local_e8,"GetCraft()->GetTotalPowerGeneration_W()");
-    util__Str_char___Str_char__o5(&local_90,"Slash");
-    util__Str_char___Str_char__o5(&local_84,"GetCraft()->GetMaxPowerUsage_W()");
-    util__Str_char___Str_char__o5(&local_78,"Colon");
-    util__Str_char___Str_char__o5(&local_6c,"Power");
-    pvVar2 = (this->Ship).Getter.Callee;
-    if ((pvVar2 == (void *)0x0) ||
-       (p_Var3 = (this->Ship).Getter.CallbackFunction,
-       p_Var3 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-      pCVar23 = (this->Ship).Value;
-    }
-    else {
-      pCVar23 = (*p_Var3)(pvVar2);
-    }
-    CraftBlueprint__GetTotalPowerGeneration_W_Memoize(pCVar23);
-    if ((char)(pCVar23->GetComposition_MemoizedValue).Data.Size == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(char *)0x0);
-      DebugBreak();
-    }
-    pvVar2 = (this->Ship).Getter.Callee;
-    local_60.Data = (char *)0x0;
-    local_60.Capacity = 0;
-    local_60.Length = 0;
-    if ((pvVar2 == (void *)0x0) ||
-       (p_Var3 = (this->Ship).Getter.CallbackFunction,
-       p_Var3 == (_func___cdecl_CraftBlueprint_ptr_void_ptr *)0x0)) {
-      this_00 = (this->Ship).Value;
-    }
-    else {
-      this_00 = (*p_Var3)(pvVar2);
-    }
-    CraftBlueprint__GetMaxPowerUsage_W_Memoize(this_00);
-    if ((char)(this_00->GetAmmoExplosion_MemoizedValue).Data.GasComposition._pad_0x0_0 == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(char *)0x0);
-      DebugBreak();
-    }
-    local_54.Data = (char *)0x0;
-    local_54.Capacity = 0;
-    local_54.Length = 0;
-    local_48.Data = (char *)0x0;
-    local_48.Capacity = 0;
-    local_48.Length = 0;
-    pLVar24 = (LocStr *)util__LocStr__LocStr((LocStr *)local_118,&local_78,&local_54);
-    pSVar25 = util__LocStr__operator__o3(pLVar24);
-    pcVar27 = (char *)0x6b7497;
-    pLVar24 = (LocStr *)util__LocStr__LocStr((LocStr *)local_100,&local_6c,&local_48);
-    pSVar26 = util__LocStr__operator__o3(pLVar24);
-    local_20.Length = 0;
-    local_20.Data = (char *)0x0;
-    local_20.Capacity = 0;
-    util__Str_char___Str_char(&local_20,pSVar26);
-    util__Str_char___operator__o10(&local_20,pSVar25);
-    pSVar25 = &local_20;
-    iVar28 = 0x6b74ce;
-    util__Str_char___Str_char(&local_c4,pSVar25);
-    if ((Str_L_char_G_ *)local_20.Data != (Str_L_char_G_ *)0x0) {
-      iVar28 = 0x6b74db;
-      pSVar25 = (Str_L_char_G_ *)local_20.Data;
-      operator_delete__(local_20.Data);
-      ((slice_view *)&local_20)->_0_8_ = ((slice_view *)&local_20)->_0_8_ & 0xffffffff00000000;
-    }
-    GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffeb8,&local_84);
-    SVar4.Capacity = (int)pSVar25;
-    SVar4.Data = (char *)iVar28;
-    SVar4.Length = unaff_EDI;
-    pSVar25 = Print(&local_d0,
-                    (double)CONCAT44(pcVar27,(int)((ulonglong)
-                                                   *(undefined8 *)
-                                                    &(this_00->GetComposition_MemoizedValue).
-                                                     IsValidData >> 0x20)),SVar4);
-    local_2c.Length = 0;
-    local_2c.Data = (char *)0x0;
-    local_2c.Capacity = 0;
-    util__Str_char___Str_char(&local_2c,&local_c4);
-    util__Str_char___operator__o10(&local_2c,pSVar25);
-    util__Str_char___Str_char(&local_b8,&local_2c);
-    if (local_2c.Data != (char *)0x0) {
-      operator_delete__(local_2c.Data);
-      ((slice_view *)&local_2c)->_0_8_ = ((slice_view *)&local_2c)->_0_8_ & 0xffffffff00000000;
-    }
-    pcVar27 = (char *)0x6b7575;
-    pLVar24 = (LocStr *)util__LocStr__LocStr(local_130,&local_90,&local_60);
-    pSVar25 = util__LocStr__operator__o3(pLVar24);
-    local_38.Length = 0;
-    local_38.Data = (char *)0x0;
-    local_38.Capacity = 0;
-    util__Str_char___Str_char(&local_38,&local_b8);
-    util__Str_char___operator__o10(&local_38,pSVar25);
-    pSVar25 = &local_38;
-    iVar28 = 0x6b75b4;
-    util__Str_char___Str_char(&local_ac,pSVar25);
-    if ((Str_L_char_G_ *)local_38.Data != (Str_L_char_G_ *)0x0) {
-      iVar28 = 0x6b75c1;
-      pSVar25 = (Str_L_char_G_ *)local_38.Data;
-      operator_delete__(local_38.Data);
-      ((slice_view *)&local_38)->_0_8_ = ((slice_view *)&local_38)->_0_8_ & 0xffffffff00000000;
-    }
-    GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffeb8,&local_e8);
-    ((slice_view *)&uVar1)->_0_4_ = (pCVar23->GetComposition_MemoizedValue).Data._pad_0x0_0;
-    ((slice_view *)&uVar1)->_4_4_ = (pCVar23->GetComposition_MemoizedValue).Data.Data;
-    SVar5.Capacity = (int)pSVar25;
-    SVar5.Data = (char *)iVar28;
-    SVar5.Length = unaff_EDI;
-    pSVar25 = Print(&local_dc,(double)CONCAT44(pcVar27,(int)((ulonglong)uVar1 >> 0x20)),SVar5);
-    local_14.Length = 0;
-    local_14.Data = (char *)0x0;
-    local_14.Capacity = 0;
-    util__Str_char___Str_char(&local_14,&local_ac);
-    util__Str_char___operator__o10(&local_14,pSVar25);
-    util__Str_char___Str_char(&local_a0,&local_14);
-    if (local_14.Data != (char *)0x0) {
-      operator_delete__(local_14.Data);
-    }
-    pSVar25 = &local_a0;
-    bVar22 = true;
-    bVar21 = true;
-    bVar20 = false;
-    bVar19 = true;
-    bVar18 = true;
-    bVar17 = true;
-    bVar16 = true;
-    bVar15 = true;
-    bVar14 = true;
-    bVar13 = true;
-    bVar12 = true;
-    bVar11 = true;
-    bVar10 = true;
-    bVar9 = true;
-    bVar8 = true;
-    bVar7 = true;
-    bVar6 = true;
-    pcVar27 = local_14.Data;
-    __return_storage_ptr__ = local_3c;
-  }
-  util__Str_char___Str_char(__return_storage_ptr__,pSVar25);
-  if (bVar20) {
-    if (pcVar27 != (char *)0x0) {
-      operator_delete__(pcVar27);
-    }
-  }
-  if ((bVar21) && (local_a0.Data != (char *)0x0)) {
-    operator_delete__(local_a0.Data);
-  }
-  if ((bVar22) && (local_ac.Data != (char *)0x0)) {
-    operator_delete__(local_ac.Data);
-  }
-  if ((bVar13) && (local_b8.Data != (char *)0x0)) {
-    operator_delete__(local_b8.Data);
-  }
-  if ((bVar14) && (local_c4.Data != (char *)0x0)) {
-    operator_delete__(local_c4.Data);
-  }
-  if (bVar15) {
-    if (local_f4 != (void *)0x0) {
-      operator_delete__(local_f4);
-      local_f4 = (void *)0x0;
-    }
-    if (local_100[0] != (void *)0x0) {
-      operator_delete__(local_100[0]);
-      local_100[0] = (void *)0x0;
-    }
-  }
-  if ((bVar16) && (local_48.Data != (char *)0x0)) {
-    operator_delete__(local_48.Data);
-    local_48.Data = (char *)0x0;
-  }
-  if (bVar17) {
-    if (local_10c != (void *)0x0) {
-      operator_delete__(local_10c);
-      local_10c = (void *)0x0;
-    }
-    if (local_118[0] != (void *)0x0) {
-      operator_delete__(local_118[0]);
-      local_118[0] = (void *)0x0;
-    }
-  }
-  if ((bVar18) && (local_54.Data != (char *)0x0)) {
-    operator_delete__(local_54.Data);
-    local_54.Data = (char *)0x0;
-  }
-  if ((bVar19) && (local_d0.Data != (char *)0x0)) {
-    operator_delete__(local_d0.Data);
-    local_d0.Data = (char *)0x0;
-  }
-  if ((bVar7) && (local_60.Data != (char *)0x0)) {
-    operator_delete__(local_60.Data);
-    local_60.Data = (char *)0x0;
-  }
-  if ((bVar8) && (local_dc.Data != (char *)0x0)) {
-    operator_delete__(local_dc.Data);
-    local_dc.Data = (char *)0x0;
-  }
-  if ((bVar9) && (local_6c.Data != (char *)0x0)) {
-    operator_delete__(local_6c.Data);
-    local_6c.Data = (char *)0x0;
-  }
-  if ((bVar10) && (local_78.Data != (char *)0x0)) {
-    operator_delete__(local_78.Data);
-    local_78.Data = (char *)0x0;
-  }
-  if ((bVar11) && (local_84.Data != (char *)0x0)) {
-    operator_delete__(local_84.Data);
-    local_84.Data = (char *)0x0;
-  }
-  if ((bVar12) && (local_90.Data != (char *)0x0)) {
-    operator_delete__(local_90.Data);
-    local_90.Data = (char *)0x0;
-  }
-  if ((local_e8.Data != (char *)0x0) && (bVar6)) {
-    operator_delete__(local_e8.Data);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return __return_storage_ptr__;
-}
-
-
-//==== 00006f7010 006f7010_GetSelectedBodyNewBodyChoices ====
-// decompiled by BatchDecomp @ 006f7010 name=GetSelectedBodyNewBodyChoices conv=__thiscall body=1160
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: class util::Darray<struct util::tuple2<class util::Str<char>,class util::Darray<class
-   util::Reflectable *> > > __thiscall LevelEditor__GetSelectedBodyNewBodyChoices(void)const  */
-
-void __thiscall LevelEditor__GetSelectedBodyNewBodyChoices(LevelEditor *this)
-
-{
-  undefined4 stack0xfffffffc;
-  undefined **ppuVar1;
-  undefined4 uVar2;
-  ReferenceController *this_00;
-  Reflectable *pRVar3;
-  undefined *puVar4;
-  bool bVar5;
-  GameManager *this_01;
-  DataParser *pDVar6;
-  int iVar7;
-  undefined4 *puVar8;
-  int *piVar9;
-  undefined **ppuVar10;
-  Reflectable *pRVar11;
-  HWND unaff_ESI;
-  Darray_L_struct_CelestialBody_P__G_ *in_stack_00000004;
-  int local_64;
-  undefined **local_60;
-  void *pvStack_5c;
-  int iStack_58;
-  undefined4 uStack_54;
-  int local_50;
-  undefined **local_4c;
-  void *pvStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  Str_L_char_G_ local_3c;
-  undefined1 local_30;
-  undefined **local_2c;
-  void *pvStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined **local_1c;
-  void *pvStack_18;
-  int iStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  this_01 = (GameManager *)Manager__GetParent(unaff_ESI);
-  pDVar6 = GameManager__GetDataManager(this_01);
-  local_1c = (undefined **)0x0;
-  pvStack_18 = (void *)0x0;
-  iStack_14 = 0;
-  uStack_10 = 0;
-  util__Str_char___Str_char__o5(&local_3c,"CelestialBody");
-  (**(code **)(*(int *)pDVar6 + 4))(&local_60,&local_3c,0);
-  if (local_3c.Data != (char *)0x0) {
-    operator_delete__(local_3c.Data);
-    local_3c.Data = (char *)0x0;
-  }
-  local_1c = (undefined **)0x0;
-  pvStack_18 = (void *)0x0;
-  iStack_14 = 0;
-  uStack_10 = 0;
-  iVar7 = (*(code *)local_60[3])();
-  util__Darray_class_Manager____Darray_class_Manager((Darray_L_class_Manager_P_G_ *)&local_1c,iVar7);
-  local_c = 0;
-  iVar7 = (*(code *)local_60[3])();
-  if (local_c < iVar7) {
-    do {
-      puVar8 = (undefined4 *)(*(code *)*local_60)(&local_c);
-      iVar7 = iStack_14;
-      uVar2 = *puVar8;
-      local_50 = iStack_14 + 1;
-      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_1c,&local_50);
-      bVar5 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_1c,iVar7);
-      if (bVar5) {
-        *(undefined4 *)((int)pvStack_18 + iStack_14 * 4 + -4) = uVar2;
-      }
-      local_c = local_c + 1;
-      iVar7 = (*(code *)local_60[3])();
-    } while (local_c < iVar7);
-  }
-  local_60 = ((void *)(0x009199e4u));
-  if (pvStack_5c != (void *)0x0) {
-    operator_delete__(pvStack_5c);
-  }
-  local_2c = ((void *)(0x009194a4u));
-  pvStack_28 = (void *)0x0;
-  uStack_24 = 0;
-  uStack_20 = 0;
-  bVar5 = WorldObject__IsValid((WorldObject *)(this + 0x80));
-  if ((bVar5) && (bVar5 = WorldObject__IsLevelEditorBody((WorldObject *)(this + 0x80)), bVar5)) {
-    this_00 = *(ReferenceController **)(this + 0x84);
-    iVar7 = *(int *)(this + 0x80);
-    if (this_00 != (ReferenceController *)0x0) {
-      util__ReferenceController__AddWeakReference(this_00);
-      bVar5 = util__ReferenceController__IsDataStillValid(this_00);
-      if (!bVar5) {
-        iVar7 = 0;
-      }
-    }
-    local_50 = *(int *)(iVar7 + 0x14);
-    if (this_00 != (ReferenceController *)0x0) {
-      util__ReferenceController__ReleaseWeakReference(this_00);
-    }
-    if (local_50 == 0) goto LAB_006f72eb;
-    local_3c.Length = (int)&local_50;
-    local_60 = (undefined **)0x0;
-    pvStack_5c = (void *)0x0;
-    iStack_58 = 0;
-    uStack_54 = 0;
-    iVar7 = (*(code *)local_1c[3])();
-    util__Darray_class_Manager____Darray_class_Manager((Darray_L_class_Manager_P_G_ *)&local_60,iVar7);
-    local_c = 0;
-    iVar7 = (*(code *)local_1c[3])();
-    if (local_c < iVar7) {
-      do {
-        piVar9 = (int *)(*(code *)*local_1c)(&local_c);
-        iVar7 = iStack_58;
-        if ((*(char *)(*piVar9 + 0xf8) != '\0') &&
-           (*(int *)(*piVar9 + 0xa8) == *(int *)local_3c.Length)) {
-          local_64 = iStack_58 + 1;
-          util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_60,&local_64);
-          bVar5 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_60,iVar7);
-          if (bVar5) {
-            *(int *)((int)pvStack_5c + iStack_58 * 4 + -4) = *piVar9;
-          }
-        }
-        local_c = local_c + 1;
-        iVar7 = (*(code *)local_1c[3])();
-      } while (local_c < iVar7);
-    }
-  }
-  else {
-    local_30 = 0;
-    local_60 = (undefined **)0x0;
-    pvStack_5c = (void *)0x0;
-    iStack_58 = 0;
-    uStack_54 = 0;
-    iVar7 = (*(code *)local_1c[3])();
-    util__Darray_class_Manager____Darray_class_Manager((Darray_L_class_Manager_P_G_ *)&local_60,iVar7);
-    local_c = 0;
-    iVar7 = (*(code *)local_1c[3])();
-    if (local_c < iVar7) {
-      do {
-        piVar9 = (int *)(*(code *)*local_1c)(&local_c);
-        iVar7 = iStack_58;
-        if (*(char *)(*piVar9 + 0xf8) == '\0') {
-          local_64 = iStack_58 + 1;
-          util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_60,&local_64);
-          bVar5 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_60,iVar7);
-          if (bVar5) {
-            *(int *)((int)pvStack_5c + iStack_58 * 4 + -4) = *piVar9;
-          }
-        }
-        local_c = local_c + 1;
-        iVar7 = (*(code *)local_1c[3])();
-      } while (local_c < iVar7);
-    }
-  }
-  util__Darray_class_Module____operator
-            ((Darray_L_class_Module_P_G_ *)&local_2c,(Darray_L_class_Module_P_G_ *)&local_60);
-  local_60 = ((void *)(0x009194a4u));
-  if (pvStack_5c != (void *)0x0) {
-    operator_delete__(pvStack_5c);
-  }
-LAB_006f72eb:
-  local_4c = (undefined **)0x0;
-  pvStack_48 = (void *)0x0;
-  uStack_44 = 0;
-  uStack_40 = 0;
-  pRVar3 = *(Reflectable **)(*(int *)(this + 4) + 100);
-  if (pRVar3 == (Reflectable *)0x0) {
-    pRVar11 = (Reflectable *)0x0;
-  }
-  else {
-    bVar5 = Reflectable__GetSelectedBodyNewBodyChoices(pRVar3);
-    pRVar11 = (Reflectable *)0x0;
-    if (bVar5) {
-      pRVar11 = pRVar3;
-    }
-  }
-  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_4c,(Darray_L_bool_P_G_ *)(pRVar11 + 0x20));
-  local_3c.Capacity = (int)&local_4c;
-  local_60 = (undefined **)0x0;
-  pvStack_5c = (void *)0x0;
-  iStack_58 = 0;
-  uStack_54 = 0;
-  local_3c.Length = (int)this;
-  iVar7 = (*(code *)local_2c[3])();
-  util__Darray_class_Manager____Darray_class_Manager((Darray_L_class_Manager_P_G_ *)&local_60,iVar7);
-  local_c = 0;
-  iVar7 = (*(code *)local_2c[3])();
-  if (local_c < iVar7) {
-    do {
-      piVar9 = (int *)(*(code *)*local_2c)(&local_c);
-      ppuVar10 = *(undefined ***)(local_3c.Capacity + 4);
-      puVar4 = (undefined *)*piVar9;
-      ppuVar1 = ppuVar10 + (int)*(undefined ***)(local_3c.Capacity + 8);
-      for (; ppuVar10 != ppuVar1; ppuVar10 = ppuVar10 + 1) {
-        if (*ppuVar10 == puVar4) goto LAB_006f73d8;
-      }
-      pRVar3 = *(Reflectable **)(*(int *)(local_3c.Length + 4) + 100);
-      if (pRVar3 == (Reflectable *)0x0) {
-        pRVar11 = (Reflectable *)0x0;
-      }
-      else {
-        bVar5 = Reflectable__GetSelectedBodyNewBodyChoices(pRVar3);
-        pRVar11 = (Reflectable *)0x0;
-        if (bVar5) {
-          pRVar11 = pRVar3;
-        }
-      }
-      iVar7 = iStack_58;
-      if (puVar4 != (undefined *)pRVar11[0x1f].Name.Capacity) {
-        local_64 = iStack_58 + 1;
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_60,&local_64);
-        bVar5 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_60,iVar7);
-        if (bVar5) {
-          *(int *)((int)pvStack_5c + iStack_58 * 4 + -4) = *piVar9;
-        }
-      }
-LAB_006f73d8:
-      local_c = local_c + 1;
-      iVar7 = (*(code *)local_2c[3])();
-    } while (local_c < iVar7);
-  }
-  CelestialBody__GetSortedListing(in_stack_00000004);
-  local_60 = ((void *)(0x009194a4u));
-  if (pvStack_5c != (void *)0x0) {
-    operator_delete__(pvStack_5c);
-  }
-  pvStack_5c = (void *)0x0;
-  local_60 = ((void *)(0x00919488u));
-  local_4c = ((void *)(0x009194a4u));
-  if (pvStack_48 != (void *)0x0) {
-    operator_delete__(pvStack_48);
-  }
-  pvStack_48 = (void *)0x0;
-  local_4c = ((void *)(0x00919488u));
-  local_2c = ((void *)(0x009194a4u));
-  if (pvStack_28 != (void *)0x0) {
-    operator_delete__(pvStack_28);
-  }
-  pvStack_28 = (void *)0x0;
-  local_2c = ((void *)(0x00919488u));
-  local_1c = ((void *)(0x009194a4u));
-  if (pvStack_18 != (void *)0x0) {
-    operator_delete__(pvStack_18);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
 //==== 0000726e70 00726e70_GetQuickInfo ====
 // decompiled by BatchDecomp @ 00726e70 name=GetQuickInfo conv=__thiscall body=2682
 
@@ -5391,294 +4001,6 @@ CelestialObject__GetQuickInfo(CelestialObject *this,Str_L_char_G_ *__return_stor
 }
 
 
-//==== 0000786630 00786630_GetDraggerName ====
-// decompiled by BatchDecomp @ 00786630 name=GetDraggerName conv=__thiscall body=1301
-
-/* WARNING: Removing unreachable block (ram,0x007869f9) */
-/* WARNING: Removing unreachable block (ram,0x00786a09) */
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: class util::Str<char> __thiscall HUDItineraryNodeDragger__GetDraggerName(void)const  */
-
-Str_L_char_G_ * __thiscall
-HUDItineraryNodeDragger__GetDraggerName(HUDItineraryNodeDragger *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  Axis AVar1;
-  bool bVar2;
-  bool bVar3;
-  bool bVar4;
-  bool bVar5;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  bool bVar10;
-  bool bVar11;
-  bool bVar12;
-  bool bVar13;
-  bool bVar14;
-  bool bVar15;
-  bool bVar16;
-  bool bVar17;
-  bool bVar18;
-  bool bVar19;
-  LocStr *pLVar20;
-  Str_L_char_G_ *pSVar21;
-  Str_L_char_G_ *this_00;
-  Str_L_char_G_ *this_01;
-  bool bVar22;
-  void *local_128[3];
-  void *local_11c;
-  void *local_110[3];
-  void *local_104;
-  void *local_f8[3];
-  void *local_ec;
-  void *local_e0[3];
-  void *local_d4;
-  Str_L_char_G_ local_c8;
-  Str_L_char_G_ local_bc;
-  Str_L_char_G_ local_b0;
-  Str_L_char_G_ local_a4;
-  Str_L_char_G_ local_98;
-  Str_L_char_G_ local_8c;
-  Str_L_char_G_ local_80;
-  Str_L_char_G_ local_74;
-  undefined4 local_68;
-  Str_L_char_G_ local_64;
-  Str_L_char_G_ local_58;
-  Str_L_char_G_ local_4c;
-  Str_L_char_G_ local_40;
-  Str_L_char_G_ local_34;
-  Str_L_char_G_ local_28;
-  Str_L_char_G_ local_1c;
-  Str_L_char_G_ local_10;
-  
-  AVar1 = this->AxisType;
-  local_68 = 0;
-  if (AVar1 == Temporal) {
-    util__Str_char___Str_char__o5(&local_c8,"ItineraryDragger Temporal Tooltip");
-    local_34.Data = (char *)0x0;
-    local_34.Capacity = 0;
-    local_34.Length = 0;
-    this_01 = &local_bc;
-    pLVar20 = (LocStr *)util__LocStr__LocStr((LocStr *)local_128,&local_c8,&local_34);
-    pSVar21 = util__LocStr__operator__o3(pLVar20);
-    bVar19 = false;
-    bVar22 = false;
-    bVar18 = false;
-    bVar17 = false;
-    bVar16 = false;
-    bVar15 = false;
-    bVar14 = false;
-    bVar13 = false;
-    bVar12 = false;
-    bVar11 = false;
-    bVar10 = false;
-    bVar9 = false;
-    bVar8 = true;
-    bVar7 = true;
-    bVar6 = true;
-    bVar5 = false;
-    bVar4 = false;
-    bVar3 = false;
-    bVar2 = true;
-  }
-  else {
-    if (AVar1 == Tangential) {
-      util__Str_char___Str_char__o5(&local_64,"ItineraryDragger Tangential Tooltip");
-      local_28.Data = (char *)0x0;
-      local_28.Capacity = 0;
-      local_28.Length = 0;
-      this_00 = &local_b0;
-      pLVar20 = (LocStr *)util__LocStr__LocStr((LocStr *)local_110,&local_64,&local_28);
-      pSVar21 = util__LocStr__operator__o3(pLVar20);
-      bVar19 = false;
-      bVar22 = false;
-      bVar18 = false;
-      bVar17 = false;
-      bVar15 = false;
-      bVar14 = false;
-      bVar13 = false;
-      bVar12 = false;
-      bVar11 = false;
-      bVar10 = false;
-      bVar9 = false;
-      bVar5 = true;
-      bVar4 = true;
-      bVar3 = true;
-    }
-    else {
-      if (AVar1 == Perpendicular) {
-        util__Str_char___Str_char__o5(&local_58,"ItineraryDragger OutOfPlane Tooltip");
-        local_1c.Data = (char *)0x0;
-        local_1c.Capacity = 0;
-        local_1c.Length = 0;
-        pLVar20 = (LocStr *)util__LocStr__LocStr((LocStr *)local_f8,&local_58,&local_1c);
-        pSVar21 = util__LocStr__operator__o3(pLVar20);
-        pSVar21 = (Str_L_char_G_ *)util__Str_char___Str_char(&local_a4,pSVar21);
-        bVar19 = false;
-        bVar22 = false;
-        bVar18 = false;
-        bVar15 = true;
-        bVar14 = true;
-        bVar13 = true;
-        bVar12 = true;
-        bVar11 = false;
-        bVar10 = false;
-        bVar9 = false;
-      }
-      else {
-        bVar22 = AVar1 != Radial;
-        if (bVar22) {
-          local_40.Data = (char *)0x0;
-          pSVar21 = &local_40;
-          local_40.Capacity = 0;
-          local_40.Length = 0;
-        }
-        else {
-          util__Str_char___Str_char__o5(&local_4c,"ItineraryDragger Radial Tooltip");
-          local_10.Data = (char *)0x0;
-          local_10.Capacity = 0;
-          local_10.Length = 0;
-          pLVar20 = (LocStr *)util__LocStr__LocStr((LocStr *)local_e0,&local_4c,&local_10);
-          pSVar21 = util__LocStr__operator__o3(pLVar20);
-          pSVar21 = (Str_L_char_G_ *)util__Str_char___Str_char(&local_98,pSVar21);
-        }
-        bVar19 = !bVar22;
-        bVar18 = true;
-        bVar15 = false;
-        bVar14 = false;
-        bVar13 = false;
-        bVar12 = false;
-        bVar11 = !bVar22;
-        bVar10 = !bVar22;
-        bVar9 = !bVar22;
-        pSVar21 = (Str_L_char_G_ *)util__Str_char___Str_char(&local_8c,pSVar21);
-      }
-      this_00 = &local_80;
-      bVar17 = true;
-      bVar5 = false;
-      bVar4 = false;
-      bVar3 = false;
-    }
-    bVar16 = true;
-    bVar8 = false;
-    bVar7 = false;
-    bVar6 = false;
-    bVar2 = false;
-    this_01 = &local_74;
-    pSVar21 = (Str_L_char_G_ *)util__Str_char___Str_char(this_00,pSVar21);
-  }
-  pSVar21 = (Str_L_char_G_ *)util__Str_char___Str_char(this_01,pSVar21);
-  util__Str_char___Str_char(__return_storage_ptr__,pSVar21);
-  if (bVar16) {
-    if (local_74.Data != (char *)0x0) {
-      operator_delete__(local_74.Data);
-      local_74.Data = (char *)0x0;
-    }
-  }
-  if (bVar17) {
-    if (local_80.Data != (char *)0x0) {
-      operator_delete__(local_80.Data);
-      local_80.Data = (char *)0x0;
-    }
-  }
-  if (bVar18) {
-    if (local_8c.Data != (char *)0x0) {
-      operator_delete__(local_8c.Data);
-      local_8c.Data = (char *)0x0;
-    }
-  }
-  if ((bVar22) && (local_40.Data != (char *)0x0)) {
-    operator_delete__(local_40.Data);
-  }
-  if ((bVar19) && (local_98.Data != (char *)0x0)) {
-    operator_delete__(local_98.Data);
-    local_98.Data = (char *)0x0;
-  }
-  if (bVar9) {
-    if (local_d4 != (void *)0x0) {
-      operator_delete__(local_d4);
-      local_d4 = (void *)0x0;
-    }
-    if (local_e0[0] != (void *)0x0) {
-      operator_delete__(local_e0[0]);
-      local_e0[0] = (void *)0x0;
-    }
-  }
-  if ((bVar10) && (local_10.Data != (char *)0x0)) {
-    operator_delete__(local_10.Data);
-    local_10.Data = (char *)0x0;
-  }
-  if ((bVar11) && (local_4c.Data != (char *)0x0)) {
-    operator_delete__(local_4c.Data);
-    local_4c.Data = (char *)0x0;
-  }
-  if ((bVar12) && (local_a4.Data != (char *)0x0)) {
-    operator_delete__(local_a4.Data);
-    local_a4.Data = (char *)0x0;
-  }
-  if (bVar13) {
-    if (local_ec != (void *)0x0) {
-      operator_delete__(local_ec);
-      local_ec = (void *)0x0;
-    }
-    if (local_f8[0] != (void *)0x0) {
-      operator_delete__(local_f8[0]);
-      local_f8[0] = (void *)0x0;
-    }
-  }
-  if ((bVar14) && (local_1c.Data != (char *)0x0)) {
-    operator_delete__(local_1c.Data);
-    local_1c.Data = (char *)0x0;
-  }
-  if ((bVar15) && (local_58.Data != (char *)0x0)) {
-    operator_delete__(local_58.Data);
-    local_58.Data = (char *)0x0;
-  }
-  if (bVar3) {
-    if (local_104 != (void *)0x0) {
-      operator_delete__(local_104);
-      local_104 = (void *)0x0;
-    }
-    if (local_110[0] != (void *)0x0) {
-      operator_delete__(local_110[0]);
-      local_110[0] = (void *)0x0;
-    }
-  }
-  if ((bVar4) && (local_28.Data != (char *)0x0)) {
-    operator_delete__(local_28.Data);
-    local_28.Data = (char *)0x0;
-  }
-  if ((bVar5) && (local_64.Data != (char *)0x0)) {
-    operator_delete__(local_64.Data);
-    local_64.Data = (char *)0x0;
-  }
-  if ((bVar6) && (local_bc.Data != (char *)0x0)) {
-    operator_delete__(local_bc.Data);
-    local_bc.Data = (char *)0x0;
-  }
-  if (bVar7) {
-    if (local_11c != (void *)0x0) {
-      operator_delete__(local_11c);
-      local_11c = (void *)0x0;
-    }
-    if (local_128[0] != (void *)0x0) {
-      operator_delete__(local_128[0]);
-      local_128[0] = (void *)0x0;
-    }
-  }
-  if ((bVar8) && (local_34.Data != (char *)0x0)) {
-    operator_delete__(local_34.Data);
-    local_34.Data = (char *)0x0;
-  }
-  if ((local_c8.Data != (char *)0x0) && (bVar2)) {
-    operator_delete__(local_c8.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
 //==== 0000793f10 00793f10_GetTargetAxis ====
 extern undefined4 FUN_0078ae00(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 extern undefined4 FUN_0078aff0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -5798,7 +4120,7 @@ LAB_00793fcf:
         piVar11 = (int *)CelestialObject__GetAllFleetsOrbitingThis((CelestialObject *)*puVar8);
         bVar5 = true;
         bVar7 = true;
-        iVar13 = (**(code **)(*piVar11 + 0xc))();
+        iVar13 = (**(code **)(*(int *)(uintptr_t)piVar11 + 0xc))();
         if (iVar13 < 2) goto LAB_0079408f;
         local_2f1 = '\x01';
       }
@@ -5980,6 +4302,268 @@ LAB_0079424d:
 }
 
 
+//==== 00007aaca0 007aaca0_IsScreenDistanceToObjectUnobscured ====
+// decompiled by BatchDecomp @ 007aaca0 name=IsScreenDistanceToObjectUnobscured conv=__thiscall body=1244
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: bool __thiscall GhostedUIButton__IsScreenDistanceToObjectUnobscured(class
+   util::WeakPtr<class CelestialObject>,double)const  */
+
+bool __thiscall
+GhostedUIButton__IsScreenDistanceToObjectUnobscured(GhostedUIButton *this,CelestialObject *param_2,ReferenceController *param_3)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  StrategicManager *this_00;
+  Vec3_L_double_G_ VVar2;
+  Vec3_L_double_G_ VVar3;
+  bool bVar4;
+  undefined1 uVar5;
+  undefined4 unaff_EDI;
+  float10 fVar6;
+  double dVar7;
+  undefined4 local_5a8;
+  undefined4 uStack_5a4;
+  undefined8 uStack_5a0;
+  undefined4 uStack_59c;
+  Vec3_L_double_G_ local_598;
+  undefined8 local_580;
+  undefined8 uStack_578;
+  undefined1 local_570[4];
+  undefined4 uStack_56c;
+  undefined8 uStack_568;
+  undefined8 uStack_560;
+  int local_558;
+  ReferenceController *local_554;
+  ReferenceController *local_464;
+  ReferenceController *local_45c;
+  ReferenceController *local_454;
+  ReferenceController *local_42c;
+  int local_400;
+  ReferenceController *local_3fc;
+  ReferenceController *local_30c;
+  ReferenceController *local_304;
+  ReferenceController *local_2fc;
+  ReferenceController *local_2d4;
+  ItineraryNode local_2a8;
+  ItineraryNode local_158;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if (((param_2 == (CelestialObject *)0x0) || (param_3 == (ReferenceController *)0x0)) ||
+     (bVar4 = util__ReferenceController__IsDataStillValid(param_3), !bVar4)) {
+    uVar5 = true;
+  }
+  else {
+    bVar4 = (this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData == false;
+    if (bVar4) {
+      iVar1 = (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size;
+      uStack_560 = CONCAT44(iVar1 + 1,(undefined4)uStack_560);
+      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                 &this->GhostedUIButtonMemoizationHandlerInstance,(int *)((int)&uStack_560 + 4));
+      bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                         &this->GhostedUIButtonMemoizationHandlerInstance,iVar1);
+      if (bVar4) {
+        (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Data
+        [(this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+             CDE_PMF(pmf_55606f16, GhostedUIButton__GetTimeSinceJ2000_s_Clear);
+      }
+      StrategicManager__GetSelectedItineraryNode((StrategicManager *)this->_pad_0x0_0,&local_158);
+      StrategicManager__GetHoveredItineraryNode((StrategicManager *)this->_pad_0x0_0);
+      if ((local_158.Parent.Pointer == (Fleet *)0x0) && (local_400 == 0)) {
+        bVar4 = false;
+      }
+      else {
+        bVar4 = true;
+      }
+      if (local_2d4 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2d4);
+      }
+      if (local_2fc != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2fc);
+      }
+      if (local_304 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_304);
+      }
+      if (local_30c != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_30c);
+      }
+      if (local_3fc != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_3fc);
+      }
+      if (local_158.CachedNearestOrbiter.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestOrbiter.Controller);
+      }
+      if (local_158.CachedNearestFleet.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestFleet.Controller);
+      }
+      if (local_158.CachedNearestBody.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestBody.Controller);
+      }
+      if (local_158.CachedGravityBody.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_158.CachedGravityBody.Controller);
+      }
+      if (local_158.Parent.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_158.Parent.Controller);
+      }
+      if (bVar4) {
+        dVar7 = StrategicManager__GetLookaheadTimeSinceJ2000_s((StrategicManager *)this->_pad_0x0_0);
+      }
+      else {
+        dVar7 = StrategicManager__GetTimeSinceJ2000_s((StrategicManager *)this->_pad_0x0_0);
+      }
+      uStack_578 = CONCAT71((int7)((ulonglong)dVar7 >> 8),1);
+      ((slice_view *)&local_580)->_0_4_ = *(undefined4 *)&dVar7;
+      ((slice_view *)&local_580)->_4_4_ = *(undefined4 *)((char *)&dVar7 + 4);
+      *(undefined4 *)&(this->GetTimeSinceJ2000_s_MemoizedValue).Data = (undefined4)local_580;
+      *(undefined4 *)((int)&(this->GetTimeSinceJ2000_s_MemoizedValue).Data + 4) = ((slice_view *)&local_580)->_4_4_;
+      *(undefined4 *)&(this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData = (undefined4)uStack_578
+      ;
+      *(undefined4 *)((char *)&(this->GetTimeSinceJ2000_s_MemoizedValue) + 0xc) = ((slice_view *)&local_580)->_4_4_;
+      bVar4 = (this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData == false;
+      local_580 = dVar7;
+    }
+    if (bVar4) {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(char *)0x0);
+      DebugBreak();
+    }
+    if ((param_3 != (ReferenceController *)0x0) &&
+       (bVar4 = util__ReferenceController__IsDataStillValid(param_3), !bVar4)) {
+      param_2 = (CelestialObject *)0x0;
+    }
+    uStack_578 = CONCAT44(param_2,(undefined4)uStack_578);
+    if ((this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData == false) {
+      iVar1 = (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size;
+      uStack_560 = CONCAT44(iVar1 + 1,(undefined4)uStack_560);
+      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                 &this->GhostedUIButtonMemoizationHandlerInstance,(int *)((int)&uStack_560 + 4));
+      bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                         &this->GhostedUIButtonMemoizationHandlerInstance,iVar1);
+      if (bVar4) {
+        (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Data
+        [(this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+             CDE_PMF(pmf_55606f16, GhostedUIButton__GetTimeSinceJ2000_s_Clear);
+      }
+      StrategicManager__GetSelectedItineraryNode((StrategicManager *)this->_pad_0x0_0,&local_2a8);
+      StrategicManager__GetHoveredItineraryNode((StrategicManager *)this->_pad_0x0_0);
+      if ((local_2a8.Parent.Pointer == (Fleet *)0x0) && (local_558 == 0)) {
+        bVar4 = false;
+      }
+      else {
+        bVar4 = true;
+      }
+      if (local_42c != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_42c);
+      }
+      if (local_454 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_454);
+      }
+      if (local_45c != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_45c);
+      }
+      if (local_464 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_464);
+      }
+      if (local_554 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_554);
+      }
+      if (local_2a8.CachedNearestOrbiter.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2a8.CachedNearestOrbiter.Controller);
+      }
+      if (local_2a8.CachedNearestFleet.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2a8.CachedNearestFleet.Controller);
+      }
+      if (local_2a8.CachedNearestBody.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2a8.CachedNearestBody.Controller);
+      }
+      if (local_2a8.CachedGravityBody.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2a8.CachedGravityBody.Controller);
+      }
+      if (local_2a8.Parent.Controller != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_2a8.Parent.Controller);
+      }
+      if (bVar4) {
+        dVar7 = StrategicManager__GetLookaheadTimeSinceJ2000_s((StrategicManager *)this->_pad_0x0_0);
+      }
+      else {
+        dVar7 = StrategicManager__GetTimeSinceJ2000_s((StrategicManager *)this->_pad_0x0_0);
+      }
+      uStack_560 = CONCAT71((int7)((ulonglong)dVar7 >> 8),1);
+      ((slice_view *)&uStack_568)->_0_4_ = *(undefined4 *)&dVar7;
+      ((slice_view *)&uStack_568)->_4_4_ = *(undefined4 *)((char *)&dVar7 + 4);
+      *(undefined4 *)&(this->GetTimeSinceJ2000_s_MemoizedValue).Data = (undefined4)uStack_568;
+      *(undefined4 *)((int)&(this->GetTimeSinceJ2000_s_MemoizedValue).Data + 4) = ((slice_view *)&uStack_568)->_4_4_;
+      *(undefined4 *)&(this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData = (undefined4)uStack_560
+      ;
+      *(undefined4 *)((char *)&(this->GetTimeSinceJ2000_s_MemoizedValue) + 0xc) = ((slice_view *)&uStack_568)->_4_4_;
+      uStack_568 = dVar7;
+      if ((this->GetTimeSinceJ2000_s_MemoizedValue).IsValidData == false) {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(char *)0x0);
+        DebugBreak();
+      }
+    }
+    if ((this->GetLocation_km_MemoizedValue).IsValidData == false) {
+      iVar1 = (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size;
+      uStack_560 = CONCAT44(iVar1 + 1,(undefined4)uStack_560);
+      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                 &this->GhostedUIButtonMemoizationHandlerInstance,(int *)((int)&uStack_560 + 4));
+      bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                         &this->GhostedUIButtonMemoizationHandlerInstance,iVar1);
+      if (bVar4) {
+        (this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Data
+        [(this->GhostedUIButtonMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+             CDE_PMF(pmf_55606f16, GhostedUIButton__GetLocation_km_Clear);
+      }
+      iVar1 = this->_pad_0x0_0;
+      fVar6 = (float10)(**(code **)(iVar1 + 0xdc))();
+      (**(code **)(iVar1 + 0xd8))(local_570,(double)fVar6);
+      this_00 = (StrategicManager *)this->_pad_0x0_0;
+      fVar6 = (float10)(**(code **)(*(int *)this + 0xdc))();
+      ((slice_view *)&VVar3.X)->_4_4_ = (undefined4)uStack_568;
+      ((slice_view *)&VVar3.X)->_0_4_ = uStack_56c;
+      ((slice_view *)&VVar3.Y)->_0_4_ = ((slice_view *)&uStack_568)->_4_4_;
+      ((slice_view *)&VVar3.Y)->_4_4_ = (int)uStack_560;
+      ((slice_view *)&VVar3.Z)->_0_4_ = (int)((ulonglong)uStack_560 >> 0x20);
+      ((slice_view *)&VVar3.Z)->_4_4_ = SUB84((double)fVar6,0);
+      StrategicManager__GetReferenceShiftedPosition_km(this_00,&local_598,VVar3,
+                 (double)CONCAT44(unaff_EDI,(int)((ulonglong)(double)fVar6 >> 0x20)));
+      ((slice_view *)&uStack_5a0)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_5a0)->_1_3_[0] | (((slice_view *)&uStack_5a0)->_1_3_[1] << 8) | (((slice_view *)&uStack_5a0)->_1_3_[2] << 16)) << 8));
+      local_5a8 = *(undefined4 *)&local_598.Z;
+      uStack_5a4 = (undefined4)((ulonglong)local_598.Z >> 0x20);
+      *(undefined4 *)&(this->GetLocation_km_MemoizedValue).Data.X = ((slice_view *)&local_598.X)->_0_4_;
+      *(undefined4 *)((int)&(this->GetLocation_km_MemoizedValue).Data.X + 4) = ((slice_view *)&local_598.X)->_4_4_;
+      *(undefined4 *)&(this->GetLocation_km_MemoizedValue).Data.Y = ((slice_view *)&local_598.Y)->_0_4_;
+      *(undefined4 *)((int)&(this->GetLocation_km_MemoizedValue).Data.Y + 4) = ((slice_view *)&local_598.Y)->_4_4_;
+      *(undefined4 *)&(this->GetLocation_km_MemoizedValue).Data.Z = local_5a8;
+      *(undefined4 *)((int)&(this->GetLocation_km_MemoizedValue).Data.Z + 4) = uStack_5a4;
+      *(undefined4 *)&(this->GetLocation_km_MemoizedValue).IsValidData = uStack_5a0;
+      *(undefined4 *)((char *)&(this->GetLocation_km_MemoizedValue) + 0x1c) = uStack_59c;
+      if ((this->GetLocation_km_MemoizedValue).IsValidData == false) {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(char *)0x0);
+        DebugBreak();
+      }
+    }
+    if ((param_3 != (ReferenceController *)0x0) &&
+       (bVar4 = util__ReferenceController__IsDataStillValid(param_3), !bVar4)) {
+      param_2 = (CelestialObject *)0x0;
+    }
+    dVar7 = CelestialObject__GetScreenRadius(((slice_view *)&uStack_578)->_4_4_,(this->GetTimeSinceJ2000_s_MemoizedValue).Data);
+    ((slice_view *)&VVar2.Z)->_4_4_ = (int)((ulonglong)(this->GetLocation_km_MemoizedValue).Data.Z >> 0x20);
+    memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)&(this->GetLocation_km_MemoizedValue).Data, 20);
+    uVar5 = CelestialObject__IsScreenObjectUnobscured(param_2,VVar2,(this->GetTimeSinceJ2000_s_MemoizedValue).Data,dVar7);
+  }
+  if (param_3 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(param_3);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (bool)uVar5;
+}
+
+
 //==== 00007bd6e0 007bd6e0_ShipVsCloud ====
 extern undefined4 FUN_007ba980(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
@@ -6061,7 +4645,7 @@ Collision__ShipVsCloud(undefined4 param_1,int *param_2,ReferenceController *para
      (bVar3 = util__ReferenceController__IsDataStillValid(pRStack_c), !bVar3)) {
     local_10 = (int *)0x0;
   }
-  pdVar4 = (double *)(**(code **)(*local_10 + 0x5c))(&local_d8);
+  pdVar4 = (double *)(**(code **)(*(int *)(uintptr_t)local_10 + 0x5c))(&local_d8);
   if (*(char *)(pdVar4 + 1) == '\0') {
     util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
                     "IsValid()",(char *)0x0);
@@ -6549,7 +5133,7 @@ void __thiscall SpacecraftComponent__TriggerArmorHitPopup(SpacecraftComponent *t
          !bVar3)) {
         *piVar10 = 0;
       }
-      CombatNotifier__Trigger((CombatNotifier *)(*piVar10 + 0x1d4),6,&local_20,&local_14,pSVar14,pRVar15,uVar16,
+      CombatNotifier__Trigger((CombatNotifier *)(*(int *)(uintptr_t)piVar10 + 0x1d4),6,&local_20,&local_14,pSVar14,pRVar15,uVar16,
                  uVar17);
       if (local_2c != (ReferenceController *)0x0) {
         util__ReferenceController__ReleaseWeakReference(local_2c);
@@ -6950,7 +5534,7 @@ LAB_007daaa3:
         *piVar8 = 0;
       }
     }
-    CombatNotifier__Trigger((CombatNotifier *)(*piVar8 + 0x1d4),7,&local_20,&local_14,pSVar11,pRVar12,uVar13,
+    CombatNotifier__Trigger((CombatNotifier *)(*(int *)(uintptr_t)piVar8 + 0x1d4),7,&local_20,&local_14,pSVar11,pRVar12,uVar13,
                uVar14);
     if (local_2c != (ReferenceController *)0x0) {
       util__ReferenceController__ReleaseWeakReference(local_2c);
@@ -7258,7 +5842,7 @@ void __thiscall SpacecraftComponent__TriggerDisarmedPopup(SpacecraftComponent *t
        !bVar7)) {
       *piVar15 = 0;
     }
-    CombatNotifier__Trigger((CombatNotifier *)(*piVar15 + 0x1d4),5,&local_20,&local_14,pSVar18,this_00,uVar19,
+    CombatNotifier__Trigger((CombatNotifier *)(*(int *)(uintptr_t)piVar15 + 0x1d4),5,&local_20,&local_14,pSVar18,this_00,uVar19,
                uVar20);
     if (local_34 != (ReferenceController *)0x0) {
       util__ReferenceController__ReleaseWeakReference(local_34);
@@ -7553,7 +6137,7 @@ void __thiscall SpacecraftComponent__TriggerOutOfFuelPopup(SpacecraftComponent *
           *piVar15 = 0;
         }
       }
-      CombatNotifier__Trigger((CombatNotifier *)(*piVar15 + 0x1d4),3,&local_20,&local_14,pSVar18,pRVar19,uVar20,
+      CombatNotifier__Trigger((CombatNotifier *)(*(int *)(uintptr_t)piVar15 + 0x1d4),3,&local_20,&local_14,pSVar18,pRVar19,uVar20,
                  uVar21);
       if ((ReferenceController *)local_2c.Length != (ReferenceController *)0x0) {
         util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_2c.Length);
@@ -7862,7 +6446,7 @@ void __thiscall SpacecraftComponent__TriggerOutOfPowerPopup(SpacecraftComponent 
        !bVar7)) {
       *piVar15 = 0;
     }
-    CombatNotifier__Trigger((CombatNotifier *)(*piVar15 + 0x1d4),4,&local_20,&local_14,pSVar18,this_00,uVar19,
+    CombatNotifier__Trigger((CombatNotifier *)(*(int *)(uintptr_t)piVar15 + 0x1d4),4,&local_20,&local_14,pSVar18,this_00,uVar19,
                uVar20);
     if (local_34 != (ReferenceController *)0x0) {
       util__ReferenceController__ReleaseWeakReference(local_34);
@@ -7897,389 +6481,6 @@ void __thiscall SpacecraftComponent__TriggerOutOfPowerPopup(SpacecraftComponent 
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
-}
-
-
-//==== 0000829160 00829160_GetSplitButtonTooltip ====
-// decompiled by BatchDecomp @ 00829160 name=GetSplitButtonTooltip conv=__thiscall body=1703
-
-/* WARNING: Removing unreachable block (ram,0x008296bb) */
-/* WARNING: Removing unreachable block (ram,0x008296cb) */
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: class util::Str<char> __thiscall ShipGroupUI__GetSplitButtonTooltip(void)const  */
-
-Str_L_char_G_ * __thiscall
-ShipGroupUI__GetSplitButtonTooltip(ShipGroupUI *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  bool bVar1;
-  bool bVar2;
-  bool bVar3;
-  bool bVar4;
-  bool bVar5;
-  bool bVar6;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  bool bVar10;
-  bool bVar11;
-  bool bVar12;
-  bool bVar13;
-  bool bVar14;
-  bool bVar15;
-  bool bVar16;
-  bool bVar17;
-  bool bVar18;
-  bool bVar19;
-  bool bVar20;
-  bool bVar21;
-  bool bVar22;
-  bool bVar23;
-  bool bVar24;
-  LocStr *pLVar25;
-  Str_L_char_G_ *pSVar26;
-  int *piVar27;
-  int iVar28;
-  Str_L_char_G_ *pSVar29;
-  Str_L_char_G_ *this_00;
-  void *local_174[3];
-  void *local_168;
-  void *local_15c[3];
-  void *local_150;
-  void *local_144[3];
-  void *local_138;
-  void *local_12c[3];
-  void *local_120;
-  void *local_114[3];
-  void *local_108;
-  Str_L_char_G_ local_fc;
-  Str_L_char_G_ local_f0;
-  Str_L_char_G_ local_e4;
-  Str_L_char_G_ local_d8;
-  Str_L_char_G_ local_cc;
-  Str_L_char_G_ local_c0;
-  Str_L_char_G_ local_b4;
-  Str_L_char_G_ local_a8;
-  Str_L_char_G_ local_9c;
-  Str_L_char_G_ local_90;
-  undefined4 local_84;
-  Str_L_char_G_ local_80;
-  Str_L_char_G_ local_74;
-  Str_L_char_G_ local_68;
-  Str_L_char_G_ local_5c;
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_50[4];
-  Str_L_char_G_ local_4c;
-  Str_L_char_G_ local_40;
-  Str_L_char_G_ local_34;
-  Str_L_char_G_ local_28;
-  Str_L_char_G_ local_1c;
-  Str_L_char_G_ local_10;
-  
-  local_84 = 0;
-  bVar24 = CanSplitUnits(this);
-  if (bVar24) {
-    util__Str_char___Str_char__o5(&local_fc,"SplitShip Tooltip");
-    local_40.Data = (char *)0x0;
-    local_40.Capacity = 0;
-    local_40.Length = 0;
-    pSVar29 = &local_f0;
-    pLVar25 = (LocStr *)util__LocStr__LocStr((LocStr *)local_174,&local_fc,&local_40);
-    pSVar26 = util__LocStr__operator__o3(pLVar25);
-    bVar23 = false;
-    bVar22 = false;
-    bVar21 = false;
-    bVar20 = false;
-    bVar19 = false;
-    bVar24 = false;
-    bVar18 = false;
-    bVar17 = false;
-    bVar16 = false;
-    bVar15 = false;
-    bVar14 = false;
-    bVar13 = false;
-    bVar12 = false;
-    bVar11 = false;
-    bVar10 = false;
-    bVar9 = false;
-    bVar8 = false;
-    bVar7 = true;
-    bVar6 = true;
-    bVar5 = true;
-    bVar4 = false;
-    bVar3 = false;
-    bVar2 = false;
-    bVar1 = true;
-  }
-  else {
-    bVar24 = CanUnsplitUnits(this);
-    if (bVar24) {
-      util__Str_char___Str_char__o5(&local_80,"RejoinShip Tooltip");
-      local_34.Data = (char *)0x0;
-      local_34.Capacity = 0;
-      local_34.Length = 0;
-      this_00 = &local_e4;
-      pLVar25 = (LocStr *)util__LocStr__LocStr((LocStr *)local_15c,&local_80,&local_34);
-      pSVar26 = util__LocStr__operator__o3(pLVar25);
-      bVar23 = false;
-      bVar22 = false;
-      bVar21 = false;
-      bVar20 = false;
-      bVar19 = false;
-      bVar24 = false;
-      bVar18 = false;
-      bVar17 = false;
-      bVar16 = false;
-      bVar14 = false;
-      bVar13 = false;
-      bVar12 = false;
-      bVar11 = false;
-      bVar10 = false;
-      bVar9 = false;
-      bVar8 = false;
-      bVar4 = true;
-      bVar3 = true;
-      bVar2 = true;
-    }
-    else {
-      piVar27 = (int *)TacticalManager__GetPlayerSpacecraftComponents((TacticalManager *)this->_pad_0x0_0);
-      iVar28 = (**(code **)(*piVar27 + 0xc))();
-      util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_50);
-      if (iVar28 < 2) {
-        util__Str_char___Str_char__o5(&local_74,"CantSplitSingleShip Tooltip");
-        local_28.Data = (char *)0x0;
-        local_28.Capacity = 0;
-        local_28.Length = 0;
-        pSVar29 = &local_d8;
-        pLVar25 = (LocStr *)util__LocStr__LocStr((LocStr *)local_144,&local_74,&local_28);
-        pSVar26 = util__LocStr__operator__o3(pLVar25);
-        bVar23 = false;
-        bVar22 = false;
-        bVar21 = false;
-        bVar20 = false;
-        bVar19 = false;
-        bVar24 = false;
-        bVar18 = false;
-        bVar17 = false;
-        bVar14 = true;
-        bVar13 = true;
-        bVar12 = true;
-        bVar11 = true;
-        bVar10 = false;
-        bVar9 = false;
-        bVar8 = false;
-      }
-      else {
-        bVar24 = AreShipsNonStationary(this);
-        if (bVar24) {
-          bVar24 = AnyShipsInFleetHaveDeltaV(this);
-          if (bVar24) {
-            local_4c.Data = (char *)0x0;
-            pSVar26 = &local_4c;
-            local_4c.Capacity = 0;
-            local_4c.Length = 0;
-          }
-          else {
-            util__Str_char___Str_char__o5(&local_5c,"CantSplitNoDeltaV Tooltip");
-            local_10.Data = (char *)0x0;
-            local_10.Capacity = 0;
-            local_10.Length = 0;
-            pLVar25 = (LocStr *)util__LocStr__LocStr((LocStr *)local_114,&local_5c,&local_10);
-            pSVar26 = util__LocStr__operator__o3(pLVar25);
-            pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char(&local_c0,pSVar26);
-          }
-          bVar23 = false;
-          bVar22 = !bVar24;
-          bVar21 = !bVar24;
-          bVar20 = !bVar24;
-          bVar19 = !bVar24;
-          bVar18 = true;
-          bVar10 = false;
-          bVar9 = false;
-          bVar8 = false;
-          pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char__o5(&local_b4,pSVar26);
-        }
-        else {
-          util__Str_char___Str_char(&local_68,"CantSplitSpaceStations Tooltip");
-          local_1c.Data = (char *)0x0;
-          local_1c.Capacity = 0;
-          local_1c.Length = 0;
-          pLVar25 = (LocStr *)util__LocStr__LocStr((LocStr *)local_12c,&local_68,&local_1c);
-          pSVar26 = util__LocStr__operator__o3(pLVar25);
-          pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char(&local_cc,pSVar26);
-          bVar23 = true;
-          bVar22 = false;
-          bVar21 = false;
-          bVar20 = false;
-          bVar19 = false;
-          bVar24 = false;
-          bVar18 = false;
-          bVar10 = true;
-          bVar9 = true;
-          bVar8 = true;
-        }
-        pSVar29 = &local_a8;
-        bVar17 = true;
-        bVar14 = false;
-        bVar13 = false;
-        bVar12 = false;
-        bVar11 = false;
-      }
-      bVar16 = true;
-      bVar4 = false;
-      bVar3 = false;
-      bVar2 = false;
-      this_00 = &local_9c;
-      pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char(pSVar29,pSVar26);
-    }
-    pSVar29 = &local_90;
-    bVar15 = true;
-    bVar7 = false;
-    bVar6 = false;
-    bVar5 = false;
-    bVar1 = false;
-    pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char(this_00,pSVar26);
-  }
-  pSVar26 = (Str_L_char_G_ *)util__Str_char___Str_char(pSVar29,pSVar26);
-  util__Str_char___Str_char(__return_storage_ptr__,pSVar26);
-  if (bVar15) {
-    if (local_90.Data != (char *)0x0) {
-      operator_delete__(local_90.Data);
-      local_90.Data = (char *)0x0;
-    }
-  }
-  if (bVar16) {
-    if (local_9c.Data != (char *)0x0) {
-      operator_delete__(local_9c.Data);
-      local_9c.Data = (char *)0x0;
-    }
-  }
-  if (bVar17) {
-    if (local_a8.Data != (char *)0x0) {
-      operator_delete__(local_a8.Data);
-      local_a8.Data = (char *)0x0;
-    }
-  }
-  if (bVar18) {
-    if (local_b4.Data != (char *)0x0) {
-      operator_delete__(local_b4.Data);
-      local_b4.Data = (char *)0x0;
-    }
-  }
-  if (bVar24) {
-    if (local_4c.Data != (char *)0x0) {
-      operator_delete__(local_4c.Data);
-    }
-  }
-  if (bVar19) {
-    if (local_c0.Data != (char *)0x0) {
-      operator_delete__(local_c0.Data);
-      local_c0.Data = (char *)0x0;
-    }
-  }
-  if (bVar20) {
-    if (local_108 != (void *)0x0) {
-      operator_delete__(local_108);
-      local_108 = (void *)0x0;
-    }
-    if (local_114[0] != (void *)0x0) {
-      operator_delete__(local_114[0]);
-      local_114[0] = (void *)0x0;
-    }
-  }
-  if (bVar21) {
-    if (local_10.Data != (char *)0x0) {
-      operator_delete__(local_10.Data);
-      local_10.Data = (char *)0x0;
-    }
-  }
-  if ((bVar22) && (local_5c.Data != (char *)0x0)) {
-    operator_delete__(local_5c.Data);
-    local_5c.Data = (char *)0x0;
-  }
-  if ((bVar23) && (local_cc.Data != (char *)0x0)) {
-    operator_delete__(local_cc.Data);
-    local_cc.Data = (char *)0x0;
-  }
-  if (bVar8) {
-    if (local_120 != (void *)0x0) {
-      operator_delete__(local_120);
-      local_120 = (void *)0x0;
-    }
-    if (local_12c[0] != (void *)0x0) {
-      operator_delete__(local_12c[0]);
-      local_12c[0] = (void *)0x0;
-    }
-  }
-  if ((bVar9) && (local_1c.Data != (char *)0x0)) {
-    operator_delete__(local_1c.Data);
-    local_1c.Data = (char *)0x0;
-  }
-  if ((bVar10) && (local_68.Data != (char *)0x0)) {
-    operator_delete__(local_68.Data);
-    local_68.Data = (char *)0x0;
-  }
-  if ((bVar11) && (local_d8.Data != (char *)0x0)) {
-    operator_delete__(local_d8.Data);
-    local_d8.Data = (char *)0x0;
-  }
-  if (bVar12) {
-    if (local_138 != (void *)0x0) {
-      operator_delete__(local_138);
-      local_138 = (void *)0x0;
-    }
-    if (local_144[0] != (void *)0x0) {
-      operator_delete__(local_144[0]);
-      local_144[0] = (void *)0x0;
-    }
-  }
-  if ((bVar13) && (local_28.Data != (char *)0x0)) {
-    operator_delete__(local_28.Data);
-    local_28.Data = (char *)0x0;
-  }
-  if ((bVar14) && (local_74.Data != (char *)0x0)) {
-    operator_delete__(local_74.Data);
-    local_74.Data = (char *)0x0;
-  }
-  if (bVar2) {
-    if (local_150 != (void *)0x0) {
-      operator_delete__(local_150);
-      local_150 = (void *)0x0;
-    }
-    if (local_15c[0] != (void *)0x0) {
-      operator_delete__(local_15c[0]);
-      local_15c[0] = (void *)0x0;
-    }
-  }
-  if ((bVar3) && (local_34.Data != (char *)0x0)) {
-    operator_delete__(local_34.Data);
-    local_34.Data = (char *)0x0;
-  }
-  if ((bVar4) && (local_80.Data != (char *)0x0)) {
-    operator_delete__(local_80.Data);
-    local_80.Data = (char *)0x0;
-  }
-  if ((bVar5) && (local_f0.Data != (char *)0x0)) {
-    operator_delete__(local_f0.Data);
-    local_f0.Data = (char *)0x0;
-  }
-  if (bVar6) {
-    if (local_168 != (void *)0x0) {
-      operator_delete__(local_168);
-      local_168 = (void *)0x0;
-    }
-    if (local_174[0] != (void *)0x0) {
-      operator_delete__(local_174[0]);
-      local_174[0] = (void *)0x0;
-    }
-  }
-  if ((bVar7) && (local_40.Data != (char *)0x0)) {
-    operator_delete__(local_40.Data);
-    local_40.Data = (char *)0x0;
-  }
-  if ((local_fc.Data != (char *)0x0) && (bVar1)) {
-    operator_delete__(local_fc.Data);
-  }
-  return __return_storage_ptr__;
 }
 
 
@@ -8548,243 +6749,5 @@ PrintTimeExtraTruncated(Str_L_char_G_ *__return_storage_ptr__,double param_1,boo
     operator_delete__((void *)((slice_view *)&local_10)->_0_4_);
   }
   return __return_storage_ptr__;
-}
-
-
-//==== 000088c300 0088c300_FUN_0088c300 ====
-void __thiscall FUN_0088c300(int *param_1,Str_L_char32_t_G_ *param_2);
-
-// decompiled by BatchDecomp @ 0088c300 name=FUN_0088c300 conv=unknown body=1250
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-
-void __thiscall FUN_0088c300(int *param_1,Str_L_char32_t_G_ *param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  int *piVar1;
-  bool bVar2;
-  Str_L_char32_t_G_ *pSVar3;
-  int iVar4;
-  wchar32 *pwVar5;
-  Character *pCVar6;
-  float *pfVar7;
-  Maybe_L_int_G_ *pMVar8;
-  Maybe_L_int_G_ *pMVar9;
-  float fVar10;
-  void *local_a4[3];
-  void *local_98[3];
-  int local_8c;
-  void *local_88[3];
-  void *local_7c[3];
-  void *local_70[3];
-  Maybe_L_int_G_ *local_64;
-  undefined8 local_60;
-  float local_5c;
-  Str_L_char32_t_G_ *local_58;
-  float local_54;
-  char local_4d;
-  wchar32 local_4c;
-  ulonglong local_48;
-  undefined4 local_40;
-  ulonglong local_3c;
-  undefined4 local_34;
-  ulonglong local_30;
-  uint local_28;
-  undefined8 local_24;
-  undefined8 local_1c;
-  undefined4 local_18;
-  wchar32 local_14;
-  wchar32 local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_58 = param_2;
-  local_8c = *(int *)(param_2 + 8);
-  local_5c = Font__GetWidth((Font *)*param_1,param_2,false);
-  pfVar7 = (float *)param_1[1];
-  fVar10 = *pfVar7;
-  pMVar9 = *(Maybe_L_int_G_ **)param_1[3];
-  local_4d = (float)*(int *)param_1[2] < fVar10 + local_5c;
-  if ((fVar10 + local_5c <= (float)*(int *)param_1[2]) || (pMVar9 == (Maybe_L_int_G_ *)0x0)) {
-    if (((bool)local_4d) && (pMVar9 == (Maybe_L_int_G_ *)0x0)) {
-      pMVar9 = (Maybe_L_int_G_ *)0x0;
-      local_54 = 0.0;
-      iVar4 = *(int *)(local_58 + 8);
-      local_4c = L'\0';
-      if (0 < iVar4) {
-        do {
-          pSVar3 = local_58;
-          if (((0 < (int)pMVar9) || ((int)pMVar9 < iVar4 + -1)) &&
-             ((iVar4 + -1 < (int)pMVar9 || ((int)pMVar9 < 0)))) {
-            util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\corestring.inl"
-                            ,0x11d,"Between(Index, 0, GetLength()-1)",(char *)0x0);
-            DebugBreak();
-          }
-          local_10 = *(wchar32 *)(*(int *)pSVar3 + (int)pMVar9 * 4);
-          if (((int)pMVar9 < 1) ||
-             ((bVar2 = util__IsCJKStartPunctuation(&local_4c), !bVar2 &&
-              (bVar2 = util__IsCJKEndPunctuation(&local_10), !bVar2)))) {
-            local_4d = '\0';
-          }
-          else {
-            local_4d = '\x01';
-          }
-          local_60 = *param_1;
-          piVar1 = (int *)(local_60 + 0x28);
-          local_14 = local_10;
-          local_c = 0;
-          iVar4 = (**(code **)(*piVar1 + 0xc))();
-          if (local_c < iVar4) {
-            do {
-              pwVar5 = (wchar32 *)(**(code **)*piVar1)(&local_c);
-              if (((uint)*pwVar5 <= (uint)local_14) && ((uint)local_14 <= (uint)pwVar5[1])) {
-                local_14 = local_10;
-                pCVar6 = util__HashMap_unsigned_long_struct_Font__Character___Find((HashMap_L_unsigned_long_Cstruct_Font__Character_G_ *)
-                                    (local_60 + 0x38),(ulong *)&local_14);
-                fVar10 = (pCVar6->BitmapSize).Y;
-                goto LAB_0088c5a8;
-              }
-              local_c = local_c + 1;
-              iVar4 = (**(code **)(*piVar1 + 0xc))();
-            } while (local_c < iVar4);
-          }
-          fVar10 = 0.0;
-LAB_0088c5a8:
-          if ((fVar10 + local_54 <= (float)*(int *)param_1[2]) || (local_54 <= 0.0)) {
-            pfVar7 = (float *)param_1[1];
-            local_54 = fVar10 + local_54;
-LAB_0088c796:
-            local_4c = local_10;
-          }
-          else {
-            pMVar8 = pMVar9;
-            if (local_4d != '\0') {
-              pMVar8 = (Maybe_L_int_G_ *)0x0;
-              if (-1 < (int)&pMVar9[-1].field_0x7) {
-                pMVar8 = (Maybe_L_int_G_ *)&pMVar9[-1].field_0x7;
-              }
-            }
-            util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)local_88,(wchar32 *)"\n");
-            local_24 = CONCAT44(pMVar8,(void *)local_24);
-            ((slice_view *)&local_1c)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&local_1c)->_1_3_[0] | (((slice_view *)&local_1c)->_1_3_[1] << 8) | (((slice_view *)&local_1c)->_1_3_[2] << 16)) << 8));
-            local_30 = local_30 & 0xffffffff;
-            local_28 = local_28 & 0xffffff00;
-            pSVar3 = (Str_L_char32_t_G_ *)
-                     util__Str_char32_t___SubStr((Str_L_char32_t_G_ *)param_1[4],(int)local_98,(Maybe_L_int_G_ *)0x0);
-            local_34 = 0;
-            local_3c = 0;
-            util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)&local_3c,pSVar3);
-            util__Str_char32_t___operator__o5((Str_L_char32_t_G_ *)&local_3c,(Str_L_char32_t_G_ *)local_88);
-            util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)local_7c,(Str_L_char32_t_G_ *)&local_3c)
-            ;
-            if ((void *)local_3c != (void *)0x0) {
-              operator_delete__((void *)local_3c);
-              local_3c = local_3c & 0xffffffff00000000;
-            }
-            pSVar3 = (Str_L_char32_t_G_ *)
-                     util__Str_char32_t___SubStr((Str_L_char32_t_G_ *)param_1[4],(int)local_a4,pMVar8);
-            local_40 = 0;
-            local_48 = 0;
-            util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)&local_48,(Str_L_char32_t_G_ *)local_7c)
-            ;
-            util__Str_char32_t___operator__o5((Str_L_char32_t_G_ *)&local_48,pSVar3);
-            util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)local_70,(Str_L_char32_t_G_ *)&local_48)
-            ;
-            if ((void *)local_48 != (void *)0x0) {
-              operator_delete__((void *)local_48);
-              local_48 = local_48 & 0xffffffff00000000;
-            }
-            util__Str_char32_t___operator__o4((Str_L_char32_t_G_ *)param_1[4],(Str_L_char32_t_G_ *)local_70);
-            if (local_70[0] != (void *)0x0) {
-              operator_delete__(local_70[0]);
-              local_70[0] = (void *)0x0;
-            }
-            if (local_7c[0] != (void *)0x0) {
-              operator_delete__(local_7c[0]);
-              local_7c[0] = (void *)0x0;
-            }
-            if (local_98[0] != (void *)0x0) {
-              operator_delete__(local_98[0]);
-              local_98[0] = (void *)0x0;
-            }
-            if (local_a4[0] != (void *)0x0) {
-              operator_delete__(local_a4[0]);
-              local_a4[0] = (void *)0x0;
-            }
-            if (local_88[0] != (void *)0x0) {
-              operator_delete__(local_88[0]);
-              local_88[0] = (void *)0x0;
-            }
-            local_54 = 0.0;
-            *(int *)param_1[3] = *(int *)param_1[3] + 1;
-            pfVar7 = (float *)param_1[1];
-            *pfVar7 = 0.0;
-            if (local_4d == '\0') goto LAB_0088c796;
-            pMVar9 = (Maybe_L_int_G_ *)&pMVar9[-1].field_0x7;
-          }
-          pMVar9 = (Maybe_L_int_G_ *)((int)&pMVar9->Data + 1);
-          iVar4 = *(int *)(local_58 + 8);
-        } while ((int)pMVar9 < iVar4);
-        fVar10 = *pfVar7;
-      }
-    }
-  }
-  else {
-    util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)&local_3c,(wchar32 *)"\n");
-    ((slice_view *)&local_60)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&local_60)->_1_3_[0] | (((slice_view *)&local_60)->_1_3_[1] << 8) | (((slice_view *)&local_60)->_1_3_[2] << 16)) << 8));
-    local_18 = 0;
-    local_14 = local_14 & 0xffffff00;
-    local_64 = pMVar9;
-    pSVar3 = (Str_L_char32_t_G_ *)
-             util__Str_char32_t___SubStr((Str_L_char32_t_G_ *)param_1[4],(int)local_70,(Maybe_L_int_G_ *)0x0);
-    local_28 = 0;
-    local_30 = 0;
-    util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)&local_30,pSVar3);
-    util__Str_char32_t___operator__o5((Str_L_char32_t_G_ *)&local_30,(Str_L_char32_t_G_ *)&local_3c);
-    util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)local_7c,(Str_L_char32_t_G_ *)&local_30);
-    if ((void *)local_30 != (void *)0x0) {
-      operator_delete__((void *)local_30);
-      local_30 = local_30 & 0xffffffff00000000;
-    }
-    pSVar3 = (Str_L_char32_t_G_ *)
-             util__Str_char32_t___SubStr((Str_L_char32_t_G_ *)param_1[4],(int)&local_48,pMVar9);
-    local_1c = 0;
-    local_24 = 0;
-    util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)&local_24,(Str_L_char32_t_G_ *)local_7c);
-    util__Str_char32_t___operator__o5((Str_L_char32_t_G_ *)&local_24,pSVar3);
-    util__Str_char32_t___Str_char32_t((Str_L_char32_t_G_ *)local_88,(Str_L_char32_t_G_ *)&local_24);
-    if ((void *)local_24 != (void *)0x0) {
-      operator_delete__((void *)local_24);
-      local_24 = local_24 & 0xffffffff00000000;
-    }
-    util__Str_char32_t___operator__o4((Str_L_char32_t_G_ *)param_1[4],(Str_L_char32_t_G_ *)local_88);
-    if (local_88[0] != (void *)0x0) {
-      operator_delete__(local_88[0]);
-    }
-    if (local_7c[0] != (void *)0x0) {
-      operator_delete__(local_7c[0]);
-    }
-    if (local_70[0] != (void *)0x0) {
-      operator_delete__(local_70[0]);
-      local_70[0] = (void *)0x0;
-    }
-    if ((void *)local_48 != (void *)0x0) {
-      operator_delete__((void *)local_48);
-      local_48 = local_48 & 0xffffffff00000000;
-    }
-    if ((void *)local_3c != (void *)0x0) {
-      operator_delete__((void *)local_3c);
-    }
-    fVar10 = 0.0;
-    *(int *)param_1[3] = *(int *)param_1[3] + 1;
-    pfVar7 = (float *)param_1[1];
-    *pfVar7 = 0.0;
-  }
-  *pfVar7 = *(float *)param_1[5] + local_5c + fVar10;
-  *(int *)param_1[3] = *(int *)param_1[3] + local_8c + 1;
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
 }
 

@@ -1,13 +1,11 @@
 pool=20839 fullnames, multi=570
-oracle: 2008 stub names
+oracle: 2028 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep02 total=800 in=190 (env_defer=386 auto_prev=224) tpl_defs=7
-WARN 00781420_GetBurnStatusBarRanges: slice local local_1c: no decl found
-prescreen: auto-defer now=0 total=224
-prototypes: 190 (all-CC)
-decls_gen refreshed: 0 sigs, 0 templates, 154 K&R
+batch=sweep02 total=800 in=158 (env_defer=295 auto_prev=347) tpl_defs=6
+prescreen: auto-defer now=0 total=347
+prototypes: 158 (all-CC)
 exref defines: 2
-typedef forwards: 14 (alias 3)
+typedef forwards: 12 (alias 2)
 l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep02_draft.c (477690B) sections=190 externs=20 unresolved=163
+WROTE /tmp/sweep_sweep02_draft.c (416078B) sections=158 externs=20 unresolved=150

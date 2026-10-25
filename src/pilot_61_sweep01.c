@@ -7,6 +7,7 @@ typedef struct SharedPtr SharedPtr;
 typedef struct Str Str;
 typedef struct Vec3 Vec3;
 typedef struct WeakPtr WeakPtr;
+typedef struct tuple2 tuple2;
 typedef struct Darray_L_class_util__Reflectable_P_G_ Darray_L_class_util__Reflectable_P__G_;
 #include "port_prelude.h"
 #include "cde_win32_compat.h"
@@ -22,12 +23,14 @@ typedef union {
   undefined1 raw[32];
 } slice_view;
 /* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */
+extern int Fleet__dtor(); /* K&R stub; ret by call site */
 extern int ItineraryNode__operator_(); /* K&R stub; ret by call site */
 extern int LibrationOrbit_GetActualOrbit_Memoize(); /* K&R stub; ret by call site */
 extern int ModuleCompartment_ModuleCompartment__o2(); /* K&R stub; ret by call site */
 extern int NodeMouseOver__dtor(); /* K&R stub; ret by call site */
-extern int TacticalManager_GetStrategicGame_Memoize(); /* K&R stub; ret by call site */
+extern int TacticalManager__dtor(); /* K&R stub; ret by call site */
 extern int util_Darray_struct_WorldObject_Darray_struct_WorldObject__o2(); /* K&R stub; ret by call site */
+extern int util_Quaternion_double_Quaternion_double(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____Darray_class_util__WeakPtr_class_SpacecraftComponent(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2(); /* K&R stub; ret by call site */
 /* ---- data refs: xmm consts / UNK data (cde_data_map.h __real_ idiom) ---- */
@@ -299,25 +302,6 @@ void __cdecl stbi_jpeg_test_file(void)
   }
   fseek(in_ECX,_Offset,0);
   __security_check_cookie(uVar2 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 0000496ce0 00496ce0_RenderSimple ====
-// decompiled by BatchDecomp @ 00496ce0 name=RenderSimple conv=__thiscall body=31
-
-/* public: void __thiscall GameModel__RenderSimple(void)const  */
-
-void __thiscall GameModel__RenderSimple(GameModel *this)
-
-{
-  bool bVar1;
-  
-  bVar1 = VertexBufferObjectInterface__IsGenerated((VertexBufferObjectInterface *)this);
-  if ((bVar1) && (this->StructureComposition != (Material *)0x0)) {
-    VertexBufferObjectInterface__Render((VertexBufferObjectInterface *)this);
-    return;
-  }
   return;
 }
 
@@ -606,84 +590,6 @@ void __cdecl SimpleShader__SetUsesTextureDefault(void)
 }
 
 
-//==== 00004e3870 004e3870_GetRecordInfo ====
-// decompiled by BatchDecomp @ 004e3870 name=GetRecordInfo conv=__thiscall body=87
-
-/* public: class util::Str<char> __thiscall LevelRecordSlotUI__GetRecordInfo(void)const  */
-
-Str_L_char_G_ * __thiscall
-LevelRecordSlotUI__GetRecordInfo(LevelRecordSlotUI *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xffffffd4;
-  undefined4 stack0xfffffffc;
-  Str_L_char_G_ SVar1;
-  int unaff_EDI;
-  Maybe_L_double_G_ *__return_storage_ptr___00;
-  Attribute_L_LevelRecord_G_ *pAVar2;
-  LevelRecordMetadata *pLVar3;
-  Maybe_L_double_G_ local_18;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  pLVar3 = &this->Metadata;
-  pAVar2 = &this->Record;
-  __return_storage_ptr___00 = &local_18;
-  LevelRecord__GetValue(__return_storage_ptr___00,(Attribute_L_struct_LevelRecord_G_ *)pAVar2,pLVar3);
-  if (local_18.IsValidData == false) {
-    util__Str_char___Str_char__o5(__return_storage_ptr__,"-");
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return __return_storage_ptr__;
-  }
-  GetUnitsOfType((Str_L_char_G_ *)&stack0xffffffd4,&(this->Metadata).Name);
-  SVar1.Capacity = (int)pLVar3;
-  SVar1.Data = (char *)pAVar2;
-  SVar1.Length = unaff_EDI;
-  Print(__return_storage_ptr__,(double)CONCAT44(__return_storage_ptr___00,((slice_view *)&local_18.Data)->_4_4_),SVar1
-       );
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return __return_storage_ptr__;
-}
-
-
-//==== 00004fd660 004fd660_Clear ====
-#undef PauseMenu /* auto(v2): compat 僵尸宏撞成员名 */
-
-// decompiled by BatchDecomp @ 004fd660 name=Clear conv=__thiscall body=97
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall PauseMenuHandler__Clear(void) */
-
-void __thiscall PauseMenuHandler__Clear(PauseMenuHandler *this)
-
-{
-  ReferenceController *this_00;
-  bool bVar1;
-  Interface *this_01;
-  ReferenceControllerRegistry *this_02;
-  UIWidget *pUVar2;
-  
-  this_01 = UIWidget__GetInterfacer((UIWidget *)this);
-  Interface__KillPopup(this_01);
-  this_00 = (this->PauseMenu).Controller;
-  pUVar2 = (this->PauseMenu).Pointer;
-  (this->PauseMenu).Pointer = (UIWidget *)0x0;
-  (this->PauseMenu).Controller = (ReferenceController *)0x0;
-  if (this_00 != (ReferenceController *)0x0) {
-    bVar1 = util__ReferenceController__ReleaseStrongReference(this_00);
-    if (bVar1) {
-      if (pUVar2 != (UIWidget *)0x0) {
-        (**(code **)(pUVar2->_pad_0x0_0 + 4))(1);
-      }
-      this_02 = util__ReferenceControllerRegistry__Get();
-      util__ReferenceControllerRegistry__PointerWasDestroyed(this_02,pUVar2);
-    }
-  }
-  *(undefined1 *)&this[1]._pad_0x0_0 = 0;
-  return;
-}
-
-
 //==== 0000529160 00529160_operator__ ====
 // decompiled by BatchDecomp @ 00529160 name=operator[] conv=__thiscall body=69
 
@@ -705,48 +611,6 @@ util__Darray_struct_CompartmentCollisionShell___operator__(Darray_L_struct_Compa
     iVar1 = *param_1;
   }
   return (CompartmentCollisionShell *)(iVar1 * 0x118 + *(int *)(this + 4));
-}
-
-
-//==== 000058ade0 0058ade0_RefreshCurrentModule ====
-// decompiled by BatchDecomp @ 0058ade0 name=RefreshCurrentModule conv=__thiscall body=106
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall ModuleDesignManager__RefreshCurrentModule(void) */
-
-void __thiscall ModuleDesignManager__RefreshCurrentModule(ModuleDesignManager *this)
-
-{
-  Module *this_00;
-  ReferenceController *pRVar1;
-  bool bVar2;
-  GameManager *this_01;
-  DataParser *pDVar3;
-  HWND unaff_EDI;
-  
-  this_00 = this->SelectedModule;
-  if (this_00 != (Module *)0x0) {
-    this_01 = (GameManager *)Manager__GetParent(unaff_EDI);
-    pDVar3 = GameManager__GetDataManager(this_01);
-    Module__FullGenerate(this_00,pDVar3);
-  }
-  if (((this->MessageBoxA).Options.Data != (tuple2_L_util__Str_L_char_G__Cutil__Delegate_L_void_G___G_ *)0x0) &&
-     (pRVar1 = (ReferenceController *)(this->MessageBoxA).Options.Size,
-     pRVar1 != (ReferenceController *)0x0)) {
-    bVar2 = util__ReferenceController__IsDataStillValid(pRVar1);
-    if (bVar2) {
-      pRVar1 = (ReferenceController *)(this->MessageBoxA).Options.Size;
-      if (pRVar1 != (ReferenceController *)0x0) {
-        bVar2 = util__ReferenceController__IsDataStillValid(pRVar1);
-        if (!bVar2) {
-          (this->MessageBoxA).Options.Data = (tuple2_L_util__Str_L_char_G__Cutil__Delegate_L_void_G___G_ *)0x0;
-        }
-      }
-      ErrorMessageUI__Rebuild((ErrorMessageUI *)(this->MessageBoxA).Options.Data);
-      return;
-    }
-  }
-  return;
 }
 
 
@@ -797,6 +661,34 @@ void * __thiscall AmmoCompartment___scalar_deleting_destructor_(AmmoCompartment 
 }
 
 
+//==== 00005b4580 005b4580_InitialSetup ====
+// decompiled by BatchDecomp @ 005b4580 name=InitialSetup conv=__thiscall body=111
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall EngineCompartment__InitialSetup(class CraftBlueprint const
+   *,struct ModulePlacer const &,class Module const *,int,int,struct Vec3_L_double_G_,struct
+   util::Quaternion<double>) */
+
+void __thiscall
+EngineCompartment__InitialSetup(EngineCompartment *this,CraftBlueprint *param_1,ModulePlacer *param_2,Module *param_3,
+          int param_4,int param_5,Vec3_L_double_G_ param_6,Quaternion_L_double_G_ param_7)
+
+{
+  Quaternion_L_double_G_ QVar1;
+  undefined4 unaff_ESI;
+  float10 fVar2;
+  
+  ((slice_view *)&QVar1.W)->_4_4_ = unaff_ESI;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((slice_view *)&param_7)->raw + 0, 28);
+  ModuleCompartment__InitialSetup((ModuleCompartment *)this,param_1,param_2,param_3,param_4,param_5,param_6,QVar1);
+  fVar2 = (float10)(**(code **)(*(int *)this->_pad_0x0_0 + 0x158))();
+  this->CachedMaxThrust_N = (double)fVar2;
+  fVar2 = (float10)(**(code **)(*(int *)this->_pad_0x0_0 + 0x15c))();
+  this->CachedExhaustVelocity_km__s = (double)fVar2;
+  return;
+}
+
+
 //==== 00005bb490 005bb490__scalar_deleting_destructor_ ====
 // decompiled by BatchDecomp @ 005bb490 name=`scalar_deleting_destructor' conv=__thiscall body=38
 
@@ -813,55 +705,6 @@ NuclearPayloadCompartment___scalar_deleting_destructor_(NuclearPayloadCompartmen
     operator_delete(this,0x120);
   }
   return this;
-}
-
-
-//==== 00005ced50 005ced50_GetTotalRadiation_W ====
-// decompiled by BatchDecomp @ 005ced50 name=GetTotalRadiation_W conv=__thiscall body=51
-
-/* public: double __thiscall Module__GetTotalRadiation_W(void)const  */
-
-double __thiscall Module__GetTotalRadiation_W(Module *this)
-
-{
-  undefined4 stack0xfffffffc;
-  float10 extraout_ST0;
-  undefined1 local_20[24];
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  (**(code **)(*(int *)this + 0xcc))(local_20);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
-}
-
-
-//==== 00005cee70 005cee70_InnerSortFunction ====
-// decompiled by BatchDecomp @ 005cee70 name=InnerSortFunction conv=__thiscall body=79
-
-/* public: virtual bool __thiscall Module__InnerSortFunction(class Module const *,class Module const
-   *)const  */
-
-bool __thiscall Module__InnerSortFunction(Module *this,Module *param_1,Module *param_2)
-
-{
-  Type TVar1;
-  char *pcVar2;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  
-  if (param_2->_pad_0x0_0 < 1) {
-    pcVar2 = "";
-  }
-  else {
-    pcVar2 = (char *)param_2->_pad_0x0_0;
-  }
-  if (0 < param_1->_pad_0x0_0) {
-    TVar1 = util__InnerSortFunction((char *)param_1->_pad_0x0_0,pcVar2);
-    return CONCAT31(extraout_var,TVar1) == 2;
-  }
-  TVar1 = util__InnerSortFunction("",pcVar2);
-  return CONCAT31(extraout_var_00,TVar1) == 2;
 }
 
 
@@ -964,6 +807,57 @@ RefuelerCompartment___scalar_deleting_destructor_(RefuelerCompartment *this,uint
 }
 
 
+//==== 0000604ef0 00604ef0_InitialSetup ====
+// decompiled by BatchDecomp @ 00604ef0 name=InitialSetup conv=__thiscall body=88
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall NuclearPayloadCompartment__InitialSetup(class CraftBlueprint
+   const *,struct ModulePlacer const &,class Module const *,int,int,struct Vec3_L_double_G_,struct
+   util::Quaternion<double>) */
+
+void __thiscall
+NuclearPayloadCompartment__InitialSetup(NuclearPayloadCompartment *this,CraftBlueprint *param_1,ModulePlacer *param_2,
+          Module *param_3,int param_4,int param_5,Vec3_L_double_G_ param_6,Quaternion_L_double_G_ param_7)
+
+{
+  Quaternion_L_double_G_ QVar1;
+  undefined4 unaff_ESI;
+  
+  ((slice_view *)&QVar1.W)->_4_4_ = unaff_ESI;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((slice_view *)&param_7)->raw + 0, 28);
+  ModuleCompartment__InitialSetup((ModuleCompartment *)this,param_1,param_2,param_3,param_4,param_5,param_6,QVar1);
+  this->DelayedDetonation = *(bool *)(this->_pad_0x0_0 + 0x140);
+  return;
+}
+
+
+//==== 00006193f0 006193f0_InitialSetup ====
+// decompiled by BatchDecomp @ 006193f0 name=InitialSetup conv=__thiscall body=105
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall AmmoCompartment__InitialSetup(class CraftBlueprint const *,struct
+   ModulePlacer const &,class Module const *,int,int,struct Vec3_L_double_G_,struct
+   util::Quaternion<double>) */
+
+void __thiscall
+AmmoCompartment__InitialSetup(AmmoCompartment *this,CraftBlueprint *param_1,ModulePlacer *param_2,Module *param_3,
+          int param_4,int param_5,Vec3_L_double_G_ param_6,Quaternion_L_double_G_ param_7)
+
+{
+  Quaternion_L_double_G_ QVar1;
+  undefined4 unaff_ESI;
+  double dVar2;
+  
+  ((slice_view *)&QVar1.W)->_4_4_ = unaff_ESI;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((slice_view *)&param_7)->raw + 0, 28);
+  ModuleCompartment__InitialSetup((ModuleCompartment *)this,param_1,param_2,param_3,param_4,param_5,param_6,QVar1);
+  this->CurrentAmmo = *(int *)(this->_pad_0x0_0 + 0x98);
+  dVar2 = AmmoBaySubModule__GetArmorMass_kg((AmmoBaySubModule *)(this->_pad_0x0_0 + 0x88));
+  *(double *)&this->_pad_0x0_0 = dVar2;
+  return;
+}
+
+
 //==== 000061fa30 0061fa30__scalar_deleting_destructor_ ====
 // decompiled by BatchDecomp @ 0061fa30 name=`scalar_deleting_destructor' conv=__thiscall body=66
 
@@ -984,6 +878,29 @@ RailgunCompartment___scalar_deleting_destructor_(RailgunCompartment *this,uint p
     operator_delete(this,0x208);
   }
   return this;
+}
+
+
+//==== 000062e330 0062e330_RenderSimple ====
+// decompiled by BatchDecomp @ 0062e330 name=RenderSimple conv=__thiscall body=54
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall CoilgunCompartment__RenderSimple(void)const  */
+
+void __thiscall CoilgunCompartment__RenderSimple(CoilgunCompartment *this)
+
+{
+  CoilgunModule *this_00;
+  Vec3_L_double_G_ VVar1;
+  Vec3_L_double_G_ *pVVar2;
+  Vec3_L_double_G_ local_1c;
+  
+  this_00 = (CoilgunModule *)this->_pad_0x0_0;
+  pVVar2 = WeaponCompartment__GetRawCurrentDirection((WeaponCompartment *)this,&local_1c);
+  ((slice_view *)&VVar1.Z)->_4_4_ = (int)((ulonglong)pVVar2->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar1)->raw + 0, (const void *)pVVar2, 20);
+  CoilgunModule__RenderSimple(this_00,VVar1,true);
+  return;
 }
 
 
@@ -1011,34 +928,31 @@ StandaloneLaserMountCompartment___scalar_deleting_destructor_(StandaloneLaserMou
 }
 
 
-//==== 000066a500 0066a500_GetAmmoMass_kg ====
-// decompiled by BatchDecomp @ 0066a500 name=GetAmmoMass_kg conv=__thiscall body=116
+//==== 0000661ae0 00661ae0_GetCompartmentPieceRotation ====
+// decompiled by BatchDecomp @ 00661ae0 name=GetCompartmentPieceRotation conv=__thiscall body=86
 
-/* public: double __thiscall AmmoBaySubModule__GetAmmoMass_kg(void)const  */
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual struct util::Quaternion<double> __thiscall
+   WeaponCompartment__GetCompartmentPieceRotation(void)const  */
 
-double __thiscall AmmoBaySubModule__GetAmmoMass_kg(AmmoBaySubModule *this)
+Quaternion_L_double_G_ * __thiscall
+WeaponCompartment__GetCompartmentPieceRotation(WeaponCompartment *this,Quaternion_L_double_G_ *__return_storage_ptr__)
 
 {
-  undefined4 stack0xfffffffc;
-  Darray_L_MaterialComposition_G_ *pDVar1;
-  int iVar2;
-  float10 extraout_ST0;
-  int local_c;
-  uint local_8;
+  Vec3_L_double_G_ VVar1;
+  Vec3_L_double_G_ VVar2;
+  Vec3_L_double_G_ local_1c;
   
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  pDVar1 = &(this->CachedInfo).Composition;
-  local_c = 0;
-  iVar2 = (**(code **)((this->CachedInfo).Composition._pad_0x0_0 + 0xc))();
-  if (local_c < iVar2) {
-    do {
-      (**(code **)*(int *)pDVar1)(&local_c);
-      local_c = local_c + 1;
-      iVar2 = (**(code **)(*(int *)pDVar1 + 0xc))();
-    } while (local_c < iVar2);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
+  FixedOrbit__GetPlanarNormal(&local_1c);
+  ((slice_view *)&VVar1.X)->_4_4_ = ((slice_view *)&local_1c.X)->_4_4_;
+  ((slice_view *)&VVar1.X)->_0_4_ = ((slice_view *)&local_1c.X)->_0_4_;
+  ((slice_view *)&VVar1.Y)->_0_4_ = ((slice_view *)&local_1c.Y)->_0_4_;
+  ((slice_view *)&VVar1.Y)->_4_4_ = ((slice_view *)&local_1c.Y)->_4_4_;
+  VVar1.Z = local_1c.Z;
+  ((slice_view *)&VVar2.Z)->_4_4_ = (int)((ulonglong)(this->CurrentDirection).Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)&this->CurrentDirection, 20);
+  util_Quaternion_double_Quaternion_double(__return_storage_ptr__,VVar1,VVar2);
+  return __return_storage_ptr__;
 }
 
 
@@ -1058,54 +972,6 @@ Str_L_char_G_ * __cdecl PrintDeltaV(Str_L_char_G_ *__return_storage_ptr__,double
                                           ((double)CONCAT44(((slice_view *)&param_1)->_0_4_,in_stack_00000008) *
                                           /*408f400000000000*/1000.0) >> 0x20)),(char *)0x1,unaff_EBP);
   return __return_storage_ptr__;
-}
-
-
-//==== 00006cebe0 006cebe0_PlaySelectedLevel ====
-// decompiled by BatchDecomp @ 006cebe0 name=PlaySelectedLevel conv=__thiscall body=104
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall BriefingsHandler__PlaySelectedLevel(void) */
-
-void __thiscall BriefingsHandler__PlaySelectedLevel(BriefingsHandler *this)
-
-{
-  Delegate_L_void_G_ DVar1;
-  Delegate_L_void_G_ DVar2;
-  Interface *this_00;
-  GameManager *pGVar3;
-  StrategicManager *this_01;
-  HWND unaff_EDI;
-  void *pvVar4;
-  _func___cdecl_void_void_ptr *p_Var5;
-  void *pvVar6;
-  StrategicManager *pSVar7;
-  bool bVar8;
-  _func___cdecl_void_void_ptr *p_Var9;
-  
-  p_Var9 = (_func___cdecl_void_void_ptr *)0x0;
-  pvVar6 = (void *)0x0;
-  p_Var5 = (_func___cdecl_void_void_ptr *)0x0;
-  pvVar4 = (void *)0x0;
-  this_00 = Manager__GetInterfacer((Manager *)this->Parent);
-  DVar1.CallbackFunction = p_Var5;
-  DVar1.Callee = pvVar4;
-  DVar2.CallbackFunction = p_Var9;
-  DVar2.Callee = pvVar6;
-  Interface__NewScreen(this_00,DVar1,DVar2);
-  pGVar3 = (GameManager *)Manager__GetParent(unaff_EDI);
-  this_01 = GameManager__PlaySelectedLevel(pGVar3);
-  bVar8 = true;
-  pSVar7 = this_01;
-  pGVar3 = (GameManager *)Manager__GetParent((HWND)this_01);
-  GameManager__SwitchToSession(pGVar3,(Manager *)pSVar7,bVar8);
-  StrategicManager__StartLevel(this_01,this->SelectedLevel);
-  this->CanAffectCamera = false;
-  this->SelectedSubject = ~LevelPresets;
-  this->SelectedData = (Reflectable *)0x0;
-  this->SelectedCraft = (CraftBlueprint *)0x0;
-  this->SelectedLevel = (Level *)0x0;
-  return;
 }
 
 
@@ -1201,116 +1067,6 @@ LibrationOrbit * __thiscall OrbiterInterface__GetLibrationOrbit(OrbiterInterface
   *(undefined1 *)
    &in_stack_00000004[1].LibrationOrbitMemoizationHandlerInstance.ResetFunctions._pad_0x0_0 = 0;
   return in_stack_00000004;
-}
-
-
-//==== 00006f7b70 006f7b70_IsAFleetSelected ====
-// decompiled by BatchDecomp @ 006f7b70 name=IsAFleetSelected conv=__thiscall body=119
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall LevelEditor__IsAFleetSelected(void)const  */
-
-bool __thiscall LevelEditor__IsAFleetSelected(LevelEditor *this)
-
-{
-  WorldObject *this_00;
-  bool bVar1;
-  bool bVar2;
-  Actor *pAVar3;
-  ReferenceController *local_8;
-  
-  this_00 = (WorldObject *)(this + 0x80);
-  local_8 = (ReferenceController *)0x0;
-  bVar1 = WorldObject__IsValid(this_00);
-  if (bVar1) {
-    bVar1 = WorldObject__IsLevelEditorBody(this_00);
-    if (!bVar1) goto LAB_006f7bc8;
-    pAVar3 = (this_00->Object).Pointer;
-    local_8 = *(ReferenceController **)(this + 0x84);
-    if (local_8 != (ReferenceController *)0x0) {
-      util__ReferenceController__AddWeakReference(local_8);
-      bVar1 = util__ReferenceController__IsDataStillValid(local_8);
-      if (!bVar1) {
-        pAVar3 = (Actor *)0x0;
-      }
-    }
-    bVar1 = true;
-    if (pAVar3[3]._pad_0x0_0 != 0) {
-      bVar2 = true;
-      goto LAB_006f7bd0;
-    }
-  }
-  else {
-LAB_006f7bc8:
-    bVar1 = false;
-  }
-  bVar2 = false;
-LAB_006f7bd0:
-  if ((local_8 != (ReferenceController *)0x0) && (bVar1)) {
-    util__ReferenceController__ReleaseWeakReference(local_8);
-  }
-  return bVar2;
-}
-
-
-//==== 00006f8620 006f8620_RebuildCurrentLevel ====
-// decompiled by BatchDecomp @ 006f8620 name=RebuildCurrentLevel conv=__thiscall body=109
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: void __thiscall ScenarioEditor__RebuildCurrentLevel(void) */
-
-void __thiscall ScenarioEditor__RebuildCurrentLevel(ScenarioEditor *this)
-
-{
-  Reflectable *this_00;
-  Level *this_01;
-  bool bVar1;
-  MetagameManager *this_02;
-  Reflectable *pRVar2;
-  Level *this_03;
-  
-  CorrectCurrentLevelValidity(this);
-  RegeneratePropertyUI(this);
-  this_02 = MainManager__GetMetagame(*(MainManager **)this);
-  MetagameManager__SaveAllDesigns(this_02);
-  MainManager__PlayTitleMusic(*(MainManager **)this);
-  UpdateListBoxUI(this);
-  this_00 = *(Reflectable **)(this + 100);
-  if (this_00 != (Reflectable *)0x0) {
-    bVar1 = Reflectable__RebuildCurrentLevel(this_00);
-    pRVar2 = (Reflectable *)0x0;
-    if (bVar1) {
-      pRVar2 = this_00;
-    }
-    if (pRVar2 != (Reflectable *)0x0) {
-      this_01 = *(Level **)(this + 100);
-      if (this_01 != (Level *)0x0) {
-        bVar1 = Reflectable__RebuildCurrentLevel((Reflectable *)this_01);
-        this_03 = (Level *)0x0;
-        if (bVar1) {
-          this_03 = this_01;
-        }
-        Level__CacheNecessaryLimits(this_03);
-        return;
-      }
-      Level__CacheNecessaryLimits((Level *)0x0);
-      return;
-    }
-  }
-  return;
-}
-
-
-//==== 00007040f0 007040f0_HasBeenDamaged ====
-// decompiled by BatchDecomp @ 007040f0 name=HasBeenDamaged conv=__thiscall body=4
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: bool __thiscall CapitalShipComponent__HasBeenDamaged(void)const  */
-
-bool __thiscall CapitalShipComponent__HasBeenDamaged(CapitalShipComponent *this)
-
-{
-  return this->IsUnscathed;
 }
 
 
@@ -1474,6 +1230,23 @@ BalloonPopupLocationPayload___scalar_deleting_destructor_(BalloonPopupLocationPa
   this->_pad_0x0_0 = (int)((void *)(0x00938a68u));
   if ((param_1 & 1) != 0) {
     operator_delete(this,0x28);
+  }
+  return this;
+}
+
+
+//==== 000072d860 0072d860__scalar_deleting_destructor_ ====
+// decompiled by BatchDecomp @ 0072d860 name=`scalar_deleting_destructor' conv=__thiscall body=38
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void * __thiscall Fleet::`scalar deleting destructor'(unsigned int) */
+
+void * __thiscall Fleet___scalar_deleting_destructor_(Fleet *this,uint param_1)
+
+{
+  Fleet__dtor(this);
+  if ((param_1 & 1) != 0) {
+    operator_delete(this,0x590);
   }
   return this;
 }
@@ -1847,61 +1620,6 @@ void * __thiscall ActorDropButton___scalar_deleting_destructor_(ActorDropButton 
 }
 
 
-//==== 0000772b70 00772b70_AsLevelEditorBody ====
-// decompiled by BatchDecomp @ 00772b70 name=AsLevelEditorBody conv=__thiscall body=74
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::WeakPtr<class LevelEditorBody> __thiscall
-   WorldObject__AsLevelEditorBody(void)const  */
-
-undefined4 * __thiscall WorldObject__AsLevelEditorBody(WorldObject *this)
-
-{
-  ReferenceController *this_00;
-  bool bVar1;
-  undefined4 *in_stack_00000004;
-  
-  bVar1 = IsLevelEditorBody(this);
-  if (!bVar1) {
-    util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\strategic\\ui\\dropdownui.cpp",0x38,
-                    "IsLevelEditorBody()",(char *)0x0);
-    DebugBreak();
-  }
-  *in_stack_00000004 = (this->Object).Pointer;
-  this_00 = (this->Object).Controller;
-  in_stack_00000004[1] = this_00;
-  if (this_00 != (ReferenceController *)0x0) {
-    util__ReferenceController__AddWeakReference(this_00);
-  }
-  return in_stack_00000004;
-}
-
-
-//==== 0000778900 00778900_IsValid ====
-// decompiled by BatchDecomp @ 00778900 name=IsValid conv=__thiscall body=59
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: bool const __thiscall WorldObject__IsValid(void)const  */
-
-bool __thiscall WorldObject__IsValid(WorldObject *this)
-
-{
-  ReferenceController *this_00;
-  bool bVar1;
-  
-  if ((((this->Object).Pointer != (Actor *)0x0) &&
-      (this_00 = (this->Object).Controller, this_00 != (ReferenceController *)0x0)) &&
-     (bVar1 = util__ReferenceController__IsDataStillValid(this_00), bVar1)) {
-    return true;
-  }
-  bVar1 = ItineraryNode__IsValid(&(this->Node).LastNode);
-  if ((bVar1) && (bVar1 = ItineraryNode__IsValid(&(this->Node).NextNode), bVar1)) {
-    return true;
-  }
-  return false;
-}
-
-
 //==== 00007921d0 007921d0_GetMouseOverNode_Clear ====
 #undef t /* auto(v2): compat 僵尸宏撞成员名 */
 
@@ -2166,19 +1884,6 @@ void * __thiscall Component___scalar_deleting_destructor_(Component *this,uint p
 }
 
 
-//==== 00007c1a70 007c1a70_GetID ====
-// decompiled by BatchDecomp @ 007c1a70 name=GetID conv=__thiscall body=4
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: unsigned int __thiscall CapitalShipComponent__GetID(void)const  */
-
-uint __thiscall CapitalShipComponent__GetID(CapitalShipComponent *this)
-
-{
-  return this->UniqueID;
-}
-
-
 //==== 00007c1ac0 007c1ac0_GetName ====
 // decompiled by BatchDecomp @ 007c1ac0 name=GetName conv=__thiscall body=22
 
@@ -2316,8 +2021,8 @@ void __thiscall DebrisComponent__GetBoundingCylinder_km(DebrisComponent *this)
   double *in_stack_00000004;
   
   piVar1 = *(int **)&((this->Compartment).Pointer)->LostPower;
-  fVar2 = (float10)(**(code **)(*piVar1 + 0xa8))();
-  fVar3 = (float10)(**(code **)(*piVar1 + 0xa4))();
+  fVar2 = (float10)(**(code **)(*(int *)(uintptr_t)piVar1 + 0xa8))();
+  fVar3 = (float10)(**(code **)(*(int *)(uintptr_t)piVar1 + 0xa4))();
   dVar4 = (double)fVar2 / /*408f400000000000*/1000.0;
   *in_stack_00000004 = (double)(fVar3 / (float10)/*408f400000000000*/1000.0);
   in_stack_00000004[1] = dVar4;
@@ -2460,22 +2165,6 @@ void __fastcall FUN_007e1490(Darray_L_class_util__Reflectable_P__G_ *param_1)
 }
 
 
-//==== 00007e3f10 007e3f10_UntargetAllCompartments ====
-// decompiled by BatchDecomp @ 007e3f10 name=UntargetAllCompartments conv=__thiscall body=15
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall SpacecraftTargeting__UntargetAllCompartments(void) */
-
-void __thiscall SpacecraftTargeting__UntargetAllCompartments(SpacecraftTargeting *this)
-
-{
-                    /* WARNING: Could not recover jumptable at 0x007e3f1c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (*(code *)(this->EnemyTargetedCompartments).Data[2].Pointer)();
-  return;
-}
-
-
 //==== 00007f0f30 007f0f30_GetAlliedShips ====
 // decompiled by BatchDecomp @ 007f0f30 name=GetAlliedShips conv=__thiscall body=99
 
@@ -2513,25 +2202,62 @@ TacticalAI__GetAlliedShips(TacticalAI *this)
 }
 
 
-//==== 00007feb70 007feb70_GetNotifications ====
-// decompiled by BatchDecomp @ 007feb70 name=GetNotifications conv=__thiscall body=57
+//==== 00007fa090 007fa090__scalar_deleting_destructor_ ====
+// decompiled by BatchDecomp @ 007fa090 name=`scalar_deleting_destructor' conv=__thiscall body=38
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class NotificationManager * __thiscall TacticalManager__GetNotifications(void) */
+/* public: virtual void * __thiscall TacticalManager::`scalar deleting destructor'(unsigned int) */
 
-NotificationManager * __thiscall TacticalManager__GetNotifications(TacticalManager *this)
+void * __thiscall TacticalManager___scalar_deleting_destructor_(TacticalManager *this,uint param_1)
 
 {
-  NotificationManager *pNVar1;
-  
-  TacticalManager_GetStrategicGame_Memoize(this);
-  if (*(char *)&(this->Effects).Controller == '\0') {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
+  TacticalManager__dtor(this);
+  if ((param_1 & 1) != 0) {
+    operator_delete(this,0x280);
   }
-  pNVar1 = StrategicManager__GetNotifications((StrategicManager *)(this->Effects).Pointer);
-  return pNVar1;
+  return this;
+}
+
+
+//==== 00007fdfb0 007fdfb0_GetCenterAndRadiusOfCrafts_km ====
+extern undefined4 FUN_007f5c40(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007fdfb0 name=GetCenterAndRadiusOfCrafts_km conv=__thiscall body=115
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct util::tuple2<struct util::PhysicalState<struct util::Vec3<double> >,double>
+   __thiscall TacticalManager__GetCenterAndRadiusOfCrafts_km(class util::Darray<class
+   util::WeakPtr<class SpacecraftComponent> > const &,bool)const  */
+
+void __thiscall
+TacticalManager__GetCenterAndRadiusOfCrafts_km(TacticalManager *this,Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *param_1,
+          bool param_2)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  undefined3 in_stack_00000009;
+  undefined4 local_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined1 local_c[4];
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_c[0] = 0;
+  local_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  uStack_10 = 0;
+  iVar1 = (**(code **)(*(int *)(uintptr_t)_param_2 + 0xc))();
+  util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c,iVar1);
+  FUN_007f5c40(_param_2,local_c,&local_1c);
+  GetCenterAndRadiusOfBodies_km
+            (this,(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)param_1,SUB41(&local_1c,0));
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
 }
 
 
@@ -2945,20 +2671,6 @@ void * __thiscall OrderButton___scalar_deleting_destructor_(OrderButton *this,ui
 }
 
 
-//==== 000082a9c0 0082a9c0_RequestRebuild ====
-// decompiled by BatchDecomp @ 0082a9c0 name=RequestRebuild conv=__thiscall body=8
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall ShipListUI__RequestRebuild(void) */
-
-void __thiscall ShipListUI__RequestRebuild(ShipListUI *this)
-
-{
-  this->RebuildPending = true;
-  return;
-}
-
-
 //==== 000082f370 0082f370_GetCollapseOption ====
 // decompiled by BatchDecomp @ 0082f370 name=GetCollapseOption conv=__thiscall body=7
 
@@ -2995,119 +2707,51 @@ undefined4 * __thiscall HUDTactical__GetSpacecraftUI(HUDTactical *this)
 }
 
 
-//==== 0000855e80 00855e80_FUN_00855e80 ====
-void FUN_00855e80(char *param_1);
-
-// decompiled by BatchDecomp @ 00855e80 name=FUN_00855e80 conv=unknown body=27
-
-void FUN_00855e80(char *param_1)
-
-{
-  char cVar1;
-  int iVar2;
-  
-  iVar2 = 0;
-  if (param_1 != (char *)0x0) {
-    cVar1 = *param_1;
-    while (cVar1 != '\0') {
-      iVar2 = iVar2 + 1;
-      cVar1 = param_1[iVar2];
-    }
-    return;
-  }
-  return;
-}
-
-
-//==== 0000882030 00882030_FillArc ====
-// decompiled by BatchDecomp @ 00882030 name=FillArc conv=__cdecl body=79
-
-/* void __cdecl FillArc(double,double,int,double,double,bool) */
-
-void __cdecl
-FillArc(double param_1,double param_2,int param_3,double param_4,double param_5,bool param_6)
-
-{
-  bool unaff_BP;
-  
-  FillEllipticalArc(param_1,param_2,param_1,param_2,param_3,param_4,param_5,unaff_BP);
-  return;
-}
-
-
-//==== 0000889d70 00889d70_GetCustomTheme ====
-// decompiled by BatchDecomp @ 00889d70 name=GetCustomTheme conv=__thiscall body=22
+//==== 00008604b0 008604b0_HandleMouseInput ====
+// decompiled by BatchDecomp @ 008604b0 name=HandleMouseInput conv=__thiscall body=111
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* protected: struct CustomUIThemeInterface const * __thiscall UIWidget__GetCustomTheme(void)const
-    */
+/* public: void __thiscall GameManager__HandleMouseInput(enum MouseButton::Type,enum
+   MouseInput::Type,struct InputModifiers const &,struct util__Vec2_L_double_G_) */
 
-CustomUIThemeInterface * __thiscall UIWidget__GetCustomTheme(UIWidget *this)
-
-{
-  CapitalShipComponent *this_00;
-  int *piVar1;
-  CustomUIThemeInterface *pCVar2;
-  HWND unaff_retaddr;
-  
-  this_00 = (CapitalShipComponent *)Manager__GetParent(unaff_retaddr);
-  piVar1 = (int *)CapitalShipComponent__GetID(this_00);
-                    /* WARNING: Could not recover jumptable at 0x00889d83. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pCVar2 = (CustomUIThemeInterface *)(**(code **)(*piVar1 + 0x6c))();
-  return pCVar2;
-}
-
-
-//==== 000088a5d0 0088a5d0_GetTheme ====
-// decompiled by BatchDecomp @ 0088a5d0 name=GetTheme conv=__thiscall body=22
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* protected: struct CoreUITheme const * __thiscall UIWidget__GetTheme(void)const  */
-
-CoreUITheme * __thiscall UIWidget__GetTheme(UIWidget *this)
+void __thiscall
+GameManager__HandleMouseInput(GameManager *this,Type param_1,Type param_2,InputModifiers *param_3,Vec2_L_double_G_ param_4)
 
 {
-  CapitalShipComponent *this_00;
-  int *piVar1;
-  CoreUITheme *pCVar2;
-  HWND unaff_retaddr;
+  Vec2_L_double_G_ VVar1;
+  Vec2_L_double_G_ VVar2;
+  bool bVar3;
+  ActorHandler *this_00;
+  undefined4 unaff_EDI;
+  undefined4 in_stack_00000010;
+  Type TVar4;
+  Type TVar5;
+  InputModifiers *pIVar6;
+  undefined4 uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
   
-  this_00 = (CapitalShipComponent *)Manager__GetParent(unaff_retaddr);
-  piVar1 = (int *)CapitalShipComponent__GetID(this_00);
-                    /* WARNING: Could not recover jumptable at 0x0088a5e3. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  pCVar2 = (CoreUITheme *)(**(code **)(*piVar1 + 0x68))();
-  return pCVar2;
-}
-
-
-//==== 00008975c0 008975c0_FUN_008975c0 ====
-void __fastcall FUN_008975c0(int *param_1);
-
-// decompiled by BatchDecomp @ 008975c0 name=FUN_008975c0 conv=unknown body=106
-
-void __fastcall FUN_008975c0(int *param_1)
-
-{
-  Str_L_char_G_ *pSVar1;
-  Str_L_char_G_ local_24;
-  Str_L_char_G_ local_14;
-  char *local_8;
-  
-  param_1 = (int *)*param_1;
-  if (param_1[1] != 0) {
-    pSVar1 = (Str_L_char_G_ *)(*param_1 + -0x10 + param_1[1] * 0x10);
-    util__Str_char___Str_char(&local_14,pSVar1);
-    local_8 = pSVar1[1].Data;
-    param_1[1] = param_1[1] + -1;
-    param_1[3] = param_1[1] * 0x10 + *param_1;
-    util__Str_char___Str_char(&local_24,&local_14);
-    if (local_14.Data != (char *)0x0) {
-      operator_delete__(local_14.Data);
-    }
-    if (local_24.Data != (char *)0x0) {
-      operator_delete__(local_24.Data);
+  TVar4 = param_1;
+  TVar5 = param_2;
+  pIVar6 = param_3;
+  uVar7 = ((slice_view *)&param_4.X)->_0_4_;
+  uVar8 = ((slice_view *)&param_4.X)->_4_4_;
+  uVar9 = ((slice_view *)&param_4.Y)->_0_4_;
+  this_00 = (ActorHandler *)
+            util__Darray_enum_CrewDepartment__Type___Num(*(Darray_L_enum_CrewDepartment__Type_G_ **)&(this->GameTimer).LastTime);
+  ((slice_view *)&VVar1.X)->_4_4_ = uVar8;
+  ((slice_view *)&VVar1.X)->_0_4_ = uVar7;
+  ((slice_view *)&VVar1.Y)->_0_4_ = uVar9;
+  ((slice_view *)&VVar1.Y)->_4_4_ = unaff_EDI;
+  bVar3 = ActorHandler__HandleMouseInput(this_00,TVar4,TVar5,pIVar6,VVar1);
+  if (!bVar3) {
+    ((slice_view *)&VVar2.Y)->_4_4_ = unaff_EDI;
+    memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)((slice_view *)&param_4)->raw + 0, 12);
+    bVar3 = Interface__HandleMouseInput((Interface *)(this->Managers).Data,param_1,param_2,param_3,VVar2);
+    if (!bVar3) {
+      (**(code **)(**(int **)&(this->GameTimer).LastTime + 0x34))
+                (param_1,param_2,param_3,in_stack_00000010,((slice_view *)&param_4.X)->_0_4_,((slice_view *)&param_4.X)->_4_4_,
+                 ((slice_view *)&param_4.Y)->_0_4_);
     }
   }
   return;
@@ -3130,13 +2774,13 @@ void FUN_008aa650(int *param_1)
   
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
   local_c = 0;
-  iVar1 = (**(code **)(*param_1 + 0xc))();
+  iVar1 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
   if (local_c < iVar1) {
     do {
       uVar2 = (**(code **)*param_1)(&local_c);
       FUN_008ac7d0(uVar2);
       local_c = local_c + 1;
-      iVar1 = (**(code **)(*param_1 + 0xc))();
+      iVar1 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
     } while (local_c < iVar1);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
@@ -3184,23 +2828,6 @@ void __glfwFreeMonitors(void *param_1,int param_2)
 }
 
 
-//==== 00008dc530 008dc530___glfwInputWindowCloseRequest ====
-// decompiled by BatchDecomp @ 008dc530 name=__glfwInputWindowCloseRequest conv=unknown body=28
-
-void __glfwInputWindowCloseRequest(int param_1)
-
-{
-  *(undefined4 *)(param_1 + 0x14) = 1;
-  if (*(code **)(param_1 + 0x24c) != (code *)0x0) {
-                    /* WARNING: Could not recover jumptable at 0x008dc549. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (**(code **)(param_1 + 0x24c))();
-    return;
-  }
-  return;
-}
-
-
 //==== 00008deaa0 008deaa0___glfwPlatformDestroyCursor ====
 // decompiled by BatchDecomp @ 008deaa0 name=__glfwPlatformDestroyCursor conv=unknown body=19
 
@@ -3214,17 +2841,28 @@ void __glfwPlatformDestroyCursor(int param_1)
 }
 
 
-//==== 00008e3cbd 008e3cbd__ftol3_except ====
-// decompiled by BatchDecomp @ 008e3cbd name=_ftol3_except conv=__cdecl body=68
+//==== 00008e0940 008e0940___glfwDetectJoystickConnectionWin32 ====
+extern undefined4 FUN_008e0bd0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+extern undefined4 FUN_008e1130(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
-void __cdecl _ftol3_except(void)
+// decompiled by BatchDecomp @ 008e0940 name=__glfwDetectJoystickConnectionWin32 conv=unknown body=84
+
+void __glfwDetectJoystickConnectionWin32(void)
 
 {
-  int in_EDX;
-  byte in_FPUControlWord;
+  int iVar1;
+  uint uVar2;
   
-  if ((in_EDX == 8) || ((*(byte *)((int)&_MinSubInexact + in_EDX + 7) & in_FPUControlWord) == 0)) {
-    except1();
+  if (DAT_00994818 != 0) {
+    uVar2 = 0;
+    do {
+      FUN_008e1130(uVar2);
+      uVar2 = uVar2 + 1;
+    } while (uVar2 < 4);
+  }
+  if ((DAT_00994814 != (int *)0x0) &&
+     (iVar1 = (**(code **)(*(int *)(uintptr_t)DAT_00994814 + 0x10))(DAT_00994814,4,FUN_008e0bd0,0,0), iVar1 < 0)) {
+    __glfwInputError(0x10008,"Failed to enumerate DirectInput8 devices");
   }
   return;
 }
@@ -5006,6 +4644,62 @@ void FUN_008e83b0(void)
   }
   _DAT_00963d80 = ((void *)(0x00919488u));
   DAT_00963d84 = (void *)0x0;
+  return;
+}
+
+
+//==== 00008e84b0 008e84b0_FUN_008e84b0 ====
+void FUN_008e84b0(void);
+
+// decompiled by BatchDecomp @ 008e84b0 name=FUN_008e84b0 conv=unknown body=66
+
+void FUN_008e84b0(void)
+
+{
+  bool bVar1;
+  ReferenceControllerRegistry *this;
+  int *piVar2;
+  
+  if (DAT_00964288 != (ReferenceController *)0x0) {
+    bVar1 = util__ReferenceController__ReleaseStrongReference(DAT_00964288);
+    if (bVar1) {
+      if (DAT_00964284 != (int *)0x0) {
+        (**(code **)(*(int *)(uintptr_t)DAT_00964284 + 0x10))(1);
+      }
+      piVar2 = DAT_00964284;
+      this = util__ReferenceControllerRegistry__Get();
+      util__ReferenceControllerRegistry__PointerWasDestroyed(this,piVar2);
+      DAT_00964284 = (int *)0x0;
+    }
+  }
+  return;
+}
+
+
+//==== 00008e8500 008e8500_FUN_008e8500 ====
+void FUN_008e8500(void);
+
+// decompiled by BatchDecomp @ 008e8500 name=FUN_008e8500 conv=unknown body=66
+
+void FUN_008e8500(void)
+
+{
+  bool bVar1;
+  ReferenceControllerRegistry *this;
+  int *piVar2;
+  
+  if (DAT_00964294 != (ReferenceController *)0x0) {
+    bVar1 = util__ReferenceController__ReleaseStrongReference(DAT_00964294);
+    if (bVar1) {
+      if (DAT_00964290 != (int *)0x0) {
+        (**(code **)(*(int *)(uintptr_t)DAT_00964290 + 0x10))(1);
+      }
+      piVar2 = DAT_00964290;
+      this = util__ReferenceControllerRegistry__Get();
+      util__ReferenceControllerRegistry__PointerWasDestroyed(this,piVar2);
+      DAT_00964290 = (int *)0x0;
+    }
+  }
   return;
 }
 
@@ -8086,6 +7780,22 @@ void FUN_008ed7b0(void)
   }
   _DAT_00968acc = ((void *)(0x00919488u));
   DAT_00968ad0 = (void *)0x0;
+  return;
+}
+
+
+//==== 000090abf0 0090abf0_FUN_0090abf0 ====
+void FUN_0090abf0(void);
+
+// decompiled by BatchDecomp @ 0090abf0 name=FUN_0090abf0 conv=unknown body=28
+
+void FUN_0090abf0(void)
+
+{
+  if (DAT_00985ccc != (int *)0x0) {
+    (**(code **)(*(int *)(uintptr_t)DAT_00985ccc + 0x10))(1);
+  }
+  DAT_00985ccc = (int *)0x0;
   return;
 }
 

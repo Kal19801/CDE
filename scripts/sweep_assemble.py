@@ -195,7 +195,12 @@ def _btrep(m):
         return nm
     t = A.type_escape(tn) if tn else None
     nm = f'cde_l2_{va:08x}_{member}'
-    L2_NEW.add(f'extern struct {t} {nm};' if t else f'extern undefined1 {nm}[16];')
+    if t and not t.startswith('undefined') and t not in ('int', 'char', 'short', 'long', 'float', 'double', 'bool'):
+        L2_NEW.add(f'extern struct {t} {nm};')
+    elif t and t in ('int', 'char', 'short', 'long', 'float', 'double', 'bool'):
+        L2_NEW.add(f'extern {t} {nm};')
+    else:
+        L2_NEW.add(f'extern undefined1 {nm}[16];')
     return nm
 
 # ---- r20: vftable 裸引用兼底（&_vftable_ —— 函数所属类的 vtable）----
@@ -280,6 +285,85 @@ def typedef_scan(txt):
         if w in _SHORT_TMPL and w not in STRICT_TYPES:
             out.add(w)
     return out
+
+# ---- r20c: 编译级机械修复（错误面驱动，等价语义保持）----
+# F1: 数组成员 slice 整体赋值 → memcpy（字节拷贝语义等价）
+_SLICE_ARR_ASSIGN = re.compile(
+    r'\(\(slice_view \*\)&([^;=]+?)\)->_(\d+)_(\d+)_ = \(\(slice_view \*\)&([^;=]+?)\)->_(\d+)_(\d+)_;')
+
+_SLICE_CAST_R = re.compile(
+    r'\(\(slice_view \*\)&([^\n;=]+?)\)->_(\d+)_(\d+)_ = \*\(undefined\d \(\*\)\s*\[(\d+)\]\)([^;\n]+);')
+_SLICE_CAST_L = re.compile(
+    r'\*\(undefined\d \(\*\)\s*\[(\d+)\]\)([^;\n]+) = \(\(slice_view \*\)&([^\n;=]+?)\)->_(\d+)_(\d+)_;')
+
+def slice_cast_fix(txt):
+    def rep_r(m):
+        e, n, s, dim, src = m.groups()
+        return (f'memcpy((void *)((slice_view *)&{e})->raw + {n}, '
+                f'(const void *){src}, {dim});')
+    def rep_l(m):
+        dim, dst, e, n, s = m.groups()
+        return (f'memcpy((void *){dst}, '
+                f'(const void *)((slice_view *)&{e})->raw + {n}, {dim});')
+    txt = _SLICE_CAST_R.sub(rep_r, txt)
+    txt = _SLICE_CAST_L.sub(rep_l, txt)
+    return txt
+
+def slice_assign_fix(txt):
+    def rep(m):
+        e1, n1, s1, e2, n2, s2 = m.groups()
+        if s1 != s2 or n1 != n2 or s1 in ('1', '2', '4', '8'):
+            return m.group(0)
+        return (f'memcpy((void *)((slice_view *)&{e1})->raw + {n1}, '
+                f'(const void *)((slice_view *)&{e2})->raw + {n2}, {s1});')
+    return _SLICE_ARR_ASSIGN.sub(rep, txt)
+
+# F2a: 标量 slice 写的前置 * 剥离（*((slice_view *)&E)->_0_4_ = X 非法）
+_SLICE_DEREF = re.compile(r'\*\s*\(\(slice_view \*\)&([^\n;=]+?)\)->_(\d+)_(\d+)_\s*=')
+
+def slice_deref_fix(txt):
+    return _SLICE_DEREF.sub(r'((slice_view *)&\1)->_\2_\3_ =', txt)
+
+# F2b: 带 [] 段的成员链 slice wrap（Data[0xf]._4_4_ —— fam8 的 \w+ 链抓不到）
+# 基址允许：标识符/括号表达式根（cast-deref 等）+ [] 段 + .成员 链；负向排除 _N_M_ 形状
+_SLICE_PATH = re.compile(r'((?:[A-Za-z_]\w*|\((?:[^()\[\]{};]|\([^()]*\))*\))(?:\[[^\]\[]*\])?(?:\.(?!_\d)(?:[A-Za-z_]\w*|\((?:[^()\[\]{};]|\([^()]*\))*\))(?:\[[^\]\[]*\])?)*)\._(\d+)_(\d+)_')
+
+def slice_path_fix(txt):
+    return _SLICE_PATH.sub(r'((slice_view *)&\1)->_\2_\3_', txt)
+
+# F5: vcall 基址 cast（(*_param_2 + 0xc) —— param 为 u32 值形态）
+_VCALL_BASE = re.compile(r'\(\*([A-Za-z_]\w*) \+ (0x[0-9a-fA-F]+)\)')
+
+def vcall_base_fix(txt):
+    return _VCALL_BASE.sub(r'(*(int *)(uintptr_t)\1 + \2)', txt)
+
+# F3: func-ptr 类型名内嵌原始模板（_func___cdecl_Vec2<int>_void_ptr）
+_FUNCPTR_RAW = re.compile(r'\b(_func___cdecl_[A-Za-z_]\w*)<([^<>()]*?)>(_\w+)')
+
+def funcptr_esc_fix(txt):
+    def rep(m):
+        t = A.type_escape(m.group(2))
+        if t:
+            TYPEFUNC_POOL.add(f'{m.group(1)}_L_{t}_G_{m.group(3)}')
+        return f'{m.group(1)}_L_{t}_G_{m.group(3)}' if t else m.group(0)
+    return _FUNCPTR_RAW.sub(rep, txt)
+
+TYPEFUNC_POOL = set()
+
+# F4: 裸析构调用（~Fleet(this) —— CALL_RE 不吃 ~ 前缀）
+_BARE_DTOR = re.compile(r'(?<![\w:])~([A-Za-z_]\w*)\s*\(')
+
+def bare_dtor_fix(txt, disp):
+    def rep(m):
+        cls = m.group(1)
+        cands = FUNC_IDX.get(_T2(f'{cls}::~{cls}'))
+        if cands and len(cands) == 1:
+            sym = _calleename(cands[0][0])
+            if sym:
+                A.sym_externs.add(sym)
+                return sym + '('
+        return f'{cls}__dtor('
+    return _BARE_DTOR.sub(rep, txt)
 
 TYPE_ALIAS = set()
 
@@ -444,6 +528,14 @@ def main():
         va, disp, txt = A.process(f)
         txt = libm_fix(txt)
         txt = qual_pass(txt, disp)   # r20: 限定名闭包（模板方法/operator/dtor/跨行名）
+        # r20c: 编译级机械修复链（错误面驱动，等价语义保持）
+        txt = funcptr_esc_fix(txt)
+        txt = slice_path_fix(txt)
+        txt = slice_assign_fix(txt)
+        txt = slice_cast_fix(txt)
+        txt = slice_deref_fix(txt)
+        txt = vcall_base_fix(txt)
+        txt = bare_dtor_fix(txt, disp)
         # r20: 批内 vftable 兼底（按函数所属类，data_names 的 ::vftable' 行）
         txt = vft_bare_fix(txt, va)
         # r20: 负偏移栈伪符号 → 局部声明（Ghidra 丢局部类型的 sret 槽）
@@ -462,6 +554,7 @@ def main():
 
     # ---- S2: 全约定批内规范原型（fam8 只认 __thiscall；扫荡批全 CC）----
     proto_map = {}
+    PROTO_VA = {}
     for va_, disp_, txt_ in sections:
         i = txt_.find('{')
         if i < 0:
@@ -479,13 +572,14 @@ def main():
                 proto_map[nm] = None
         else:
             proto_map[nm] = sig
+            PROTO_VA[nm] = int(va_, 16) if isinstance(va_, str) else va_
     proto_map = {k: v for k, v in proto_map.items() if v}
+    PROTO_VA = {k: v for k, v in PROTO_VA.items() if k in proto_map}
     A.L(f'prototypes: {len(proto_map)} (all-CC)')
 
-    # ---- r20: decls_gen 陈旧声明刷新（批内 def 签名赢）----
-    # 病灶：decls_gen.h 的无参/旧签名 extern 与批内 def 冲突（uint f() vs
-    # void f(char*)）。gen.h 是生成产物——以当前反编译 def 为准原位刷新。
-    _gen_changed = 0
+    # ---- r20b: 头签名冲突检测（等价纪律：头 = game TU 的既验证契约，绝不改写）----
+    # 批内 def 签名 ≠ 头声明 → 该函数本批 defer（r20 教训：写头破坏 game TU 调用）
+    _conflict_vas = set()
     try:
         _genp = REPO / 'src' / 'cde_fun_decls_gen.h'
         _gl = _genp.read_text(errors='replace').split('\n')
@@ -501,109 +595,17 @@ def main():
             _old = re.sub(r'[^A-Za-z0-9_]', '', _gl[_i])
             _new = re.sub(r'[^A-Za-z0-9_]', '', _sig + ';')
             if _old != _new:
-                _gl[_i] = _sig + ';'
-                _gen_changed += 1
-        # r20: gen.h 陈旧行含原始模板语法（Vec2<int> __cdecl F(...);）——转义类型
-        _esc_changed = 0
-        for _i, _ln in enumerate(_gl):
-            if '<' not in _ln or not _ln.lstrip().startswith('extern'):
-                continue
-            _m3 = re.match(r'(extern\s+)([A-Za-z_]\w*)<([^;]*?)>(\s+[^;]+;)\s*$', _ln)
-            if not _m3:
-                continue
-            _t = A.type_escape(_m3.group(2) + '<' + _m3.group(3) + '>')
-            if _t:
-                _gl[_i] = _m3.group(1) + _t + _m3.group(4)
-                _esc_changed += 1
-        # r20 pass3: 无 extern 前缀的原始模板行 / half-escape（class_util__X_L_..）/
-        # 破损 token（int_G_）——类型部分不可信 → 整行 K&R 化（extern long long N();）
-        _kr_changed = 0
-        for _i, _ln in enumerate(_gl):
-            if not re.match(r'^[A-Za-z_]', _ln) or not _ln.rstrip().endswith(';'):
-                continue
-            if '(' not in _ln:
-                continue
-            _head = _ln[:_ln.rfind('(')]
-            _nm = re.findall(r'([A-Za-z_]\w*)\s*$', _head)
-            if not _nm:
-                continue
-            _ret = _head[:_head.rfind(_nm[0])]
-            _bad = ('<' in _ret or
-                    re.search(r'\b(class|struct|enum)_\w+__', _ret) or
-                    re.search(r'\b(class|struct|enum)_G_\b|\bint_G_\b', _ret))
-            if not _bad:
-                continue
-            _gl[_i] = f'extern long long {_nm[0]}();'
-            _kr_changed += 1
-        # r20 pass4: 转义 typo 折叠（_P__G_ → _P_G_、_L__ → _L_）——已知正名存在时原位修
-        for _i, _ln in enumerate(_gl):
-            if '_P__G_' in _ln or '_L__' in _ln:
-                _fix = _ln.replace('_P__G_', '_P_G_').replace('_L__', '_L_')
-                if _fix != _ln:
-                    _gl[_i] = _fix
-                    _kr_changed += 1
-        # r20 pass3b: 破损 token（int_G_ 等数字开头的 _G_ 伪类型、逗号粘速）→ K&R 化
-        _aliased = set()
-        for _i, _ln in enumerate(_gl):
-            if not re.match(r'^[A-Za-z_]', _ln) or not _ln.rstrip().endswith(';'):
-                continue
-            if '(' not in _ln:
-                continue
-            if re.search(r'\b\d+_G_\b', _ln) or re.search(r'\w_G_,\w+_G_', _ln):
-                _head2 = _ln[:_ln.rfind('(')]
-                _nm2 = re.findall(r'([A-Za-z_]\w*)\s*$', _head2)
-                if _nm2:
-                    _gl[_i] = f'extern long long {_nm2[0]}();'
-                    _kr_changed += 1
-        # r20 pass5: 未知 esc 类型 token（class_ 前缀变体）→ 别名 typedef 入常驻头
-        for _i, _ln in enumerate(_gl):
-            for _tok in re.findall(r'\b[A-Za-z_]\w*(?:_L_[^\s;(),\[\]]*)_G_\b', _ln):
-                if _tok in STRICT_TYPES or _tok in _aliased:
-                    continue
-                _stripped = re.sub(r'\b(class|struct|enum)_', '', _tok)
-                if _stripped != _tok and _stripped in STRICT_TYPES:
-                    _aliased.add((_stripped, _tok))
-        if _aliased:
-            _alp = REPO / 'src' / 'cde_types_r20.h'
-            _have = set(re.findall(r'typedef\s+[^;]+;', _alp.read_text(errors='replace'))) if _alp.exists() else set()
-            _new_al = [f'typedef struct {k} {v};' for k, v in sorted(_aliased)
-                       if f'typedef struct {k} {v};' not in _have]
-            if _new_al:
-                with open(_alp, 'a', encoding='utf-8') as _af:
-                    if not _alp.exists():
-                        _af.write('/* r20: 类型别名（class_ 前缀变体 → 已知正名） */\n#pragma once\n')
-                    _af.write('\n'.join(_new_al) + '\n')
-                _kr_changed += len(_new_al)
-        # r20 pass5b: 仍含未知 esc token 的行（不可别名）→ K&R 化（hdr_ids2 全头标识符判定）
-        _known_ids = set()
-        for _h in sorted((REPO / 'src').glob('*.h')):
-            if _h.name in ('cde_fun_decls_gen.h', 'cde_types_r20.h'):
-                continue  # 自我指涉：gen.h 的坏行会让未知 token 假性"已知"
-            _known_ids |= set(re.findall(r'\b([A-Za-z_]\w*)\b', _h.read_text(errors='replace')))
-        for _i, _ln in enumerate(_gl):
-            if not re.match(r'^[A-Za-z_]', _ln) or not _ln.rstrip().endswith(';'):
-                continue
-            _badline = False
-            for _tok in re.findall(r'\b[A-Za-z_]\w*(?:_L_[^\s;(),\[\]]*)_G_\b', _ln):
-                if _tok not in _known_ids and not _tok.startswith('slice_'):
-                    _badline = True
-                    break
-            if not _badline:
-                for _tok in re.findall(r'\b_func__[A-Za-z_]+\b', _ln):
-                    if _tok not in _known_ids:
-                        _badline = True
-                        break
-            if _badline:
-                _head3 = _ln[:_ln.rfind('(')]
-                _nm3 = re.findall(r'([A-Za-z_]\w*)\s*$', _head3)
-                if _nm3:
-                    _gl[_i] = f'extern long long {_nm3[0]}();'
-                    _kr_changed += 1
-        if _gen_changed or _esc_changed or _kr_changed:
-            _genp.write_text('\n'.join(_gl))
-            A.L(f'decls_gen refreshed: {_gen_changed} sigs, {_esc_changed} templates, {_kr_changed} K&R')
+                _va = PROTO_VA.get(_nm)
+                if _va is not None:
+                    _conflict_vas.add(_va)
+        if _conflict_vas:
+            A.L(f'hdr sig conflicts deferred: {len(_conflict_vas)}')
     except Exception as _e:
-        A.L(f'decls_gen refresh failed: {_e}')
+        A.L(f'hdr conflict check failed: {_e}')
+    if _conflict_vas:
+        auto_now |= {f'{v:06x}' for v in _conflict_vas}
+        sections = [s for s in sections if int(s[0], 16) not in _conflict_vas]
+        AUTO_F.write_text(','.join(sorted(auto_prev | auto_now)))
 
     hdr_ids2 = set()
     for _h in sorted((REPO / 'src').glob('*.h')):
@@ -835,9 +837,10 @@ def main():
         '// reuses fam8_assemble fix passes (zip oracle/in-batch protos/vft channel/data closure)\n',
     ]
     # r20: 未声明类型不完整 typedef —— 必须在 port_prelude 之前（gen.h 引用它们）
-    if _TYPEDEF_POOL or TYPE_ALIAS:
+    if _TYPEDEF_POOL or TYPE_ALIAS or TYPEFUNC_POOL:
         tds = [f'typedef struct {t} {t};' for t in sorted(_TYPEDEF_POOL)]
         tds += [f'typedef struct {k} {v};' for k, v in sorted(TYPE_ALIAS)]
+        tds += [f'typedef void *{t};' for t in sorted(TYPEFUNC_POOL)]
         parts.append('/* ---- r20 incomplete-type forward decls (pointer-position only) ---- */\n' +
                      '\n'.join(tds) + '\n')
         A.L(f'typedef forwards: {len(tds)} (alias {len(TYPE_ALIAS)})')

@@ -3,7 +3,6 @@
 /* ---- r20 incomplete-type forward decls (pointer-position only) ---- */
 typedef struct Darray Darray;
 typedef struct Darray_L_GraphicsResource__Type_G_ Darray_L_GraphicsResource__Type_G_;
-typedef struct Max_L_double_G_ Max_L_double_G_;
 typedef struct Maybe Maybe;
 typedef struct SharedPtr SharedPtr;
 typedef struct Str Str;
@@ -14,7 +13,6 @@ typedef struct WeakThis_L_class_SpacecraftComponent_G_ WeakThis_L_class_Spacecra
 typedef struct tuple2 tuple2;
 typedef struct Darray_L_bool_P_G_ Darray_L_bool_P__G_;
 typedef struct Darray_L_bool__P_G_ Darray_L_bool__P__G_;
-typedef struct Darray_L_class_Module_P_G_ Darray_L_class_Module_P__G_;
 #include "port_prelude.h"
 #include "cde_win32_compat.h"
 #include "cde_types_r20.h"
@@ -24,6 +22,7 @@ typedef union {
     undefined8 _4_8_;
     undefined8 _8_8_;
     undefined8 _12_8_;
+    undefined8 _20_8_;
   };
   struct {
     undefined1 _1_7_[7];
@@ -44,70 +43,34 @@ typedef union {
     undefined1 _1_1_;
     undefined1 _2_1_;
     undefined1 _3_1_;
+    undefined1 _4_1_;
   };
   undefined1 raw[32];
 } slice_view;
 /* ---- externs: stub-oracle names (K&R; ret types by call site) ---- */
-extern int Body__GetSpacecraftComponent_Clear(); /* K&R stub; ret by call site */
+extern int Body_GetSpacecraftComponent_Memoize(); /* K&R stub; ret by call site */
+extern int Body__GetBulletComponent_Clear(); /* K&R stub; ret by call site */
+extern int Body__GetControllableComponent_Clear(); /* K&R stub; ret by call site */
+extern int Body__GetDebrisComponent_Clear(); /* K&R stub; ret by call site */
+extern int Body__GetShotComponent_Clear(); /* K&R stub; ret by call site */
+extern int Body__GetUntrackComponent_Clear(); /* K&R stub; ret by call site */
 extern int CompartmentButton_GetDimensionScreenBounds_Memoize(); /* K&R stub; ret by call site */
 extern int CraftInstance__GetTotalMass_kg_Clear(); /* K&R stub; ret by call site */
-extern int Icons_Lock(); /* K&R stub; ret by call site */
-extern int Icons_LockWithSmallUnlock(); /* K&R stub; ret by call site */
+extern int ItineraryNode__dtor(); /* K&R stub; ret by call site */
 extern int ItineraryNode__operator_(); /* K&R stub; ret by call site */
-extern int Itinerary_Itinerary__o3(); /* K&R stub; ret by call site */
 extern int ModuleCompartment_ModuleCompartment__o2(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent__GetEstimatedMaxAngularAcceleration_radians__s2_Clear(); /* K&R stub; ret by call site */
-extern int ThermalRocketSubModule_GetGasExpansionPlume_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int WorldObject__operator_(); /* K&R stub; ret by call site */
 extern int util_Darray_struct_ItineraryNode_Darray_struct_ItineraryNode__o2(); /* K&R stub; ret by call site */
 extern int util_Darray_struct_ItineraryNode_FindIndex(); /* K&R stub; ret by call site */
+extern int util_Quaternion_double_Quaternion_double(); /* K&R stub; ret by call site */
 extern int util__Attribute_struct_util__Color___Get(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____Darray_class_util__WeakPtr_class_SpacecraftComponent(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_CombatNotification___operator(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_CraftSplinePoint___Darray_struct_CraftSplinePoint(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_ItineraryNode___CheckSize(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_ItineraryNode___SetSize(); /* K&R stub; ret by call site */
-extern int util__SharedPtr_struct_AudioVoice___operator(); /* K&R stub; ret by call site */
 /* ---- r20 exref direct-bind (IAT slot reads -> direct refs) ---- */
 #define feof_exref feof
 #define fwrite_exref fwrite
-
-//==== 0000488170 00488170__SOIL_direct_load_DDS ====
-// decompiled by BatchDecomp @ 00488170 name=_SOIL_direct_load_DDS conv=unknown body=209
-
-undefined4 __fastcall _SOIL_direct_load_DDS(char *param_1,undefined4 param_2,undefined4 param_3)
-
-{
-  FILE *_File;
-  size_t _Size;
-  void *_DstBuf;
-  undefined4 uVar1;
-  
-  if (param_1 == (char *)0x0) {
-    _result_string_pointer = s_NULL_filename;
-    return 0;
-  }
-  _File = fopen(param_1,"rb");
-  if (_File == (FILE *)0x0) {
-    _result_string_pointer = s_Can_not_find_DDS_file;
-    return 0;
-  }
-  fseek(_File,0,2);
-  _Size = ftell(_File);
-  fseek(_File,0,0);
-  _DstBuf = malloc(_Size);
-  if (_DstBuf == (void *)0x0) {
-    _result_string_pointer = s_malloc_failed;
-    fclose(_File);
-    return 0;
-  }
-  fread(_DstBuf,1,_Size,_File);
-  fclose(_File);
-  uVar1 = _SOIL_direct_load_DDS_from_memory(param_2,param_3);
-  free(_DstBuf);
-  return uVar1;
-}
-
 
 //==== 000048a5c0 0048a5c0_FUN_0048a5c0 ====
 extern undefined4 FUN_00489c30(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -587,294 +550,6 @@ void * __thiscall PendingBattle___vector_deleting_destructor_(PendingBattle *thi
 }
 
 
-//==== 00004d7410 004d7410_Max_double_ ====
-// decompiled by BatchDecomp @ 004d7410 name=Max_L_double_G_ conv=__cdecl body=148
-
-/* double __cdecl util__GetRadius_m(class util::Darray<double> const &) */
-
-double __cdeclutil__GetRadius_m(Darray_L_double_G_ *param_1)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  double *pdVar2;
-  float10 extraout_ST0;
-  undefined4 local_18;
-  double local_14;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
-  if (iVar1 == 0) {
-    local_14 = 0.0;
-  }
-  else {
-    local_18 = 0;
-    pdVar2 = (double *)(**(code **)*(int *)param_1)(&local_18);
-    local_c = 0;
-    local_14 = *pdVar2;
-    iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
-    if (local_c < iVar1) {
-      do {
-        pdVar2 = (double *)(**(code **)*(int *)param_1)(&local_c);
-        if (local_14 <= *pdVar2) {
-          local_14 = *pdVar2;
-        }
-        local_c = local_c + 1;
-        iVar1 = (**(code **)(*(int *)param_1 + 0xc))();
-      } while (local_c < iVar1);
-    }
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
-}
-
-
-//==== 0000504a20 00504a20_FUN_00504a20 ====
-extern undefined4 FUN_00504810(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-void FUN_00504a20(Darray_L_struct_util__Vec2_L_double_G___G_ *param_1, Darray_L_struct_util__Vec2_L_double_G___G_ *param_2,undefined4 param_3);
-
-// decompiled by BatchDecomp @ 00504a20 name=FUN_00504a20 conv=unknown body=407
-
-void FUN_00504a20(Darray_L_struct_util__Vec2_L_double_G___G_ *param_1,
-                 Darray_L_struct_util__Vec2_L_double_G___G_ *param_2,undefined4 param_3)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  Darray_L_struct_util__Vec2_L_double_G___G_ *pDVar2;
-  int iVar3;
-  int iVar4;
-  int local_48;
-  int local_44;
-  int local_40;
-  int local_3c;
-  int local_38;
-  Darray_L_struct_util__Vec2_L_double_G___G_ *local_34;
-  Darray_L_struct_util__Vec2_L_double_G___G_ *local_30;
-  undefined **local_2c;
-  void *pvStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined **local_1c;
-  void *pvStack_18;
-  int iStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iVar1 = (**(code **)(*(int *)param_2 + 0xc))();
-  if (iVar1 == 0) {
-    util__Darray_struct_util__Vec2_double_____Darray_struct_util__Vec2_double(param_1,param_2);
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return;
-  }
-  local_2c = (undefined **)0x0;
-  pvStack_28 = (void *)0x0;
-  uStack_24 = 0;
-  uStack_20 = 0;
-  util__Darray_struct_util__Vec2_double_____Darray_struct_util__Vec2_double((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_2c,param_2);
-  local_1c = (undefined **)0x0;
-  pvStack_18 = (void *)0x0;
-  iStack_14 = 0;
-  uStack_10 = 0;
-  util__Darray_struct_util__Vec2_double_____Darray_struct_util__Vec2_double((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,iVar1);
-  iVar3 = iStack_14;
-  local_c = iVar1;
-  util__Darray_struct_util__Vec2_double_____SetSize((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,&local_c);
-  util__Darray_struct_util__Vec2_double_____CheckSize((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,iVar3);
-  iVar3 = 1;
-  pDVar2 = (Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_2c;
-  local_34 = (Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c;
-  if (1 < iVar1) {
-    do {
-      local_c = 0;
-      local_38 = 0;
-      iVar4 = iVar3;
-      local_30 = pDVar2;
-      if (0 < iVar1) {
-        do {
-          local_44 = iVar1;
-          if (iVar4 < iVar1) {
-            local_44 = iVar4;
-          }
-          local_3c = iVar1;
-          if (local_44 + iVar3 < iVar1) {
-            local_3c = local_44 + iVar3;
-          }
-          local_48 = local_38;
-          local_40 = local_44;
-          FUN_00504810(local_30,local_34,&local_48,&local_44,&local_40,&local_3c,&local_c,param_3);
-          local_38 = local_38 + iVar3 * 2;
-          iVar4 = iVar4 + iVar3 * 2;
-        } while (local_38 < iVar1);
-      }
-      pDVar2 = local_34;
-      if (local_c != iVar1) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\math\\sort.inl",0x3e,
-                        "OutIndex == Size",(char *)0x0);
-        DebugBreak();
-      }
-      iVar3 = iVar3 * 2;
-      local_34 = local_30;
-    } while (iVar3 < iVar1);
-  }
-  local_30 = pDVar2;
-  util__Darray_struct_util__Vec2_double_____Darray_struct_util__Vec2_double(param_1,pDVar2);
-  local_1c = ((void *)(0x00919ac4u));
-  if (pvStack_18 != (void *)0x0) {
-    operator_delete__(pvStack_18);
-  }
-  pvStack_18 = (void *)0x0;
-  local_1c = ((void *)(0x00919488u));
-  local_2c = ((void *)(0x00919ac4u));
-  if (pvStack_28 != (void *)0x0) {
-    operator_delete__(pvStack_28);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 0000515c30 00515c30_GetPolygonalArmorScaling ====
-// decompiled by BatchDecomp @ 00515c30 name=GetPolygonalArmorScaling conv=__thiscall body=131
-
-/* public: double __thiscall CraftBlueprintArmor__GetPolygonalArmorScaling(double)const  */
-
-double __thiscall
-CraftBlueprintArmor__GetPolygonalArmorScaling(CraftBlueprintArmor *this,double param_1)
-
-{
-  Maybe_L_double_G_ *pMVar1;
-  undefined4 unaff_ESI;
-  undefined1 local_14[16];
-  
-  if ((this->ArmorLayers)._pad_0x0_0 == 0) {
-    return 1.0;
-  }
-  GetSurfacePointFromAngle
-            (this,(Vec2_L_double_G_ *)local_14,
-             (double)CONCAT44(unaff_ESI,(int)((ulonglong)param_1 >> 0x20)));
-  param_1 = (double)((slice_view *)&local_14)->_8_8_ * (double)((slice_view *)&local_14)->_8_8_ +
-            (double)((slice_view *)&local_14)->_0_8_ * (double)((slice_view *)&local_14)->_0_8_;
-  pMVar1 = util__Sqrt((Maybe_L_double_G_ *)local_14,&param_1);
-  if (pMVar1->IsValidData == false) {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  return pMVar1->Data;
-}
-
-
-//==== 0000516760 00516760_GetRadius_m ====
-// decompiled by BatchDecomp @ 00516760 name=GetRadius_m conv=__thiscall body=294
-
-/* public: double __thiscall CraftSplinePoint__GetRadius_m(void)const  */
-
-double __thiscall CraftSplinePoint__GetRadius_m(CraftSplinePoint *this)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  int iVar2;
-  double *pdVar3;
-  Maybe_L_double_G_ *pMVar4;
-  float10 extraout_ST0;
-  Maybe_L_double_G_ local_40;
-  double local_30;
-  double local_28;
-  int local_20;
-  Darray_L_double_G_ local_1c;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_1c._pad_0x0_0 = 0;
-  local_1c.Data = (double *)0x0;
-  local_1c.Size = 0;
-  local_1c.Capacity = 0;
-  iVar2 = (**(code **)(*(int *)this + 0xc))();
-  util__Darray_double___Darray_double(&local_1c,iVar2);
-  local_c = 0;
-  iVar2 = (**(code **)(*(int *)this + 0xc))();
-  if (local_c < iVar2) {
-    do {
-      pdVar3 = (double *)(*(code *)**(undefined4 **)this)(&local_c);
-      local_30 = *pdVar3 * *pdVar3 + pdVar3[1] * pdVar3[1];
-      pMVar4 = util__Sqrt(&local_40,&local_30);
-      if (pMVar4->IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      iVar2 = local_1c.Size;
-      local_28 = pMVar4->Data;
-      local_20 = local_1c.Size + 1;
-      util__Darray_double___SetSize(&local_1c,&local_20);
-      bVar1 = util__Darray_double___CheckSize(&local_1c,iVar2);
-      if (bVar1) {
-        local_1c.Data[local_1c.Size + -1] = local_28;
-      }
-      local_c = local_c + 1;
-      iVar2 = (**(code **)(*(int *)this + 0xc))();
-    } while (local_c < iVar2);
-  }
-  local_28 = util__GetRadius_m(&local_1c);
-  local_1c._pad_0x0_0 = (int)((void *)(0x0091da54u));
-  if (local_1c.Data != (double *)0x0) {
-    operator_delete__(local_1c.Data);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
-}
-
-
-//==== 0000518620 00518620_GetTotalArmorHeight_m ====
-// decompiled by BatchDecomp @ 00518620 name=GetTotalArmorHeight_m conv=__thiscall body=143
-
-/* public: double __thiscall CraftBlueprintArmor__GetTotalArmorHeight_m(void)const  */
-
-double __thiscall CraftBlueprintArmor__GetTotalArmorHeight_m(CraftBlueprintArmor *this)
-
-{
-  undefined4 stack0xfffffffc;
-  float10 extraout_ST0;
-  undefined4 local_18;
-  CraftSplinePoint *pCStack_14;
-  double dStack_10;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_18 = 0;
-  pCStack_14 = (CraftSplinePoint *)0x0;
-  dStack_10 = 0.0;
-  CraftBlueprintArmor__GetOuterArmorSpline_m_Memoize(this);
-  if ((char)(this->GetArmorPlatesPerSegment_MemoizedValue).Data._pad_0x0_0 == '\0') {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  util__Darray_struct_CraftSplinePoint___Darray_struct_CraftSplinePoint((Darray_L_struct_CraftSplinePoint_G_ *)&local_18,
-             (Darray_L_struct_CraftSplinePoint_G_ *)
-             &(this->GetUnrolledDimensionsOfAllLayers_m_MemoizedValue).Data.Data);
-  if (((slice_view *)&dStack_10)->_0_4_ < 1) {
-    dStack_10 = 0.0;
-  }
-  else {
-    dStack_10 = *(double *)(pCStack_14 + ((slice_view *)&dStack_10)->_0_4_ * 0x18 + -8) -
-                *(double *)(pCStack_14 + 0x10);
-  }
-  if (pCStack_14 != (CraftSplinePoint *)0x0) {
-    CraftSplinePoint___vector_deleting_destructor_(pCStack_14,3);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
-}
-
-
 //==== 000052e8b0 0052e8b0_GetDryMass_kg ====
 
 // decompiled by BatchDecomp @ 0052e8b0 name=GetDryMass_kg conv=__thiscall body=302
@@ -943,6 +618,115 @@ double __thiscall CraftInstance__GetDryMass_kg(CraftInstance *this,bool param_1)
   fVar4 = (float10)FUN_00527160(&this->Compartments,&param_1,
                                 &this->GetAllMainEnginePropellantsUsed_MemoizedValue);
   return (double)(fVar4 + (float10)local_c);
+}
+
+
+//==== 000052f680 0052f680_GetInverseMomentOfInertiaTensor_kg_m2_Memoize ====
+// decompiled by BatchDecomp @ 0052f680 name=GetInverseMomentOfInertiaTensor_kg_m2_Memoize conv=__thiscall body=158
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall CraftInstance__GetInverseMomentOfInertiaTensor_kg_m2_Memoize(void)const
+    */
+
+void __thiscall CraftInstance__GetInverseMomentOfInertiaTensor_kg_m2_Memoize(CraftInstance *this)
+
+{
+  double dVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  undefined4 uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  undefined4 uVar10;
+  undefined4 uVar11;
+  undefined4 uVar12;
+  undefined4 uVar13;
+  undefined4 uVar14;
+  undefined4 uVar15;
+  undefined4 uVar16;
+  undefined4 uVar17;
+  bool bVar18;
+  Matrix3x3_L_double_G_ *pMVar19;
+  Matrix3x3_L_double_G_ local_50;
+  int local_8;
+  
+  if (*(char *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 7) == '\0')
+  {
+    iVar2 = (this->CraftInstanceMemoizationHandlerInstance).ResetFunctions.Size;
+    local_8 = iVar2 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->CraftInstanceMemoizationHandlerInstance,
+               &local_8);
+    bVar18 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                        &this->CraftInstanceMemoizationHandlerInstance,iVar2);
+    if (bVar18) {
+      (this->CraftInstanceMemoizationHandlerInstance).ResetFunctions.Data
+      [(this->CraftInstanceMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+           CDE_PMF(pmf_57e8e8d5, GetInverseMomentOfInertiaTensor_kg_m2_Clear);
+    }
+    pMVar19 = GetInverseMomentOfInertiaTensor_kg_m2_MemoizedFunction(this,&local_50);
+    uVar3 = *(undefined4 *)((int)pMVar19->Data + 4);
+    uVar4 = *(undefined4 *)(pMVar19->Data + 1);
+    uVar5 = *(undefined4 *)((int)pMVar19->Data + 0xc);
+    dVar1 = pMVar19->Data[8];
+    uVar6 = *(undefined4 *)(pMVar19->Data + 2);
+    uVar7 = *(undefined4 *)((int)pMVar19->Data + 0x14);
+    uVar8 = *(undefined4 *)(pMVar19->Data + 3);
+    uVar9 = *(undefined4 *)((int)pMVar19->Data + 0x1c);
+    uVar10 = *(undefined4 *)(pMVar19->Data + 4);
+    uVar11 = *(undefined4 *)((int)pMVar19->Data + 0x24);
+    uVar12 = *(undefined4 *)(pMVar19->Data + 5);
+    uVar13 = *(undefined4 *)((int)pMVar19->Data + 0x2c);
+    uVar14 = *(undefined4 *)(pMVar19->Data + 6);
+    uVar15 = *(undefined4 *)((int)pMVar19->Data + 0x34);
+    uVar16 = *(undefined4 *)(pMVar19->Data + 7);
+    uVar17 = *(undefined4 *)((int)pMVar19->Data + 0x3c);
+    ((slice_view *)&local_50.Data[8])->_0_4_ = CONCAT31(((slice_view *)&local_50.Data[8])->_1_3_,1);
+    *(undefined4 *)((this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 8) =
+         *(undefined4 *)pMVar19->Data;
+    *(undefined4 *)((int)(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x44) =
+         uVar3;
+    *(undefined4 *)&(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue).IsValidData = uVar4;
+    *(undefined4 *)((char *)&(this->GetMomentOfInertiaTensor_kg_m2_MemoizedValue) + 0x4c) = uVar5;
+    ((slice_view *)&local_50.Data[7])->_0_4_ = *(undefined4 *)&dVar1;
+    ((slice_view *)&local_50.Data[7])->_4_4_ = *(undefined4 *)((char *)&dVar1 + 4);
+    *(undefined4 *)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data = uVar6;
+    *(undefined4 *)((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 4)
+         = uVar7;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 1) =
+         uVar8;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0xc) = uVar9;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 2) =
+         uVar10;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x14) = uVar11;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 3) =
+         uVar12;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x1c) = uVar13;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 4) =
+         uVar14;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x24) = uVar15;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 5) =
+         uVar16;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x2c) = uVar17;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 6) =
+         ((slice_view *)&local_50.Data[7])->_0_4_;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x34) =
+         ((slice_view *)&local_50.Data[7])->_4_4_;
+    *(undefined4 *)((this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 7) =
+         ((slice_view *)&local_50.Data[8])->_0_4_;
+    *(undefined4 *)
+     ((int)(this->GetInverseMomentOfInertiaTensor_kg_m2_MemoizedValue).Data.Data + 0x3c) =
+         ((slice_view *)&local_50.Data[8])->_4_4_;
+  }
+  return;
 }
 
 
@@ -1605,7 +1389,7 @@ double __thiscall CraftBlueprint__GetModuleTypeMassPercent(CraftBlueprint *this,
   local_c = 0;
   local_14 = 0.0;
   uStack_1c = 0.0;
-  iVar6 = (**(code **)(*piVar5 + 0xc))();
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
   if (local_c < iVar6) {
     local_14 = uStack_1c;
     do {
@@ -1615,7 +1399,7 @@ double __thiscall CraftBlueprint__GetModuleTypeMassPercent(CraftBlueprint *this,
       local_c = local_c + 1;
       local_14 = (double)(fVar8 + fVar1);
       uStack_1c = (double)(fVar8 + fVar1);
-      iVar6 = (**(code **)(*piVar5 + 0xc))();
+      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
     } while (local_c < iVar6);
     local_14 = uStack_1c;
   }
@@ -1656,149 +1440,6 @@ double __thiscall CraftBlueprint__GetModuleTypeMassPercent(CraftBlueprint *this,
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return (double)extraout_ST0;
-}
-
-
-//==== 00005568d0 005568d0_GetPeakHeatSignature_W ====
-// decompiled by BatchDecomp @ 005568d0 name=GetPeakHeatSignature_W conv=__thiscall body=175
-
-/* public: double __thiscall CraftBlueprint__GetPeakHeatSignature_W(void)const  */
-
-double __thiscall CraftBlueprint__GetPeakHeatSignature_W(CraftBlueprint *this)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  undefined4 *puVar2;
-  float10 extraout_ST0;
-  double dVar3;
-  undefined **local_24;
-  void *pvStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  double local_14;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_24 = (undefined **)0x0;
-  pvStack_20 = (void *)0x0;
-  uStack_1c = 0;
-  uStack_18 = 0;
-  GetModules(this);
-  util__Darray_class_WeaponModule____RemoveDuplicates((Darray_L_class_WeaponModule_P_G_ *)&local_24);
-  local_c = 0;
-  local_14 = 0.0;
-  iVar1 = (*(code *)local_24[3])();
-  if (local_c < iVar1) {
-    do {
-      puVar2 = (undefined4 *)(*(code *)*local_24)(&local_c);
-      dVar3 = GetPeakHeatTransferRateForModule_W(this,(Module *)*puVar2);
-      local_14 = dVar3 + local_14;
-      local_c = local_c + 1;
-      iVar1 = (*(code *)local_24[3])();
-    } while (local_c < iVar1);
-  }
-  local_24 = ((void *)(0x009199e4u));
-  if (pvStack_20 != (void *)0x0) {
-    operator_delete__(pvStack_20);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
-}
-
-
-//==== 000056c380 0056c380_FUN_0056c380 ====
-void FUN_0056c380(Darray_L_struct_util__ClassMember_G_ *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 0056c380 name=FUN_0056c380 conv=unknown body=405
-
-void FUN_0056c380(Darray_L_struct_util__ClassMember_G_ *param_1,int *param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  int iVar2;
-  undefined4 uVar3;
-  ReflectionInfoStruct_L_class_Material_G_ *pRVar4;
-  Str_L_char_G_ *pSVar5;
-  void *local_68[6];
-  void *local_50;
-  Str_L_char_G_ local_3c;
-  char *local_30;
-  int local_2c;
-  int local_28;
-  Str_L_char_G_ local_24;
-  undefined1 local_18;
-  undefined1 local_17;
-  int local_14;
-  undefined1 local_e;
-  undefined1 local_d;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  *(undefined4 *)param_1 = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  iVar2 = (**(code **)(*param_2 + 0xc))();
-  util__Darray_struct_util__ClassMember___Darray_struct_util__ClassMember(param_1,iVar2);
-  local_c = 0;
-  iVar2 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar2) {
-    do {
-      uVar3 = (**(code **)*param_2)(&local_c);
-      pRVar4 = Material__StaticGetReflectionInfo();
-      pSVar5 = (Str_L_char_G_ *)(**(code **)(*(int *)pRVar4 + 8))(local_68,uVar3);
-      if ((char)pSVar5[3].Capacity == '\0') {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x12,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      util__Str_char___Str_char(&local_3c,pSVar5);
-      local_30 = pSVar5[1].Data;
-      local_2c = pSVar5[1].Capacity;
-      local_28 = pSVar5[1].Length;
-      util__Str_char___Str_char(&local_24,pSVar5 + 2);
-      local_18 = *(undefined1 *)&pSVar5[3].Data;
-      local_17 = *(undefined1 *)((int)&pSVar5[3].Data + 1);
-      local_e = local_17;
-      local_d = local_18;
-      if (local_50 != (void *)0x0) {
-        operator_delete__(local_50);
-        local_50 = (void *)0x0;
-      }
-      if (local_68[0] != (void *)0x0) {
-        operator_delete__(local_68[0]);
-        local_68[0] = (void *)0x0;
-      }
-      iVar2 = *(int *)(param_1 + 8);
-      local_14 = iVar2 + 1;
-      util__Darray_struct_util__ClassMember___SetSize(param_1,&local_14);
-      bVar1 = util__Darray_struct_util__ClassMember___CheckSize(param_1,iVar2);
-      if (bVar1) {
-        iVar2 = *(int *)(param_1 + 4) + *(int *)(param_1 + 8) * 0x28;
-        util__Str_char___operator__o8((Str_L_char_G_ *)(iVar2 + -0x28),&local_3c);
-        *(char **)(iVar2 + -0x1c) = local_30;
-        *(int *)(iVar2 + -0x18) = local_2c;
-        *(int *)(iVar2 + -0x14) = local_28;
-        util__Str_char___operator__o8((Str_L_char_G_ *)(iVar2 + -0x10),&local_24);
-        *(undefined1 *)(iVar2 + -4) = local_d;
-        *(undefined1 *)(iVar2 + -3) = local_e;
-      }
-      if (local_24.Data != (char *)0x0) {
-        operator_delete__(local_24.Data);
-      }
-      if (local_3c.Data != (char *)0x0) {
-        operator_delete__(local_3c.Data);
-      }
-      local_c = local_c + 1;
-      iVar2 = (**(code **)(*param_2 + 0xc))();
-    } while (local_c < iVar2);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
 }
 
 
@@ -1981,9 +1622,9 @@ undefined4 * __thiscall CrewModule__Instantiate(CrewModule *this)
 // decompiled by BatchDecomp @ 0059b050 name=WeakThis_L_class_SpacecraftComponent_G_ conv=__cdecl body=120
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* class util::WeakPtr<class SpacecraftComponent> __cdecl util__GetRootParent(class SpacecraftComponent const * const) */
+/* class util::WeakPtr<class SpacecraftComponent> __cdecl util__GetLayoutOffsetFromParent(class SpacecraftComponent const * const) */
 
-SpacecraftComponent * __cdeclutil__GetRootParent(SpacecraftComponent *param_1)
+SpacecraftComponent * __cdeclutil__GetLayoutOffsetFromParent(SpacecraftComponent *param_1)
 
 {
   bool bVar1;
@@ -2059,70 +1700,181 @@ CrewCompartment__OnDamage(CrewCompartment *this,DamagerContainer *__return_stora
 }
 
 
-//==== 00005ab410 005ab410_FUN_005ab410 ====
-void __thiscall FUN_005ab410(int *param_1,int *param_2);
+//==== 000059f0e0 0059f0e0_FUN_0059f0e0 ====
+Vec3_L_double_G_ * __thiscall FUN_0059f0e0(int *param_1,Vec3_L_double_G_ *param_2,undefined4 param_3,undefined4 param_4, undefined4 param_5,undefined4 param_6,undefined8 param_7);
 
-// decompiled by BatchDecomp @ 005ab410 name=FUN_005ab410 conv=unknown body=269
+// decompiled by BatchDecomp @ 0059f0e0 name=FUN_0059f0e0 conv=unknown body=154
 
-void __thiscall FUN_005ab410(int *param_1,int *param_2)
+Vec3_L_double_G_ * __thiscall
+FUN_0059f0e0(int *param_1,Vec3_L_double_G_ *param_2,undefined4 param_3,undefined4 param_4,
+            undefined4 param_5,undefined4 param_6,undefined8 param_7)
+
+{
+  double *pdVar1;
+  Quaternion_L_double_G_ QVar2;
+  Quaternion_L_double_G_ QVar3;
+  Vec3_L_double_G_ VVar4;
+  Vec3_L_double_G_ VVar5;
+  Vec3_L_double_G_ *pVVar6;
+  undefined4 unaff_EDI;
+  double dVar7;
+  double dVar8;
+  Vec3_L_double_G_ local_1c;
+  
+  pdVar1 = (double *)param_1[2];
+  ((slice_view *)&QVar2.W)->_4_4_ = param_3;
+  memcpy((void *)((slice_view *)&QVar2)->raw + 0, (const void *)(param_1[1] + 4), 28);
+  ((slice_view *)&VVar4.X)->_4_4_ = param_5;
+  ((slice_view *)&VVar4.X)->_0_4_ = param_4;
+  ((slice_view *)&VVar4.Y)->_0_4_ = param_6;
+  ((slice_view *)&VVar4)->_12_8_ = param_7;
+  ((slice_view *)&VVar4.Z)->_4_4_ = unaff_EDI;
+  pVVar6 = util__FUN_007caeb0(&local_1c,QVar2,VVar4);
+  dVar7 = pdVar1[1] + pVVar6->Y;
+  dVar8 = *pdVar1 + pVVar6->X;
+  ((slice_view *)&QVar3.W)->_4_4_ = *(undefined4 *)&dVar8;
+  memcpy((void *)((slice_view *)&QVar3)->raw + 0, (const void *)(*param_1 + 4), 28);
+  ((slice_view *)&VVar5.X)->_4_4_ = *(undefined4 *)&dVar7;
+  ((slice_view *)&VVar5.X)->_0_4_ = (int)((ulonglong)dVar8 >> 0x20);
+  ((slice_view *)&VVar5.Y)->_0_4_ = (int)((ulonglong)dVar7 >> 0x20);
+  ((slice_view *)&VVar5)->_12_8_ = pdVar1[2] + pVVar6->Z;
+  ((slice_view *)&VVar5.Z)->_4_4_ = unaff_EDI;
+util__FUN_007caeb0(param_2,QVar3,VVar5);
+  return param_2;
+}
+
+
+//==== 000059f180 0059f180_FUN_0059f180 ====
+void __thiscall FUN_0059f180(int *param_1,Vec3_L_double_G_ *param_2,undefined4 param_3,undefined4 param_4, undefined4 param_5,undefined4 param_6,double param_7,double param_8,double param_9, double param_10,char param_11);
+
+// decompiled by BatchDecomp @ 0059f180 name=FUN_0059f180 conv=unknown body=329
+
+void __thiscall
+FUN_0059f180(int *param_1,Vec3_L_double_G_ *param_2,undefined4 param_3,undefined4 param_4,
+            undefined4 param_5,undefined4 param_6,double param_7,double param_8,double param_9,
+            double param_10,char param_11)
 
 {
   undefined4 stack0xfffffffc;
-  double dVar1;
-  double dVar2;
-  double dVar3;
-  undefined8 uVar4;
-  int iVar5;
-  bool bVar6;
-  int iVar7;
-  undefined8 *puVar8;
-  uint unaff_EDI;
-  longlong lVar9;
-  int local_20;
-  undefined **local_1c;
-  void *pvStack_18;
-  int iStack_14;
-  undefined4 uStack_10;
-  int local_c;
+  double *pdVar1;
+  Quaternion_L_double_G_ QVar2;
+  Quaternion_L_double_G_ QVar3;
+  Quaternion_L_double_G_ QVar4;
+  Vec3_L_double_G_ VVar5;
+  Vec3_L_double_G_ VVar6;
+  Vec3_L_double_G_ VVar7;
+  Vec3_L_double_G_ *pVVar8;
+  undefined4 unaff_EDI;
+  double dVar9;
+  double dVar10;
+  Vec3_L_double_G_ local_38;
+  undefined8 local_20;
+  undefined8 uStack_18;
+  double local_10;
   uint local_8;
-  undefined4 uVar10;
   
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iVar5 = *param_1;
-  local_1c = (undefined **)0x0;
-  pvStack_18 = (void *)0x0;
-  iStack_14 = 0;
-  uStack_10 = 0;
-  iVar7 = (**(code **)(*param_2 + 0xc))();
-  util__Darray_struct_util__Vec2_double_____Darray_struct_util__Vec2_double((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,iVar7);
-  local_c = 0;
-  iVar7 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar7) {
-    lVar9 = (ulonglong)unaff_EDI << 0x20;
-    do {
-      uVar10 = *(undefined4 *)((char *)&lVar9 + 4);
-      lVar9 = CONCAT44(uVar10,&local_c);
-      puVar8 = (undefined8 *)(**(code **)*param_2)(&local_c,uVar10);
-      iVar7 = iStack_14;
-      dVar1 = *(double *)(iVar5 + 0x1c0);
-      dVar2 = *(double *)(iVar5 + 0x1c8);
-      dVar3 = (double)puVar8[1];
-      uVar4 = *puVar8;
-      local_20 = iStack_14 + 1;
-      util__Darray_struct_util__Vec2_double_____SetSize((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,&local_20);
-      bVar6 = util__Darray_struct_util__Vec2_double_____CheckSize((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,iVar7);
-      if (bVar6) {
-        *(double *)((int)pvStack_18 + iStack_14 * 0x10 + -0x10) = (dVar1 + dVar2) - dVar3;
-        *(undefined8 *)((int)pvStack_18 + iStack_14 * 0x10 + -8) = uVar4;
-      }
-      local_c = local_c + 1;
-      iVar7 = (**(code **)(*param_2 + 0xc))();
-    } while (local_c < iVar7);
+  if (param_11 == '\0') {
+    local_20 = (double)CONCAT44(param_4,param_3);
+    uStack_18 = (double)CONCAT44(param_6,param_5);
+    local_10 = param_7;
   }
-  OutlineAntialiasedSpline((Darray_L_struct_util__Vec2_L_double_G___G_ *)&local_1c,0,*(double *)param_1[1]);
-  local_1c = ((void *)(0x00919ac4u));
-  if (pvStack_18 != (void *)0x0) {
-    operator_delete__(pvStack_18);
+  else {
+    dVar9 = (double)CONCAT44(param_6,param_5) - param_9;
+    dVar10 = (double)CONCAT44(param_4,param_3) - param_8;
+    ((slice_view *)&QVar2.W)->_4_4_ = *(undefined4 *)&dVar10;
+    memcpy((void *)((slice_view *)&QVar2)->raw + 0, (const void *)(*param_1 + 4), 28);
+    ((slice_view *)&VVar5.X)->_4_4_ = *(undefined4 *)&dVar9;
+    ((slice_view *)&VVar5.X)->_0_4_ = (int)((ulonglong)dVar10 >> 0x20);
+    ((slice_view *)&VVar5.Y)->_0_4_ = (int)((ulonglong)dVar9 >> 0x20);
+    ((slice_view *)&VVar5)->_12_8_ = param_7 - param_10;
+    ((slice_view *)&VVar5.Z)->_4_4_ = unaff_EDI;
+    pVVar8 = util__FUN_007caeb0(&local_38,QVar2,VVar5);
+    local_20 = pVVar8->X + param_8;
+    uStack_18 = pVVar8->Y + param_9;
+    local_10 = pVVar8->Z + param_10;
+  }
+  pdVar1 = (double *)param_1[3];
+  ((slice_view *)&QVar3.W)->_4_4_ = (undefined4)local_20;
+  memcpy((void *)((slice_view *)&QVar3)->raw + 0, (const void *)(param_1[2] + 4), 28);
+  ((slice_view *)&VVar6.X)->_4_4_ = (undefined4)uStack_18;
+  ((slice_view *)&VVar6.X)->_0_4_ = ((slice_view *)&local_20)->_4_4_;
+  ((slice_view *)&VVar6.Y)->_0_4_ = ((slice_view *)&uStack_18)->_4_4_;
+  ((slice_view *)&VVar6)->_12_8_ = local_10;
+  ((slice_view *)&VVar6.Z)->_4_4_ = unaff_EDI;
+  pVVar8 = util__FUN_007caeb0(&local_38,QVar3,VVar6);
+  dVar9 = pdVar1[1] + pVVar8->Y;
+  dVar10 = *pdVar1 + pVVar8->X;
+  ((slice_view *)&QVar4.W)->_4_4_ = *(undefined4 *)&dVar10;
+  memcpy((void *)((slice_view *)&QVar4)->raw + 0, (const void *)(param_1[1] + 4), 28);
+  ((slice_view *)&VVar7.X)->_4_4_ = *(undefined4 *)&dVar9;
+  ((slice_view *)&VVar7.X)->_0_4_ = (int)((ulonglong)dVar10 >> 0x20);
+  ((slice_view *)&VVar7.Y)->_0_4_ = (int)((ulonglong)dVar9 >> 0x20);
+  ((slice_view *)&VVar7)->_12_8_ = pdVar1[2] + pVVar8->Z;
+  ((slice_view *)&VVar7.Z)->_4_4_ = unaff_EDI;
+util__FUN_007caeb0(param_2,QVar4,VVar7);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00005a1c10 005a1c10_RunRadiatorCooling ====
+extern undefined4 FUN_0059e5f0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 005a1c10 name=RunRadiatorCooling conv=__thiscall body=252
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall ModuleCompartment__RunRadiatorCooling(double) */
+
+void __thiscall ModuleCompartment__RunRadiatorCooling(ModuleCompartment *this,double param_1)
+
+{
+  undefined4 stack0xfffffffc;
+  bool bVar1;
+  int iVar2;
+  int *piVar3;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[8];
+  double local_28;
+  undefined4 *local_20;
+  undefined4 uStack_1c;
+  int iStack_18;
+  undefined4 uStack_14;
+  uint local_10;
+  undefined1 local_c[4];
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if (/*0000000000000000*/0.0 < *(double *)&(this->DamageTextures).Size) {
+    local_10 = local_10 & 0xffffff00;
+    local_c[0] = 0;
+    local_20 = (undefined4 *)0x0;
+    uStack_1c = 0;
+    iStack_18 = 0;
+    uStack_14 = 0;
+    FUN_0059d050(local_30,&this->TargetingCompartments,local_10);
+    FUN_0059e5f0(&local_20,local_30,local_c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+    if (0 < iStack_18) {
+      local_10 = 0;
+      local_28 = *(double *)&(this->DamageTextures).Size / (double)iStack_18;
+      iVar2 = (*(code *)local_20[3])();
+      if ((int)local_10 < iVar2) {
+        do {
+          piVar3 = (int *)(*(code *)*local_20)(&local_10);
+          if (((ReferenceController *)piVar3[1] != (ReferenceController *)0x0) &&
+             (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
+             !bVar1)) {
+            *piVar3 = 0;
+          }
+          *(double *)(*(int *)(uintptr_t)piVar3 + 0x60) = *(double *)(*(int *)(uintptr_t)piVar3 + 0x60) + local_28;
+          local_10 = local_10 + 1;
+          iVar2 = (*(code *)local_20[3])();
+        } while ((int)local_10 < iVar2);
+      }
+      (this->DamageTextures).Size = 0;
+      (this->DamageTextures).Capacity = 0;
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_20);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
@@ -2200,6 +1952,58 @@ MagnetoplasmadynamicThrusterModule__GetVoltageTitle(MagnetoplasmadynamicThruster
   if (local_34.Data != (char *)0x0) {
     operator_delete__(local_34.Data);
   }
+  return __return_storage_ptr__;
+}
+
+
+//==== 00005b32b0 005b32b0_GetGimbalLocation_m ====
+// decompiled by BatchDecomp @ 005b32b0 name=GetGimbalLocation_m conv=__thiscall body=187
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct Vec3_L_double_G_ __thiscall EngineCompartment__GetGimbalLocation_m(struct
+   util::Quaternion<double>)const  */
+
+Vec3_L_double_G_ * __thiscall
+EngineCompartment__GetGimbalLocation_m(EngineCompartment *this,Vec3_L_double_G_ *__return_storage_ptr__,Quaternion_L_double_G_ param_1)
+
+{
+  Quaternion_L_double_G_ QVar1;
+  Quaternion_L_double_G_ QVar2;
+  Vec3_L_double_G_ VVar3;
+  Vec3_L_double_G_ VVar4;
+  Vec3_L_double_G_ *pVVar5;
+  Quaternion_L_double_G_ *pQVar6;
+  Vec3_L_double_G_ *pVVar7;
+  undefined4 unaff_EDI;
+  double dVar8;
+  double dVar9;
+  double dVar10;
+  Quaternion_L_double_G_ local_6c;
+  Vec3_L_double_G_ local_4c;
+  Vec3_L_double_G_ local_34;
+  Vec3_L_double_G_ local_1c;
+  
+  pVVar5 = EngineModule__GetGimbalCenter_m((EngineModule *)this->_pad_0x0_0,&local_1c);
+  pQVar6 = ModuleCompartment__GetOrientation((ModuleCompartment *)this,&local_6c);
+  ((slice_view *)&QVar1.W)->_4_4_ = *(undefined4 *)&pVVar5->X;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((int)&pQVar6->X + 4), 28);
+  ((slice_view *)&VVar3.Z)->_0_4_ = (int)((ulonglong)pVVar5->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar3)->raw + 0, (const void *)((int)&pVVar5->X + 4), 16);
+  ((slice_view *)&VVar3.Z)->_4_4_ = unaff_EDI;
+  pVVar5 = util__FUN_007caeb0(&local_34,QVar1,VVar3);
+  pVVar7 = ModuleCompartment__GetTrueOffset_m((ModuleCompartment *)this,&local_4c);
+  dVar8 = pVVar5->Y + pVVar7->Y;
+  dVar10 = pVVar5->X + pVVar7->X;
+  dVar9 = pVVar5->Z + pVVar7->Z;
+  ((slice_view *)&QVar2.W)->_4_4_ = *(undefined4 *)&dVar10;
+  memcpy((void *)((slice_view *)&QVar2)->raw + 0, (const void *)((slice_view *)&param_1)->raw + 0, 28);
+  ((slice_view *)&VVar4.X)->_4_4_ = *(undefined4 *)&dVar8;
+  ((slice_view *)&VVar4.X)->_0_4_ = (int)((ulonglong)dVar10 >> 0x20);
+  ((slice_view *)&VVar4.Y)->_0_4_ = (int)((ulonglong)dVar8 >> 0x20);
+  ((slice_view *)&VVar4.Y)->_4_4_ = *(undefined4 *)&dVar9;
+  ((slice_view *)&VVar4.Z)->_0_4_ = (int)((ulonglong)dVar9 >> 0x20);
+  ((slice_view *)&VVar4.Z)->_4_4_ = unaff_EDI;
+util__FUN_007caeb0(__return_storage_ptr__,QVar2,VVar4);
   return __return_storage_ptr__;
 }
 
@@ -2488,205 +2292,6 @@ PropellantTankCompartment__GetPropellantTanksMass_kg(Darray_L_class_util__WeakPt
 }
 
 
-//==== 00005bdeb0 005bdeb0_SiphonFromMultiplePropellantTanks ====
-
-// decompiled by BatchDecomp @ 005bdeb0 name=SiphonFromMultiplePropellantTanks conv=__cdecl body=330
-
-/* public: static void __cdecl PropellantTankCompartment__SiphonFromMultiplePropellantTanks(class
-   util::Darray<class util::WeakPtr<struct PropellantTankCompartment> > const &,double) */
-
-void __cdecl
-PropellantTankCompartment__SiphonFromMultiplePropellantTanks(Darray_L_class_util__WeakPtr_L_struct_PropellantTankCompartment_G___G_ *param_1,double param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  ReferenceController *this;
-  bool bVar1;
-  int iVar2;
-  int *piVar3;
-  undefined4 unaff_EBX;
-  undefined4 unaff_ESI;
-  float10 fVar4;
-  undefined4 in_stack_00000008;
-  undefined8 uVar5;
-  uint local_48;
-  undefined4 local_44;
-  int iStack_40;
-  int iStack_3c;
-  undefined4 uStack_38;
-  ReferenceController *local_34;
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_30[16];
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_20[16];
-  int local_10;
-  undefined1 local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_48 = local_48 & 0xffffff00;
-  local_c = 0;
-  local_44 = 0;
-  iStack_40 = 0;
-  iStack_3c = 0;
-  uStack_38 = 0;
-  iVar2 = (**(code **)(*(int *)param_1 + 0xc))();
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_44,iVar2);
-  local_10 = 0;
-  iVar2 = (**(code **)(*(int *)param_1 + 0xc))();
-  if (local_10 < iVar2) {
-    uVar5 = CONCAT44(unaff_EBX,unaff_ESI);
-    do {
-      piVar3 = (int *)(*(code *)**(undefined4 **)param_1)(&local_10,uVar5);
-      if (((*piVar3 != 0) && ((ReferenceController *)piVar3[1] != (ReferenceController *)0x0)) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
-         iVar2 = iStack_3c, bVar1)) {
-        local_34 = (ReferenceController *)(iStack_3c + 1);
-        util__Darray_class_util__WeakPtr_class_Body_____SetSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_44,(int *)&local_34);
-        bVar1 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_44,iVar2);
-        if (bVar1) {
-          local_34 = *(ReferenceController **)(iStack_40 + -4 + iStack_3c * 8);
-          *(int *)(iStack_40 + -8 + iStack_3c * 8) = *piVar3;
-          this = (ReferenceController *)piVar3[1];
-          *(ReferenceController **)(iStack_40 + -4 + iStack_3c * 8) = this;
-          if (this != (ReferenceController *)0x0) {
-            util__ReferenceController__AddWeakReference(this);
-          }
-          if (local_34 != (ReferenceController *)0x0) {
-            util__ReferenceController__ReleaseWeakReference(local_34);
-          }
-        }
-      }
-      local_10 = local_10 + 1;
-      iVar2 = (**(code **)(*(int *)param_1 + 0xc))();
-    } while (local_10 < iVar2);
-  }
-  FUN_005bb140(local_30,&local_44,local_48);
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_44);
-  fVar4 = (float10)FUN_005bb2a0(local_30,CONCAT44(((slice_view *)&param_2)->_0_4_,in_stack_00000008));
-  in_stack_00000008 = SUB84((double)fVar4,0);
-  FUN_005bb2a0(local_20,(double)fVar4);
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_20);
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_30);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00005c5140 005c5140_GetExhaustPlumeModelRatio_Memoize ====
-// decompiled by BatchDecomp @ 005c5140 name=GetExhaustPlumeModelRatio_Memoize conv=__thiscall body=408
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall ThermalRocketSubModule__GetExhaustPlumeModelRatio_Memoize(void)const  */
-
-void __thiscall
-ThermalRocketSubModule__GetExhaustPlumeModelRatio_Memoize(ThermalRocketSubModule *this)
-
-{
-  int iVar1;
-  bool bVar2;
-  GasExpansionPlume *pGVar3;
-  double dVar4;
-  GasExpansionPlume local_90;
-  undefined4 local_58;
-  undefined4 uStack_54;
-  undefined8 uStack_50;
-  undefined4 uStack_4c;
-  undefined **local_48;
-  void *local_44;
-  undefined8 local_38;
-  undefined8 uStack_30;
-  undefined8 local_28;
-  undefined8 uStack_20;
-  bool local_18;
-  bool local_10;
-  int local_8;
-  
-  if ((this->GetExhaustPlumeModelRatio_MemoizedValue).IsValidData == false) {
-    iVar1 = (this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Size;
-    local_8 = iVar1 + 1;
-    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
-               &this->ThermalRocketSubModuleMemoizationHandlerInstance,&local_8);
-    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
-                       &this->ThermalRocketSubModuleMemoizationHandlerInstance,iVar1);
-    if (bVar2) {
-      (this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Data
-      [(this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Size + -1] =
-           CDE_PMF(pmf_c3f813f6, SpacecraftComponent__GetEstimatedMaxAngularAcceleration_radians__s2_Clear);
-    }
-    if ((this->GetGasExpansionPlume_MemoizedValue).IsValidData == false) {
-      iVar1 = (this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Size;
-      local_8 = iVar1 + 1;
-      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
-                 &this->ThermalRocketSubModuleMemoizationHandlerInstance,&local_8);
-      bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
-                         &this->ThermalRocketSubModuleMemoizationHandlerInstance,iVar1);
-      if (bVar2) {
-        (this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Data
-        [(this->ThermalRocketSubModuleMemoizationHandlerInstance).ResetFunctions.Size + -1] =
-             CDE_PMF(pmf_c3f813f6, GetGasExpansionPlume_Clear);
-      }
-      pGVar3 = ThermalRocketSubModule_GetGasExpansionPlume_MemoizedFunction(this,&local_90);
-      util__Darray_struct_MaterialConstituent___Darray_struct_MaterialConstituent((Darray_L_struct_MaterialConstituent_G_ *)&local_48,
-                 (Darray_L_struct_MaterialConstituent_G_ *)pGVar3);
-      local_38 = pGVar3->StartRadius_m;
-      uStack_30 = pGVar3->StartTemperature_K;
-      local_28 = pGVar3->ExhaustVelocity_km__s;
-      uStack_20 = pGVar3->MassFlowRate_kg__s;
-      local_18 = pGVar3->DisableShimmer;
-      local_10 = true;
-      util__Darray_struct_MaterialConstituent___operator
-                ((Darray_L_struct_MaterialConstituent_G_ *)&this->GetGasExpansionPlume_MemoizedValue,
-                 (Darray_L_struct_MaterialConstituent_G_ *)&local_48);
-      (this->GetGasExpansionPlume_MemoizedValue).Data.DisableShimmer = local_18;
-      *(undefined4 *)&(this->GetGasExpansionPlume_MemoizedValue).Data.StartRadius_m =
-           (undefined4)local_38;
-      *(undefined4 *)((int)&(this->GetGasExpansionPlume_MemoizedValue).Data.StartRadius_m + 4) =
-           ((slice_view *)&local_38)->_4_4_;
-      *(undefined4 *)&(this->GetGasExpansionPlume_MemoizedValue).Data.StartTemperature_K =
-           (undefined4)uStack_30;
-      *(undefined4 *)((int)&(this->GetGasExpansionPlume_MemoizedValue).Data.StartTemperature_K + 4)
-           = ((slice_view *)&uStack_30)->_4_4_;
-      local_48 = ((void *)(0x00919b30u));
-      *(undefined4 *)&(this->GetGasExpansionPlume_MemoizedValue).Data.ExhaustVelocity_km__s =
-           (undefined4)local_28;
-      *(undefined4 *)
-       ((int)&(this->GetGasExpansionPlume_MemoizedValue).Data.ExhaustVelocity_km__s + 4) =
-           ((slice_view *)&local_28)->_4_4_;
-      *(undefined4 *)&(this->GetGasExpansionPlume_MemoizedValue).Data.MassFlowRate_kg__s =
-           (undefined4)uStack_20;
-      *(undefined4 *)((int)&(this->GetGasExpansionPlume_MemoizedValue).Data.MassFlowRate_kg__s + 4)
-           = ((slice_view *)&uStack_20)->_4_4_;
-      (this->GetGasExpansionPlume_MemoizedValue).IsValidData = local_10;
-      if (local_44 != (void *)0x0) {
-        operator_delete__(local_44);
-      }
-      local_44 = (void *)0x0;
-      local_48 = ((void *)(0x00919488u));
-      local_90.Products._pad_0x0_0 = (int)((void *)(0x00919b30u));
-      if (local_90.Products.Data != (MaterialConstituent *)0x0) {
-        operator_delete__(local_90.Products.Data);
-      }
-      local_90.Products.Data = (MaterialConstituent *)0x0;
-      local_90.Products._pad_0x0_0 = (int)((void *)(0x00919488u));
-      if ((this->GetGasExpansionPlume_MemoizedValue).IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-    }
-    dVar4 = GetNozzleLength_m(this);
-    dVar4 = GasExpansionPlume__GetExhaustPlumeModelRatio(&(this->GetGasExpansionPlume_MemoizedValue).Data,dVar4);
-    ((slice_view *)&uStack_50)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_50)->_1_3_[0] | (((slice_view *)&uStack_50)->_1_3_[1] << 8) | (((slice_view *)&uStack_50)->_1_3_[2] << 16)) << 8));
-    local_58 = *(undefined4 *)&dVar4;
-    uStack_54 = *(undefined4 *)((char *)&dVar4 + 4);
-    *(undefined4 *)&(this->GetExhaustPlumeModelRatio_MemoizedValue).Data = local_58;
-    *(undefined4 *)((int)&(this->GetExhaustPlumeModelRatio_MemoizedValue).Data + 4) = uStack_54;
-    *(undefined4 *)&(this->GetExhaustPlumeModelRatio_MemoizedValue).IsValidData = uStack_50;
-    *(undefined4 *)((char *)&(this->GetExhaustPlumeModelRatio_MemoizedValue) + 0xc) = uStack_4c;
-  }
-  return;
-}
-
-
 //==== 00005cab80 005cab80_FUN_005cab80 ====
 void FUN_005cab80(int *param_1,int *param_2);
 
@@ -2709,7 +2314,7 @@ void FUN_005cab80(int *param_1,int *param_2)
   
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
   local_c = 0;
-  iVar2 = (**(code **)(*param_1 + 0xc))();
+  iVar2 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
   if (local_c < iVar2) {
     do {
       puVar3 = (undefined4 *)(**(code **)*param_1)(&local_c);
@@ -2726,7 +2331,7 @@ LAB_005cac96:
                           "IsValid()",(char *)0x0);
           DebugBreak();
         }
-        iVar2 = (**(code **)(*param_2 + 0xc))();
+        iVar2 = (**(code **)(*(int *)(uintptr_t)param_2 + 0xc))();
         if (iVar2 <= *(int *)MVar6.Data) goto LAB_005cac96;
         MVar6 = GameModel__GetTextureID((GameModel *)*puVar3);
         if (*(char *)(MVar6.Data + 4) == '\0') {
@@ -2751,61 +2356,11 @@ LAB_005cac96:
       GameModel__Render((GameModel *)*puVar3,0.0,0.0,local_24);
       Graphics__TextureStack___TextureStack(&local_1c);
       local_c = local_c + 1;
-      iVar2 = (**(code **)(*param_1 + 0xc))();
+      iVar2 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
     } while (local_c < iVar2);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
-}
-
-
-//==== 00005cc450 005cc450_GetBoundingSphereRadius_m ====
-// decompiled by BatchDecomp @ 005cc450 name=GetBoundingSphereRadius_m conv=__thiscall body=254
-
-/* public: double __thiscall Module__GetBoundingSphereRadius_m(void)const  */
-
-double __thiscall Module__GetBoundingSphereRadius_m(Module *this)
-
-{
-  undefined4 stack0xfffffffc;
-  Maybe_L_double_G_ *pMVar1;
-  float10 extraout_ST0;
-  double dVar2;
-  Maybe_L_double_G_ local_60;
-  undefined1 local_50[16];
-  double local_40;
-  double local_38;
-  double local_30;
-  double local_28;
-  double local_20;
-  double local_18;
-  double local_10;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  (**(code **)(*(int *)this + 0xac))(&local_38);
-  local_40 = local_18 * local_18 + local_20 * local_20 + local_10 * local_10;
-  pMVar1 = util__Sqrt((Maybe_L_double_G_ *)local_50,&local_40);
-  if (pMVar1->IsValidData == false) {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  ((slice_view *)&local_50)->_8_8_ = pMVar1->Data;
-  local_40 = local_30 * local_30 + local_38 * local_38 + local_28 * local_28;
-  pMVar1 = util__Sqrt(&local_60,&local_40);
-  if (pMVar1->IsValidData == false) {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  dVar2 = pMVar1->Data;
-  if (pMVar1->Data <= (double)((slice_view *)&local_50)->_8_8_) {
-    dVar2 = (double)((slice_view *)&local_50)->_8_8_;
-  }
-  ((slice_view *)&local_50)->_8_8_ = dVar2;
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
 }
 
 
@@ -2947,7 +2502,7 @@ RadiationShieldCompartment__OnScarTexture(RadiationShieldCompartment *this,Quate
   ModuleCompartment__OnScarTexture((ModuleCompartment *)this,param_1,in_stack_fffffebc,param_3,VVar1,
              (double)CONCAT44(unaff_ESI,uVar5));
   piVar3 = (int *)(**(code **)(*(int *)this + 0x20))();
-  bVar2 = ArmorPlate__IsDestroyed((ArmorPlate *)(*piVar3 + 0x150));
+  bVar2 = ArmorPlate__IsDestroyed((ArmorPlate *)(*(int *)(uintptr_t)piVar3 + 0x150));
   if (bVar2) {
     this->TotalPierceArea_m2 =
          (double)CONCAT44(((slice_view *)&param_5)->_0_4_,((slice_view *)&param_4.Z)->_4_4_) * /*400921fb54442d18*/3.141592653589793 *
@@ -2957,73 +2512,6 @@ RadiationShieldCompartment__OnScarTexture(RadiationShieldCompartment *this,Quate
     util__ReferenceController__ReleaseWeakReference(param_2.Compartment.Controller);
   }
   return;
-}
-
-
-//==== 00005d9910 005d9910_FUN_005d9910 ====
-void __thiscall FUN_005d9910(undefined4 *param_1,double param_2,double param_3,bool param_4);
-
-// decompiled by BatchDecomp @ 005d9910 name=FUN_005d9910 conv=unknown body=265
-
-void __thiscall FUN_005d9910(undefined4 *param_1,double param_2,double param_3,bool param_4)
-
-{
-  double dVar1;
-  int *piVar2;
-  Vec2_L_double_G_ VVar3;
-  Vec2_L_double_G_ VVar4;
-  double dVar5;
-  
-  if (/*3ff0000000000000*/1.0 <= param_3) {
-    dVar5 = *(double *)*param_1;
-    dVar5 = /*3ff0000000000000*/1.0 -
-            ((dVar5 - param_3) / (dVar5 - /*3ff0000000000000*/1.0)) * /*3fe0000000000000*/0.5;
-  }
-  else {
-    dVar5 = param_3 * /*3fe0000000000000*/0.5;
-  }
-  piVar2 = (int *)param_1[1];
-  if (/*3ff0000000000000*/1.0 <= param_2) {
-    dVar1 = *(double *)*param_1;
-    param_2 = /*3ff0000000000000*/1.0 -
-              ((dVar1 - param_3) / (dVar1 - /*3ff0000000000000*/1.0)) * /*3fe0000000000000*/0.5;
-  }
-  else {
-    param_2 = param_2 * /*3fe0000000000000*/0.5;
-  }
-  VVar3.Y = (double)piVar2[1];
-  VVar3.X = (double)((int)((double)*(int *)param_1[2] * param_2) + *piVar2);
-  VVar4.Y = (double)(piVar2[1] + 10);
-  VVar4.X = (double)((int)((double)*(int *)param_1[2] * dVar5) + *piVar2);
-  DrawAntialiasedRect(VVar3,VVar4,0.0,/*3ff0000000000000*/1.0,param_4);
-  return;
-}
-
-
-//==== 00005dc8a0 005dc8a0_GetTemperatureJump_K ====
-// decompiled by BatchDecomp @ 005dc8a0 name=GetTemperatureJump_K conv=__thiscall body=126
-
-/* public: double __thiscall NuclearReactorSubModule__GetTemperatureJump_K(void)const  */
-
-double __thiscall NuclearReactorSubModule__GetTemperatureJump_K(NuclearReactorSubModule *this)
-
-{
-  double dVar1;
-  double dVar2;
-  double dVar3;
-  undefined4 unaff_ESI;
-  double dVar4;
-  double dVar5;
-  
-  dVar4 = Material__GetMacroscopicNeutronFissionCrossSection__m(*(Material **)&this->FuelEnrichment_Percent,Thermal,
-                     (double)CONCAT44(unaff_ESI,(int)((ulonglong)this->ControlRodMass_kg >> 0x20)));
-  dVar1 = *(double *)&this->ControlRodComposition;
-  dVar3 = (this->CachedDimensions_m).Radius;
-  dVar2 = (*(Material **)&this->FuelEnrichment_Percent)->Density_kg__m3;
-  dVar5 = Material__GetFissionEnergy_MeV(*(Material **)&this->FuelEnrichment_Percent);
-  dVar5 = eV_to_J(dVar5 * /*412e848000000000*/1000000.0);
-  return (dVar5 * (dVar1 / dVar2) * dVar4 * dVar3) /
-         (this->Fuel->BoilingPoint_K * *(double *)&this[1]._pad_0x0_0);
 }
 
 
@@ -3139,6 +2627,48 @@ RadiatorCompartment___scalar_deleting_destructor_(RadiatorCompartment *this,uint
 }
 
 
+//==== 00005e6210 005e6210_InitialSetup ====
+// decompiled by BatchDecomp @ 005e6210 name=InitialSetup conv=__thiscall body=194
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall RadiatorCompartment__InitialSetup(class CraftBlueprint const
+   *,struct ModulePlacer const &,class Module const *,int,int,struct Vec3_L_double_G_,struct
+   util::Quaternion<double>) */
+
+void __thiscall
+RadiatorCompartment__InitialSetup(RadiatorCompartment *this,CraftBlueprint *param_1,ModulePlacer *param_2,Module *param_3,
+          int param_4,int param_5,Vec3_L_double_G_ param_6,Quaternion_L_double_G_ param_7)
+
+{
+  Quaternion_L_double_G_ QVar1;
+  bool bVar2;
+  int iVar3;
+  int iVar4;
+  undefined4 unaff_EDI;
+  
+  ((slice_view *)&QVar1.W)->_4_4_ = unaff_EDI;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((slice_view *)&param_7)->raw + 0, 28);
+  ModuleCompartment__InitialSetup((ModuleCompartment *)this,param_1,param_2,param_3,param_4,param_5,param_6,QVar1);
+  iVar3 = this->_pad_0x0_0;
+  iVar4 = 0;
+  if (0 < *(int *)(iVar3 + 0xf8)) {
+    do {
+      param_4 = ArmorPlate__ArmorPlate((ArmorPlate *)&param_3,*(double *)(iVar3 + 0xf0));
+      iVar3 = (this->RadiatorArmor).Size;
+      param_5 = iVar3 + 1;
+      util__Darray_struct_ArmorPlate___SetSize((Darray_L_struct_ArmorPlate_G_ *)&this->RadiatorArmor,&param_5);
+      bVar2 = util__Darray_struct_ArmorPlate___CheckSize((Darray_L_struct_ArmorPlate_G_ *)&this->RadiatorArmor,iVar3);
+      if (bVar2) {
+        (this->RadiatorArmor).Data[(this->RadiatorArmor).Size + -1].Thickness_m = *(float *)param_4;
+      }
+      iVar4 = iVar4 + 1;
+      iVar3 = this->_pad_0x0_0;
+    } while (iVar4 < *(int *)(iVar3 + 0xf8));
+  }
+  return;
+}
+
+
 //==== 00005e9280 005e9280_Instantiate ====
 // decompiled by BatchDecomp @ 005e9280 name=Instantiate conv=__thiscall body=325
 
@@ -3223,45 +2753,6 @@ undefined4 * __thiscall RefuelerModule__Instantiate(RefuelerModule *this)
     }
   }
   return in_stack_00000004;
-}
-
-
-//==== 00005eb0f0 005eb0f0_GetReactionMassLeft_kg ====
-// decompiled by BatchDecomp @ 005eb0f0 name=GetReactionMassLeft_kg conv=__thiscall body=169
-
-/* public: double __thiscall RefuelerCompartment__GetReactionMassLeft_kg(void)const  */
-
-double __thiscall RefuelerCompartment__GetReactionMassLeft_kg(RefuelerCompartment *this)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  int iVar2;
-  int *piVar3;
-  float10 extraout_ST0;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_c = 0;
-  iVar2 = (**(code **)(*(int *)&this->CachedReactionMassCompartments + 0xc))();
-  if (local_c < iVar2) {
-    do {
-      piVar3 = (int *)(**(code **)*(int *)&this->CachedReactionMassCompartments)(&local_c);
-      if ((((*piVar3 != 0) && ((ReferenceController *)piVar3[1] != (ReferenceController *)0x0)) &&
-          (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
-          bVar1)) &&
-         (((ReferenceController *)piVar3[1] != (ReferenceController *)0x0 &&
-          (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
-          !bVar1)))) {
-        *piVar3 = 0;
-      }
-      local_c = local_c + 1;
-      iVar2 = (**(code **)(*(int *)&this->CachedReactionMassCompartments + 0xc))();
-    } while (local_c < iVar2);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (double)extraout_ST0;
 }
 
 
@@ -4163,6 +3654,62 @@ CoilgunCompartment__OnScarTexture(CoilgunCompartment *this,Quaternion_L_double_G
 }
 
 
+//==== 000062d100 0062d100_Render ====
+// decompiled by BatchDecomp @ 0062d100 name=Render conv=__thiscall body=195
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual void __thiscall CoilgunCompartment__Render(void)const  */
+
+void __thiscall CoilgunCompartment__Render(CoilgunCompartment *this)
+
+{
+  undefined4 stack0xfffffffc;
+  CoilgunModule *this_00;
+  Vec3_L_double_G_ VVar1;
+  bool bVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  uint uVar5;
+  Vec3_L_double_G_ *pVVar6;
+  float10 fVar7;
+  Vec3_L_double_G_ local_38;
+  CoilgunCompartment *local_20;
+  undefined8 local_1c;
+  TextureStack local_18;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = this;
+  iVar3 = (**(code **)(*(int *)this + 0xc))();
+  if (0 < iVar3) {
+    local_1c = 0;
+    puVar4 = (undefined4 *)(**(code **)*(int *)this)(&local_1c);
+    bVar2 = ArmorTextureHandler__IsGenerated((ArmorTextureHandler *)*puVar4);
+    if (bVar2) {
+      ((slice_view *)&local_1c)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&local_1c)->_1_3_[0] | (((slice_view *)&local_1c)->_1_3_[1] << 8) | (((slice_view *)&local_1c)->_1_3_[2] << 16)) << 8));
+      puVar4 = (undefined4 *)(**(code **)(*(int *)this + 0x1c))();
+      uVar5 = ArmorTextureHandler__GetTexture((ArmorTextureHandler *)*puVar4);
+      goto LAB_0062d160;
+    }
+  }
+  local_1c = local_1c & 0xffffff00;
+  uVar5 = 0xffffffff;
+LAB_0062d160:
+  Graphics__TextureStack__TextureStack(&local_18,uVar5,TwoDimensional,2);
+  this_00 = (CoilgunModule *)this->_pad_0x0_0;
+  iVar3 = this->_pad_0x0_0;
+  pVVar6 = WeaponCompartment__GetRawCurrentDirection((WeaponCompartment *)this,&local_38);
+  uVar5 = local_1c;
+  fVar7 = (float10)(**(code **)(iVar3 + 0x28))();
+  ((slice_view *)&VVar1.Z)->_4_4_ = (int)((ulonglong)pVVar6->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar1)->raw + 0, (const void *)pVVar6, 20);
+  CoilgunModule__Render(this_00,VVar1,(double)fVar7,SUB41(uVar5,0));
+  Graphics__TextureStack___TextureStack(&local_18);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 0000636590 00636590_Instantiate ====
 // decompiled by BatchDecomp @ 00636590 name=Instantiate conv=__thiscall body=174
 
@@ -4847,6 +4394,57 @@ StandaloneLaserMountCompartment__OnScarTexture(StandaloneLaserMountCompartment *
 }
 
 
+//==== 0000662290 00662290_GetCurrentDirection ====
+// decompiled by BatchDecomp @ 00662290 name=GetCurrentDirection conv=__thiscall body=305
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct Vec3_L_double_G_ __thiscall WeaponCompartment__GetCurrentDirection(struct
+   util::Quaternion<double>)const  */
+
+Vec3_L_double_G_ * __thiscall
+WeaponCompartment__GetCurrentDirection(WeaponCompartment *this,Vec3_L_double_G_ *__return_storage_ptr__,Quaternion_L_double_G_ param_1)
+
+{
+  double dVar1;
+  double dVar2;
+  double dVar3;
+  double dVar4;
+  Quaternion_L_double_G_ QVar5;
+  Vec3_L_double_G_ VVar6;
+  Quaternion_L_double_G_ *pQVar7;
+  undefined4 unaff_EDI;
+  undefined4 in_stack_00000008;
+  Quaternion_L_double_G_ local_3c;
+  undefined1 local_1c[16];
+  double local_c;
+  
+  pQVar7 = ModuleCompartment__GetOrientation((ModuleCompartment *)this,&local_3c);
+  dVar4 = (double)CONCAT44(((slice_view *)&param_1.X)->_0_4_,in_stack_00000008);
+  dVar2 = pQVar7->W;
+  dVar3 = pQVar7->Y;
+  dVar1 = ((dVar4 * dVar2 + (double)((slice_view *)&param_1)->_4_8_ * pQVar7->Z) - (double)((slice_view *)&param_1)->_12_8_ * dVar3) +
+          (double)((slice_view *)&param_1)->_20_8_ * pQVar7->X;
+  ((slice_view *)&local_1c)->_8_8_ = 0;
+  ((slice_view *)&local_1c)->_0_8_ = dVar1;
+  local_c = (double)((slice_view *)&param_1)->_20_8_ * dVar2 -
+            ((double)((slice_view *)&param_1)->_4_8_ * dVar3 + dVar4 * pQVar7->X + (double)((slice_view *)&param_1)->_12_8_ * pQVar7->Z)
+  ;
+  ((slice_view *)&QVar5.Z)->_4_4_ = *(undefined4 *)&local_c;
+  ((slice_view *)&QVar5)->_12_8_ = (dVar4 * dVar3 - (double)((slice_view *)&param_1)->_4_8_ * pQVar7->X) +
+                 (double)((slice_view *)&param_1)->_12_8_ * dVar2 + (double)((slice_view *)&param_1)->_20_8_ * pQVar7->Z;
+  ((slice_view *)&QVar5.W)->_0_4_ = (int)((ulonglong)local_c >> 0x20);
+  ((slice_view *)&QVar5)->_4_8_ = ((double)((slice_view *)&param_1)->_4_8_ * dVar2 - dVar4 * pQVar7->Z) +
+                (double)((slice_view *)&param_1)->_12_8_ * pQVar7->X + (double)((slice_view *)&param_1)->_20_8_ * dVar3;
+  ((slice_view *)&QVar5.X)->_0_4_ = (int)((ulonglong)dVar1 >> 0x20);
+  ((slice_view *)&QVar5.W)->_4_4_ = *(undefined4 *)&(this->CurrentDirection).X;
+  ((slice_view *)&VVar6.Z)->_0_4_ = (int)((ulonglong)(this->CurrentDirection).Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar6)->raw + 0, (const void *)((int)&(this->CurrentDirection).X + 4), 16);
+  ((slice_view *)&VVar6.Z)->_4_4_ = unaff_EDI;
+util__FUN_007caeb0(__return_storage_ptr__,QVar5,VVar6);
+  return __return_storage_ptr__;
+}
+
+
 //==== 0000665ce0 00665ce0_GetTurretInfo ====
 // decompiled by BatchDecomp @ 00665ce0 name=GetTurretInfo conv=__thiscall body=370
 
@@ -4933,73 +4531,6 @@ WeaponModule__GetTurretInfo(WeaponModule *this,Str_L_char_G_ *__return_storage_p
     operator_delete__(local_44.Data);
   }
   return __return_storage_ptr__;
-}
-
-
-//==== 000068e610 0068e610_GetReflectanceCoefficient ====
-// decompiled by BatchDecomp @ 0068e610 name=GetReflectanceCoefficient conv=__thiscall body=210
-
-/* public: double __thiscall RefractiveIndexSpectrum__GetReflectanceCoefficient(double)const  */
-
-double __thiscall
-RefractiveIndexSpectrum__GetReflectanceCoefficient(RefractiveIndexSpectrum *this,double param_1)
-
-{
-  IndexOfRefraction *pIVar1;
-  undefined4 unaff_ESI;
-  undefined4 uVar2;
-  IndexOfRefraction local_5c;
-  IndexOfRefraction local_4c;
-  IndexOfRefraction local_3c;
-  IndexOfRefraction local_2c;
-  double local_1c;
-  double local_14;
-  double local_c;
-  
-  uVar2 = *(undefined4 *)((char *)&param_1 + 4);
-  pIVar1 = GetIndexOfRefraction(this,&local_2c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_14 = /*3ff0000000000000*/1.0 - pIVar1->RefractionIndex;
-  pIVar1 = GetIndexOfRefraction(this,&local_3c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_1c = pIVar1->RefractionIndex + /*3ff0000000000000*/1.0;
-  pIVar1 = GetIndexOfRefraction(this,&local_4c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_c = pIVar1->ExtinctionCoefficient;
-  pIVar1 = GetIndexOfRefraction(this,&local_5c,(double)CONCAT44(unaff_ESI,uVar2));
-  return (local_c * local_c + local_14 * local_14) /
-         (local_1c * local_1c + pIVar1->ExtinctionCoefficient * pIVar1->ExtinctionCoefficient);
-}
-
-
-//==== 000068e700 0068e700_GetTransmittance ====
-// decompiled by BatchDecomp @ 0068e700 name=GetTransmittance conv=__thiscall body=222
-
-/* public: double __thiscall RefractiveIndexSpectrum__GetTransmittance(double)const  */
-
-double __thiscall
-RefractiveIndexSpectrum__GetTransmittance(RefractiveIndexSpectrum *this,double param_1)
-
-{
-  IndexOfRefraction *pIVar1;
-  undefined4 unaff_ESI;
-  undefined4 uVar2;
-  IndexOfRefraction local_5c;
-  IndexOfRefraction local_4c;
-  IndexOfRefraction local_3c;
-  IndexOfRefraction local_2c;
-  double local_1c;
-  double local_14;
-  double local_c;
-  
-  uVar2 = *(undefined4 *)((char *)&param_1 + 4);
-  pIVar1 = GetIndexOfRefraction(this,&local_2c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_14 = /*3ff0000000000000*/1.0 - pIVar1->RefractionIndex;
-  pIVar1 = GetIndexOfRefraction(this,&local_3c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_1c = pIVar1->RefractionIndex + /*3ff0000000000000*/1.0;
-  pIVar1 = GetIndexOfRefraction(this,&local_4c,(double)CONCAT44(unaff_ESI,uVar2));
-  local_c = pIVar1->ExtinctionCoefficient;
-  pIVar1 = GetIndexOfRefraction(this,&local_5c,(double)CONCAT44(unaff_ESI,uVar2));
-  return /*3ff0000000000000*/1.0 -
-         (local_c * local_c + local_14 * local_14) /
-         (local_1c * local_1c + pIVar1->ExtinctionCoefficient * pIVar1->ExtinctionCoefficient);
 }
 
 
@@ -5100,47 +4631,6 @@ Str_L_char_G_ * __cdecl PrintDegrees(Str_L_char_G_ *__return_storage_ptr__,doubl
 }
 
 
-//==== 0000690820 00690820_PrintLength ====
-// decompiled by BatchDecomp @ 00690820 name=PrintLength conv=__cdecl body=173
-
-/* class util::Str<char> __cdecl PrintLength(double) */
-
-Str_L_char_G_ * __cdecl PrintLength(Str_L_char_G_ *__return_storage_ptr__,double param_1)
-
-{
-  double dVar1;
-  Str_L_char_G_ *pSVar2;
-  char *pcVar3;
-  int unaff_ESI;
-  undefined4 in_stack_00000008;
-  Str_L_char_G_ local_10;
-  
-  dVar1 = (double)CONCAT44(((slice_view *)&param_1)->_0_4_,in_stack_00000008);
-  if (((dVar1 <= /*3f847ae147ae147b*/0.01) && (/*3ff0000000000000*/1.0 <= dVar1)) ||
-     ((dVar1 <= /*3ff0000000000000*/1.0 && (/*3f847ae147ae147b*/0.01 <= dVar1)))) {
-    pSVar2 = PrintSigFigures(&local_10,
-                             (double)CONCAT44(GlobalSignificantFigures,
-                                              (int)((ulonglong)(dVar1 * /*4059000000000000*/100.0) >>
-                                                   0x20)),unaff_ESI);
-    if (pSVar2->Capacity < 1) {
-      pcVar3 = "";
-    }
-    else {
-      pcVar3 = pSVar2->Data;
-    }
-    util__Printf(__return_storage_ptr__,"%s cm",pcVar3);
-    if (local_10.Data != (char *)0x0) {
-      operator_delete__(local_10.Data);
-      return __return_storage_ptr__;
-    }
-  }
-  else {
-    PrintUnits(__return_storage_ptr__,(double)CONCAT44("m",((slice_view *)&param_1)->_0_4_),(char *)0x1,unaff_ESI);
-  }
-  return __return_storage_ptr__;
-}
-
-
 //==== 00006908d0 006908d0_PrintMass ====
 // decompiled by BatchDecomp @ 006908d0 name=PrintMass conv=__cdecl body=196
 
@@ -5226,568 +4716,6 @@ Str_L_char_G_ * __cdecl PrintWavelength(Str_L_char_G_ *__return_storage_ptr__,do
     operator_delete__(local_1c.Data);
   }
   return __return_storage_ptr__;
-}
-
-
-//==== 0000691640 00691640_FUN_00691640 ====
-void FUN_00691640(Darray_L_class_util__SharedPtr_L_struct_UIWidget_G___G_ *param_1,int *param_2,int *param_3);
-
-// decompiled by BatchDecomp @ 00691640 name=FUN_00691640 conv=unknown body=367
-
-void FUN_00691640(Darray_L_class_util__SharedPtr_L_struct_UIWidget_G___G_ *param_1,int *param_2,int *param_3)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  ReferenceController *this;
-  uint *puVar2;
-  bool bVar3;
-  uint uVar4;
-  uint *puVar5;
-  ReferenceControllerRegistry *this_00;
-  SharedPtr_L_struct_UIWidget_G_ *pSVar6;
-  uint uVar7;
-  int iVar8;
-  int *piVar9;
-  int *local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_c = param_2;
-  *(undefined4 *)param_1 = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  uVar4 = (**(code **)(*param_2 + 0xc))();
-  *(undefined ***)param_1 = ((void *)(0x0091d1bcu));
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(uint *)(param_1 + 0xc) = uVar4;
-  if (((int)uVar4 < 0) || (0x3fffffff < (int)uVar4)) {
-    *(undefined4 *)(param_1 + 0xc) = 0;
-  }
-  else if (0 < (int)uVar4) {
-    uVar7 = -(uint)((int)((ulonglong)uVar4 * 8 >> 0x20) != 0) | (uint)((ulonglong)uVar4 * 8);
-    puVar5 = (uint *)operator_new__(-(uint)(0xfffffffb < uVar7) | uVar7 + 4);
-    if (puVar5 == (uint *)0x0) {
-      puVar5 = (uint *)0x0;
-    }
-    else {
-      *puVar5 = uVar4;
-      puVar5 = puVar5 + 1;
-      puVar2 = puVar5;
-      for (; uVar4 != 0; uVar4 = uVar4 - 1) {
-        *puVar2 = 0;
-        puVar2[1] = 0;
-        puVar2 = puVar2 + 2;
-      }
-    }
-    iVar8 = 0;
-    *(uint **)(param_1 + 4) = puVar5;
-    if (0 < *(int *)(param_1 + 0xc)) {
-      do {
-        iVar1 = *(int *)(param_1 + 4);
-        this = *(ReferenceController **)(iVar1 + 4 + iVar8 * 8);
-        piVar9 = *(int **)(iVar1 + iVar8 * 8);
-        *(undefined4 *)(iVar1 + iVar8 * 8) = 0;
-        *(undefined4 *)(iVar1 + 4 + iVar8 * 8) = 0;
-        if ((this != (ReferenceController *)0x0) &&
-           (bVar3 = util__ReferenceController__ReleaseStrongReference(this), bVar3)) {
-          if (piVar9 != (int *)0x0) {
-            (**(code **)(*piVar9 + 4))(1);
-          }
-          this_00 = util__ReferenceControllerRegistry__Get();
-          util__ReferenceControllerRegistry__PointerWasDestroyed(this_00,piVar9);
-        }
-        iVar8 = iVar8 + 1;
-        param_2 = local_c;
-      } while (iVar8 < *(int *)(param_1 + 0xc));
-    }
-  }
-  local_c = (int *)0x0;
-  iVar8 = (**(code **)(*param_2 + 0xc))();
-  if ((int)local_c < iVar8) {
-    do {
-      pSVar6 = (SharedPtr_L_struct_UIWidget_G_ *)(**(code **)*param_2)(&local_c);
-      if ((*(int *)(pSVar6 + 4) == param_3[1]) && (*(int *)pSVar6 == *param_3)) {
-        util__Darray_class_util__SharedPtr_struct_UIWidget_____Add(param_1,pSVar6);
-      }
-      local_c = (int *)((int)local_c + 1);
-      iVar8 = (**(code **)(*param_2 + 0xc))();
-    } while ((int)local_c < iVar8);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00006917b0 006917b0_FUN_006917b0 ====
-void FUN_006917b0(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1,int *param_2,int param_3);
-
-// decompiled by BatchDecomp @ 006917b0 name=FUN_006917b0 conv=unknown body=331
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-
-void FUN_006917b0(Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_1,int *param_2,int param_3)
-
-{
-  undefined4 stack0xfffffffc;
-  DataParser *pDVar1;
-  int iVar2;
-  ReferenceController *this;
-  ReferenceController *this_00;
-  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *pDVar3;
-  bool bVar4;
-  char cVar5;
-  int iVar6;
-  int *piVar7;
-  DataParser *pDVar8;
-  undefined1 local_20[12];
-  int local_14;
-  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_10 = param_1;
-  *(undefined4 *)param_1 = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  iVar6 = (**(code **)(*param_2 + 0xc))();
-  util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body(param_1,iVar6);
-  local_c = 0;
-  iVar6 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar6) {
-    do {
-      piVar7 = (int *)(**(code **)*param_2)(&local_c);
-      if (((ReferenceController *)piVar7[1] != (ReferenceController *)0x0) &&
-         (bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar7[1]),
-         !bVar4)) {
-        *piVar7 = 0;
-      }
-      pDVar1 = *(DataParser **)(*piVar7 + 0x194);
-      pDVar8 = GameManager__GetDataManager(*(GameManager **)(param_3 + 0x168));
-      if (pDVar1 == pDVar8) {
-        if (((ReferenceController *)piVar7[1] != (ReferenceController *)0x0) &&
-           (bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar7[1]),
-           !bVar4)) {
-          *piVar7 = 0;
-        }
-        cVar5 = (**(code **)(*(int *)*piVar7 + 8))();
-        if (cVar5 != '\0') {
-          if (((ReferenceController *)piVar7[1] != (ReferenceController *)0x0) &&
-             (bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar7[1]),
-             !bVar4)) {
-            *piVar7 = 0;
-          }
-          iVar6 = (**(code **)(*(int *)*piVar7 + 0x10))(local_20);
-          if (*(char *)(iVar6 + 8) != '\0') {
-            iVar6 = *(int *)(local_10 + 8);
-            local_14 = iVar6 + 1;
-            util__Darray_class_util__WeakPtr_class_Body_____SetSize(local_10,&local_14);
-            pDVar3 = local_10;
-            bVar4 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize(local_10,iVar6);
-            if (bVar4) {
-              iVar2 = *(int *)(pDVar3 + 8);
-              iVar6 = *(int *)(pDVar3 + 4);
-              this = *(ReferenceController **)(iVar6 + -4 + iVar2 * 8);
-              iVar6 = iVar6 + iVar2 * 8;
-              *(int *)(iVar6 + -8) = *piVar7;
-              this_00 = (ReferenceController *)piVar7[1];
-              *(ReferenceController **)(iVar6 + -4) = this_00;
-              if (this_00 != (ReferenceController *)0x0) {
-                util__ReferenceController__AddWeakReference(this_00);
-              }
-              if (this != (ReferenceController *)0x0) {
-                util__ReferenceController__ReleaseWeakReference(this);
-              }
-            }
-          }
-        }
-      }
-      local_c = local_c + 1;
-      iVar6 = (**(code **)(*param_2 + 0xc))();
-    } while (local_c < iVar6);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 000069f2d0 0069f2d0_GetRadiationHazardInfo ====
-// decompiled by BatchDecomp @ 0069f2d0 name=GetRadiationHazardInfo conv=__thiscall body=123
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::Str<char> __thiscall UICompartmentInfo__GetRadiationHazardInfo(void)const  */
-
-Str_L_char_G_ * __thiscall
-UICompartmentInfo__GetRadiationHazardInfo(UICompartmentInfo *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xffffffd8;
-  Str_L_char_G_ SVar1;
-  int unaff_ESI;
-  char *in_stack_ffffffd8;
-  int iVar2;
-  char *pcVar3;
-  Str_L_char_G_ local_18;
-  double local_c;
-  
-  local_c = Module__GetTotalRadiation_W(this->EditedModule->ModuleType);
-  pcVar3 = "Radiation_W";
-  local_c = local_c * (double)this->EditedModule->Multiplier;
-  iVar2 = 0x69f30d;
-  util__Str_char___Str_char__o5(&local_18,"Radiation_W");
-  GetUnitsOfType((Str_L_char_G_ *)&stack0xffffffd8,&local_18);
-  SVar1.Capacity = (int)pcVar3;
-  SVar1.Data = (char *)iVar2;
-  SVar1.Length = unaff_ESI;
-  Print(__return_storage_ptr__,(double)CONCAT44(in_stack_ffffffd8,(int)((ulonglong)local_c >> 0x20))
-        ,SVar1);
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
-//==== 000069f400 0069f400_GetRadiatorInterreflectionInfo ====
-// decompiled by BatchDecomp @ 0069f400 name=GetRadiatorInterreflectionInfo conv=__thiscall body=121
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::Str<char> __thiscall
-   UICompartmentInfo__GetRadiatorInterreflectionInfo(void)const  */
-
-Str_L_char_G_ * __thiscall
-UICompartmentInfo__GetRadiatorInterreflectionInfo(UICompartmentInfo *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xffffffd8;
-  Str_L_char_G_ SVar1;
-  CraftBlueprint *this_00;
-  int unaff_ESI;
-  char *in_stack_ffffffd8;
-  int iVar2;
-  char *pcVar3;
-  Str_L_char_G_ local_18;
-  double local_c;
-  
-  this_00 = (CraftBlueprint *)
-            MainManager__GetMetagame((MainManager *)this->ButtonManager->ParentManager);
-  local_c = CraftBlueprint__GetRadiatorInterreflectionEfficiency_Percent(this_00,this->EditedModule)
-  ;
-  local_c = 1.0 - local_c;
-  pcVar3 = "InterreflectionInefficiency_Percent";
-  iVar2 = 0x69f43b;
-  util__Str_char___Str_char__o5(&local_18,"InterreflectionInefficiency_Percent");
-  GetUnitsOfType((Str_L_char_G_ *)&stack0xffffffd8,&local_18);
-  SVar1.Capacity = (int)pcVar3;
-  SVar1.Data = (char *)iVar2;
-  SVar1.Length = unaff_ESI;
-  Print(__return_storage_ptr__,(double)CONCAT44(in_stack_ffffffd8,(int)((ulonglong)local_c >> 0x20))
-        ,SVar1);
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
-//==== 00006bce80 006bce80_FUN_006bce80 ====
-void FUN_006bce80(int *param_1,int param_2,int param_3,int param_4);
-
-// decompiled by BatchDecomp @ 006bce80 name=FUN_006bce80 conv=unknown body=404
-
-void FUN_006bce80(int *param_1,int param_2,int param_3,int param_4)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  bool bVar2;
-  bool bVar3;
-  int iVar4;
-  Darray_L_class_Module_P__G_ *pDVar5;
-  int iVar6;
-  undefined **local_38;
-  void *local_34;
-  int local_28;
-  int local_24;
-  int local_20;
-  undefined **local_1c;
-  undefined4 *puStack_18;
-  int iStack_14;
-  int iStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  bVar2 = false;
-  bVar1 = false;
-  local_20 = 0;
-  local_c = 0;
-  iVar4 = (**(code **)(*param_1 + 0xc))();
-  if (local_c < iVar4) {
-    do {
-      local_20 = (**(code **)*param_1)(&local_c);
-      local_28 = param_4;
-      if (*(int *)(local_20 + 8) == *(int *)(*(int *)(param_2 + 4) + 0x78)) {
-        local_28 = param_3;
-      }
-      if (*(int *)(local_28 + 0x10) == 0) {
-        bVar1 = true;
-        local_1c = ((void *)(0x009194a4u));
-        puStack_18 = (undefined4 *)0x0;
-        iStack_14 = 0;
-        iStack_10 = 1;
-        puStack_18 = (undefined4 *)operator_new__(4);
-        iVar4 = iStack_14;
-        if (puStack_18 == (undefined4 *)0x0) {
-          puStack_18 = (undefined4 *)0x0;
-        }
-        else {
-          *puStack_18 = 0;
-        }
-        iVar6 = 0;
-        if (0 < iStack_10) {
-          do {
-            puStack_18[iVar6] = 0;
-            iVar6 = iVar6 + 1;
-          } while (iVar6 < iStack_10);
-        }
-        local_24 = iStack_14 + 1;
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_1c,&local_24);
-        bVar3 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_1c,iVar4);
-        if (bVar3) {
-          puStack_18[iStack_14 + -1] = *(undefined4 *)(local_28 + 0xc);
-        }
-        pDVar5 = (Darray_L_class_Module_P_G_ *)&local_1c;
-      }
-      else {
-        bVar2 = true;
-        pDVar5 = (Darray_L_class_Module_P_G_ *)
-                 util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_38,
-                            (Darray_L_bool_P_G_ *)(*(int *)(local_28 + 0x10) + 0x34));
-      }
-      util__Darray_class_Module____operator
-                ((Darray_L_class_Module_P_G_ *)(*(int *)(local_20 + 0x10) + 0x34),pDVar5);
-      if (bVar1) {
-        bVar1 = false;
-        local_1c = ((void *)(0x009194a4u));
-        if (puStack_18 != (undefined4 *)0x0) {
-          operator_delete__(puStack_18);
-        }
-        puStack_18 = (undefined4 *)0x0;
-        local_1c = ((void *)(0x00919488u));
-      }
-      if (bVar2) {
-        bVar2 = false;
-        local_38 = ((void *)(0x009194a4u));
-        if (local_34 != (void *)0x0) {
-          operator_delete__(local_34);
-        }
-        local_34 = (void *)0x0;
-        local_38 = ((void *)(0x00919488u));
-      }
-      local_c = local_c + 1;
-      iVar4 = (**(code **)(*param_1 + 0xc))();
-    } while (local_c < iVar4);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00006cb590 006cb590_GetLevelIcon ====
-// decompiled by BatchDecomp @ 006cb590 name=GetLevelIcon conv=__thiscall body=153
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: void (__cdecl*__thiscall BriefingsHandler__GetLevelIcon(class util::Reflectable *)const
-   )(void) */
-
-_func_void * __thiscall BriefingsHandler__GetLevelIcon(BriefingsHandler *this,Reflectable *param_1)
-
-{
-  bool bVar1;
-  bool bVar2;
-  GameManager *this_00;
-  DataParser *pDVar3;
-  Campaign *this_01;
-  LevelRecord *this_02;
-  Type TVar4;
-  _func_void *p_Var5;
-  code *pcVar6;
-  HWND unaff_EDI;
-  
-  this_00 = (GameManager *)Manager__GetParent(unaff_EDI);
-  pDVar3 = GameManager__GetDataManager(this_00);
-  this_01 = GetCurrentCampaign(pDVar3);
-  bVar1 = DoesLevelUnlockContent(this,(Level *)param_1);
-  bVar2 = Campaign__IsAllowedToPlayLevel(this_01,pDVar3,(Level *)param_1);
-  if (!bVar2) {
-    pcVar6 = Icons_Lock;
-    if (bVar1) {
-      pcVar6 = Icons_LockWithSmallUnlock;
-    }
-    return pcVar6;
-  }
-  this_02 = LevelRecord__GetLevelRecord((Level *)param_1,pDVar3,false);
-  bVar1 = CapitalShipComponent__HasBeenDamaged((CapitalShipComponent *)this_02);
-  if (bVar1) {
-    TVar4 = LevelRecord__GetRatingForLevel(pDVar3,(Level *)param_1);
-    p_Var5 = LevelRecord__GetRatingIcon(TVar4);
-    return p_Var5;
-  }
-  return _guard_check_icall_nop;
-}
-
-
-//==== 00006ea7d0 006ea7d0_FUN_006ea7d0 ====
-void FUN_006ea7d0(Darray_L_struct_WorldLight_G_ *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 006ea7d0 name=FUN_006ea7d0 conv=unknown body=398
-
-void FUN_006ea7d0(Darray_L_struct_WorldLight_G_ *param_1,int *param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  uint uVar2;
-  void *pvVar3;
-  undefined4 *puVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  undefined4 *puVar8;
-  undefined4 local_80[24];
-  undefined1 local_20;
-  undefined4 *local_18;
-  int local_14;
-  int *local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  *(undefined4 *)param_1 = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  local_10 = param_2;
-  uVar2 = (**(code **)(*param_2 + 0xc))();
-  *(undefined ***)param_1 = ((void *)(0x00924d68u));
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(uint *)(param_1 + 0xc) = uVar2;
-  if (((int)uVar2 < 0) || (0x3fffffff < (int)uVar2)) {
-    *(undefined4 *)(param_1 + 0xc) = 0;
-  }
-  else if (0 < (int)uVar2) {
-    pvVar3 = operator_new__(-(uint)((int)((ulonglong)uVar2 * 0x68 >> 0x20) != 0) |
-                            (uint)((ulonglong)uVar2 * 0x68));
-    if (pvVar3 == (void *)0x0) {
-      pvVar3 = (void *)0x0;
-    }
-    else if (uVar2 != 0) {
-      puVar4 = (undefined4 *)((int)pvVar3 + 0x28);
-      do {
-        puVar4[-10] = 0;
-        puVar4[-9] = 0;
-        puVar4[-8] = 0;
-        puVar4[-7] = 0;
-        puVar4[-6] = 0;
-        puVar4[-5] = 0;
-        puVar4[-4] = 0;
-        puVar4[-3] = 0;
-        puVar4[-2] = 0;
-        puVar4[-1] = 0;
-        *puVar4 = 0;
-        puVar4[1] = 0;
-        puVar4[2] = 0;
-        puVar4[3] = 0;
-        puVar4[4] = 0;
-        puVar4[5] = 0;
-        puVar4[6] = 0;
-        puVar4[7] = 0;
-        puVar4[8] = 0;
-        puVar4[9] = 0;
-        puVar4[10] = 0;
-        puVar4[0xb] = 0;
-        puVar4[0xc] = 0;
-        puVar4[0xd] = 0;
-        *(undefined1 *)(puVar4 + 0xe) = 0;
-        uVar2 = uVar2 - 1;
-        puVar4 = puVar4 + 0x1a;
-      } while (uVar2 != 0);
-    }
-    iVar7 = 0;
-    *(void **)(param_1 + 4) = pvVar3;
-    if (0 < *(int *)(param_1 + 0xc)) {
-      iVar5 = 0;
-      do {
-        local_20 = 0;
-        puVar8 = (undefined4 *)(*(int *)(param_1 + 4) + iVar5);
-        local_80[0] = 0;
-        local_80[1] = 0;
-        local_80[2] = 0;
-        local_80[3] = 0;
-        iVar7 = iVar7 + 1;
-        iVar5 = iVar5 + 0x68;
-        local_80[4] = 0;
-        local_80[5] = 0;
-        local_80[6] = 0;
-        local_80[7] = 0;
-        local_80[8] = 0;
-        local_80[9] = 0;
-        local_80[10] = 0;
-        local_80[0xb] = 0;
-        local_80[0xc] = 0;
-        local_80[0xd] = 0;
-        local_80[0xe] = 0;
-        local_80[0xf] = 0;
-        local_80[0x10] = 0;
-        local_80[0x11] = 0;
-        local_80[0x12] = 0;
-        local_80[0x13] = 0;
-        local_80[0x14] = 0;
-        local_80[0x15] = 0;
-        local_80[0x16] = 0;
-        local_80[0x17] = 0;
-        puVar4 = local_80;
-        for (iVar6 = 0x1a; iVar6 != 0; iVar6 = iVar6 + -1) {
-          *puVar8 = *puVar4;
-          puVar4 = puVar4 + 1;
-          puVar8 = puVar8 + 1;
-        }
-        param_2 = local_10;
-      } while (iVar7 < *(int *)(param_1 + 0xc));
-    }
-  }
-  local_c = 0;
-  iVar7 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar7) {
-    do {
-      local_18 = (undefined4 *)(**(code **)*param_2)(&local_c);
-      if (*(char *)(local_18 + 0x18) != '\0') {
-        iVar7 = *(int *)(param_1 + 8);
-        local_14 = iVar7 + 1;
-        util__Darray_struct_WorldLight___SetSize(param_1,&local_14);
-        bVar1 = util__Darray_struct_WorldLight___CheckSize(param_1,iVar7);
-        if (bVar1) {
-          puVar4 = local_18;
-          puVar8 = (undefined4 *)(*(int *)(param_1 + 4) + *(int *)(param_1 + 8) * 0x68 + -0x68);
-          for (iVar7 = 0x1a; param_2 = local_10, iVar7 != 0; iVar7 = iVar7 + -1) {
-            *puVar8 = *puVar4;
-            puVar4 = puVar4 + 1;
-            puVar8 = puVar8 + 1;
-          }
-        }
-      }
-      local_c = local_c + 1;
-      iVar7 = (**(code **)(*param_2 + 0xc))();
-    } while (local_c < iVar7);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
 }
 
 
@@ -6088,48 +5016,6 @@ LAB_006f763d:
 }
 
 
-//==== 000070c5d0 0070c5d0_FUN_0070c5d0 ====
-void FUN_0070c5d0(double *param_1,double *param_2,double *param_3,double param_4,int param_5, double param_6);
-
-// decompiled by BatchDecomp @ 0070c5d0 name=FUN_0070c5d0 conv=unknown body=304
-
-void FUN_0070c5d0(double *param_1,double *param_2,double *param_3,double param_4,int param_5,
-                 double param_6)
-
-{
-  undefined4 stack0xfffffffc;
-  double dVar1;
-  double local_28;
-  double local_20;
-  double local_18;
-  double local_10;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_10 = param_4;
-  dVar1 = util__Sin(&local_10);
-  local_20 = (local_10 - dVar1 * *param_1) - *param_2;
-  local_18 = param_4;
-  local_28 = util__Cos(&local_18);
-  param_4 = param_4 - local_20 / (/*3ff0000000000000*/1.0 - local_28 * *param_3);
-  local_18 = param_4;
-  if (0 < param_5) {
-    local_10 = param_4;
-    dVar1 = util__Sin(&local_10);
-    local_20 = local_10 - dVar1 * *param_1;
-    local_28 = local_20 - *param_2;
-    local_20 = util__Abs(&local_28);
-    if (param_6 < local_20) {
-      FUN_0070c5d0(param_1,param_2,param_3,param_4,param_5 + -1,/*3e45798ee2308c3a*/1e-08);
-      __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-      return;
-    }
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
 //==== 000070cbb0 0070cbb0_LibrationOrbit ====
 // decompiled by BatchDecomp @ 0070cbb0 name=LibrationOrbit conv=__thiscall body=357
 
@@ -6283,6 +5169,56 @@ FixedOrbit__GetMeanAnomalyFromProjectingStateOnToOrbit_radians(FixedOrbit *this,
 }
 
 
+//==== 0000711630 00711630_GetRelativeOrbitalState ====
+
+// decompiled by BatchDecomp @ 00711630 name=GetRelativeOrbitalState conv=__thiscall body=341
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct util::PhysicalState<struct util::Vec3<double> > __thiscall
+   FixedOrbit__GetRelativeOrbitalState(double)const  */
+
+void __thiscall FixedOrbit__GetRelativeOrbitalState(FixedOrbit *this,double param_1)
+
+{
+  undefined4 stack0xfffffffc;
+  double *pdVar1;
+  float10 fVar2;
+  double dVar3;
+  double dVar4;
+  undefined4 in_stack_0000000c;
+  double local_20;
+  double local_18;
+  double local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  pdVar1 = &(this->Elements).InclinationToRelativePlane_degrees;
+  dVar3 = util__Abs(pdVar1);
+  if (/*3ff0000000000000*/1.0 <= dVar3) {
+    util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\strategic\\astrodynamics.cpp",0x9c,
+                    "Abs(Elements.Eccentricity) < 1.",(char *)0x0);
+    DebugBreak();
+  }
+  local_10 = GetMeanAnomaly_radians(this,(double)CONCAT44(in_stack_0000000c,((slice_view *)&param_1)->_4_4_));
+  local_18 = *pdVar1;
+  fVar2 = (float10)FUN_0070c5d0(&local_18,&local_10,&local_18,SUB84(local_10,0),
+                                (int)((ulonglong)local_10 >> 0x20),0x14,(int)/*3e45798ee2308c3a*/1e-08
+                                ,(int)((ulonglong)/*3e45798ee2308c3a*/1e-08 >> 0x20));
+  dVar4 = GetTrueAnomalyFromEccentricAnomaly_radians(this,(double)fVar2);
+  local_20 = dVar4;
+  dVar3 = util__Cos(&local_20);
+  dVar3 = util__GetRelativePeriapsisState((*pdVar1 + dVar3) / (*pdVar1 * dVar3 + /*3ff0000000000000*/1.0));
+  if (/*400921fb54442d18*/3.141592653589793 < local_20) {
+    dVar3 = /*401921fb54442d18*/6.283185307179586 - dVar3;
+  }
+  GetStateFromEccentricAndTrueAnomaly
+            (this,(double)CONCAT44(SUB84(dVar4,0),((slice_view *)&param_1)->_0_4_),
+             (double)CONCAT44(SUB84(dVar3,0),(int)((ulonglong)dVar4 >> 0x20)));
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 0000711790 00711790_GetRelativePeriapsisState ====
 // decompiled by BatchDecomp @ 00711790 name=GetRelativePeriapsisState conv=__thiscall body=170
 
@@ -6312,6 +5248,82 @@ void __thiscall FixedOrbit__GetRelativePeriapsisState(FixedOrbit *this)
             (this,(double)(ulonglong)in_stack_00000004,(double)((longlong)dVar2 << 0x20));
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
+}
+
+
+//==== 0000712db0 00712db0_GetVelocityNeededToTransferOrbitalPlanes_km__s ====
+// decompiled by BatchDecomp @ 00712db0 name=GetVelocityNeededToTransferOrbitalPlanes_km__s conv=__thiscall body=269
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct Vec3_L_double_G_ __thiscall
+   FixedOrbit__GetVelocityNeededToTransferOrbitalPlanes_km__s(struct util::PhysicalState<struct
+   util::Vec3<double> >,struct FixedOrbit const &)const  */
+
+Vec3_L_double_G_ * __thiscall
+FixedOrbit__GetVelocityNeededToTransferOrbitalPlanes_km__s(FixedOrbit *this,Vec3_L_double_G_ *__return_storage_ptr__)
+
+{
+  undefined4 stack0xfffffffc;
+  Quaternion_L_double_G_ QVar1;
+  Vec3_L_double_G_ VVar2;
+  Vec3_L_double_G_ VVar3;
+  Vec3_L_double_G_ VVar4;
+  Vec3_L_double_G_ *pVVar5;
+  Vec3_L_double_G_ *pVVar6;
+  undefined4 unaff_EDI;
+  undefined4 in_stack_00000020;
+  undefined4 in_stack_00000024;
+  undefined4 in_stack_00000028;
+  undefined4 in_stack_0000002c;
+  double in_stack_00000030;
+  FixedOrbit *in_stack_00000038;
+  Vec3_L_double_G_ local_58;
+  Vec3_L_double_G_ local_40;
+  undefined1 local_28[12];
+  undefined4 uStack_1c;
+  undefined4 local_18;
+  undefined4 uStack_14;
+  undefined4 uStack_10;
+  undefined4 uStack_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if (((this->Elements)._pad_0x0_0 != (in_stack_00000038->Elements)._pad_0x0_0) ||
+     ((this->OrbitedBody).Controller != (in_stack_00000038->OrbitedBody).Controller)) {
+    util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\strategic\\astrodynamics.cpp",0x343,
+                    "FromOtherOrbit.OrbitedBody == OrbitedBody",(char *)0x0);
+    DebugBreak();
+  }
+  pVVar5 = GetUpVector(this,&local_40);
+  pVVar6 = GetUpVector(in_stack_00000038,&local_58);
+  ((slice_view *)&VVar2.Z)->_4_4_ = (int)((ulonglong)pVVar6->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)pVVar6, 20);
+  ((slice_view *)&VVar3.Z)->_4_4_ = (int)((ulonglong)pVVar5->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar3)->raw + 0, (const void *)pVVar5, 20);
+  util_Quaternion_double_Quaternion_double((Quaternion_L_double_G_ *)local_28,VVar2,VVar3);
+  ((slice_view *)&QVar1.X)->_4_4_ = ((slice_view *)&local_28)->_8_4_;
+  ((slice_view *)&QVar1.X)->_0_4_ = ((slice_view *)&local_28)->_4_4_;
+  ((slice_view *)&QVar1.Y)->_0_4_ = uStack_1c;
+  ((slice_view *)&QVar1.Y)->_4_4_ = local_18;
+  ((slice_view *)&QVar1.Z)->_0_4_ = uStack_14;
+  ((slice_view *)&QVar1.Z)->_4_4_ = uStack_10;
+  ((slice_view *)&QVar1.W)->_0_4_ = uStack_c;
+  ((slice_view *)&QVar1.W)->_4_4_ = in_stack_00000020;
+  ((slice_view *)&VVar4.X)->_4_4_ = in_stack_00000028;
+  ((slice_view *)&VVar4.X)->_0_4_ = in_stack_00000024;
+  ((slice_view *)&VVar4.Y)->_0_4_ = in_stack_0000002c;
+  ((slice_view *)&VVar4.Y)->_4_4_ = *(undefined4 *)&in_stack_00000030;
+  ((slice_view *)&VVar4.Z)->_0_4_ = (int)((ulonglong)in_stack_00000030 >> 0x20);
+  ((slice_view *)&VVar4.Z)->_4_4_ = unaff_EDI;
+util__FUN_007caeb0((Vec3_L_double_G_ *)(local_28 + 8),QVar1,VVar4);
+  __return_storage_ptr__->X =
+       (double)CONCAT44(uStack_1c,((slice_view *)&local_28)->_8_4_) -
+       (double)CONCAT44(in_stack_00000024,in_stack_00000020);
+  __return_storage_ptr__->Y =
+       (double)CONCAT44(uStack_14,local_18) - (double)CONCAT44(in_stack_0000002c,in_stack_00000028);
+  __return_storage_ptr__->Z = (double)CONCAT44(uStack_c,uStack_10) - in_stack_00000030;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
 }
 
 
@@ -6668,7 +5680,7 @@ void FUN_00723310(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
   local_18 = param_1;
   local_c = 0;
-  iVar4 = (**(code **)(*param_1 + 0xc))();
+  iVar4 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
   if (local_c < iVar4) {
     do {
       piVar12 = &local_c;
@@ -6676,7 +5688,7 @@ void FUN_00723310(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_
       pSVar9 = (SpacecraftComponent *)&stack0xffffffe0;
       uVar11 = *param_2;
       local_14 = puVar5;
-      piVar6 = (int *)util__GetRootParent(pSVar9);
+      piVar6 = (int *)util__GetLayoutOffsetFromParent(pSVar9);
       uVar8 = 0;
       uVar10 = (uint)pSVar9 & 0xffffff00;
       if ((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) {
@@ -6736,7 +5748,7 @@ void FUN_00723310(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_
       }
       param_1 = local_18;
       local_c = local_c + 1;
-      iVar4 = (**(code **)(*local_18 + 0xc))();
+      iVar4 = (**(code **)(*(int *)(uintptr_t)local_18 + 0xc))();
     } while (local_c < iVar4);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
@@ -6787,7 +5799,7 @@ LAB_00726130:
       }
     }
     bVar5 = true;
-    dVar2 = *(double *)(*(int *)(*piVar6 + 0x4c) + 0x48);
+    dVar2 = *(double *)(*(int *)(*(int *)(uintptr_t)piVar6 + 0x4c) + 0x48);
     pdVar1 = &this->BodyTemplate->SurfaceTemperature_K;
     if (*pdVar1 <= dVar2 && dVar2 != *pdVar1) {
       bVar4 = false;
@@ -6846,6 +5858,113 @@ LAB_00726137:
 }
 
 
+//==== 0000726d30 00726d30_GetPerpendicularUpDirection ====
+// decompiled by BatchDecomp @ 00726d30 name=GetPerpendicularUpDirection conv=__thiscall body=186
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct Vec3_L_double_G_ __thiscall CelestialObject__GetPerpendicularUpDirection(struct
+   Vec3_L_double_G_,struct Vec3_L_double_G_,double)const  */
+
+Vec3_L_double_G_ * __thiscall
+CelestialObject__GetPerpendicularUpDirection(CelestialObject *this,Vec3_L_double_G_ *__return_storage_ptr__,Vec3_L_double_G_ param_1,
+          Vec3_L_double_G_ param_2,double param_3)
+
+{
+  Vec3_L_double_G_ VVar1;
+  Vec3_L_double_G_ VVar2;
+  double *pdVar3;
+  Vec3_L_double_G_ *this_00;
+  undefined4 in_stack_00000008;
+  Vec3_L_double_G_ *__return_storage_ptr___00;
+  undefined1 local_6c[48];
+  Vec3_L_double_G_ local_3c;
+  Vec3_L_double_G_ local_24;
+  double local_c;
+  
+  local_24.Y = (double)CONCAT44(((slice_view *)&param_1.X)->_0_4_,in_stack_00000008);
+  local_24.Z = ((slice_view *)&param_1)->_4_8_;
+  local_c = (double)((slice_view *)&param_1)->_12_8_;
+  pdVar3 = (double *)GetStateAt(this,(double)CONCAT44(((slice_view *)&param_2.Z)->_4_4_,local_6c));
+  local_24.X = local_24.Y - *pdVar3;
+  local_24.Y = local_24.Z - pdVar3[1];
+  local_24.Z = local_c - pdVar3[2];
+  util__Vec3_double___SafeNormalized(&local_24,&local_3c);
+  ((slice_view *)&VVar1.X)->_4_4_ = ((slice_view *)&local_3c.Y)->_0_4_;
+  ((slice_view *)&VVar1.X)->_0_4_ = ((slice_view *)&local_3c.X)->_4_4_;
+  ((slice_view *)&VVar1.Y)->_0_4_ = ((slice_view *)&local_3c.Y)->_4_4_;
+  ((slice_view *)&VVar1)->_12_8_ = local_3c.Z;
+  ((slice_view *)&VVar1.Z)->_4_4_ = ((slice_view *)&param_1.Z)->_4_4_;
+  ((slice_view *)&VVar2.Z)->_4_4_ = __return_storage_ptr__;
+  memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)((slice_view *)&param_2)->raw + 0, 20);
+  __return_storage_ptr___00 = __return_storage_ptr__;
+  this_00 = util__GetPerpendicularUpDirection(&local_3c,VVar1,VVar2);
+  util__Vec3_double___Normalized(this_00,__return_storage_ptr___00);
+  return __return_storage_ptr__;
+}
+
+
+//==== 0000727f80 00727f80_GetWorldLight ====
+// decompiled by BatchDecomp @ 00727f80 name=GetWorldLight conv=__thiscall body=229
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct WorldLight __thiscall CelestialObject__GetWorldLight(double,struct
+   Vec3_L_double_G_,bool)const  */
+
+WorldLight * __thiscall
+CelestialObject__GetWorldLight(CelestialObject *this,WorldLight *__return_storage_ptr__,double param_1,
+          Vec3_L_double_G_ param_2,bool param_3)
+
+{
+  Vec3_L_double_G_ VVar1;
+  Vec3_L_double_G_ VVar2;
+  bool bVar3;
+  undefined4 *puVar4;
+  Vec3_L_double_G_ *pVVar5;
+  undefined4 unaff_EDI;
+  double dVar6;
+  double dVar7;
+  undefined4 in_stack_00000008;
+  undefined1 local_54[48];
+  Vec3_L_double_G_ local_24;
+  undefined8 local_c;
+  
+  local_c = CONCAT44(((slice_view *)&param_1)->_0_4_,in_stack_00000008);
+  bVar3 = CelestialBody__IsLuminousBody(this->BodyTemplate);
+  if (!bVar3) {
+    util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\strategic\\celestialobjects.cpp",0x2d4,
+                    "IsLuminousBody()",(char *)0x0);
+    DebugBreak();
+  }
+  puVar4 = (undefined4 *)GetStateAt(this,(double)CONCAT44((int)local_c,local_54));
+  if (((slice_view *)&param_2.Z)->_4_1_ == '\0') {
+    pVVar5 = &local_24;
+    ((slice_view *)&local_24.X)->_0_4_ = *puVar4;
+    ((slice_view *)&local_24.X)->_4_4_ = puVar4[1];
+    ((slice_view *)&local_24.Y)->_0_4_ = puVar4[2];
+    ((slice_view *)&local_24.Y)->_4_4_ = puVar4[3];
+    local_24.Z = *(double *)(puVar4 + 4);
+  }
+  else {
+    ((slice_view *)&VVar1.Z)->_0_4_ = (int)((ulonglong)*(undefined8 *)(puVar4 + 4) >> 0x20);
+    memcpy((void *)((slice_view *)&VVar1)->raw + 0, (const void *)(puVar4 + 1), 16);
+    ((slice_view *)&VVar1.Z)->_4_4_ = (int)local_c;
+    pVVar5 = StrategicManager__GetReferenceShiftedPosition_km(this->ParentStrategic,&local_24,VVar1,
+                        (double)CONCAT44(unaff_EDI,(int)((ulonglong)local_c >> 0x20)));
+  }
+  dVar6 = pVVar5->Y + (double)((slice_view *)&param_2)->_4_8_;
+  dVar7 = pVVar5->Z + (double)((slice_view *)&param_2)->_12_8_;
+  ((slice_view *)&VVar2.X)->_4_4_ = *(undefined4 *)&dVar6;
+  ((slice_view *)&VVar2.X)->_0_4_ =
+       (int)((ulonglong)(pVVar5->X + (double)CONCAT44(((slice_view *)&param_2.X)->_0_4_,((slice_view *)&param_1)->_4_4_)) >> 0x20);
+  ((slice_view *)&VVar2.Y)->_0_4_ = (int)((ulonglong)dVar6 >> 0x20);
+  ((slice_view *)&VVar2.Y)->_4_4_ = *(undefined4 *)&dVar7;
+  ((slice_view *)&VVar2.Z)->_0_4_ = (int)((ulonglong)dVar7 >> 0x20);
+  ((slice_view *)&VVar2.Z)->_4_4_ = unaff_EDI;
+  CelestialBody__GetWorldLight(this->BodyTemplate,__return_storage_ptr__,VVar2);
+  return __return_storage_ptr__;
+}
+
+
 //==== 000072c900 0072c900_operator_ ====
 // decompiled by BatchDecomp @ 0072c900 name=operator= conv=__thiscall body=134
 
@@ -6884,6 +6003,59 @@ util__Darray_struct_ItineraryNode___operator_(Darray_L_struct_ItineraryNode_G_ *
 }
 
 
+//==== 000072d6b0 0072d6b0__vector_deleting_destructor_ ====
+// decompiled by BatchDecomp @ 0072d6b0 name=`vector_deleting_destructor' conv=__thiscall body=190
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void * __thiscall ItineraryNode::`vector deleting destructor'(unsigned int) */
+
+void * __thiscall ItineraryNode___vector_deleting_destructor_(ItineraryNode *this,uint param_1)
+
+{
+  undefined1 *puVar1;
+  ReferenceController *this_00;
+  ReferenceController **ppRVar2;
+  int iVar3;
+  
+  if ((param_1 & 2) != 0) {
+    puVar1 = &this[-1].CachedNearestOrbitParametricCoord.field_0xc;
+    iVar3 = *(int *)puVar1;
+    if (iVar3 != 0) {
+      ppRVar2 = &this[iVar3].CachedNearestFleet.Controller;
+      do {
+        iVar3 = iVar3 + -1;
+        if (ppRVar2[-0x4a] != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(ppRVar2[-0x4a]);
+        }
+        this_00 = ppRVar2[-0x54];
+        if (this_00 != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(this_00);
+        }
+        if (ppRVar2[-0x56] != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(ppRVar2[-0x56]);
+        }
+        if (ppRVar2[-0x58] != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(ppRVar2[-0x58]);
+        }
+        if (ppRVar2[-0x94] != (ReferenceController *)0x0) {
+          util__ReferenceController__ReleaseWeakReference(ppRVar2[-0x94]);
+        }
+        ppRVar2 = ppRVar2 + -0x54;
+      } while (iVar3 != 0);
+    }
+    if ((param_1 & 1) != 0) {
+      operator_delete__(puVar1,*(int *)puVar1 * 0x150 + 4);
+    }
+    return puVar1;
+  }
+  ItineraryNode__dtor(this);
+  if ((param_1 & 1) != 0) {
+    operator_delete(this,0x150);
+  }
+  return this;
+}
+
+
 //==== 000072d910 0072d910_BurnDeltaV ====
 // decompiled by BatchDecomp @ 0072d910 name=BurnDeltaV conv=__thiscall body=285
 
@@ -6913,7 +6085,7 @@ void __thiscall Fleet__BurnDeltaV(Fleet *this,double param_1)
   }
   piVar3 = (int *)GetSpacecrafts(this);
   local_c = 0;
-  iVar4 = (**(code **)(*piVar3 + 0xc))();
+  iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
   if (local_c < iVar4) {
     do {
       puVar5 = (undefined4 *)(**(code **)*piVar3)();
@@ -6935,12 +6107,12 @@ void __thiscall Fleet__BurnDeltaV(Fleet *this,double param_1)
         util__ReferenceController__ReleaseWeakReference(local_10);
       }
       local_c = local_c + 1;
-      iVar4 = (**(code **)(*piVar3 + 0xc))();
+      iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
     } while (local_c < iVar4);
   }
   util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_24);
   pSVar1 = this->ParentStrategic;
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffc0);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffc0);
   StrategicManager__OnFleetSpentDeltaV(pSVar1);
   (**(code **)(*(int *)this + 0x40))();
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
@@ -6983,7 +6155,7 @@ void __thiscall Fleet__ClearBurnOnItinerary(Fleet *this,ItineraryNode param_1)
     }
     bVar1 = Manager__IsCurrentlyTheActiveManager((Manager *)this->ParentStrategic);
     if (bVar1) {
-util__GetRootParent((SpacecraftComponent *)&stack0xfffffe9c);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xfffffe9c);
       StrategicManager__OnFleetChanged(this->ParentStrategic);
     }
   }
@@ -7172,7 +6344,7 @@ void __thiscall Fleet__MergeFleetIntoThis(Fleet *this,int param_2,ReferenceContr
   uint local_8;
   
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  piVar2 = (int *)util__GetRootParent((SpacecraftComponent *)&stack0xfffffff0)
+  piVar2 = (int *)util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xfffffff0)
   ;
   if (((ReferenceController *)piVar2[1] == param_3) && (*piVar2 == param_2)) {
     bVar1 = true;
@@ -7194,7 +6366,7 @@ void __thiscall Fleet__MergeFleetIntoThis(Fleet *this,int param_2,ReferenceContr
   }
   piVar2 = (int *)(param_2 + 0x558);
   local_c = (ReferenceController *)0x0;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   if ((int)local_c < iVar3) {
     do {
       pSVar4 = (SharedPtr_L_struct_UIWidget_G_ *)(**(code **)*piVar2)();
@@ -7202,19 +6374,19 @@ void __thiscall Fleet__MergeFleetIntoThis(Fleet *this,int param_2,ReferenceContr
                  &this[1].Location.OrbitParameters.Data.GetEccentricityPeriapsisRoot_MemoizedValue.
                   IsValidData,pSVar4);
       local_c = (ReferenceController *)((int)local_c + 1);
-      iVar3 = (**(code **)(*piVar2 + 0xc))();
+      iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
     } while ((int)local_c < iVar3);
   }
   if ((param_3 != (ReferenceController *)0x0) &&
      (bVar1 = util__ReferenceController__IsDataStillValid(param_3), !bVar1)) {
     param_2 = 0;
   }
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffdc);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffdc);
   StrategicManager__KillFleet(*(StrategicManager **)(param_2 + 0x74));
   (**(code **)(*(int *)this + 0x40))();
   bVar1 = Manager__IsCurrentlyTheActiveManager((Manager *)this->ParentStrategic);
   if (bVar1) {
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffdc);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffdc);
     StrategicManager__OnFleetChanged(this->ParentStrategic);
   }
   if (param_3 != (ReferenceController *)0x0) {
@@ -7875,10 +7047,10 @@ void __thiscall StrategicAI__GetAlliedDroneFleets(StrategicAI *this)
   *(undefined4 *)(in_stack_00000004 + 8) = 0;
   *(undefined4 *)(in_stack_00000004 + 0xc) = 0;
   local_18 = piVar2;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body(in_stack_00000004,iVar3);
   local_c = 0;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   if (local_c < iVar3) {
     do {
       puVar4 = (undefined4 *)(**(code **)*piVar2)(&local_c);
@@ -7916,7 +7088,7 @@ void __thiscall StrategicAI__GetAlliedDroneFleets(StrategicAI *this)
       }
       piVar2 = local_18;
       local_c = local_c + 1;
-      iVar3 = (**(code **)(*local_18 + 0xc))();
+      iVar3 = (**(code **)(*(int *)(uintptr_t)local_18 + 0xc))();
     } while (local_c < iVar3);
   }
   util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_28);
@@ -7959,10 +7131,10 @@ void __thiscall StrategicAI__GetAlliedFleets(StrategicAI *this)
   *(undefined4 *)(in_stack_00000004 + 4) = 0;
   *(undefined4 *)(in_stack_00000004 + 8) = 0;
   *(undefined4 *)(in_stack_00000004 + 0xc) = 0;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body(in_stack_00000004,iVar3);
   local_c = 0;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   if (local_c < iVar3) {
     do {
       puVar4 = (undefined4 *)(**(code **)*piVar2)(&local_c);
@@ -8000,7 +7172,7 @@ void __thiscall StrategicAI__GetAlliedFleets(StrategicAI *this)
         }
       }
       local_c = local_c + 1;
-      iVar3 = (**(code **)(*piVar2 + 0xc))();
+      iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
     } while (local_c < iVar3);
   }
   util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_2c);
@@ -8043,10 +7215,10 @@ void __thiscall StrategicAI__GetAlliedPayloadFleets(StrategicAI *this)
   *(undefined4 *)(in_stack_00000004 + 8) = 0;
   *(undefined4 *)(in_stack_00000004 + 0xc) = 0;
   local_18 = piVar2;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body(in_stack_00000004,iVar3);
   local_c = 0;
-  iVar3 = (**(code **)(*piVar2 + 0xc))();
+  iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
   if (local_c < iVar3) {
     do {
       puVar4 = (undefined4 *)(**(code **)*piVar2)(&local_c);
@@ -8084,7 +7256,7 @@ void __thiscall StrategicAI__GetAlliedPayloadFleets(StrategicAI *this)
       }
       piVar2 = local_18;
       local_c = local_c + 1;
-      iVar3 = (**(code **)(*local_18 + 0xc))();
+      iVar3 = (**(code **)(*(int *)(uintptr_t)local_18 + 0xc))();
     } while (local_c < iVar3);
   }
   util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_28);
@@ -8608,144 +7780,6 @@ util__Darray_struct_ActorDropdownAction___operator_(Darray_L_struct_ActorDropdow
 }
 
 
-//==== 0000781420 00781420_GetBurnStatusBarRanges ====
-// decompiled by BatchDecomp @ 00781420 name=GetBurnStatusBarRanges conv=__thiscall body=335
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: struct Range_L_double_G_ __thiscall
-   BurnInfoCustomWidget__GetBurnStatusBarRanges(void)const  */
-
-Range_L_double_G_ * __thiscall
-BurnInfoCustomWidget__GetBurnStatusBarRanges(BurnInfoCustomWidget *this,Range_L_double_G_ *__return_storage_ptr__)
-
-{
-  Fleet *this_00;
-  bool bVar1;
-  bool bVar2;
-  int *piVar3;
-  undefined4 *puVar4;
-  Itinerary *this_01;
-  Itinerary local_2bc[2];
-  ReferenceController *local_20;
-  double local_1c;
-  undefined8 local_14;
-  undefined8 uStack_c;
-  
-  bVar2 = false;
-  local_1c = (double)(ulonglong)((slice_view *)&local_1c)->_0_4_;
-  piVar3 = (int *)StrategicManager__GetSelectedFleet((StrategicManager *)this->_pad_0x0_0);
-  if ((*piVar3 != 0) && ((ReferenceController *)piVar3[1] != (ReferenceController *)0x0)) {
-    bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]);
-    if (bVar1) {
-      puVar4 = (undefined4 *)StrategicManager__GetSelectedFleet((StrategicManager *)this->_pad_0x0_0)
-      ;
-      if ((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) {
-        bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]);
-        if (!bVar2) {
-          *puVar4 = 0;
-        }
-      }
-      this_00 = (Fleet *)*puVar4;
-      Fleet__GetRemainingDeltaV_km__s_Memoize(this_00);
-      if ((this_00->GetRemainingDeltaV_km__s_MemoizedValue).IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      local_1c = (this_00->GetRemainingDeltaV_km__s_MemoizedValue).Data;
-      bVar2 = true;
-      goto LAB_007814b6;
-    }
-  }
-  local_1c = 0.0;
-LAB_007814b6:
-  if ((local_20 != (ReferenceController *)0x0) && (bVar2)) {
-    util__ReferenceController__ReleaseWeakReference(local_20);
-  }
-  if (((slice_view *)&uStack_c)->_4_4_ != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(((slice_view *)&uStack_c)->_4_4_);
-  }
-  this_01 = (Itinerary *)GetMission(this);
-  if (*(char *)&this_01[2].FinalOrbit.Data.Elements.SemiMajorAxis_km == '\0') {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x17,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  uStack_c = Itinerary__GetConsolidatedNodeBurnLength_km__s(this_01,&this->Node);
-  Itinerary_Itinerary__o3(local_2bc);
-  if (/*0000000000000000*/0.0 < local_1c) {
-    __return_storage_ptr__->Lower = uStack_c / local_1c;
-    __return_storage_ptr__->Upper = uStack_c / local_1c;
-    return __return_storage_ptr__;
-  }
-  *(undefined4 *)&__return_storage_ptr__->Lower = 0;
-  *(undefined4 *)((int)&__return_storage_ptr__->Lower + 4) = 0;
-  *(undefined4 *)&__return_storage_ptr__->Upper = 0;
-  *(undefined4 *)((int)&__return_storage_ptr__->Upper + 4) = 0;
-  return __return_storage_ptr__;
-}
-
-
-//==== 0000781570 00781570_GetBurnStatusBarText ====
-// decompiled by BatchDecomp @ 00781570 name=GetBurnStatusBarText conv=__thiscall body=217
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::Str<char> __thiscall BurnInfoCustomWidget__GetBurnStatusBarText(void)const
-    */
-
-Str_L_char_G_ * __thiscall
-BurnInfoCustomWidget__GetBurnStatusBarText(BurnInfoCustomWidget *this,Str_L_char_G_ *__return_storage_ptr__)
-
-{
-  undefined4 stack0xfffffd30;
-  Str_L_char_G_ SVar1;
-  Itinerary *this_00;
-  Str_L_char_G_ *pSVar2;
-  int unaff_EDI;
-  char *in_stack_fffffd30;
-  int iVar3;
-  char *pcVar4;
-  Itinerary local_2bc[2];
-  Str_L_char_G_ local_24;
-  Str_L_char_G_ local_18;
-  double local_c;
-  
-  this_00 = (Itinerary *)GetMission(this);
-  if (*(char *)&this_00[2].FinalOrbit.Data.Elements.SemiMajorAxis_km == '\0') {
-    in_stack_fffffd30 = (char *)0x17;
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x17,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  local_c = Itinerary__GetConsolidatedNodeBurnLength_km__s(this_00,&this->Node);
-  Itinerary_Itinerary__o3(local_2bc);
-  pcVar4 = "NodeDeltaV_km__s";
-  iVar3 = 0x7815d9;
-  util__Str_char___Str_char__o5(&local_24,"NodeDeltaV_km__s");
-  GetUnitsOfType((Str_L_char_G_ *)&stack0xfffffd30,&local_24);
-  SVar1.Capacity = (int)pcVar4;
-  SVar1.Data = (char *)iVar3;
-  SVar1.Length = unaff_EDI;
-  pSVar2 = Print(&local_18,(double)CONCAT44(in_stack_fffffd30,(int)((ulonglong)local_c >> 0x20)),
-                 SVar1);
-  if (pSVar2->Capacity < 1) {
-    pcVar4 = "";
-  }
-  else {
-    pcVar4 = pSVar2->Data;
-  }
-  util__Str_char___Str_char__o5(__return_storage_ptr__,pcVar4);
-  if (local_18.Data != (char *)0x0) {
-    operator_delete__(local_18.Data);
-    local_18.Data = (char *)0x0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-  }
-  return __return_storage_ptr__;
-}
-
-
 //==== 0000783280 00783280_GetSelectedFleet ====
 // decompiled by BatchDecomp @ 00783280 name=GetSelectedFleet conv=__thiscall body=128
 
@@ -8791,6 +7825,123 @@ undefined4 * __thiscall HUDItineraryInfoPanel__GetSelectedFleet(HUDItineraryInfo
     util__ReferenceController__ReleaseWeakReference(local_8);
   }
   return in_stack_00000004;
+}
+
+
+//==== 0000787d50 00787d50_GetWorldDirection ====
+// decompiled by BatchDecomp @ 00787d50 name=GetWorldDirection conv=__thiscall body=207
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* private: struct Vec3_L_double_G_ __thiscall HUDItineraryNodeDragger__GetWorldDirection(struct
+   Vec3_L_double_G_)const  */
+
+Vec3_L_double_G_ * __thiscall
+HUDItineraryNodeDragger__GetWorldDirection(HUDItineraryNodeDragger *this,Vec3_L_double_G_ *__return_storage_ptr__,Vec3_L_double_G_ param_1)
+
+{
+  undefined4 stack0xfffffffc;
+  Quaternion_L_double_G_ QVar1;
+  Vec3_L_double_G_ VVar2;
+  Quaternion_L_double_G_ *pQVar3;
+  undefined4 unaff_EDI;
+  undefined4 in_stack_00000008;
+  Quaternion_L_double_G_ local_178;
+  ItineraryNode local_158;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  StrategicManager__GetSelectedItineraryNode((StrategicManager *)this->_pad_0x0_0,&local_158);
+  pQVar3 = StrategicManager__GetReferenceShiftedOrientation((StrategicManager *)this->_pad_0x0_0,&local_178,
+                      (double)CONCAT44(unaff_EDI,((slice_view *)&local_158.TimeSinceJ2000_s)->_4_4_));
+  ((slice_view *)&QVar1.W)->_4_4_ = in_stack_00000008;
+  memcpy((void *)((slice_view *)&QVar1)->raw + 0, (const void *)((int)&pQVar3->X + 4), 28);
+  ((slice_view *)&VVar2.Z)->_4_4_ = unaff_EDI;
+  memcpy((void *)((slice_view *)&VVar2)->raw + 0, (const void *)((slice_view *)&param_1)->raw + 0, 20);
+util__FUN_007caeb0(__return_storage_ptr__,QVar1,VVar2);
+  if (local_158.CachedNearestOrbiter.Controller != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestOrbiter.Controller);
+  }
+  if (local_158.CachedNearestFleet.Controller != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestFleet.Controller);
+  }
+  if (local_158.CachedNearestBody.Controller != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_158.CachedNearestBody.Controller);
+  }
+  if (local_158.CachedGravityBody.Controller != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_158.CachedGravityBody.Controller);
+  }
+  if (local_158.Parent.Controller != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_158.Parent.Controller);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
+}
+
+
+//==== 00007a0a00 007a0a00_GetLocation ====
+// decompiled by BatchDecomp @ 007a0a00 name=GetLocation conv=__thiscall body=176
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: virtual class util::Maybe<struct util::Vec3<double> > __thiscall
+   BalloonPopupNodePayload__GetLocation(void)const  */
+
+void __thiscall BalloonPopupNodePayload__GetLocation(BalloonPopupNodePayload *this)
+
+{
+  double dVar1;
+  ReferenceController *pRVar2;
+  Vec3_L_double_G_ VVar3;
+  bool bVar4;
+  Vec3_L_double_G_ *pVVar5;
+  undefined4 unaff_ESI;
+  undefined4 *in_stack_00000004;
+  undefined4 local_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  double local_2c;
+  undefined1 local_24;
+  Vec3_L_double_G_ local_1c;
+  
+  if (((this->Node).Parent.Pointer != (Fleet *)0x0) &&
+     (pRVar2 = (this->Node).Parent.Controller, pRVar2 != (ReferenceController *)0x0)) {
+    bVar4 = util__ReferenceController__IsDataStillValid(pRVar2);
+    if (bVar4) {
+      pRVar2 = (this->Node).Parent.Controller;
+      if (pRVar2 != (ReferenceController *)0x0) {
+        bVar4 = util__ReferenceController__IsDataStillValid(pRVar2);
+        if (!bVar4) {
+          (this->Node).Parent.Pointer = (Fleet *)0x0;
+        }
+      }
+      dVar1 = (this->Node).TimeSinceJ2000_s;
+      ((slice_view *)&VVar3.Z)->_4_4_ = *(undefined4 *)&dVar1;
+      memcpy((void *)((slice_view *)&VVar3)->raw + 0, (const void *)((int)&(this->Node).State.Position.X + 4), 20);
+      pVVar5 = StrategicManager__GetReferenceShiftedPosition_km(((this->Node).Parent.Pointer)->ParentStrategic,&local_1c,VVar3,
+                          (double)CONCAT44(unaff_ESI,(int)((ulonglong)dVar1 >> 0x20)));
+      local_24 = 1;
+      local_3c = *(undefined4 *)&pVVar5->X;
+      uStack_38 = *(undefined4 *)((int)&pVVar5->X + 4);
+      uStack_34 = *(undefined4 *)&pVVar5->Y;
+      uStack_30 = *(undefined4 *)((int)&pVVar5->Y + 4);
+      local_2c = pVVar5->Z;
+      goto LAB_007a0a8d;
+    }
+  }
+  local_24 = 0;
+  local_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  local_2c = 0.0;
+LAB_007a0a8d:
+  *in_stack_00000004 = local_3c;
+  in_stack_00000004[1] = uStack_38;
+  in_stack_00000004[2] = uStack_34;
+  in_stack_00000004[3] = uStack_30;
+  *(double *)(in_stack_00000004 + 4) = local_2c;
+  *(undefined1 *)(in_stack_00000004 + 6) = local_24;
+  return;
 }
 
 
@@ -9036,7 +8187,7 @@ void __thiscall Body__Destroy(Body *this)
     } while ((int)local_c < iVar4);
   }
   pTVar1 = this->ParentTactical;
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffe0);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffe0);
   bVar2 = TacticalManager__IsBodySelected(pTVar1);
   if (bVar2) {
     puVar5 = (undefined4 *)TacticalManager__GetTacticalUI(this->ParentTactical);
@@ -9052,7 +8203,7 @@ util__GetRootParent((SpacecraftComponent *)&stack0xffffffe0);
     }
   }
   if (this->Alliance != (Faction *)0x0) {
-    GetSpacecraftComponent_Memoize(this);
+    Body_GetSpacecraftComponent_Memoize(this);
     if ((this->GetSpacecraftComponent_MemoizedValue).IsValidData == false) {
       util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
                       "IsValid()",(char *)0x0);
@@ -9072,7 +8223,7 @@ util__GetRootParent((SpacecraftComponent *)&stack0xffffffe0);
       }
     }
   }
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffe0);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffe0);
   TacticalManager__KillBody(this->ParentTactical);
   (this->IsAlive_MemoizedValue).Data = false;
   (this->IsAlive_MemoizedValue).IsValidData = false;
@@ -9081,16 +8232,15 @@ util__GetRootParent((SpacecraftComponent *)&stack0xffffffe0);
 }
 
 
-//==== 00007b4780 007b4780_GetSpacecraftComponent_Memoize ====
-extern undefined4 FUN_0065da20(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-extern undefined4 FUN_007acfc0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+//==== 00007b24c0 007b24c0_GetBulletComponent_Memoize ====
+extern undefined4 FUN_007ac660(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
-// decompiled by BatchDecomp @ 007b4780 name=GetSpacecraftComponent_Memoize conv=__thiscall body=405
+// decompiled by BatchDecomp @ 007b24c0 name=GetBulletComponent_Memoize conv=__thiscall body=405
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall Body__GetSpacecraftComponent_Memoize(void)const  */
+/* public: void __thiscall Body__GetBulletComponent_Memoize(void)const  */
 
-void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
+void __thiscall Body__GetBulletComponent_Memoize(Body *this)
 
 {
   undefined4 stack0xfffffffc;
@@ -9105,7 +8255,7 @@ void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
   Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ local_40[16];
   Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
   ReferenceController *local_20;
-  SpacecraftComponent *local_1c;
+  MatterComponent *local_1c;
   undefined4 local_18;
   undefined4 *puStack_14;
   int iStack_10;
@@ -9114,9 +8264,9 @@ void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
   
   local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
   local_20 = (ReferenceController *)0x0;
-  if ((this->GetSpacecraftComponent_MemoizedValue).IsValidData == false) {
+  if ((this->GetBulletComponent_MemoizedValue).IsValidData == false) {
     iVar1 = (this->BodyMemoizationHandlerInstance).ResetFunctions.Size;
-    local_1c = (SpacecraftComponent *)(iVar1 + 1);
+    local_1c = (MatterComponent *)(iVar1 + 1);
     util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,
                (int *)&local_1c);
     bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
@@ -9124,7 +8274,7 @@ void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
     if (bVar2) {
       (this->BodyMemoizationHandlerInstance).ResetFunctions.Data
       [(this->BodyMemoizationHandlerInstance).ResetFunctions.Size + -1] =
-           CDE_PMF(pmf_eabaeed5, Body__GetSpacecraftComponent_Clear);
+           CDE_PMF(pmf_eabaeed5, Body__GetBulletComponent_Clear);
     }
     pDVar6 = &this->Components;
     pDVar5 = local_40;
@@ -9132,22 +8282,22 @@ void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
     puStack_14 = (undefined4 *)0x0;
     iStack_10 = 0;
     uStack_c = 0;
-    uVar3 = util__GetSpacecraftComponent_Memoize(pDVar5);
-    local_1c = (SpacecraftComponent *)((uint)local_1c & 0xffffff00);
-    uVar3 = FUN_007acfc0(local_30,uVar3,local_1c,pDVar5,pDVar6);
-    local_1c = (SpacecraftComponent *)((uint)local_1c & 0xffffff00);
-    FUN_0065da20(&local_18,uVar3,local_1c);
+    uVar3 = util__GetUntrackComponent_Memoize(pDVar5);
+    local_1c = (MatterComponent *)((uint)local_1c & 0xffffff00);
+    uVar3 = FUN_007ac660(local_30,uVar3,local_1c,pDVar5,pDVar6);
+    local_1c = (MatterComponent *)((uint)local_1c & 0xffffff00);
+    FUN_00526b80(&local_18,uVar3,local_1c);
     util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
     util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_40);
     iVar1 = iStack_10;
     if (1 < iStack_10) {
-      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1d7,
-                      "CraftComps.Num() <= 1",(char *)0x0);
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1f8,
+                      "Bullet.Num() <= 1",(char *)0x0);
       DebugBreak();
     }
     if (iVar1 == 1) {
       this_00 = (ReferenceController *)puStack_14[1];
-      local_1c = (SpacecraftComponent *)*puStack_14;
+      local_1c = (MatterComponent *)*puStack_14;
       if (this_00 != (ReferenceController *)0x0) {
         util__ReferenceController__AddWeakReference(this_00);
       }
@@ -9160,33 +8310,493 @@ void __thiscall Body__GetSpacecraftComponent_Memoize(Body *this)
     }
     else {
       pRVar4 = (ReferenceController *)0x2;
-      local_1c = (SpacecraftComponent *)0x0;
+      local_1c = (MatterComponent *)0x0;
       this_00 = (ReferenceController *)0x0;
       this_01 = local_20;
     }
     if ((((uint)pRVar4 & 2) != 0) &&
        (local_20 = (ReferenceController *)((uint)pRVar4 & 0xfffffffd), pRVar4 = local_20,
-       local_1c != (SpacecraftComponent *)0x0)) {
+       local_1c != (MatterComponent *)0x0)) {
       util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_1c);
       pRVar4 = local_20;
     }
     if ((this_01 != (ReferenceController *)0x0) && (((uint)pRVar4 & 1) != 0)) {
       util__ReferenceController__ReleaseWeakReference(this_01);
     }
-    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_18);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_18);
     if (this_00 != (ReferenceController *)0x0) {
       util__ReferenceController__AddWeakReference(this_00);
     }
-    pRVar4 = (this->GetSpacecraftComponent_MemoizedValue).Data.Controller;
-    (this->GetSpacecraftComponent_MemoizedValue).Data.Pointer = local_1c;
-    (this->GetSpacecraftComponent_MemoizedValue).Data.Controller = this_00;
+    pRVar4 = (this->GetBulletComponent_MemoizedValue).Data.Controller;
+    (this->GetBulletComponent_MemoizedValue).Data.Pointer = local_1c;
+    (this->GetBulletComponent_MemoizedValue).Data.Controller = this_00;
     if (this_00 != (ReferenceController *)0x0) {
       util__ReferenceController__AddWeakReference(this_00);
     }
     if (pRVar4 != (ReferenceController *)0x0) {
       util__ReferenceController__ReleaseWeakReference(pRVar4);
     }
-    (this->GetSpacecraftComponent_MemoizedValue).IsValidData = true;
+    (this->GetBulletComponent_MemoizedValue).IsValidData = true;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(this_00);
+      util__ReferenceController__ReleaseWeakReference(this_00);
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00007b3280 007b3280_GetControllableComponent_Memoize ====
+extern undefined4 FUN_007ac980(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007b3280 name=GetControllableComponent_Memoize conv=__thiscall body=405
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall Body__GetControllableComponent_Memoize(void)const  */
+
+void __thiscall Body__GetControllableComponent_Memoize(Body *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  ReferenceController *pRVar4;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ *pDVar5;
+  Darray_L_util__SharedPtr_L_Component_G___G_ *pDVar6;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ local_40[16];
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
+  ReferenceController *local_20;
+  ControllableComponent *local_1c;
+  undefined4 local_18;
+  undefined4 *puStack_14;
+  int iStack_10;
+  undefined4 uStack_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = (ReferenceController *)0x0;
+  if ((this->GetControllableComponent_MemoizedValue).IsValidData == false) {
+    iVar1 = (this->BodyMemoizationHandlerInstance).ResetFunctions.Size;
+    local_1c = (ControllableComponent *)(iVar1 + 1);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,
+               (int *)&local_1c);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
+                       iVar1);
+    if (bVar2) {
+      (this->BodyMemoizationHandlerInstance).ResetFunctions.Data
+      [(this->BodyMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+           CDE_PMF(pmf_eabaeed5, Body__GetControllableComponent_Clear);
+    }
+    pDVar6 = &this->Components;
+    pDVar5 = local_40;
+    local_18 = 0;
+    puStack_14 = (undefined4 *)0x0;
+    iStack_10 = 0;
+    uStack_c = 0;
+    uVar3 = util__GetUntrackComponent_Memoize(pDVar5);
+    local_1c = (ControllableComponent *)((uint)local_1c & 0xffffff00);
+    uVar3 = FUN_007ac980(local_30,uVar3,local_1c,pDVar5,pDVar6);
+    local_1c = (ControllableComponent *)((uint)local_1c & 0xffffff00);
+    FUN_00526b80(&local_18,uVar3,local_1c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_40);
+    iVar1 = iStack_10;
+    if (1 < iStack_10) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1fe,
+                      "Bullet.Num() <= 1",(char *)0x0);
+      DebugBreak();
+    }
+    if (iVar1 == 1) {
+      this_00 = (ReferenceController *)puStack_14[1];
+      local_1c = (ControllableComponent *)*puStack_14;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+      }
+      pRVar4 = (ReferenceController *)0x1;
+      this_01 = this_00;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+        pRVar4 = (ReferenceController *)0x1;
+      }
+    }
+    else {
+      pRVar4 = (ReferenceController *)0x2;
+      local_1c = (ControllableComponent *)0x0;
+      this_00 = (ReferenceController *)0x0;
+      this_01 = local_20;
+    }
+    if ((((uint)pRVar4 & 2) != 0) &&
+       (local_20 = (ReferenceController *)((uint)pRVar4 & 0xfffffffd), pRVar4 = local_20,
+       local_1c != (ControllableComponent *)0x0)) {
+      util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_1c);
+      pRVar4 = local_20;
+    }
+    if ((this_01 != (ReferenceController *)0x0) && (((uint)pRVar4 & 1) != 0)) {
+      util__ReferenceController__ReleaseWeakReference(this_01);
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_18);
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    pRVar4 = (this->GetControllableComponent_MemoizedValue).Data.Controller;
+    (this->GetControllableComponent_MemoizedValue).Data.Pointer = local_1c;
+    (this->GetControllableComponent_MemoizedValue).Data.Controller = this_00;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    if (pRVar4 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(pRVar4);
+    }
+    (this->GetControllableComponent_MemoizedValue).IsValidData = true;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(this_00);
+      util__ReferenceController__ReleaseWeakReference(this_00);
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00007b35f0 007b35f0_GetDebrisComponent_Memoize ====
+extern undefined4 FUN_007acca0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007b35f0 name=GetDebrisComponent_Memoize conv=__thiscall body=405
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall Body__GetDebrisComponent_Memoize(void)const  */
+
+void __thiscall Body__GetDebrisComponent_Memoize(Body *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  ReferenceController *pRVar4;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ *pDVar5;
+  Darray_L_util__SharedPtr_L_Component_G___G_ *pDVar6;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ local_40[16];
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
+  ReferenceController *local_20;
+  DebrisComponent *local_1c;
+  undefined4 local_18;
+  undefined4 *puStack_14;
+  int iStack_10;
+  undefined4 uStack_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = (ReferenceController *)0x0;
+  if ((this->GetDebrisComponent_MemoizedValue).IsValidData == false) {
+    iVar1 = (this->BodyMemoizationHandlerInstance).ResetFunctions.Size;
+    local_1c = (DebrisComponent *)(iVar1 + 1);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,
+               (int *)&local_1c);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
+                       iVar1);
+    if (bVar2) {
+      (this->BodyMemoizationHandlerInstance).ResetFunctions.Data
+      [(this->BodyMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+           CDE_PMF(pmf_eabaeed5, Body__GetDebrisComponent_Clear);
+    }
+    pDVar6 = &this->Components;
+    pDVar5 = local_40;
+    local_18 = 0;
+    puStack_14 = (undefined4 *)0x0;
+    iStack_10 = 0;
+    uStack_c = 0;
+    uVar3 = util__GetUntrackComponent_Memoize(pDVar5);
+    local_1c = (DebrisComponent *)((uint)local_1c & 0xffffff00);
+    uVar3 = FUN_007acca0(local_30,uVar3,local_1c,pDVar5,pDVar6);
+    local_1c = (DebrisComponent *)((uint)local_1c & 0xffffff00);
+    FUN_00526b80(&local_18,uVar3,local_1c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_40);
+    iVar1 = iStack_10;
+    if (1 < iStack_10) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1f2,
+                      "DebrisComps.Num() <= 1",(char *)0x0);
+      DebugBreak();
+    }
+    if (iVar1 == 1) {
+      this_00 = (ReferenceController *)puStack_14[1];
+      local_1c = (DebrisComponent *)*puStack_14;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+      }
+      pRVar4 = (ReferenceController *)0x1;
+      this_01 = this_00;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+        pRVar4 = (ReferenceController *)0x1;
+      }
+    }
+    else {
+      pRVar4 = (ReferenceController *)0x2;
+      local_1c = (DebrisComponent *)0x0;
+      this_00 = (ReferenceController *)0x0;
+      this_01 = local_20;
+    }
+    if ((((uint)pRVar4 & 2) != 0) &&
+       (local_20 = (ReferenceController *)((uint)pRVar4 & 0xfffffffd), pRVar4 = local_20,
+       local_1c != (DebrisComponent *)0x0)) {
+      util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_1c);
+      pRVar4 = local_20;
+    }
+    if ((this_01 != (ReferenceController *)0x0) && (((uint)pRVar4 & 1) != 0)) {
+      util__ReferenceController__ReleaseWeakReference(this_01);
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_18);
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    pRVar4 = (this->GetDebrisComponent_MemoizedValue).Data.Controller;
+    (this->GetDebrisComponent_MemoizedValue).Data.Pointer = local_1c;
+    (this->GetDebrisComponent_MemoizedValue).Data.Controller = this_00;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    if (pRVar4 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(pRVar4);
+    }
+    (this->GetDebrisComponent_MemoizedValue).IsValidData = true;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(this_00);
+      util__ReferenceController__ReleaseWeakReference(this_00);
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00007b45b0 007b45b0_GetShotComponent_Memoize ====
+extern undefined4 FUN_007ac7f0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007b45b0 name=GetShotComponent_Memoize conv=__thiscall body=405
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall Body__GetShotComponent_Memoize(void)const  */
+
+void __thiscall Body__GetShotComponent_Memoize(Body *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  ReferenceController *pRVar4;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ *pDVar5;
+  Darray_L_util__SharedPtr_L_Component_G___G_ *pDVar6;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ local_40[16];
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
+  ReferenceController *local_20;
+  ShotComponent *local_1c;
+  undefined4 local_18;
+  undefined4 *puStack_14;
+  int iStack_10;
+  undefined4 uStack_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = (ReferenceController *)0x0;
+  if ((this->GetShotComponent_MemoizedValue).IsValidData == false) {
+    iVar1 = (this->BodyMemoizationHandlerInstance).ResetFunctions.Size;
+    local_1c = (ShotComponent *)(iVar1 + 1);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,
+               (int *)&local_1c);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
+                       iVar1);
+    if (bVar2) {
+      (this->BodyMemoizationHandlerInstance).ResetFunctions.Data
+      [(this->BodyMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+           CDE_PMF(pmf_eabaeed5, Body__GetShotComponent_Clear);
+    }
+    pDVar6 = &this->Components;
+    pDVar5 = local_40;
+    local_18 = 0;
+    puStack_14 = (undefined4 *)0x0;
+    iStack_10 = 0;
+    uStack_c = 0;
+    uVar3 = util__GetUntrackComponent_Memoize(pDVar5);
+    local_1c = (ShotComponent *)((uint)local_1c & 0xffffff00);
+    uVar3 = FUN_007ac7f0(local_30,uVar3,local_1c,pDVar5,pDVar6);
+    local_1c = (ShotComponent *)((uint)local_1c & 0xffffff00);
+    FUN_00526b80(&local_18,uVar3,local_1c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_40);
+    iVar1 = iStack_10;
+    if (1 < iStack_10) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1de,
+                      "ShotComps.Num() <= 1",(char *)0x0);
+      DebugBreak();
+    }
+    if (iVar1 == 1) {
+      this_00 = (ReferenceController *)puStack_14[1];
+      local_1c = (ShotComponent *)*puStack_14;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+      }
+      pRVar4 = (ReferenceController *)0x1;
+      this_01 = this_00;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+        pRVar4 = (ReferenceController *)0x1;
+      }
+    }
+    else {
+      pRVar4 = (ReferenceController *)0x2;
+      local_1c = (ShotComponent *)0x0;
+      this_00 = (ReferenceController *)0x0;
+      this_01 = local_20;
+    }
+    if ((((uint)pRVar4 & 2) != 0) &&
+       (local_20 = (ReferenceController *)((uint)pRVar4 & 0xfffffffd), pRVar4 = local_20,
+       local_1c != (ShotComponent *)0x0)) {
+      util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_1c);
+      pRVar4 = local_20;
+    }
+    if ((this_01 != (ReferenceController *)0x0) && (((uint)pRVar4 & 1) != 0)) {
+      util__ReferenceController__ReleaseWeakReference(this_01);
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_18);
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    pRVar4 = (this->GetShotComponent_MemoizedValue).Data.Controller;
+    (this->GetShotComponent_MemoizedValue).Data.Pointer = local_1c;
+    (this->GetShotComponent_MemoizedValue).Data.Controller = this_00;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    if (pRVar4 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(pRVar4);
+    }
+    (this->GetShotComponent_MemoizedValue).IsValidData = true;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(this_00);
+      util__ReferenceController__ReleaseWeakReference(this_00);
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 00007b4e20 007b4e20_GetUntrackComponent_Memoize ====
+extern undefined4 FUN_007ace30(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 007b4e20 name=GetUntrackComponent_Memoize conv=__thiscall body=405
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: void __thiscall Body__GetUntrackComponent_Memoize(void)const  */
+
+void __thiscall Body__GetUntrackComponent_Memoize(Body *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  undefined4 uVar3;
+  ReferenceController *pRVar4;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ *pDVar5;
+  Darray_L_util__SharedPtr_L_Component_G___G_ *pDVar6;
+  Darray_L_class_util__SharedPtr_L_struct_ModuleCompartment_G___G_ local_40[16];
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
+  ReferenceController *local_20;
+  UntrackComponent *local_1c;
+  undefined4 local_18;
+  undefined4 *puStack_14;
+  int iStack_10;
+  undefined4 uStack_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = (ReferenceController *)0x0;
+  if ((this->GetUntrackComponent_MemoizedValue).IsValidData == false) {
+    iVar1 = (this->BodyMemoizationHandlerInstance).ResetFunctions.Size;
+    local_1c = (UntrackComponent *)(iVar1 + 1);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,
+               (int *)&local_1c);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
+                       iVar1);
+    if (bVar2) {
+      (this->BodyMemoizationHandlerInstance).ResetFunctions.Data
+      [(this->BodyMemoizationHandlerInstance).ResetFunctions.Size + -1] =
+           CDE_PMF(pmf_eabaeed5, Body__GetUntrackComponent_Clear);
+    }
+    pDVar6 = &this->Components;
+    pDVar5 = local_40;
+    local_18 = 0;
+    puStack_14 = (undefined4 *)0x0;
+    iStack_10 = 0;
+    uStack_c = 0;
+    uVar3 = util__GetUntrackComponent_Memoize(pDVar5);
+    local_1c = (UntrackComponent *)((uint)local_1c & 0xffffff00);
+    uVar3 = FUN_007ace30(local_30,uVar3,local_1c,pDVar5,pDVar6);
+    local_1c = (UntrackComponent *)((uint)local_1c & 0xffffff00);
+    FUN_00526b80(&local_18,uVar3,local_1c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_40);
+    iVar1 = iStack_10;
+    if (1 < iStack_10) {
+      util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\tactical\\body.cpp",0x1e5,
+                      "UntrackComps.Num() <= 1",(char *)0x0);
+      DebugBreak();
+    }
+    if (iVar1 == 1) {
+      this_00 = (ReferenceController *)puStack_14[1];
+      local_1c = (UntrackComponent *)*puStack_14;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+      }
+      pRVar4 = (ReferenceController *)0x1;
+      this_01 = this_00;
+      if (this_00 != (ReferenceController *)0x0) {
+        util__ReferenceController__AddWeakReference(this_00);
+        pRVar4 = (ReferenceController *)0x1;
+      }
+    }
+    else {
+      pRVar4 = (ReferenceController *)0x2;
+      local_1c = (UntrackComponent *)0x0;
+      this_00 = (ReferenceController *)0x0;
+      this_01 = local_20;
+    }
+    if ((((uint)pRVar4 & 2) != 0) &&
+       (local_20 = (ReferenceController *)((uint)pRVar4 & 0xfffffffd), pRVar4 = local_20,
+       local_1c != (UntrackComponent *)0x0)) {
+      util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_1c);
+      pRVar4 = local_20;
+    }
+    if ((this_01 != (ReferenceController *)0x0) && (((uint)pRVar4 & 1) != 0)) {
+      util__ReferenceController__ReleaseWeakReference(this_01);
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_18);
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    pRVar4 = (this->GetUntrackComponent_MemoizedValue).Data.Controller;
+    (this->GetUntrackComponent_MemoizedValue).Data.Pointer = local_1c;
+    (this->GetUntrackComponent_MemoizedValue).Data.Controller = this_00;
+    if (this_00 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(this_00);
+    }
+    if (pRVar4 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(pRVar4);
+    }
+    (this->GetUntrackComponent_MemoizedValue).IsValidData = true;
     if (this_00 != (ReferenceController *)0x0) {
       util__ReferenceController__ReleaseWeakReference(this_00);
       util__ReferenceController__ReleaseWeakReference(this_00);
@@ -9442,63 +9052,6 @@ MatterCloudComponent__MatterCloudComponent(MatterCloudComponent *this,undefined4
     this->ParticlesPerPacket = iVar1;
     this->PacketCount = param_6 / iVar1;
   }
-  if (param_3 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(param_3);
-  }
-  return this;
-}
-
-
-//==== 00007c39d0 007c39d0_MatterComponent ====
-// decompiled by BatchDecomp @ 007c39d0 name=MatterComponent conv=__thiscall body=179
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: __thiscall MatterComponent__MatterComponent(class util::WeakPtr<class Body>,class
-   Material const *,struct util::Cylinder<double>,class Material const *,class util__Maybe_L_double_G_)
-    */
-
-MatterComponent * __thiscall
-MatterComponent__MatterComponent(MatterComponent *this,undefined4 param_2,ReferenceController *param_3,Material *param_4,
-          undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
-          Material *param_9,double param_10,char param_11)
-
-{
-  double dVar1;
-  ReferenceController *pRVar2;
-  
-  pRVar2 = param_3;
-  if (param_3 != (ReferenceController *)0x0) {
-    util__ReferenceController__AddWeakReference(param_3);
-  }
-  Component__Component((Component *)this,param_2,pRVar2);
-  this->_pad_0x0_0 = (int)((void *)(0x0093cb08u));
-  *(undefined4 *)&(this->GetBeamColor_MemoizedValue).Data.X = 0;
-  *(undefined4 *)((int)&(this->GetBeamColor_MemoizedValue).Data.X + 4) = 0;
-  *(undefined4 *)&(this->GetBeamColor_MemoizedValue).Data.Y = 0;
-  *(undefined4 *)((int)&(this->GetBeamColor_MemoizedValue).Data.Y + 4) = 0;
-  (this->GetBeamColor_MemoizedValue).Data.Z = 0.0;
-  (this->GetBeamColor_MemoizedValue).IsValidData = false;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions._pad_0x0_0 = 0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Data = (pmf_fbbda43d *)0x0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Size = 0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Capacity = 0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions._pad_0x0_0 =
-       (int)((void *)(0x009194a4u));
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Data = (pmf_fbbda43d *)0x0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Size = 0;
-  (this->MatterComponentMemoizationHandlerInstance).ResetFunctions.Capacity = 0;
-  this->Composition = param_4;
-  *(undefined4 *)&(this->Dimensions_m).Radius = param_5;
-  *(undefined4 *)((int)&(this->Dimensions_m).Radius + 4) = param_6;
-  *(undefined4 *)&(this->Dimensions_m).Height = param_7;
-  *(undefined4 *)((int)&(this->Dimensions_m).Height + 4) = param_8;
-  this->TracerComposition = param_9;
-  dVar1 = (this->Dimensions_m).Radius;
-  if (param_11 == '\0') {
-    param_10 = dVar1 * dVar1 * /*400921fb54442d18*/3.141592653589793 * (this->Dimensions_m).Height *
-               this->Composition->Density_kg__m3;
-  }
-  this->Mass_kg = param_10;
   if (param_3 != (ReferenceController *)0x0) {
     util__ReferenceController__ReleaseWeakReference(param_3);
   }
@@ -9828,6 +9381,49 @@ UntrackComponent__InstantiateCopy(UntrackComponent *this,undefined4 *param_2,und
 }
 
 
+//==== 00007caeb0 007caeb0_FUN_007caeb0 ====
+void __thiscall FUN_007caeb0(undefined4 *param_1,double param_2,double param_3,double param_4);
+
+// decompiled by BatchDecomp @ 007caeb0 name=FUN_007caeb0 conv=unknown body=230
+
+void __thiscall FUN_007caeb0(undefined4 *param_1,double param_2,double param_3,double param_4)
+
+{
+  undefined4 stack0xfffffffc;
+  double *pdVar1;
+  double *pdVar2;
+  Quaternion_L_double_G_ QVar3;
+  Vec3_L_double_G_ VVar4;
+  undefined4 unaff_ESI;
+  double dVar5;
+  Vec3_L_double_G_ local_38;
+  Vec3_L_double_G_ local_20;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  pdVar1 = (double *)*param_1;
+  pdVar2 = (double *)param_1[1];
+  dVar5 = pdVar2[1] * (param_3 - pdVar1[1]) + *pdVar2 * (param_2 - *pdVar1) +
+          pdVar2[2] * (param_4 - pdVar1[2]);
+  local_38.X = (param_2 - *pdVar1) - dVar5 * *pdVar2;
+  local_38.Y = (param_3 - pdVar1[1]) - dVar5 * pdVar2[1];
+  local_38.Z = (param_4 - pdVar1[2]) - dVar5 * pdVar2[2];
+  util__Vec3_double___SafeNormalized(&local_38,&local_20);
+  ((slice_view *)&QVar3.W)->_4_4_ = ((slice_view *)&local_20.X)->_0_4_;
+  memcpy((void *)((slice_view *)&QVar3)->raw + 0, (const void *)(param_1[2] + 4), 28);
+  ((slice_view *)&VVar4.X)->_4_4_ = ((slice_view *)&local_20.Y)->_0_4_;
+  ((slice_view *)&VVar4.X)->_0_4_ = ((slice_view *)&local_20.X)->_4_4_;
+  ((slice_view *)&VVar4.Y)->_0_4_ = ((slice_view *)&local_20.Y)->_4_4_;
+  ((slice_view *)&VVar4.Y)->_4_4_ = *(undefined4 *)&local_20.Z;
+  ((slice_view *)&VVar4.Z)->_0_4_ = (int)((ulonglong)local_20.Z >> 0x20);
+  ((slice_view *)&VVar4.Z)->_4_4_ = unaff_ESI;
+util__FUN_007caeb0(&local_20,QVar3,VVar4);
+  __CIatan2();
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 00007e0f50 007e0f50_FUN_007e0f50 ====
 undefined1 __thiscall FUN_007e0f50(int param_1,undefined4 *param_2);
 extern undefined4 FUN_007e1280(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -10014,10 +9610,10 @@ void __thiscall TacticalAI__GetNonAlliedShips(TacticalAI *this)
   *(undefined4 *)(in_stack_00000004 + 4) = 0;
   *(undefined4 *)(in_stack_00000004 + 8) = 0;
   *(undefined4 *)(in_stack_00000004 + 0xc) = 0;
-  iVar5 = (**(code **)(*piVar4 + 0xc))();
+  iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
   util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____Darray_class_util__WeakPtr_class_SpacecraftComponent(in_stack_00000004,iVar5);
   local_c = 0;
-  iVar5 = (**(code **)(*piVar4 + 0xc))();
+  iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
   if (local_c < iVar5) {
     do {
       piVar6 = (int *)(**(code **)*piVar4)(&local_c);
@@ -10060,7 +9656,7 @@ void __thiscall TacticalAI__GetNonAlliedShips(TacticalAI *this)
         }
       }
       local_c = local_c + 1;
-      iVar5 = (**(code **)(*piVar4 + 0xc))();
+      iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
     } while (local_c < iVar5);
   }
   util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_28);
@@ -10307,6 +9903,92 @@ SpacecraftButton__GetTooltip(SpacecraftButton *this,Str_L_char_G_ *__return_stor
     operator_delete__(local_20.Data);
   }
   return __return_storage_ptr__;
+}
+
+
+//==== 0000809f40 00809f40_FUN_00809f40 ====
+void __thiscall FUN_00809f40(undefined4 *param_1,int *param_2);
+
+// decompiled by BatchDecomp @ 00809f40 name=FUN_00809f40 conv=unknown body=372
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+
+void __thiscall FUN_00809f40(undefined4 *param_1,int *param_2)
+
+{
+  double dVar1;
+  int *piVar2;
+  Vec3_L_double_G_ VVar3;
+  bool bVar4;
+  Vec3_L_double_G_ *pVVar5;
+  CraftBlueprint *this;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+  undefined4 unaff_EDI;
+  double dVar9;
+  Vec3_L_double_G_ local_34;
+  Vec2_L_double_G_ local_1c;
+  
+  if (((ReferenceController *)param_2[1] != (ReferenceController *)0x0) &&
+     (bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)param_2[1]), !bVar4
+     )) {
+    *param_2 = 0;
+  }
+  iVar7 = *param_2;
+  if ((*(ReferenceController **)(iVar7 + 8) != (ReferenceController *)0x0) &&
+     (bVar4 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar7 + 8)),
+     !bVar4)) {
+    *(undefined4 *)(iVar7 + 4) = 0;
+  }
+  pVVar5 = Body__GetPosition_km(*(Body **)(iVar7 + 4),&local_34);
+  ((slice_view *)&VVar3.Z)->_0_4_ = (int)((ulonglong)pVVar5->Z >> 0x20);
+  memcpy((void *)((slice_view *)&VVar3)->raw + 0, (const void *)((int)&pVVar5->X + 4), 16);
+  ((slice_view *)&VVar3.Z)->_4_4_ = unaff_EDI;
+  Minimap__GetMinimapLocation((Minimap *)*param_1,&local_1c,VVar3);
+  if (((ReferenceController *)param_2[1] != (ReferenceController *)0x0) &&
+     (bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)param_2[1]), !bVar4
+     )) {
+    *param_2 = 0;
+  }
+  this = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*param_2);
+  CraftBlueprint__GetShipClass_Memoize(this);
+  if ((char)(this->GetMainEngineModules_MemoizedValue).Data._pad_0x0_0 == '\0') {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(char *)0x0);
+    DebugBreak();
+  }
+  dVar9 = CraftBlueprint__GetIconSizeFromClass(*(Type *)&(this->GetMainEngineModulePlacers_MemoizedValue).IsValidData);
+  piVar2 = (int *)param_1[1];
+  iVar8 = (int)dVar9;
+  bVar4 = true;
+  iVar7 = 0;
+  do {
+    if (bVar4) {
+      if ((iVar7 == 0) || (iVar6 = piVar2[3], iVar7 != 1)) {
+        iVar6 = piVar2[2];
+      }
+      dVar9 = (double)(iVar8 + iVar6) + /*3e45798ee2308c3a*/1e-08;
+      if ((iVar7 == 0) || (iVar6 = piVar2[1] - iVar8, iVar7 != 1)) {
+        iVar6 = *piVar2 - iVar8;
+      }
+      dVar1 = local_1c.X;
+      if ((iVar7 != 0) && (iVar7 == 1)) {
+        dVar1 = local_1c.Y;
+      }
+      if ((((double)iVar6 - /*3e45798ee2308c3a*/1e-08 < dVar1) || (dVar1 < dVar9)) &&
+         ((dVar9 < dVar1 || (dVar1 < (double)iVar6 - /*3e45798ee2308c3a*/1e-08)))) goto LAB_0080a0a3;
+      bVar4 = true;
+    }
+    else {
+LAB_0080a0a3:
+      bVar4 = false;
+    }
+    iVar7 = iVar7 + 1;
+    if (1 < iVar7) {
+      return;
+    }
+  } while( true );
 }
 
 
@@ -10791,796 +10473,6 @@ LAB_00821b8f:
 }
 
 
-//==== 0000822330 00822330_TickPopups ====
-
-// decompiled by BatchDecomp @ 00822330 name=TickPopups conv=__thiscall body=148
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: void __thiscall CombatNotifier__TickPopups(double) */
-
-void __thiscall CombatNotifier__TickPopups(CombatNotifier *this,double param_1)
-
-{
-  undefined4 stack0xfffffffc;
-  Darray_L_CombatNotification_G_ *this_00;
-  int iVar1;
-  Darray_L_struct_CombatNotification_G_ *pDVar2;
-  undefined **local_1c;
-  void *local_18;
-  uint local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  this_00 = &this->PopupNotifiers;
-  local_c = 0;
-  iVar1 = (**(code **)(*(int *)&this->PopupNotifiers + 0xc))();
-  if ((int)local_c < iVar1) {
-    do {
-      iVar1 = (**(code **)*(int *)this_00)(&local_c);
-      *(double *)(iVar1 + 0x10) = *(double *)(iVar1 + 0x10) - param_1;
-      local_c = local_c + 1;
-      iVar1 = (**(code **)(*(int *)this_00 + 0xc))();
-    } while ((int)local_c < iVar1);
-  }
-  local_c = local_c & 0xffffff00;
-  pDVar2 = (Darray_L_struct_CombatNotification_G_ *)FUN_00821520(&local_1c,this_00,local_c);
-  util__Darray_struct_CombatNotification___operator
-            ((Darray_L_struct_CombatNotification_G_ *)this_00,pDVar2);
-  local_1c = ((void *)(0x0093f088u));
-  if (local_18 != (void *)0x0) {
-    operator_delete__(local_18);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 0000822d60 00822d60_FUN_00822d60 ====
-undefined4 * FUN_00822d60(undefined4 *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 00822d60 name=FUN_00822d60 conv=unknown body=376
-
-/* WARNING: Restarted to delay deadcode elimination for space: stack */
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-
-undefined4 * FUN_00822d60(undefined4 *param_1,int *param_2)
-
-{
-  int iVar1;
-  Body *pBVar2;
-  ReferenceController *this;
-  bool bVar3;
-  bool bVar4;
-  ControllableComponent *local_14;
-  ReferenceController *local_10;
-  undefined1 local_c;
-  
-  if ((ReferenceController *)param_2[1] != (ReferenceController *)0x0) {
-    bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)param_2[1]);
-    if (!bVar4) {
-      *param_2 = 0;
-    }
-  }
-  iVar1 = *param_2;
-  if (*(ReferenceController **)(iVar1 + 8) != (ReferenceController *)0x0) {
-    bVar4 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar1 + 8));
-    if (!bVar4) {
-      *(undefined4 *)(iVar1 + 4) = 0;
-    }
-  }
-  pBVar2 = *(Body **)(iVar1 + 4);
-  Body__GetControllableComponent_Memoize(pBVar2);
-  if ((pBVar2->GetControllableComponent_MemoizedValue).IsValidData == false) {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  this = (pBVar2->GetControllableComponent_MemoizedValue).Data.Controller;
-  if (this != (ReferenceController *)0x0) {
-    bVar4 = util__ReferenceController__IsDataStillValid(this);
-    if (!bVar4) {
-      (pBVar2->GetControllableComponent_MemoizedValue).Data.Pointer = (ControllableComponent *)0x0;
-    }
-  }
-  bVar4 = ControllableComponent__CanReceiveOrders((pBVar2->GetControllableComponent_MemoizedValue).Data.Pointer);
-  if (bVar4) {
-    if ((ReferenceController *)param_2[1] != (ReferenceController *)0x0) {
-      bVar4 = util__ReferenceController__IsDataStillValid((ReferenceController *)param_2[1]);
-      if (!bVar4) {
-        *param_2 = 0;
-      }
-    }
-    iVar1 = *param_2;
-    if (*(ReferenceController **)(iVar1 + 8) != (ReferenceController *)0x0) {
-      bVar4 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar1 + 8));
-      if (!bVar4) {
-        *(undefined4 *)(iVar1 + 4) = 0;
-      }
-    }
-    pBVar2 = *(Body **)(iVar1 + 4);
-    Body__GetControllableComponent_Memoize(pBVar2);
-    if ((pBVar2->GetControllableComponent_MemoizedValue).IsValidData == false) {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(char *)0x0);
-      DebugBreak();
-    }
-    local_14 = (pBVar2->GetControllableComponent_MemoizedValue).Data.Pointer;
-    local_10 = (pBVar2->GetControllableComponent_MemoizedValue).Data.Controller;
-    if (local_10 != (ReferenceController *)0x0) {
-      util__ReferenceController__AddWeakReference(local_10);
-    }
-    local_c = 1;
-    bVar3 = true;
-    bVar4 = false;
-  }
-  else {
-    local_14 = (ControllableComponent *)0x0;
-    local_10 = (ReferenceController *)0x0;
-    local_c = 0;
-    bVar3 = false;
-    bVar4 = true;
-  }
-  *param_1 = local_14;
-  param_1[1] = local_10;
-  if (local_10 != (ReferenceController *)0x0) {
-    util__ReferenceController__AddWeakReference(local_10);
-  }
-  *(undefined1 *)(param_1 + 2) = local_c;
-  if (bVar4) {
-    if (local_10 != (ReferenceController *)0x0) {
-      util__ReferenceController__ReleaseWeakReference(local_10);
-    }
-  }
-  if ((local_10 != (ReferenceController *)0x0) && (bVar3)) {
-    util__ReferenceController__ReleaseWeakReference(local_10);
-  }
-  return param_1;
-}
-
-
-//==== 0000827730 00827730_AnyShipsHaveDeltaV ====
-// decompiled by BatchDecomp @ 00827730 name=AnyShipsHaveDeltaV conv=__thiscall body=195
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__AnyShipsHaveDeltaV(void)const  */
-
-bool __thiscall ShipGroupUI__AnyShipsHaveDeltaV(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  SpacecraftComponent *this_00;
-  bool bVar1;
-  undefined1 uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  undefined4 *local_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_1c = (undefined4 *)0x0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  uStack_10 = 0;
-  GetShipsInGroup(this);
-  local_c = 0;
-  iVar3 = (*(code *)local_1c[3])();
-  if (local_c < iVar3) {
-    do {
-      puVar4 = (undefined4 *)(*(code *)*local_1c)(&local_c);
-      if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]),
-         !bVar1)) {
-        *puVar4 = 0;
-      }
-      this_00 = (SpacecraftComponent *)*puVar4;
-      SpacecraftComponent__HasDeltaVLeft_Memoize(this_00);
-      if ((this_00->HasDeltaVLeft_MemoizedValue).IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      if ((this_00->HasDeltaVLeft_MemoizedValue).Data != false) {
-        uVar2 = 1;
-        goto LAB_008277d4;
-      }
-      local_c = local_c + 1;
-      iVar3 = (*(code *)local_1c[3])();
-    } while (local_c < iVar3);
-  }
-  uVar2 = 0;
-LAB_008277d4:
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)uVar2;
-}
-
-
-//==== 0000827a10 00827a10_AreShipsNonStationary ====
-// decompiled by BatchDecomp @ 00827a10 name=AreShipsNonStationary conv=__thiscall body=208
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__AreShipsNonStationary(void)const  */
-
-bool __thiscall ShipGroupUI__AreShipsNonStationary(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  undefined1 uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  CraftBlueprint *this_00;
-  undefined4 *local_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_1c = (undefined4 *)0x0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  uStack_10 = 0;
-  GetShipsInGroup(this);
-  local_c = 0;
-  iVar3 = (*(code *)local_1c[3])();
-  if (local_c < iVar3) {
-    do {
-      puVar4 = (undefined4 *)(*(code *)*local_1c)(&local_c);
-      if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]),
-         !bVar1)) {
-        *puVar4 = 0;
-      }
-      this_00 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar4);
-      CraftBlueprint__CanMove_Memoize(this_00);
-      if (*(char *)((int)&(this_00->GetMainEngineModulePlacers_MemoizedValue).Data._pad_0x0_0 + 1) ==
-          '\0') {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      if ((char)(this_00->GetMainEngineModulePlacers_MemoizedValue).Data._pad_0x0_0 == '\0') {
-        uVar2 = 0;
-        goto LAB_00827ac1;
-      }
-      local_c = local_c + 1;
-      iVar3 = (*(code *)local_1c[3])();
-    } while (local_c < iVar3);
-  }
-  uVar2 = 1;
-LAB_00827ac1:
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)uVar2;
-}
-
-
-//==== 0000827ae0 00827ae0_CanSplitUnits ====
-// decompiled by BatchDecomp @ 00827ae0 name=CanSplitUnits conv=__thiscall body=326
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__CanSplitUnits(void)const  */
-
-bool __thiscall ShipGroupUI__CanSplitUnits(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  Body *this_00;
-  ReferenceController *this_01;
-  bool bVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int *piVar4;
-  undefined4 *local_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  bVar1 = IsGroupAllied(this);
-  if (!bVar1) {
-    uVar2 = 0;
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return (bool)uVar2;
-  }
-  local_1c = (undefined4 *)0x0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  uStack_10 = 0;
-  GetShipsInGroup(this);
-  local_c = 0;
-  iVar3 = (*(code *)local_1c[3])();
-  if (local_c < iVar3) {
-    do {
-      piVar4 = (int *)(*(code *)*local_1c)(&local_c);
-      if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-         !bVar1)) {
-        *piVar4 = 0;
-      }
-      iVar3 = *piVar4;
-      if ((*(ReferenceController **)(iVar3 + 8) != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar3 + 8)),
-         !bVar1)) {
-        *(undefined4 *)(iVar3 + 4) = 0;
-      }
-      this_00 = *(Body **)(iVar3 + 4);
-      Body__GetControllableComponent_Memoize(this_00);
-      if ((this_00->GetControllableComponent_MemoizedValue).IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      this_01 = (this_00->GetControllableComponent_MemoizedValue).Data.Controller;
-      if ((this_01 != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid(this_01), !bVar1)) {
-        (this_00->GetControllableComponent_MemoizedValue).Data.Pointer =
-             (ControllableComponent *)0x0;
-      }
-      bVar1 = ControllableComponent__IsMarkedAsSeparatingFromFleet((this_00->GetControllableComponent_MemoizedValue).Data.Pointer);
-      if (bVar1) goto LAB_00827bf8;
-      local_c = local_c + 1;
-      iVar3 = (*(code *)local_1c[3])();
-    } while (local_c < iVar3);
-  }
-  bVar1 = SplittingIsValid(this);
-  if (bVar1) {
-    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-    uVar2 = 1;
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return (bool)uVar2;
-  }
-LAB_00827bf8:
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-  uVar2 = 0;
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)uVar2;
-}
-
-
-//==== 0000827c30 00827c30_CanUnsplitUnits ====
-// decompiled by BatchDecomp @ 00827c30 name=CanUnsplitUnits conv=__thiscall body=326
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__CanUnsplitUnits(void)const  */
-
-bool __thiscall ShipGroupUI__CanUnsplitUnits(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  Body *this_00;
-  ReferenceController *this_01;
-  bool bVar1;
-  undefined1 uVar2;
-  int iVar3;
-  int *piVar4;
-  undefined4 *local_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  bVar1 = IsGroupAllied(this);
-  if (!bVar1) {
-    uVar2 = 0;
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return (bool)uVar2;
-  }
-  local_1c = (undefined4 *)0x0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  uStack_10 = 0;
-  GetShipsInGroup(this);
-  local_c = 0;
-  iVar3 = (*(code *)local_1c[3])();
-  if (local_c < iVar3) {
-    do {
-      piVar4 = (int *)(*(code *)*local_1c)(&local_c);
-      if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-         !bVar1)) {
-        *piVar4 = 0;
-      }
-      iVar3 = *piVar4;
-      if ((*(ReferenceController **)(iVar3 + 8) != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar3 + 8)),
-         !bVar1)) {
-        *(undefined4 *)(iVar3 + 4) = 0;
-      }
-      this_00 = *(Body **)(iVar3 + 4);
-      Body__GetControllableComponent_Memoize(this_00);
-      if ((this_00->GetControllableComponent_MemoizedValue).IsValidData == false) {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(char *)0x0);
-        DebugBreak();
-      }
-      this_01 = (this_00->GetControllableComponent_MemoizedValue).Data.Controller;
-      if ((this_01 != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid(this_01), !bVar1)) {
-        (this_00->GetControllableComponent_MemoizedValue).Data.Pointer =
-             (ControllableComponent *)0x0;
-      }
-      bVar1 = ControllableComponent__IsMarkedAsSeparatingFromFleet((this_00->GetControllableComponent_MemoizedValue).Data.Pointer);
-      if (!bVar1) goto LAB_00827d48;
-      local_c = local_c + 1;
-      iVar3 = (*(code *)local_1c[3])();
-    } while (local_c < iVar3);
-  }
-  bVar1 = SplittingIsValid(this);
-  if (bVar1) {
-    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-    uVar2 = 1;
-    __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-    return (bool)uVar2;
-  }
-LAB_00827d48:
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)&local_1c);
-  uVar2 = 0;
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)uVar2;
-}
-
-
-//==== 0000829810 00829810_GetSplitOrder ====
-extern undefined4 FUN_008250f0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-
-// decompiled by BatchDecomp @ 00829810 name=GetSplitOrder conv=__thiscall body=292
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: enum ShipGroupUI::GroupType __thiscall ShipGroupUI__GetSplitOrder(void)const  */
-
-GroupType __thiscall ShipGroupUI__GetSplitOrder(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  undefined4 uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  GroupType GVar5;
-  uint uVar6;
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_2c[16];
-  undefined4 *local_1c;
-  undefined4 uStack_18;
-  int iStack_14;
-  undefined4 uStack_10;
-  uint local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_c = local_c & 0xffffff00;
-  local_1c = (undefined4 *)0x0;
-  uStack_18 = 0;
-  iStack_14 = 0;
-  uStack_10 = 0;
-  uVar6 = local_c;
-  uVar2 = GetShipsInGroup(this);
-  FUN_008250f0(&local_1c,uVar2,uVar6);
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_2c);
-  if (iStack_14 == 0) {
-    GVar5 = None;
-  }
-  else {
-    local_c = 0;
-    iVar3 = (*(code *)local_1c[3])();
-    if ((int)local_c < iVar3) {
-      do {
-        puVar4 = (undefined4 *)(*(code *)*local_1c)(&local_c);
-        if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]),
-           !bVar1)) {
-          *puVar4 = 0;
-        }
-        bVar1 = ControllableComponent__IsMarkedAsSeparatingFromFleet((ControllableComponent *)*puVar4);
-        if (bVar1) {
-          GVar5 = Some;
-          goto LAB_008298bc;
-        }
-        local_c = local_c + 1;
-        iVar3 = (*(code *)local_1c[3])();
-      } while ((int)local_c < iVar3);
-    }
-    GVar5 = None;
-LAB_008298bc:
-    local_c = 0;
-    iVar3 = (*(code *)local_1c[3])();
-    if ((int)local_c < iVar3) {
-      do {
-        puVar4 = (undefined4 *)(*(code *)*local_1c)(&local_c);
-        if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]),
-           !bVar1)) {
-          *puVar4 = 0;
-        }
-        bVar1 = ControllableComponent__IsMarkedAsSeparatingFromFleet((ControllableComponent *)*puVar4);
-        if (!bVar1) goto LAB_00829914;
-        local_c = local_c + 1;
-        iVar3 = (*(code *)local_1c[3])();
-      } while ((int)local_c < iVar3);
-    }
-    GVar5 = Every;
-  }
-LAB_00829914:
-  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return GVar5;
-}
-
-
-//==== 000082a160 0082a160_IsGroupAllied ====
-// decompiled by BatchDecomp @ 0082a160 name=IsGroupAllied conv=__thiscall body=179
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__IsGroupAllied(void)const  */
-
-bool __thiscall ShipGroupUI__IsGroupAllied(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  Faction *pFVar1;
-  bool bVar2;
-  undefined1 uVar3;
-  int *piVar4;
-  int iVar5;
-  int *piVar6;
-  Faction *pFVar7;
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_1c[16];
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  piVar4 = (int *)GetShipsInGroup(this);
-  local_c = 0;
-  iVar5 = (**(code **)(*piVar4 + 0xc))();
-  if (local_c < iVar5) {
-    do {
-      piVar6 = (int *)(**(code **)*piVar4)(&local_c);
-      if ((ReferenceController *)piVar6[1] != (ReferenceController *)0x0) {
-        bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar6[1]);
-        if (!bVar2) {
-          *piVar6 = 0;
-        }
-      }
-      iVar5 = *piVar6;
-      if (*(ReferenceController **)(iVar5 + 8) != (ReferenceController *)0x0) {
-        bVar2 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar5 + 8));
-        if (!bVar2) {
-          *(undefined4 *)(iVar5 + 4) = 0;
-        }
-      }
-      pFVar1 = *(Faction **)(*(int *)(iVar5 + 4) + 0x1e0);
-      pFVar7 = TacticalManager__GetPlayerAlliance((TacticalManager *)this->_pad_0x0_0);
-      if (pFVar1 != pFVar7) {
-        uVar3 = 0;
-        goto LAB_0082a1f4;
-      }
-      local_c = local_c + 1;
-      iVar5 = (**(code **)(*piVar4 + 0xc))();
-    } while (local_c < iVar5);
-  }
-  uVar3 = 1;
-LAB_0082a1f4:
-  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_1c);
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)uVar3;
-}
-
-
-//==== 000082a9d0 0082a9d0_ShowButtonShipIcon ====
-// decompiled by BatchDecomp @ 0082a9d0 name=ShowButtonShipIcon conv=__thiscall body=239
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* private: bool __thiscall ShipGroupUI__ShowButtonShipIcon(void)const  */
-
-bool __thiscall ShipGroupUI__ShowButtonShipIcon(ShipGroupUI *this)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  int *piVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  CraftBlueprint *this_00;
-  bool bVar5;
-  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_20[19];
-  undefined1 local_d;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  bVar5 = false;
-  local_c = 0;
-  bVar1 = IsGroupEnemy(this);
-  if (!bVar1) {
-    piVar2 = (int *)GetShipsInGroup(this);
-    local_c = 0;
-    iVar3 = (**(code **)(*piVar2 + 0xc))();
-    if (local_c < iVar3) {
-      do {
-        puVar4 = (undefined4 *)(**(code **)*piVar2)(&local_c);
-        if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]),
-           !bVar1)) {
-          *puVar4 = 0;
-        }
-        this_00 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar4);
-        CraftBlueprint__CanMove_Memoize(this_00);
-        if (*(char *)((int)&(this_00->GetMainEngineModulePlacers_MemoizedValue).Data._pad_0x0_0 + 1)
-            == '\0') {
-          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                          "IsValid()",(char *)0x0);
-          DebugBreak();
-        }
-        if ((char)(this_00->GetMainEngineModulePlacers_MemoizedValue).Data._pad_0x0_0 == '\0') {
-          local_d = 0;
-          bVar5 = true;
-          goto LAB_0082aa92;
-        }
-        local_c = local_c + 1;
-        iVar3 = (**(code **)(*piVar2 + 0xc))();
-      } while (local_c < iVar3);
-    }
-    bVar5 = true;
-  }
-  local_d = 1;
-LAB_0082aa92:
-  if (bVar5) {
-    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_20);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return (bool)local_d;
-}
-
-
-//==== 0000830bd0 00830bd0_FUN_00830bd0 ====
-int * __thiscall FUN_00830bd0(int *param_1,uint param_2,undefined4 param_3,int param_4,char param_5);
-
-// decompiled by BatchDecomp @ 00830bd0 name=FUN_00830bd0 conv=unknown body=347
-
-int * __thiscall FUN_00830bd0(int *param_1,uint param_2,undefined4 param_3,int param_4,char param_5)
-
-{
-  int iVar1;
-  int iVar2;
-  uint uVar3;
-  code *pcVar4;
-  uint uVar5;
-  void *pvVar6;
-  int *piVar7;
-  uint uVar8;
-  void *pvVar9;
-  uint uVar10;
-  void *pvVar11;
-  
-  iVar2 = param_1[4];
-  if (0x7fffffffU - iVar2 < param_2) {
-    std__basic_string_char_struct_std__char_traits_char__class_std__allocator_char______Xlen();
-    pcVar4 = (code *)swi(3);
-    piVar7 = (int *)(*pcVar4)();
-    return piVar7;
-  }
-  uVar3 = param_1[5];
-  uVar10 = iVar2 + param_2 | 0xf;
-  if (uVar10 < 0x80000000) {
-    if (0x7fffffff - (uVar3 >> 1) < uVar3) {
-      uVar10 = 0x7fffffff;
-    }
-    else {
-      uVar8 = (uVar3 >> 1) + uVar3;
-      if (uVar10 < uVar8) {
-        uVar10 = uVar8;
-      }
-    }
-  }
-  else {
-    uVar10 = 0x7fffffff;
-  }
-  uVar8 = -(uint)(0xfffffffe < uVar10) | uVar10 + 1;
-  if (uVar8 < 0x1000) {
-    if (uVar8 == 0) {
-      pvVar9 = (void *)0x0;
-    }
-    else {
-      pvVar9 = operator_new(uVar8);
-    }
-  }
-  else {
-    uVar5 = uVar8 + 0x23;
-    if (uVar5 <= uVar8) {
-      uVar5 = 0xffffffff;
-    }
-    pvVar6 = operator_new(uVar5);
-    if (pvVar6 == (void *)0x0) goto LAB_00830cf6;
-    pvVar9 = (void *)((int)pvVar6 + 0x23U & 0xffffffe0);
-    *(void **)((int)pvVar9 + -4) = pvVar6;
-  }
-  param_1[4] = iVar2 + param_2;
-  param_1[5] = uVar10;
-  iVar1 = (int)pvVar9 + iVar2;
-  if (uVar3 < 0x10) {
-    memcpy(pvVar9,param_1,iVar2);
-    memset(iVar1,(int)param_5,param_4);
-    *(undefined1 *)(param_4 + iVar1) = 0;
-    *param_1 = (int)pvVar9;
-    return param_1;
-  }
-  pvVar6 = (void *)*param_1;
-  memcpy(pvVar9,pvVar6,iVar2);
-  memset(iVar1,(int)param_5,param_4);
-  uVar10 = uVar3 + 1;
-  *(undefined1 *)(param_4 + iVar1) = 0;
-  pvVar11 = pvVar6;
-  if (0xfff < uVar10) {
-    pvVar11 = *(void **)((int)pvVar6 + -4);
-    uVar10 = uVar3 + 0x24;
-    if (0x1f < (uint)((int)pvVar6 + (-4 - (int)pvVar11))) {
-LAB_00830cf6:
-                    /* WARNING: Subroutine does not return */
-      _invalid_parameter_noinfo_noreturn();
-    }
-  }
-  operator_delete(pvVar11,uVar10);
-  *param_1 = (int)pvVar9;
-  return param_1;
-}
-
-
-//==== 000083d860 0083d860_FUN_0083d860 ====
-Vec3_L_float_G_ * __thiscall FUN_0083d860(undefined4 *param_1,Vec3_L_float_G_ *param_2,int param_3);
-
-// decompiled by BatchDecomp @ 0083d860 name=FUN_0083d860 conv=unknown body=285
-
-Vec3_L_float_G_ * __thiscall FUN_0083d860(undefined4 *param_1,Vec3_L_float_G_ *param_2,int param_3)
-
-{
-  undefined8 *puVar1;
-  Vec3_L_float_G_ *pVVar2;
-  Vec3_L_float_G_ *pVVar3;
-  Vec3_L_float_G_ *__return_storage_ptr__;
-  Vec3_L_float_G_ local_98;
-  Vec3_L_float_G_ local_8c;
-  Vec3_L_float_G_ local_80;
-  undefined8 local_74;
-  float local_6c;
-  undefined8 local_48;
-  float local_40;
-  Vec3_L_float_G_ local_1c;
-  Vec3_L_float_G_ local_10;
-  
-  puVar1 = (undefined8 *)(*(code *)**(undefined4 **)*param_1)(param_3);
-  local_48 = *puVar1;
-  local_40 = *(float *)(puVar1 + 1);
-  puVar1 = (undefined8 *)(*(code *)**(undefined4 **)*param_1)(param_3 + 4);
-  local_74 = *puVar1;
-  local_6c = *(float *)(puVar1 + 1);
-  puVar1 = (undefined8 *)(*(code *)**(undefined4 **)*param_1)(param_3 + 8);
-  local_10.X = (float)*puVar1;
-  local_1c.X = local_10.X - (float)local_48;
-  local_10.Y = (float)((ulonglong)*puVar1 >> 0x20);
-  local_1c.Y = local_10.Y - ((slice_view *)&local_48)->_4_4_;
-  local_1c.Z = *(float *)(puVar1 + 1) - local_40;
-  local_10.Y = ((slice_view *)&local_74)->_4_4_ - ((slice_view *)&local_48)->_4_4_;
-  local_10.X = (float)local_74 - (float)local_48;
-  local_10.Z = local_6c - local_40;
-  pVVar2 = util__Vec3_float___SafeNormalized(&local_1c,&local_80);
-  pVVar3 = util__Vec3_float___SafeNormalized(&local_10,&local_8c);
-  __return_storage_ptr__ = param_2;
-  pVVar2 = util__FUN_0083d860(&local_98,*pVVar3,*pVVar2);
-  util__Vec3_float___SafeNormalized(pVVar2,__return_storage_ptr__);
-  return param_2;
-}
-
-
 //==== 0000889c20 00889c20_GetBackgroundColor ====
 // decompiled by BatchDecomp @ 00889c20 name=GetBackgroundColor conv=__thiscall body=200
 
@@ -11611,7 +10503,7 @@ Color * __thiscall UIWidget__GetBackgroundColor(UIWidget *this,Color *__return_s
   
   this_00 = (CapitalShipComponent *)Manager__GetParent(unaff_EDI);
   piVar1 = (int *)CapitalShipComponent__GetID(this_00);
-  iVar2 = (**(code **)(*piVar1 + 0x68))();
+  iVar2 = (**(code **)(*(int *)(uintptr_t)piVar1 + 0x68))();
   ((slice_view *)&local_54)->_0_4_ = (void *)0x0;
   ((slice_view *)&local_54)->_4_4_ = (_func___cdecl_Color_void_ptr *)0x0;
   ((slice_view *)&local_54)->_8_4_ = ((void *)(0x00919980u));
@@ -11626,70 +10518,6 @@ Color * __thiscall UIWidget__GetBackgroundColor(UIWidget *this,Color *__return_s
   fStack_38 = *(float *)(iVar2 + 0x44);
   fStack_34 = *(float *)(iVar2 + 0x48);
   fStack_30 = *(float *)(iVar2 + 0x4c);
-  local_2c = (pMVar3->Data).Getter.Callee;
-  local_28 = (pMVar3->Data).Getter.CallbackFunction;
-  util__Str_char___Str_char(&local_20,(Str_L_char_G_ *)&(pMVar3->Data).Value._pad_0x0_0);
-  local_14 = (pMVar3->Data).Value.Hue_degrees;
-  fStack_10 = (pMVar3->Data).Value.Saturation;
-  fStack_c = (pMVar3->Data).Value.Value;
-  fStack_8 = (pMVar3->Data).Value.Alpha;
-  local_24 = ((void *)(0x0091d980u));
-  util__Attribute_struct_util__Color___Get((Attribute_L_struct_util__Color_G_ *)&local_2c,__return_storage_ptr__);
-  if (local_20.Data != (char *)0x0) {
-    operator_delete__(local_20.Data);
-  }
-  if ((void *)((slice_view *)&local_54)->_12_4_ != (void *)0x0) {
-    operator_delete__((void *)((slice_view *)&local_54)->_12_4_);
-  }
-  return __return_storage_ptr__;
-}
-
-
-//==== 0000889e50 00889e50_GetForegroundColor ====
-// decompiled by BatchDecomp @ 00889e50 name=GetForegroundColor conv=__thiscall body=200
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: virtual struct util::Color __thiscall UIWidget__GetForegroundColor(void)const  */
-
-Color * __thiscall UIWidget__GetForegroundColor(UIWidget *this,Color *__return_storage_ptr__)
-
-{
-  CapitalShipComponent *this_00;
-  int *piVar1;
-  int iVar2;
-  Maybe_L_util__Attribute_L_util__Color_G___G_ *pMVar3;
-  HWND unaff_EDI;
-  undefined1 local_54[24];
-  float local_3c;
-  float fStack_38;
-  float fStack_34;
-  float fStack_30;
-  void *local_2c;
-  _func___cdecl_Color_void_ptr *local_28;
-  undefined **local_24;
-  Str_L_char_G_ local_20;
-  float local_14;
-  float fStack_10;
-  float fStack_c;
-  float fStack_8;
-  
-  this_00 = (CapitalShipComponent *)Manager__GetParent(unaff_EDI);
-  piVar1 = (int *)CapitalShipComponent__GetID(this_00);
-  iVar2 = (**(code **)(*piVar1 + 0x68))();
-  ((slice_view *)&local_54)->_0_4_ = (void *)0x0;
-  ((slice_view *)&local_54)->_4_4_ = (_func___cdecl_Color_void_ptr *)0x0;
-  ((slice_view *)&local_54)->_8_4_ = ((void *)(0x00919980u));
-  util__Str_char___Str_char((Str_L_char_G_ *)(local_54 + 0xc),(Str_L_char_G_ *)(iVar2 + 0x14));
-  ((slice_view *)&local_54)->_8_4_ = ((void *)(0x0091d980u));
-  pMVar3 = (Maybe_L_util__Attribute_L_util__Color_G___G_ *)local_54;
-  if ((this->Attributes).ForegroundColor.IsValidData != false) {
-    pMVar3 = &(this->Attributes).ForegroundColor;
-  }
-  local_24 = ((void *)(0x00919980u));
-  local_3c = *(float *)(iVar2 + 0x20);
-  fStack_38 = *(float *)(iVar2 + 0x24);
-  fStack_34 = *(float *)(iVar2 + 0x28);
-  fStack_30 = *(float *)(iVar2 + 0x2c);
   local_2c = (pMVar3->Data).Getter.Callee;
   local_28 = (pMVar3->Data).Getter.CallbackFunction;
   util__Str_char___Str_char(&local_20,(Str_L_char_G_ *)&(pMVar3->Data).Value._pad_0x0_0);
@@ -11745,7 +10573,7 @@ void __thiscall UIWidget__GetLayoutOffsetFromParent(UIWidget *this)
         }
       }
       pUVar2 = (this->ParentWidget).Pointer;
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffd4);
+util__GetLayoutOffsetFromParent((SpacecraftComponent *)&stack0xffffffd4);
       puVar4 = (undefined4 *)(**(code **)(*(int *)pUVar2 + 0xb4))(local_1c);
       goto LAB_00889fdf;
     }
@@ -11765,894 +10593,6 @@ LAB_00889fdf:
   in_stack_00000004[1] = puVar4[1];
   *(undefined1 *)(in_stack_00000004 + 2) = *(undefined1 *)(puVar4 + 2);
   return;
-}
-
-
-//==== 000088a000 0088a000_GetParentOffsetLocation ====
-// decompiled by BatchDecomp @ 0088a000 name=GetParentOffsetLocation conv=__thiscall body=335
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::Maybe<struct util::Vec2<int> > __thiscall
-   UIWidget__GetParentOffsetLocation(void)const  */
-
-void __thiscall UIWidget__GetParentOffsetLocation(UIWidget *this)
-
-{
-  undefined4 stack0xffffffb8;
-  undefined4 stack0xfffffffc;
-  ReferenceController *pRVar1;
-  UIWidget *pUVar2;
-  bool bVar3;
-  int *in_stack_00000004;
-  int iStack_44;
-  int local_2c;
-  int local_28;
-  char local_24;
-  int local_20;
-  int local_1c;
-  bool local_18;
-  int local_14;
-  int local_10;
-  bool local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  if (((this->ParentWidget).Pointer != (UIWidget *)0x0) &&
-     (pRVar1 = (this->ParentWidget).Controller, pRVar1 != (ReferenceController *)0x0)) {
-    iStack_44 = 0x88a038;
-    bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-    if (bVar3) {
-      pRVar1 = (this->ParentWidget).Controller;
-      if (pRVar1 != (ReferenceController *)0x0) {
-        iStack_44 = 0x88a04f;
-        bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-        if (!bVar3) {
-          (this->ParentWidget).Pointer = (UIWidget *)0x0;
-        }
-      }
-      pUVar2 = (this->ParentWidget).Pointer;
-util__GetRootParent((SpacecraftComponent *)&stack0xffffffb8);
-      (**(code **)(*(int *)pUVar2 + 0xb4))(&local_20);
-      pRVar1 = (this->ParentWidget).Controller;
-      if (pRVar1 != (ReferenceController *)0x0) {
-        bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-        if (!bVar3) {
-          (this->ParentWidget).Pointer = (UIWidget *)0x0;
-        }
-      }
-      GetParentOffsetLocation((this->ParentWidget).Pointer);
-      pRVar1 = (this->ParentWidget).Controller;
-      if (pRVar1 != (ReferenceController *)0x0) {
-        bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-        if (!bVar3) {
-          (this->ParentWidget).Pointer = (UIWidget *)0x0;
-        }
-      }
-      (**(code **)(((this->ParentWidget).Pointer)->_pad_0x0_0 + 0x10))(&local_14);
-      if (((local_18 == false) || (local_24 == '\0')) || (local_c == false)) {
-        local_14 = 0;
-        local_10 = 0;
-        local_c = false;
-      }
-      else {
-        local_14 = local_14 + local_20 + local_2c;
-        local_10 = local_10 + local_1c + local_28;
-        local_c = true;
-      }
-      *in_stack_00000004 = local_14;
-      in_stack_00000004[1] = local_10;
-      *(bool *)(in_stack_00000004 + 2) = local_c;
-      goto LAB_0088a13a;
-    }
-  }
-  *in_stack_00000004 = 0;
-  in_stack_00000004[1] = 0;
-  *(undefined1 *)(in_stack_00000004 + 2) = 1;
-LAB_0088a13a:
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 000088a1c0 0088a1c0_GetRootParent ====
-// decompiled by BatchDecomp @ 0088a1c0 name=GetRootParent conv=__thiscall body=185
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: class util::WeakPtr<struct UIWidget> __thiscall UIWidget__GetRootParent(void)const  */
-
-undefined4 * __thiscall UIWidget__GetRootParent(UIWidget *this)
-
-{
-  undefined4 stack0xfffffff4;
-  ReferenceController *pRVar1;
-  bool bVar2;
-  bool bVar3;
-  undefined4 *puVar4;
-  undefined4 *in_stack_00000004;
-  ReferenceController *local_10;
-  ReferenceController *local_8;
-  
-  local_8 = (ReferenceController *)0x0;
-  if (((this->ParentWidget).Pointer != (UIWidget *)0x0) &&
-     (pRVar1 = (this->ParentWidget).Controller, pRVar1 != (ReferenceController *)0x0)) {
-    bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-    if (bVar3) {
-      pRVar1 = (this->ParentWidget).Controller;
-      if (pRVar1 != (ReferenceController *)0x0) {
-        bVar3 = util__ReferenceController__IsDataStillValid(pRVar1);
-        if (!bVar3) {
-          (this->ParentWidget).Pointer = (UIWidget *)0x0;
-        }
-      }
-      puVar4 = (undefined4 *)GetRootParent((this->ParentWidget).Pointer);
-      bVar2 = true;
-      bVar3 = false;
-      goto LAB_0088a232;
-    }
-  }
-  puVar4 = (undefined4 *)
-util__GetRootParent((SpacecraftComponent *)&stack0xfffffff4);
-  bVar2 = false;
-  bVar3 = true;
-LAB_0088a232:
-  pRVar1 = (ReferenceController *)puVar4[1];
-  *in_stack_00000004 = *puVar4;
-  in_stack_00000004[1] = pRVar1;
-  if (pRVar1 != (ReferenceController *)0x0) {
-    util__ReferenceController__AddWeakReference(pRVar1);
-  }
-  if (bVar3) {
-    if (local_8 != (ReferenceController *)0x0) {
-      util__ReferenceController__ReleaseWeakReference(local_8);
-    }
-  }
-  if ((local_10 != (ReferenceController *)0x0) && (bVar2)) {
-    util__ReferenceController__ReleaseWeakReference(local_10);
-  }
-  return in_stack_00000004;
-}
-
-
-//==== 0000896350 00896350_FUN_00896350 ====
-void FUN_00896350(int *param_1,char *param_2,int *param_3,Darray_L_class_util__Str_L_char_G___G_ *param_4);
-
-// decompiled by BatchDecomp @ 00896350 name=FUN_00896350 conv=unknown body=387
-
-void FUN_00896350(int *param_1,char *param_2,int *param_3,Darray_L_class_util__Str_L_char_G___G_ *param_4)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  bool bVar2;
-  int iVar3;
-  char *pcVar4;
-  Str_L_char_G_ *pSVar5;
-  Str_L_char_G_ *this;
-  Str_L_char_G_ local_30;
-  int *local_24;
-  int local_20;
-  Str_L_char_G_ local_1c;
-  undefined4 uStack_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_24 = param_1;
-  local_c = 0;
-  iVar3 = (**(code **)(*param_1 + 0xc))();
-  if (local_c < iVar3) {
-    do {
-      pcVar4 = (char *)(**(code **)*param_1)(&local_c);
-      if (*param_2 != '\0') {
-        local_1c.Data = (char *)0x0;
-        local_1c.Capacity = 0;
-        local_1c.Length = 0;
-        uStack_10 = 0;
-util__FUN_00896350(&local_1c,pcVar4);
-        if (*param_3 < local_1c.Length) {
-          *param_2 = '\0';
-        }
-        else {
-          if (*(int *)(param_4 + 8) == 0) {
-            util__Darray_class_util__Str_char_____operator__o2
-                      (param_4,(Darray_L_class_util__Str_L_char_G___G_ *)&local_1c);
-          }
-          else {
-            iVar3 = (**(code **)(local_1c.Data + 0xc))();
-            if (iVar3 != 0) {
-              iVar3 = *(int *)(param_4 + 8);
-              local_20 = (**(code **)(local_1c.Data + 0xc))();
-              local_20 = local_20 + *(int *)(param_4 + 8);
-              util__Darray_class_util__Str_char_____SetSize(param_4,&local_20);
-              util__Darray_class_util__Str_char_____CheckSize(param_4,iVar3);
-              this = (Str_L_char_G_ *)(*(int *)(param_4 + 4) + iVar3 * 0xc);
-              pSVar5 = (Str_L_char_G_ *)local_1c.Capacity;
-              if (this != (Str_L_char_G_ *)(*(int *)(param_4 + 4) + *(int *)(param_4 + 8) * 0xc)) {
-                do {
-                  util__Str_char___operator__o8(this,pSVar5);
-                  this = this + 1;
-                  pSVar5 = pSVar5 + 1;
-                } while (this != (Str_L_char_G_ *)(*(int *)(param_4 + 4) + *(int *)(param_4 + 8) * 0xc))
-                ;
-              }
-            }
-          }
-          iVar3 = *param_3 - local_1c.Length;
-          param_1 = local_24;
-          if (0 < iVar3) {
-            local_30.Data = (char *)0x0;
-            local_30.Capacity = 0;
-            local_30.Length = 0;
-            do {
-              iVar1 = *(int *)(param_4 + 8);
-              local_20 = iVar1 + 1;
-              util__Darray_class_util__Str_char_____SetSize(param_4,&local_20);
-              bVar2 = util__Darray_class_util__Str_char_____CheckSize(param_4,iVar1);
-              if (bVar2) {
-                util__Str_char___operator__o8
-                          ((Str_L_char_G_ *)
-                           (*(int *)(param_4 + 4) + (*(int *)(param_4 + 8) * 3 + -3) * 4),&local_30)
-                ;
-              }
-              iVar3 = iVar3 + -1;
-              param_1 = local_24;
-            } while (iVar3 != 0);
-          }
-        }
-        util__Darray_class_util__Str_char______Darray_class_util__Str_char((Darray_L_class_util__Str_L_char_G___G_ *)&local_1c);
-      }
-      local_c = local_c + 1;
-      iVar3 = (**(code **)(*param_1 + 0xc))();
-    } while (local_c < iVar3);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00008964e0 008964e0_FUN_008964e0 ====
-void FUN_008964e0(Darray_L_bool_G_ *param_1,int *param_2,int param_3,int param_4);
-
-// decompiled by BatchDecomp @ 008964e0 name=FUN_008964e0 conv=unknown body=349
-
-void FUN_008964e0(Darray_L_bool_G_ *param_1,int *param_2,int param_3,int param_4)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  uint uVar2;
-  bool *pbVar3;
-  int *piVar4;
-  int iVar5;
-  int *piVar6;
-  bool bVar7;
-  int local_14;
-  int *local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_10 = param_2;
-  param_1->_pad_0x0_0 = 0;
-  param_1->Data = (bool *)0x0;
-  param_1->Size = 0;
-  param_1->Capacity = 0;
-  uVar2 = (**(code **)(*param_2 + 0xc))();
-  param_1->_pad_0x0_0 = (int)((void *)(0x009256ecu));
-  param_1->Data = (bool *)0x0;
-  param_1->Size = 0;
-  param_1->Capacity = uVar2;
-  if (((int)uVar2 < 0) || (0x3fffffff < (int)uVar2)) {
-    param_1->Capacity = 0;
-  }
-  else if (0 < (int)uVar2) {
-    pbVar3 = (bool *)operator_new__(uVar2);
-    if (pbVar3 == (bool *)0x0) {
-      pbVar3 = (bool *)0x0;
-    }
-    else {
-      memset(pbVar3,0,uVar2);
-    }
-    iVar5 = 0;
-    param_1->Data = pbVar3;
-    param_2 = local_10;
-    if (0 < param_1->Capacity) {
-      do {
-        param_1->Data[iVar5] = false;
-        iVar5 = iVar5 + 1;
-      } while (iVar5 < param_1->Capacity);
-    }
-  }
-  local_c = 0;
-  iVar5 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar5) {
-    do {
-      piVar4 = (int *)(**(code **)*param_2)(&local_c);
-      iVar5 = *piVar4;
-      if (iVar5 == 0) {
-LAB_008965e8:
-        bVar7 = true;
-      }
-      else {
-        piVar6 = *(int **)(param_3 + 4);
-        piVar4 = piVar6 + *(int *)(param_3 + 8);
-        for (; piVar6 != piVar4; piVar6 = piVar6 + 1) {
-          if (*piVar6 == iVar5) goto LAB_008965e8;
-        }
-        piVar6 = *(int **)(param_4 + 4);
-        piVar4 = piVar6 + *(int *)(param_4 + 8);
-        for (; piVar6 != piVar4; piVar6 = piVar6 + 1) {
-          if (*piVar6 == iVar5) goto LAB_008965e8;
-        }
-        bVar7 = false;
-      }
-      iVar5 = param_1->Size;
-      local_14 = iVar5 + 1;
-      util__Darray_bool___SetSize(param_1,&local_14);
-      bVar1 = util__Darray_bool___CheckSize(param_1,iVar5);
-      param_2 = local_10;
-      if (bVar1) {
-        param_1->Data[param_1->Size + -1] = bVar7;
-      }
-      local_c = local_c + 1;
-      iVar5 = (**(code **)(*local_10 + 0xc))();
-    } while (local_c < iVar5);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 0000897210 00897210_FUN_00897210 ====
-char __thiscall FUN_00897210(undefined4 *param_1,char param_2,undefined4 *param_3);
-
-// decompiled by BatchDecomp @ 00897210 name=FUN_00897210 conv=unknown body=150
-
-char __thiscall FUN_00897210(undefined4 *param_1,char param_2,undefined4 *param_3)
-
-{
-  int iVar1;
-  char *pcVar2;
-  Str_L_char_G_ *pSVar3;
-  undefined1 *puVar4;
-  undefined1 *puVar5;
-  Str_L_char_G_ local_10;
-  
-  if (param_2 != '\0') {
-    iVar1 = *(int *)param_1[3];
-    if (iVar1 == 0) {
-      pcVar2 = "";
-    }
-    else if (*(int *)(iVar1 + 8) < 1) {
-      pcVar2 = "";
-    }
-    else {
-      pcVar2 = *(char **)(iVar1 + 4);
-    }
-    if ((int)param_3[1] < 1) {
-      puVar5 = &cde_l2_0091985b_NullString;
-    }
-    else {
-      puVar5 = (undefined1 *)*param_3;
-    }
-    if ((int)((undefined4 *)param_1[2])[1] < 1) {
-      puVar4 = &cde_l2_0091985b_NullString;
-    }
-    else {
-      puVar4 = *(undefined1 **)param_1[2];
-    }
-    pSVar3 = util__Printf(&local_10,"Error at line %i (%s) for \'%s\': %s!\n",
-                          *(undefined4 *)param_1[1],puVar4,pcVar2,puVar5);
-    util__Str_char___operator__o10((Str_L_char_G_ *)*param_1,pSVar3);
-    if (local_10.Data != (char *)0x0) {
-      operator_delete__(local_10.Data);
-    }
-    *(undefined1 *)param_1[4] = 0;
-  }
-  return param_2;
-}
-
-
-//==== 0000897430 00897430_FUN_00897430 ====
-uint __fastcall FUN_00897430(int *param_1);
-
-// decompiled by BatchDecomp @ 00897430 name=FUN_00897430 conv=unknown body=387
-
-uint __fastcall FUN_00897430(int *param_1)
-
-{
-  char cVar1;
-  int *piVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  bool bVar5;
-  Str_L_char_G_ *pSVar6;
-  ReflectionRegistry *this;
-  ReflectionInfoBase *pRVar7;
-  undefined1 *puVar8;
-  char *pcVar9;
-  int iVar10;
-  Str_L_char_G_ local_24;
-  Str_L_char_G_ local_18;
-  Reflectable *local_c;
-  Str_L_char_G_ *local_8;
-  
-  piVar2 = (int *)*param_1;
-  iVar3 = piVar2[1];
-  if (iVar3 < 1) {
-    iVar10 = 0;
-  }
-  else {
-    iVar10 = *(int *)(*piVar2 + -4 + iVar3 * 0x10);
-  }
-  puVar4 = *(undefined4 **)param_1[1];
-  local_c = (Reflectable *)((int)puVar4 + iVar10);
-  if (iVar3 < 1) {
-    if (puVar4 == (undefined4 *)0x0) {
-      pRVar7 = (ReflectionInfoBase *)0x0;
-    }
-    else {
-      pRVar7 = (ReflectionInfoBase *)(**(code **)*puVar4)();
-    }
-  }
-  else {
-    pSVar6 = (Str_L_char_G_ *)(*piVar2 + -0x10 + iVar3 * 0x10);
-    this = util__ReflectionRegistry__Get();
-    pRVar7 = util__ReflectionRegistry__GetReflectionInfo(this,pSVar6);
-  }
-  local_8 = (Str_L_char_G_ *)param_1[4];
-  if (*(char *)&local_8[1].Data == '\0') {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  bVar5 = util__SerializationManagerInterface__DeserializeArray((SerializationManagerInterface *)param_1[3],pRVar7,local_c,local_8,
-                     (Darray_L_class_util__Str_L_char_G___G_ *)param_1[5]);
-  *(bool *)param_1[2] = bVar5;
-  puVar4 = (undefined4 *)param_1[4];
-  if (*(char *)(puVar4 + 3) == '\0') {
-    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                    "IsValid()",(char *)0x0);
-    DebugBreak();
-  }
-  if ((int)puVar4[1] < 1) {
-    puVar8 = &cde_l2_0091985b_NullString;
-  }
-  else {
-    puVar8 = (undefined1 *)*puVar4;
-  }
-  pSVar6 = util__Printf(&local_24,"Could not deserialize array member %s",puVar8);
-  puVar4 = (undefined4 *)param_1[6];
-  cVar1 = *(char *)param_1[2];
-  if (cVar1 == '\0') {
-    if (pSVar6->Capacity < 1) {
-      pcVar9 = "";
-    }
-    else {
-      pcVar9 = pSVar6->Data;
-    }
-    pSVar6 = util__Printf(&local_18,"Global Error: %s!\n",pcVar9);
-    util__Str_char___operator__o10((Str_L_char_G_ *)*puVar4,pSVar6);
-    if (local_18.Data != (char *)0x0) {
-      operator_delete__(local_18.Data);
-    }
-    *(undefined1 *)puVar4[1] = 0;
-  }
-  if (local_24.Data != (char *)0x0) {
-    operator_delete__(local_24.Data);
-  }
-  if (cVar1 == '\0') {
-    return (uint)local_24.Data & 0xffffff00;
-  }
-  pSVar6 = (Str_L_char_G_ *)param_1[4];
-  local_18.Data = (char *)0x0;
-  local_18.Capacity = 0;
-  local_18.Length = 0;
-  util__Str_char___operator__o8(pSVar6,&local_18);
-  *(undefined1 *)&pSVar6[1].Data = 0;
-  puVar4 = (undefined4 *)param_1[7];
-  *puVar4 = 0;
-  *(undefined1 *)(puVar4 + 1) = 0;
-  return CONCAT31((int3)((uint)puVar4 >> 8),1);
-}
-
-
-//==== 00008a1aa0 008a1aa0_FUN_008a1aa0 ====
-void FUN_008a1aa0(int *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 008a1aa0 name=FUN_008a1aa0 conv=unknown body=365
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-
-void FUN_008a1aa0(int *param_1,int *param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  int *piVar1;
-  bool bVar2;
-  char cVar3;
-  int iVar4;
-  undefined4 *puVar5;
-  Vec2_L_double_G_ *pVVar6;
-  int iVar7;
-  int *piVar8;
-  Vec2_L_double_G_ local_38;
-  double local_28;
-  int *local_20;
-  int local_1c;
-  int local_18;
-  int local_14;
-  char local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  iVar7 = 0;
-  local_1c = 0;
-  local_c = 0;
-  iVar4 = (**(code **)(*param_1 + 0xc))();
-  if (local_c < iVar4) {
-    local_20 = param_2;
-    do {
-      puVar5 = (undefined4 *)(**(code **)*param_1)(&local_c);
-      if (((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) &&
-         (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]),
-         !bVar2)) {
-        *puVar5 = 0;
-      }
-      (**(code **)(*(int *)*puVar5 + 0x10))(&local_18);
-      if (((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) &&
-         (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]),
-         !bVar2)) {
-        *puVar5 = 0;
-      }
-      cVar3 = (**(code **)(*(int *)*puVar5 + 8))();
-      if ((cVar3 == '\0') || (local_10 == '\0')) {
-        iVar4 = 0;
-      }
-      else {
-        if (((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) &&
-           (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]),
-           !bVar2)) {
-          *puVar5 = 0;
-        }
-        pVVar6 = UIWidget__GetFillProportion((UIWidget *)*puVar5,&local_38);
-        if ((*local_20 != 0) && (*local_20 == 1)) {
-          pVVar6 = (Vec2_L_double_G_ *)&pVVar6->Y;
-        }
-        local_28 = pVVar6->X;
-        if (((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) &&
-           (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]),
-           !bVar2)) {
-          *puVar5 = 0;
-        }
-        piVar1 = (int *)*puVar5;
-        if (local_10 == '\0') {
-          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                          "IsValid()",(char *)0x0);
-          DebugBreak();
-        }
-        iVar7 = *param_2;
-        if ((iVar7 == 0) || (piVar8 = &local_14, iVar7 != 1)) {
-          piVar8 = &local_18;
-        }
-        iVar7 = (**(code **)(*piVar1 + 0x2c))(iVar7);
-        iVar4 = *piVar8 + iVar7 * (uint)(local_28 <= 0.0);
-        iVar7 = local_1c;
-      }
-      iVar7 = iVar7 + iVar4;
-      local_c = local_c + 1;
-      local_1c = iVar7;
-      iVar4 = (**(code **)(*param_1 + 0xc))();
-    } while (local_c < iVar4);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00008aa500 008aa500_FUN_008aa500 ====
-void FUN_008aa500(int *param_1,int *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3);
-
-// decompiled by BatchDecomp @ 008aa500 name=FUN_008aa500 conv=unknown body=324
-
-void FUN_008aa500(int *param_1,int *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3)
-
-{
-  undefined4 stack0xfffffffc;
-  int iVar1;
-  ReferenceController *this;
-  ReferenceController *this_00;
-  bool bVar2;
-  int iVar3;
-  int *piVar4;
-  char *pcVar5;
-  char cVar6;
-  undefined1 *puVar7;
-  int local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_c = 0;
-  iVar3 = (**(code **)(*param_1 + 0xc))();
-  if (local_c < iVar3) {
-    do {
-      piVar4 = (int *)(**(code **)*param_1)(&local_c);
-      if (((*piVar4 != 0) && ((ReferenceController *)piVar4[1] != (ReferenceController *)0x0)) &&
-         (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-         bVar2)) {
-        if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-           (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-           !bVar2)) {
-          *piVar4 = 0;
-        }
-        iVar3 = *piVar4;
-        iVar1 = *param_2;
-        if (*(int *)(iVar3 + 0x14) == *(int *)(iVar1 + 0x1f8)) {
-          if (*(int *)(iVar3 + 0x10) < 1) {
-            pcVar5 = "";
-          }
-          else {
-            pcVar5 = *(char **)(iVar3 + 0xc);
-          }
-          if (*(int *)(iVar1 + 500) < 1) {
-            puVar7 = &cde_l2_0091985b_NullString;
-          }
-          else {
-            puVar7 = *(undefined1 **)(iVar1 + 0x1f0);
-          }
-          cVar6 = *pcVar5;
-          if (cVar6 != '\0') {
-            iVar3 = (int)puVar7 - (int)pcVar5;
-            do {
-              if (cVar6 != pcVar5[iVar3]) goto LAB_008aa620;
-              cVar6 = pcVar5[1];
-              pcVar5 = pcVar5 + 1;
-            } while (cVar6 != '\0');
-          }
-          iVar3 = *(int *)(param_3 + 8);
-          local_10 = iVar3 + 1;
-          util__Darray_class_util__WeakPtr_class_Body_____SetSize(param_3,&local_10);
-          bVar2 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize(param_3,iVar3);
-          if (bVar2) {
-            this = *(ReferenceController **)(*(int *)(param_3 + 4) + -4 + *(int *)(param_3 + 8) * 8)
-            ;
-            iVar3 = *(int *)(param_3 + 4) + *(int *)(param_3 + 8) * 8;
-            *(int *)(iVar3 + -8) = *piVar4;
-            this_00 = (ReferenceController *)piVar4[1];
-            *(ReferenceController **)(iVar3 + -4) = this_00;
-            if (this_00 != (ReferenceController *)0x0) {
-              util__ReferenceController__AddWeakReference(this_00);
-            }
-            if (this != (ReferenceController *)0x0) {
-              util__ReferenceController__ReleaseWeakReference(this);
-            }
-          }
-        }
-      }
-LAB_008aa620:
-      local_c = local_c + 1;
-      iVar3 = (**(code **)(*param_1 + 0xc))();
-    } while (local_c < iVar3);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00008aa930 008aa930_FUN_008aa930 ====
-void FUN_008aa930(int *param_1,int param_2);
-
-// decompiled by BatchDecomp @ 008aa930 name=FUN_008aa930 conv=unknown body=401
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-
-void FUN_008aa930(int *param_1,int param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  ReferenceController *this;
-  bool bVar1;
-  char cVar2;
-  int iVar3;
-  int *piVar4;
-  int iVar5;
-  undefined1 local_20[12];
-  int *local_14;
-  int local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_10 = param_2;
-  local_14 = param_1;
-  local_c = 0;
-  iVar3 = (**(code **)(*param_1 + 0xc))();
-  if (local_c < iVar3) {
-    do {
-      piVar4 = (int *)(**(code **)*param_1)(&local_c);
-      if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-         !bVar1)) {
-        *piVar4 = 0;
-      }
-      cVar2 = (**(code **)(*(int *)*piVar4 + 8))();
-      if (cVar2 != '\0') {
-        if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-           !bVar1)) {
-          *piVar4 = 0;
-        }
-        iVar3 = (**(code **)(*(int *)*piVar4 + 0x10))(local_20);
-        if (*(char *)(iVar3 + 8) != '\0') {
-          if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-             (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]),
-             !bVar1)) {
-            *piVar4 = 0;
-          }
-          cVar2 = (**(code **)(*(int *)*piVar4 + 100))();
-          if ((cVar2 != '\0') &&
-             ((this = (ReferenceController *)piVar4[1],
-              *(ReferenceController **)(param_2 + 0x68) != this ||
-              (*(int *)(param_2 + 100) != *piVar4)))) {
-            if ((this != (ReferenceController *)0x0) &&
-               (bVar1 = util__ReferenceController__IsDataStillValid(this), !bVar1)) {
-              *piVar4 = 0;
-            }
-            bVar1 = UIWidget__IsCaptured((UIWidget *)*piVar4);
-            if (!bVar1) goto LAB_008aaa9a;
-          }
-          iVar5 = 0;
-          iVar3 = (**(code **)(*(int *)(param_2 + 0x74) + 8))();
-          if (0 < iVar3) {
-            do {
-              if ((iVar5 < 0) || (0x15b < iVar5)) {
-                util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\sarray.inl"
-                                ,0x35,"Index >= 0 && Index < Size",(char *)0x0);
-                DebugBreak();
-              }
-              if (*(char *)(local_10 + 0x78 + iVar5) != '\0') {
-                if (((ReferenceController *)piVar4[1] != (ReferenceController *)0x0) &&
-                   (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar4[1]), !bVar1)) {
-                  *piVar4 = 0;
-                }
-                (**(code **)(*(int *)*piVar4 + 0x9c))(iVar5,param_2 + 0x1d4);
-              }
-              iVar5 = iVar5 + 1;
-              iVar3 = (**(code **)(*(int *)(param_2 + 0x74) + 8))();
-            } while (iVar5 < iVar3);
-          }
-        }
-      }
-LAB_008aaa9a:
-      param_1 = local_14;
-      local_c = local_c + 1;
-      iVar3 = (**(code **)(*local_14 + 0xc))();
-    } while (local_c < iVar3);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00008b0c00 008b0c00_FUN_008b0c00 ====
-void FUN_008b0c00(Darray_L_class_util__SharedPtr_L_struct_AudioVoice_G___G_ *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 008b0c00 name=FUN_008b0c00 conv=unknown body=318
-
-void FUN_008b0c00(Darray_L_class_util__SharedPtr_L_struct_AudioVoice_G___G_ *param_1,int *param_2)
-
-{
-  undefined4 stack0xfffffffc;
-  ReferenceController *this;
-  bool bVar1;
-  int iVar2;
-  SharedPtr_L_struct_AudioVoice_G_ *pSVar3;
-  int local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  *(undefined4 *)param_1 = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  iVar2 = (**(code **)(*param_2 + 0xc))();
-  util__Darray_class_util__SharedPtr_struct_AudioVoice_____Darray_class_util__SharedPtr_struct_AudioVoice(param_1,iVar2);
-  local_c = 0;
-  iVar2 = (**(code **)(*param_2 + 0xc))();
-  if (local_c < iVar2) {
-    do {
-      pSVar3 = (SharedPtr_L_struct_AudioVoice_G_ *)(**(code **)*param_2)(&local_c);
-      if (((*(int *)(*(int *)pSVar3 + 4) != 0) &&
-          (this = *(ReferenceController **)(*(int *)pSVar3 + 8), this != (ReferenceController *)0x0)
-          ) && (bVar1 = util__ReferenceController__IsDataStillValid(this), bVar1)) {
-        iVar2 = *(int *)pSVar3;
-        if ((*(ReferenceController **)(iVar2 + 8) != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar2 + 8)), !bVar1)) {
-          *(undefined4 *)(iVar2 + 4) = 0;
-        }
-        if (*(char *)(*(int *)(iVar2 + 4) + 0x1c) == '\0') {
-          if ((*(ReferenceController **)(iVar2 + 8) != (ReferenceController *)0x0) &&
-             (bVar1 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar2 + 8)), !bVar1)) {
-            *(undefined4 *)(iVar2 + 4) = 0;
-          }
-          if (*(float *)(*(int *)(iVar2 + 4) + 0x20) <= 0.0) goto LAB_008b0d15;
-        }
-        iVar2 = *(int *)pSVar3;
-        if ((*(ReferenceController **)(iVar2 + 8) != (ReferenceController *)0x0) &&
-           (bVar1 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(iVar2 + 8)), !bVar1)) {
-          *(undefined4 *)(iVar2 + 4) = 0;
-        }
-        if (*(char *)(*(int *)(iVar2 + 4) + 0x35) == '\0') {
-          iVar2 = *(int *)(param_1 + 8);
-          local_10 = iVar2 + 1;
-          util__Darray_class_util__SharedPtr_struct_AudioVoice_____SetSize(param_1,&local_10);
-          bVar1 = util__Darray_class_util__SharedPtr_struct_AudioVoice_____CheckSize(param_1,iVar2);
-          if (bVar1) {
-            util__SharedPtr_struct_AudioVoice___operator
-                      ((SharedPtr_L_struct_AudioVoice_G_ *)
-                       (*(int *)(param_1 + 4) + -8 + *(int *)(param_1 + 8) * 8),pSVar3);
-          }
-        }
-      }
-LAB_008b0d15:
-      local_c = local_c + 1;
-      iVar2 = (**(code **)(*param_2 + 0xc))();
-    } while (local_c < iVar2);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00008bc910 008bc910_FUN_008bc910 ====
-uint __thiscall FUN_008bc910(undefined4 *param_1,uint param_2,Str_L_char_G_ *param_3);
-extern undefined4 FUN_008bccd0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-
-// decompiled by BatchDecomp @ 008bc910 name=FUN_008bc910 conv=unknown body=172
-
-uint __thiscall FUN_008bc910(undefined4 *param_1,uint param_2,Str_L_char_G_ *param_3)
-
-{
-  undefined4 uVar1;
-  uint uVar2;
-  Darray_L_struct_FileIO__Error_G_ *pDVar3;
-  char cVar4;
-  int iVar5;
-  Str_L_char_G_ local_24;
-  undefined4 local_18;
-  Str_L_char_G_ local_14;
-  undefined4 local_8;
-  
-  uVar2 = param_2;
-  if ((char)param_2 != '\0') {
-    util__Str_char___Str_char(&local_14,param_3);
-    uVar1 = *(undefined4 *)param_1[1];
-    local_8 = uVar1;
-    util__Str_char___Str_char(&local_24,&local_14);
-    local_18 = uVar1;
-    if (local_14.Data != (char *)0x0) {
-      operator_delete__(local_14.Data);
-    }
-    param_3 = (Str_L_char_G_ *)*param_1;
-    iVar5 = *(int *)((int)param_3 + 8);
-    param_2 = iVar5 + 1;
-    util__Darray_struct_FileIO__Error___SetSize((Darray_L_struct_FileIO__Error_G_ *)param_3,(int *)&param_2);
-    pDVar3 = (Darray_L_struct_FileIO__Error_G_ *)param_3;
-    cVar4 = FUN_008bccd0(iVar5);
-    if (cVar4 != '\0') {
-      iVar5 = *(int *)(pDVar3 + 4) + *(int *)(pDVar3 + 8) * 0x10;
-      util__Str_char___operator__o8((Str_L_char_G_ *)(iVar5 + -0x10),&local_24);
-      *(undefined4 *)(iVar5 + -4) = local_8;
-    }
-    if (local_24.Data != (char *)0x0) {
-      operator_delete__(local_24.Data);
-    }
-    *(undefined1 *)param_1[2] = 0;
-  }
-  return uVar2 & 0xff;
 }
 
 
@@ -12828,67 +10768,5 @@ void __glfwPlatformDestroyWindow(int param_1)
     DestroyIcon(*(HICON *)(param_1 + 0x288));
   }
   return;
-}
-
-
-//==== 00008e4300 008e4300___isa_available_init ====
-// decompiled by BatchDecomp @ 008e4300 name=__isa_available_init conv=__cdecl body=409
-
-/* WARNING: Removing unreachable block (ram,0x008e437c) */
-/* WARNING: Removing unreachable block (ram,0x008e4341) */
-/* WARNING: Removing unreachable block (ram,0x008e43f4) */
-
-int __cdecl __isa_available_init(void)
-
-{
-  int *piVar1;
-  uint *puVar2;
-  int iVar3;
-  int iVar4;
-  BOOL BVar5;
-  uint uVar6;
-  uint uVar7;
-  uint in_XCR0;
-  
-  __isa_available = 0;
-  __isa_enabled = __isa_enabled | 1;
-  BVar5 = _IsProcessorFeaturePresent_4(10);
-  iVar4 = __isa_enabled;
-  if (BVar5 != 0) {
-    __isa_enabled = __isa_enabled | 2;
-    __isa_available = 1;
-    piVar1 = (int *)cpuid_basic_info(0);
-    puVar2 = (uint *)cpuid_Version_info(1);
-    uVar7 = puVar2[3];
-    if (((piVar1[1] == 0x756e6547 && piVar1[3] == 0x6c65746e) && piVar1[2] == 0x49656e69) &&
-       (((((uVar6 = *puVar2 & 0xfff3ff0, uVar6 == 0x106c0 || (uVar6 == 0x20660)) ||
-          (uVar6 == 0x20670)) || ((uVar6 == 0x30650 || (uVar6 == 0x30660)))) || (uVar6 == 0x30670)))
-       ) {
-      __favor = __favor | 1;
-    }
-    if (*piVar1 < 7) {
-      uVar6 = 0;
-    }
-    else {
-      iVar3 = cpuid_Extended_Feature_Enumeration_info(7);
-      uVar6 = *(uint *)(iVar3 + 4);
-      if ((uVar6 & 0x200) != 0) {
-        __favor = __favor | 2;
-      }
-    }
-    if ((uVar7 & 0x100000) != 0) {
-      __isa_enabled = iVar4 | 6;
-      __isa_available = 2;
-      if ((((uVar7 & 0x8000000) != 0) && ((uVar7 & 0x10000000) != 0)) && ((in_XCR0 & 6) == 6)) {
-        __isa_enabled = iVar4 | 0xe;
-        __isa_available = 3;
-        if ((uVar6 & 0x20) != 0) {
-          __isa_enabled = iVar4 | 0x2e;
-          __isa_available = 5;
-        }
-      }
-    }
-  }
-  return 0;
 }
 

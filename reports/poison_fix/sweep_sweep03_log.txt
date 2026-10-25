@@ -1,12 +1,10 @@
 pool=20839 fullnames, multi=570
-oracle: 2002 stub names
+oracle: 2078 stub names
 cov_name: 10168 entries
 vftable_map: 1749 entries
-batch=sweep03 total=800 in=134 (env_defer=433 auto_prev=233) tpl_defs=6
+batch=sweep03 total=800 in=104 (env_defer=365 auto_prev=331) tpl_defs=9
 WARN 004d6b40_FUN_004d6b40: slice local local_20: no decl found
 WARN 004d6b40_FUN_004d6b40: slice local local_2c: no decl found
-WARN 0056b290_FUN_0056b290: slice local local_18: no decl found
-WARN 0056b790_FUN_0056b790: slice local local_18: no decl found
 WARN 005e2ef0_GetCollisionShells: slice local local_188: no decl found
 WARN 005e8bf0_GetGeneratedName: slice local local_14: no decl found
 WARN 005e8bf0_GetGeneratedName: slice local local_20: no decl found
@@ -16,25 +14,14 @@ WARN 0067db10_FUN_0067db10: slice local local_14: no decl found
 WARN 0067db10_FUN_0067db10: slice local local_20: no decl found
 WARN 0067e0a0_FUN_0067e0a0: slice local local_20: no decl found
 WARN 0067e3b0_FUN_0067e3b0: slice local local_20: no decl found
-WARN 006a1af0_FUN_006a1af0: slice local local_1c: no decl found
-WARN 006a1af0_FUN_006a1af0: slice local local_28: no decl found
-WARN 006b5c30_GetCostChartTitle: slice local local_20: no decl found
-WARN 006b6e00_GetMassChartTitle: slice local local_20: no decl found
 WARN 007e33a0_GetWeaponRangeInfoAgainstAllTargets: slice local local_28: no decl found
 WARN 00818f00_GetOutOfRangeString: slice local local_18: no decl found
 WARN 008197a0_GetTitleLabel: slice local local_20: no decl found
 WARN 008197a0_GetTitleLabel: slice local local_40: no decl found
-WARN 00835600_FUN_00835600: slice local local_1c: no decl found
-WARN 0083a790_FUN_0083a790: slice local local_38: no decl found
-WARN 0085d3b0_FUN_0085d3b0: slice local local_18: no decl found
 WARN 0085d690_FUN_0085d690: slice local local_18: no decl found
-WARN 0085d990_FUN_0085d990: slice local local_18: no decl found
-WARN 008bc180_FUN_008bc180: slice local local_18: no decl found
-WARN 008bc9c0_FUN_008bc9c0: slice local local_3c: no decl found
-prescreen: auto-defer now=0 total=233
-prototypes: 134 (all-CC)
-decls_gen refreshed: 0 sigs, 0 templates, 154 K&R
+prescreen: auto-defer now=0 total=331
+prototypes: 104 (all-CC)
 exref defines: 2
 typedef forwards: 10 (alias 1)
 l2 statics: +0 (of 3)
-WROTE /tmp/sweep_sweep03_draft.c (666918B) sections=134 externs=19 unresolved=187
+WROTE /tmp/sweep_sweep03_draft.c (553909B) sections=104 externs=21 unresolved=159

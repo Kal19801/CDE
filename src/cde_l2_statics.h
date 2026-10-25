@@ -2101,7 +2101,7 @@ extern int cde_l2_00984020__thread_safe_static_guard_0__;
 extern int cde_l2_00984024_ID;
 extern int cde_l2_00984028__thread_safe_static_guard_0__;
 extern struct __uint64 cde_l2_0098cb50_TimerFrequency;
-extern struct undefined1 cde_l2_0091985b_NullString;
+extern undefined1 cde_l2_0091985b_NullString[16];
 
 /* r20 sweep batch additions */
 extern int cde_l2_00964dd4_ID;
