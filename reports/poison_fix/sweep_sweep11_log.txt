@@ -1,14 +1,14 @@
 pool=20839 fullnames, multi=570
-oracle: 1720 stub names
+oracle: 1760 stub names
 cov_name: 10236 entries
 vftable_map: 1749 entries
-batch=sweep11 total=619 in=32 (env_defer=520 auto_prev=67) tpl_defs=3
+batch=sweep11 total=619 in=37 (env_defer=515 auto_prev=67) tpl_defs=3
 WARN 0000532b80 util::Darray<struct_CompartmentCollisionShell>::Last: text=1 disasm=0 — leave raw
 prescreen: auto-defer now=0 total=67
-prototypes: 32 (all-CC)
+prototypes: 37 (all-CC)
 hdr sig conflicts renamed: 11
 renames: +0 (alias +0)
-typedef forwards: 13 (r23 complete 3) (alias 0)
+typedef forwards: 10 (r23 complete 7) (alias 0)
 renames applied: 11
 l2 statics: +0 (of 1)
-WROTE /tmp/sweep_sweep11_draft.c (90423B) sections=32 externs=6 unresolved=48
+WROTE /tmp/sweep_sweep11_draft.c (105031B) sections=37 externs=7 unresolved=56

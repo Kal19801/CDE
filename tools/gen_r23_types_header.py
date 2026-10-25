@@ -20,10 +20,10 @@ PRIM = {'dword': 'unsigned int', 'word': 'unsigned short', 'byte': 'unsigned cha
 
 
 def variants(base):
-    b = re.sub(r'\s+', '', base)
+    b = re.sub(r'\s+', '', base).replace('@', '_P_')
     return [b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'),
             b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C_'),
-            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_'),
+            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'),
             re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9_]', '_', b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_')))]
 
 

@@ -355,11 +355,11 @@ R23_PRIM = {'dword': 'unsigned int', 'word': 'unsigned short', 'byte': 'unsigned
             'double': 'double', 'bool': 'unsigned char'}
 
 def _r23_esc_variants(base):
-    b = re.sub(r'\s+', '', base)
+    b = re.sub(r'\s+', '', base).replace('@', '_P_')
     return [b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'),
             b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C_'),
-            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_'),
-            re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9_]', '_', b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C').replace('*', '_P_'))),
+            b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'),
+            re.sub(r'_+', '_', re.sub(r'[^A-Za-z0-9_]', '_', b.replace('<', '_L_').replace('>', '_G_').replace('::', '__').replace(',', '_C'))),
             re.sub(r'[^A-Za-z0-9_]', '_', base.replace('::', '__').replace('<', '_L_').replace('>', '_G_').replace(' ', '_')).strip('_')]
 
 def _r23_load():
@@ -1260,7 +1260,13 @@ def main():
         for t in sorted(_TYPEDEF_POOL):
             _disp = R23_ESC.get(t) or R23_ESC_NORM.get(re.sub(r'_+', '_', t).strip('_'))
             if t in STRICT_SELFHDR or t in STRICT_DEFINED or t in STRICT_ALIAS:
-                pass  # r23i: 头部已提供（tag/自指 typedef/别名）—— 静默跳过
+                # r23i: 头部已提供（tag/自指 typedef/别名）—— 静默跳过；
+                # r23j: 登记 display 已定义（防后续变体重发定义）
+                if _disp:
+                    R23_DEFINED.add(_disp)
+                    R23_DEF_ESC.setdefault(_disp, t)
+                elif t not in STRICT_TYPES and not _fidx_any(t):
+                    tds.append(f'typedef struct {t} {t};')
             elif _disp and _disp not in R23_DEFINED and r23_complete_def(_disp, _r23defs, esc=t):
                 _n23 += 1
             elif _disp and _disp in R23_DEF_ESC and R23_DEF_ESC[_disp] != t:
