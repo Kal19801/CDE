@@ -819,6 +819,62 @@ TYPEFUNC_POOL = set()
 # F4: 裸析构调用（~Fleet(this) —— CALL_RE 不吃 ~ 前缀）
 _BARE_DTOR = re.compile(r'(?<![\w:])~([A-Za-z_]\w*)\s*\(')
 
+_PSEUDO_TYPES = {'sbyte': 'signed char'}   # r25: Ghidra 伪类型缺失族（按 iso 错误面扩充）
+
+def pseudo_type_fix(txt):
+    """r25: 头契约未定义的 Ghidra 伪类型 → 等宽 C 标量（token 级，\b 防吞前缀）"""
+    for k, v in _PSEUDO_TYPES.items():
+        if re.search(r'\b' + k + r'\b', txt):
+            txt = re.sub(r'\b' + k + r'\b', v, txt)
+    return txt
+
+_VFTABLE_M = re.compile(r'(\w(?:[\w\]\.>]*?\w)?)\._vftable\b')
+_VFTABLE_A = re.compile(r'([\w\]\)]+)\->_vftable\b')
+
+def vftable_fix(txt):
+    """r25: vtable 指针恒在 offset 0 —— 成员访问 → 首槽指针读（字节等价）
+       p->_vftable → *(void **)p ;  X._vftable → *(void **)&X
+       （真有 _vftable 成员的类型同样字节等价：成员必在 0x0）"""
+    n = 0
+    txt, c1 = _VFTABLE_A.subn(lambda m: f'(*(void **)&{m.group(1)})', txt)
+    txt, c2 = _VFTABLE_M.subn(lambda m: f'(*(void **)&{m.group(1)})', txt)
+    return txt
+
+_SCALAR_DECL = re.compile(
+    r'^(\s*)((?:const\s+|unsigned\s+|signed\s+)*[A-Za-z_][\w \t]*?[\t ])\**'
+    r'((?:local_|in_|auStack|uStack|iStack|sStack|lStack|dStack|fStack|eStack|extraout)[A-Za-z0-9_]*)(\s*;)\s*$',
+    re.M)
+
+def scalar_subscript_fix(txt):
+    """r25: 标量声明的槽位被下标访问 —— Ghidra 槽数组观感差
+       仅 [0] → 剥下标；出现 k>0 → 声明升维 [kmax+1]（访问语义逐点等价）"""
+    decls = {}
+    for m in _SCALAR_DECL.finditer(txt):
+        decls[m.group(3)] = m
+    if not decls:
+        return txt
+    use = {}
+    for nm in decls:
+        use[nm] = []
+        for x in re.findall(r'\b' + nm + r'\s*\[\s*([0-9]+|0x[0-9a-fA-F]+)\s*\]', txt):
+            use[nm].append(int(x, 16) if x.startswith('0x') else int(x, 10))
+    for nm, ms in decls.items():
+        if nm not in use or not use[nm]:
+            continue
+        mx = max(use[nm])
+        # r25b: 混合用法守卫 —— 存在非下标裸用（直接赋值/取址）则不得剥下标/升维
+        n_all = len(re.findall(r'\b' + nm + r'\b', txt)) - 1   # 减声明位
+        n_sub = len(re.findall(r'\b' + nm + r'\s*\[', txt))
+        if n_all != n_sub:
+            continue
+        if mx == 0:
+            txt = re.sub(r'\b' + nm + r'\s*\[\s*0\s*\]', nm, txt)
+        elif mx > 0:
+            d = ms.group(0)
+            if '[' not in d:
+                txt = txt.replace(d, d.rstrip() [:-1].rstrip() + f'[{mx + 1}];', 1)
+    return txt
+
 def bare_dtor_fix(txt, disp):
     def rep(m):
         cls = m.group(1)
@@ -1046,6 +1102,7 @@ def main():
     for f in files:
         va, disp, txt = A.process(f)
         txt = libm_fix(txt)
+        txt = pseudo_type_fix(txt)   # r25: Ghidra 伪类型补缺（sbyte 族）
         txt = qual_pass(txt, disp)   # r20: 限定名闭包（模板方法/operator/dtor/跨行名）
         txt = bare_template_fix(txt)  # r23c: 裸模板类型 esc 化（声明位生存的前提）
         # r20c: 编译级机械修复链（错误面驱动，等价语义保持）
@@ -1054,6 +1111,8 @@ def main():
         txt = slice_assign_fix(txt)
         txt = slice_cast_fix(txt)
         txt = slice_deref_fix(txt)
+        txt = vftable_fix(txt)       # r25: vtable 首槽读等价化
+        txt = scalar_subscript_fix(txt)  # r25: 标量槽下标访问
         txt = vcall_base_fix(txt)
         txt = sub168_arr_fix(txt)
         txt = bare_dtor_fix(txt, disp)

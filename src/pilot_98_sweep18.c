@@ -1174,11 +1174,9 @@ extern int UIListBox_class_util__SharedPtr_struct_ModuleCategory_____ListButton_
 extern int UIListBox_class_util__Str_char_____ListButton__ListButton(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ActorDropdownAction_OnChangedSearchString(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ActorDropdownAction___ListButton__ListButton(); /* K&R stub; ret by call site */
-extern int UIListBox_struct_ActorDropdownAction___ScrollToDatum(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ActorDropdownAction___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___ListButton__ListButton(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___OnChangedSearchString(); /* K&R stub; ret by call site */
-extern int UIListBox_struct_ItineraryNode___ScrollToDatum(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int WorldObject__dtor(); /* K&R stub; ret by call site */
 extern int std__basic_filebuf_char_struct_std__char_traits_char_____seekoff(); /* K&R stub; ret by call site */
@@ -1223,7 +1221,6 @@ extern int util__Darray_struct_CraftSplinePoint___Darray_struct_CraftSplinePoint
 extern int util__Darray_struct_CraftSplinePoint___operator(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_ItineraryNodeUI__PathNode___operator(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_ItineraryNode___CheckSize(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_ItineraryNode___FindIndex(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_LevelSpeakerMessage___operator(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_LevelTutorialMessage___operator(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_MaterialConstituent___Darray_struct_MaterialConstituent__o2(); /* K&R stub; ret by call site */
@@ -1258,10 +1255,6 @@ extern int util__Delegate_int_class_util__SharedPtr_struct_ModuleCategory_____op
 extern int util__Delegate_int_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_int_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
-extern int util__Delegate_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
-extern int util__Delegate_struct_WorldObject___operator__(); /* K&R stub; ret by call site */
-extern int util__Delegate_void___MethodCaller_struct_UIListBox_struct_ActorDropdownAction___private__void___thiscall_UIListBox_struct_ActorDropdownAction___OnChangedSearchString_void__(); /* K&R stub; ret by call site */
-extern int util__Delegate_void___MethodCaller_struct_UIListBox_struct_ItineraryNode___private__void___thiscall_UIListBox_struct_ItineraryNode___OnChangedSearchString_void__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__HashMap_class_util__WeakPtr_class_Fleet__double___HashMap_class_util__WeakPtr_class_Fleet__double(); /* K&R stub; ret by call site */
@@ -2935,6 +2928,372 @@ void FUN_00445600(void)
 }
 
 
+//==== 00488e30 00488e30_FUN_00488e30 ====
+extern undefined4 FUN_00488d70(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+undefined4 __fastcall FUN_00488e30(int param_1,undefined2 *param_2,int param_3,int param_4,int param_5);
+
+// decompiled by BatchDecomp @ 00488e30 name=FUN_00488e30 conv=unknown body=744
+
+undefined4 __fastcall
+FUN_00488e30(int param_1,undefined2 *param_2,int param_3,int param_4,int param_5)
+
+{
+  uint uVar1;
+  int iVar2;
+  char cVar3;
+  byte bVar4;
+  uint uVar5;
+  uint uVar6;
+  int iVar7;
+  uint *puVar8;
+  int iVar9;
+  
+  iVar7 = *(int *)(param_1 + 0x3698);
+  if (iVar7 < 0x10) {
+    FUN_00488d70();
+    iVar7 = *(int *)(param_1 + 0x3698);
+  }
+  uVar6 = *(uint *)(param_1 + 0x3694);
+  cVar3 = (char)iVar7;
+  uVar5 = (uint)*(byte *)((uVar6 >> (cVar3 - 9U & 0x1f) & 0x1ff) + param_3);
+  if (uVar5 < 0xff) {
+    uVar6 = (uint)*(byte *)(uVar5 + 0x500 + param_3);
+    if ((int)uVar6 <= iVar7) {
+      *(uint *)(param_1 + 0x3698) = iVar7 - uVar6;
+      bVar4 = *(byte *)(uVar5 + 0x400 + param_3);
+LAB_00488f11:
+      uVar6 = (uint)bVar4;
+      memset(param_2,0,0x80);
+      if (uVar6 == 0) {
+        uVar5 = 0;
+      }
+      else {
+        iVar7 = *(int *)(param_1 + 0x3698);
+        if (iVar7 < (int)uVar6) {
+          FUN_00488d70();
+          iVar7 = *(int *)(param_1 + 0x3698);
+        }
+        uVar5 = *(uint *)(&DAT_0095b3b0 + uVar6 * 4) &
+                *(uint *)(param_1 + 0x3694) >> ((byte)(iVar7 - uVar6) & 0x1f);
+        *(uint *)(param_1 + 0x3698) = iVar7 - uVar6;
+        if (uVar5 < (uint)(1 << (bVar4 - 1 & 0x1f))) {
+          uVar5 = (uVar5 - (1 << (bVar4 & 0x1f))) + 1;
+        }
+      }
+      param_3 = 1;
+      iVar7 = *(int *)(param_1 + 0x35cc + param_5 * 0x38) + uVar5;
+      *(int *)(param_1 + 0x35cc + param_5 * 0x38) = iVar7;
+      *param_2 = (short)iVar7;
+      do {
+        iVar7 = *(int *)(param_1 + 0x3698);
+        if (iVar7 < 0x10) {
+          FUN_00488d70();
+          iVar7 = *(int *)(param_1 + 0x3698);
+        }
+        uVar6 = *(uint *)(param_1 + 0x3694);
+        cVar3 = (char)iVar7;
+        uVar5 = (uint)*(byte *)((uVar6 >> (cVar3 - 9U & 0x1f) & 0x1ff) + param_4);
+        if (uVar5 < 0xff) {
+          uVar6 = (uint)*(byte *)(uVar5 + 0x500 + param_4);
+          if (iVar7 < (int)uVar6) break;
+          iVar7 = iVar7 - uVar6;
+        }
+        else {
+          if (iVar7 < 0x10) {
+            uVar5 = uVar6 << (0x10U - cVar3 & 0x1f);
+          }
+          else {
+            uVar5 = uVar6 >> (cVar3 - 0x10U & 0x1f);
+          }
+          iVar9 = 10;
+          puVar8 = (uint *)(param_4 + 0x62c);
+          uVar1 = *puVar8;
+          while (uVar1 <= (uVar5 & 0xffff)) {
+            puVar8 = puVar8 + 1;
+            iVar9 = iVar9 + 1;
+            uVar1 = *puVar8;
+          }
+          if (iVar9 == 0x11) goto LAB_004890ff;
+          if (iVar7 < iVar9) break;
+          iVar7 = iVar7 - iVar9;
+          uVar5 = (uVar6 >> ((byte)iVar7 & 0x1f) & *(uint *)(&DAT_0095b3b0 + iVar9 * 4)) +
+                  *(int *)(param_4 + 0x64c + iVar9 * 4);
+        }
+        *(int *)(param_1 + 0x3698) = iVar7;
+        bVar4 = *(byte *)(uVar5 + 0x400 + param_4);
+        uVar6 = bVar4 & 0xf;
+        if ((bVar4 & 0xf) == 0) {
+          if (bVar4 != 0xf0) {
+            return 1;
+          }
+          param_3 = param_3 + 0x10;
+        }
+        else {
+          param_3 = param_3 + (uint)(bVar4 >> 4);
+          if (iVar7 < (int)uVar6) {
+            FUN_00488d70();
+            iVar7 = *(int *)(param_1 + 0x3698);
+          }
+          uVar5 = *(uint *)(&DAT_0095b3b0 + uVar6 * 4) &
+                  *(uint *)(param_1 + 0x3694) >> ((byte)(iVar7 - uVar6) & 0x1f);
+          *(uint *)(param_1 + 0x3698) = iVar7 - uVar6;
+          if (uVar5 < (uint)(1 << ((signed char)uVar6 - 1U & 0x1f))) {
+            uVar5 = (uVar5 - (1 << (signed char)uVar6)) + 1;
+          }
+          param_2[(byte)(&DAT_0095b490)[param_3]] = (short)uVar5;
+          param_3 = param_3 + 1;
+        }
+        if (0x3f < param_3) {
+          return 1;
+        }
+      } while( true );
+    }
+  }
+  else {
+    if (iVar7 < 0x10) {
+      uVar5 = uVar6 << (0x10U - cVar3 & 0x1f);
+    }
+    else {
+      uVar5 = uVar6 >> (cVar3 - 0x10U & 0x1f);
+    }
+    iVar9 = 10;
+    puVar8 = (uint *)(param_3 + 0x62c);
+    uVar1 = *puVar8;
+    while (uVar1 <= (uVar5 & 0xffff)) {
+      puVar8 = puVar8 + 1;
+      iVar9 = iVar9 + 1;
+      uVar1 = *puVar8;
+    }
+    if (iVar9 == 0x11) {
+LAB_004890ff:
+      *(int *)(param_1 + 0x3698) = iVar7 + -0x10;
+    }
+    else if (iVar9 <= iVar7) {
+      uVar5 = *(uint *)(&DAT_0095b3b0 + iVar9 * 4);
+      iVar2 = *(int *)(param_3 + 0x64c + iVar9 * 4);
+      *(int *)(param_1 + 0x3698) = iVar7 - iVar9;
+      bVar4 = *(byte *)((uVar6 >> ((byte)(iVar7 - iVar9) & 0x1f) & uVar5) + iVar2 + 0x400 + param_3)
+      ;
+      goto LAB_00488f11;
+    }
+  }
+  DAT_009936c8 = "Corrupt JPEG";
+  return 0;
+}
+
+
+//==== 00491210 00491210_convert_image_to_DXT5 ====
+// decompiled by BatchDecomp @ 00491210 name=convert_image_to_DXT5 conv=__cdecl body=1196
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* convert_image_to_DXT5 */
+
+void __cdecl convert_image_to_DXT5(int param_1,int param_2,size_t *param_3)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  char cVar2;
+  void *pvVar3;
+  uint uVar4;
+  signed char sVar5;
+  int in_ECX;
+  size_t _Size;
+  int iVar6;
+  int iVar7;
+  int in_EDX;
+  int iVar8;
+  uint uVar9;
+  char *pcVar10;
+  char *pcVar11;
+  uint uVar12;
+  uint uVar13;
+  int iVar14;
+  byte *pbVar15;
+  int iVar16;
+  int iVar17;
+  byte *pbVar18;
+  int local_a8;
+  int local_98;
+  int local_8c;
+  int local_88;
+  int local_84;
+  int local_80;
+  uint local_74;
+  int local_70[4];
+  undefined4 local_60;
+  undefined4 uStack_5c;
+  undefined4 uStack_58;
+  undefined4 uStack_54;
+  byte local_50[72];
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_a8 = 0;
+  *param_3 = 0;
+  if ((((0 < in_EDX) && (0 < param_1)) && (in_ECX != 0)) && (param_2 - 1U < 4)) {
+    _Size = (in_EDX + 3 >> 2) * (param_1 + 3 >> 2) * 0x10;
+    *param_3 = _Size;
+    pvVar3 = malloc(_Size);
+    local_84 = 0;
+    if (0 < param_1) {
+      local_8c = 0;
+      local_88 = param_1;
+      do {
+        iVar14 = 0;
+        local_80 = in_EDX;
+        if (0 < in_EDX) {
+          do {
+            iVar8 = 0;
+            iVar1 = iVar14 + 4;
+            iVar16 = 4;
+            if (param_1 <= local_84 + 4) {
+              iVar16 = local_88;
+            }
+            iVar6 = 4;
+            if (in_EDX <= iVar1) {
+              iVar6 = local_80;
+            }
+            if (0 < iVar16) {
+              iVar17 = (local_8c + iVar14) * param_2;
+              pcVar10 = (char *)(in_ECX + -1 + (local_8c + iVar14 + 1) * param_2);
+              iVar14 = iVar16;
+              do {
+                if (0 < iVar6) {
+                  pbVar15 = (byte *)(in_ECX + iVar17);
+                  pbVar18 = (byte *)(iVar17 + (uint)(2 < param_2) * 2 + in_ECX);
+                  pcVar11 = pcVar10;
+                  local_98 = iVar6;
+                  do {
+                    cVar2 = *pcVar11;
+                    local_50[iVar8] = *pbVar15;
+                    local_50[iVar8 + 1] = pbVar15[2 < param_2];
+                    local_50[iVar8 + 2] = *pbVar18;
+                    pbVar15 = pbVar15 + param_2;
+                    pbVar18 = pbVar18 + param_2;
+                    pcVar11 = pcVar11 + param_2;
+                    local_50[iVar8 + 3] = (cVar2 + '\x01') * ('\x01' - ((byte)param_2 & 1)) - 1;
+                    iVar8 = iVar8 + 4;
+                    local_98 = local_98 + -1;
+                  } while (local_98 != 0);
+                }
+                if (iVar6 < 4) {
+                  iVar7 = 4 - iVar6;
+                  do {
+                    local_50[iVar8] = local_50[0];
+                    local_50[iVar8 + 1] = local_50[1];
+                    local_50[iVar8 + 2] = local_50[2];
+                    local_50[iVar8 + 3] = local_50[3];
+                    iVar8 = iVar8 + 4;
+                    iVar7 = iVar7 + -1;
+                  } while (iVar7 != 0);
+                }
+                iVar17 = iVar17 + in_EDX * param_2;
+                pcVar10 = pcVar10 + in_EDX * param_2;
+                iVar14 = iVar14 + -1;
+              } while (iVar14 != 0);
+            }
+            if (iVar16 < 4) {
+              iVar16 = 4 - iVar16;
+              do {
+                local_50[iVar8] = local_50[0];
+                local_50[iVar8 + 1] = local_50[1];
+                local_50[iVar8 + 2] = local_50[2];
+                local_50[iVar8 + 3] = local_50[3];
+                local_50[iVar8 + 4] = local_50[0];
+                local_50[iVar8 + 5] = local_50[1];
+                local_50[iVar8 + 6] = local_50[2];
+                local_50[iVar8 + 7] = local_50[3];
+                local_50[iVar8 + 8] = local_50[0];
+                local_50[iVar8 + 9] = local_50[1];
+                local_50[iVar8 + 10] = local_50[2];
+                local_50[iVar8 + 0xb] = local_50[3];
+                local_50[iVar8 + 0xc] = local_50[0];
+                local_50[iVar8 + 0xd] = local_50[1];
+                local_50[iVar8 + 0xe] = local_50[2];
+                local_50[iVar8 + 0xf] = local_50[3];
+                iVar16 = iVar16 + -1;
+                iVar8 = iVar8 + 0x10;
+              } while (iVar16 != 0);
+            }
+            iVar14 = 7;
+            uVar9 = (uint)local_50[3];
+            local_70[0] = ___xmm_00000005000000060000000700000001;
+            local_70[1] = _UNK_0095b564;
+            local_70[2] = _UNK_0095b568;
+            local_70[3] = _UNK_0095b56c;
+            local_60 = ___xmm_00000000000000020000000300000004;
+            uStack_5c = _UNK_0095b524;
+            uStack_58 = _UNK_0095b528;
+            uStack_54 = _UNK_0095b52c;
+            uVar12 = uVar9;
+            do {
+              uVar4 = (uint)local_50[iVar14];
+              uVar13 = uVar4;
+              if ((uVar4 <= uVar12) && (uVar13 = uVar12, uVar4 < uVar9)) {
+                uVar9 = uVar4;
+              }
+              iVar14 = iVar14 + 4;
+              uVar12 = uVar13;
+            } while (iVar14 < 0x40);
+            local_50[0x40] = (char)uVar13;
+            local_50[0x41] = (char)uVar9;
+            local_50[0x42] = 0;
+            local_50[0x43] = 0;
+            local_50[0x44] = 0;
+            local_50[0x45] = 0;
+            local_50[0x46] = 0;
+            local_50[0x47] = 0;
+            iVar14 = 3;
+            local_74 = 0x10;
+            do {
+              iVar8 = local_70[(int)((float)(int)(local_50[iVar14] - uVar9) *
+                                    (/*40ffff2e*/7.999899864196777f / (float)(int)(uVar13 - uVar9))) & 7];
+              sVar5 = (signed char)(local_74 & 7);
+              local_50[((int)local_74 >> 3) + 0x40] =
+                   local_50[((int)local_74 >> 3) + 0x40] | (char)iVar8 << sVar5;
+              if (5 < (local_74 & 7)) {
+                local_50[((int)local_74 >> 3) + 0x41] =
+                     local_50[((int)local_74 >> 3) + 0x41] | (byte)(iVar8 >> (8U - sVar5 & 0x1f));
+              }
+              iVar14 = iVar14 + 4;
+              local_74 = local_74 + 3;
+            } while (iVar14 < 0x40);
+            *(byte *)((int)pvVar3 + local_a8) = local_50[0x40];
+            *(byte *)((int)pvVar3 + local_a8 + 1) = local_50[0x41];
+            *(byte *)((int)pvVar3 + local_a8 + 2) = local_50[0x42];
+            *(byte *)((int)pvVar3 + local_a8 + 3) = local_50[0x43];
+            *(byte *)((int)pvVar3 + local_a8 + 4) = local_50[0x44];
+            *(byte *)((int)pvVar3 + local_a8 + 5) = local_50[0x45];
+            *(byte *)((int)pvVar3 + local_a8 + 6) = local_50[0x46];
+            *(byte *)((int)pvVar3 + local_a8 + 7) = local_50[0x47];
+            compress_DDS_color_block(local_50 + 0x40);
+            *(byte *)((int)pvVar3 + local_a8 + 8) = local_50[0x40];
+            local_80 = local_80 + -4;
+            *(byte *)((int)pvVar3 + local_a8 + 9) = local_50[0x41];
+            *(byte *)((int)pvVar3 + local_a8 + 10) = local_50[0x42];
+            *(byte *)((int)pvVar3 + local_a8 + 0xb) = local_50[0x43];
+            *(byte *)((int)pvVar3 + local_a8 + 0xc) = local_50[0x44];
+            *(byte *)((int)pvVar3 + local_a8 + 0xd) = local_50[0x45];
+            *(byte *)((int)pvVar3 + local_a8 + 0xe) = local_50[0x46];
+            *(byte *)((int)pvVar3 + local_a8 + 0xf) = local_50[0x47];
+            local_a8 = local_a8 + 0x10;
+            iVar14 = iVar1;
+          } while (iVar1 < in_EDX);
+        }
+        local_84 = local_84 + 4;
+        local_8c = local_8c + in_EDX * 4;
+        local_88 = local_88 + -4;
+      } while (local_84 < param_1);
+      __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+      return;
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 0049b300 0049b300_Find ====
 // decompiled by BatchDecomp @ 0049b300 name=Find conv=__thiscall body=213
 
@@ -4225,6 +4584,138 @@ double __thiscall RailgunCompartment__GetOperatingTemperature_K(RailgunCompartme
 }
 
 
+//==== 006716e0 006716e0_GetFinalProducts ====
+// decompiled by BatchDecomp @ 006716e0 name=GetFinalProducts conv=__thiscall body=496
+
+/* public: class util__Darray_L_MaterialConstituent_G_ __thiscall
+   DissociationReaction__GetFinalProducts(class Material const *,double,double)const  */
+
+util__Darray_L_MaterialConstituent_G_ * __thiscall
+DissociationReaction__GetFinalProducts(DissociationReaction *this,util__Darray_L_MaterialConstituent_G_ *__return_storage_ptr__,
+          Material *p1,double p2,double p3)
+
+{
+  undefined4 stack0xfffffffc;
+  undefined4 uVar1;
+  double dVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  bool bVar6;
+  int iVar7;
+  undefined4 *puVar8;
+  undefined4 *puVar9;
+  undefined4 unaff_EDI;
+  undefined4 uStack_44;
+  int local_38;
+  undefined1 local_34[8];
+  undefined8 uStack_2c;
+  double local_24;
+  util__Darray_L_MaterialConstituent_G_ local_1c;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_24 = GetDissociationFraction
+                       (this,p1,(double)CONCAT44(SUB84(p3,0),(int)((ulonglong)p2 >> 0x20)),
+                        (double)CONCAT44(unaff_EDI,(int)((ulonglong)p3 >> 0x20)));
+  GetProducts(this,&local_1c);
+  (*(void **)&__return_storage_ptr__) = (undefined1 *)0x0;
+  __return_storage_ptr__->Data = (undefined1 *)0x0;
+  __return_storage_ptr__->Size = 0;
+  __return_storage_ptr__->Capacity = 0;
+  iVar7 = (**(code **)((int)(*(void **)&local_1c) + 0xc))();
+  util__Darray_struct_MaterialConstituent___Darray_struct_MaterialConstituent__o2((Darray_L_struct_MaterialConstituent_G_ *)__return_storage_ptr__,iVar7 + 1);
+  iVar7 = __return_storage_ptr__->Size;
+  uStack_2c = /*3ff0000000000000*/1.0 - local_24;
+  ((slice_view *)&local_34)->_0_4_ = p1;
+  local_c = iVar7 + 1;
+  util__Darray_struct_MaterialConstituent___SetSize((Darray_L_struct_MaterialConstituent_G_ *)__return_storage_ptr__,&local_c);
+  bVar6 = util__Darray_struct_util__tuple2_class_WeaponModule__double_____CheckSize((Darray_L_struct_util__tuple2_L_class_WeaponModule__double_G__G *)
+                     __return_storage_ptr__,iVar7);
+  if (bVar6) {
+    puVar8 = (undefined4 *)
+             (__return_storage_ptr__->Data + __return_storage_ptr__->Size * 0x10 + -0x10);
+    *puVar8 = ((slice_view *)&local_34)->_0_4_;
+    puVar8[1] = ((slice_view *)&local_34)->_4_4_;
+    puVar8[2] = (int)uStack_2c;
+    puVar8[3] = ((slice_view *)&uStack_2c)->_4_4_;
+  }
+  ((slice_view *)&local_34)->_0_4_ = (undefined1 *)0x0;
+  ((slice_view *)&local_34)->_4_4_ = (undefined4 *)0x0;
+  ((slice_view *)&uStack_2c)->_0_4_ = 0;
+  ((slice_view *)&uStack_2c)->_4_4_ = 0;
+  iVar7 = (**(code **)((int)(*(void **)&local_1c) + 0xc))();
+  util__Darray_struct_MaterialConstituent___Darray_struct_MaterialConstituent__o2((Darray_L_struct_MaterialConstituent_G_ *)local_34,iVar7);
+  local_c = 0;
+  iVar7 = (**(code **)((int)(*(void **)&local_1c) + 0xc))();
+  if (local_c < iVar7) {
+    do {
+      puVar8 = (undefined4 *)(**(code **)(*(void **)&local_1c))(&local_c);
+      iVar7 = (int)uStack_2c;
+      uVar1 = *puVar8;
+      dVar2 = *(double *)(puVar8 + 2) * local_24;
+      local_38 = (int)uStack_2c + 1;
+      util__Darray_struct_MaterialConstituent___SetSize((Darray_L_struct_MaterialConstituent_G_ *)local_34,&local_38);
+      bVar6 = util__Darray_struct_util__tuple2_class_WeaponModule__double_____CheckSize((Darray_L_struct_util__tuple2_L_class_WeaponModule__double_G__G *)local_34,iVar7)
+      ;
+      if (bVar6) {
+        puVar8 = (undefined4 *)(((slice_view *)&local_34)->_4_4_ + ((int)uStack_2c * 4 + -4) * 4);
+        *puVar8 = uVar1;
+        puVar8[1] = uStack_44;
+        *(double *)(puVar8 + 2) = dVar2;
+      }
+      local_c = local_c + 1;
+      iVar7 = (**(code **)((int)(*(void **)&local_1c) + 0xc))();
+    } while (local_c < iVar7);
+  }
+  if (__return_storage_ptr__->Size == 0) {
+    util__Darray_struct_MaterialConstituent___operator
+              ((Darray_L_struct_MaterialConstituent_G_ *)__return_storage_ptr__,
+               (util__Darray_L_MaterialComposition_G_ *)local_34);
+  }
+  else {
+    iVar7 = (**(code **)(((slice_view *)&local_34)->_0_4_ + 0xc))();
+    if (iVar7 != 0) {
+      iVar7 = __return_storage_ptr__->Size;
+      local_38 = (**(code **)(((slice_view *)&local_34)->_0_4_ + 0xc))();
+      local_38 = local_38 + __return_storage_ptr__->Size;
+      util__Darray_struct_MaterialConstituent___SetSize((Darray_L_struct_MaterialConstituent_G_ *)__return_storage_ptr__,&local_38);
+      util__Darray_struct_util__tuple2_class_WeaponModule__double_____CheckSize((Darray_L_struct_util__tuple2_L_class_WeaponModule__double_G__G *)__return_storage_ptr__,
+                 iVar7);
+      puVar9 = (undefined4 *)(__return_storage_ptr__->Data + iVar7 * 0x10);
+      puVar8 = (undefined4 *)((slice_view *)&local_34)->_4_4_;
+      if (puVar9 != (undefined4 *)
+                    (__return_storage_ptr__->Data + __return_storage_ptr__->Size * 0x10)) {
+        do {
+          uVar1 = *puVar8;
+          uVar3 = puVar8[1];
+          uVar4 = puVar8[2];
+          uVar5 = puVar8[3];
+          puVar8 = puVar8 + 4;
+          *puVar9 = uVar1;
+          puVar9[1] = uVar3;
+          puVar9[2] = uVar4;
+          puVar9[3] = uVar5;
+          puVar9 = puVar9 + 4;
+        } while (puVar9 != (undefined4 *)
+                           (__return_storage_ptr__->Data + __return_storage_ptr__->Size * 0x10));
+      }
+    }
+  }
+  ((slice_view *)&local_34)->_0_4_ = ((void *)(0x00919b30u));
+  if ((undefined4 *)((slice_view *)&local_34)->_4_4_ != (undefined4 *)0x0) {
+    operator_delete__((void *)((slice_view *)&local_34)->_4_4_);
+  }
+  (*(void **)&local_1c) = (undefined1 *)((void *)(0x00919b30u));
+  if (local_1c.Data != (undefined1 *)0x0) {
+    operator_delete__(local_1c.Data);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
+}
+
+
 //==== 00690370 00690370_PrintAcceleration ====
 // decompiled by BatchDecomp @ 00690370 name=PrintAcceleration conv=__cdecl body=47
 
@@ -4374,10 +4865,398 @@ util__Vec2_L_int_G __thiscall LevelEditorBodyUI__GetScreenPosition(LevelEditorBo
 }
 
 
+//==== 00717e80 00717e80_FUN_00717e80 ====
+extern undefined4 FUN_00716850(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+void __thiscall FUN_00717e80(undefined4 *param_1,int *param_2);
+
+// decompiled by BatchDecomp @ 00717e80 name=FUN_00717e80 conv=unknown body=2119
+
+void __thiscall FUN_00717e80(undefined4 *param_1,int *param_2)
+
+{
+  undefined4 stack0xfffffecc;
+  undefined4 stack0xfffffed8;
+  undefined4 stack0xfffffffc;
+  int *piVar1;
+  int iVar2;
+  int iVar3;
+  bool bVar4;
+  undefined1 *puVar5;
+  int iVar6;
+  int *piVar7;
+  undefined4 *puVar8;
+  void *pvVar9;
+  Str_L_char_G_ *pSVar10;
+  util__Str_L_char_G_ *puVar11;
+  char *extraout_ECX;
+  char *extraout_ECX_00;
+  char *in_stack_fffffecc;
+  char *pcVar12;
+  void *local_10c[3];
+  void *local_100;
+  Str_L_char_G_ local_f4;
+  void *local_e8[3];
+  undefined **local_dc;
+  void *local_d8;
+  util__Str_L_char_G_ local_cc;
+  int local_c0;
+  undefined4 *local_bc;
+  int *local_b8;
+  undefined **local_b4;
+  void *pvStack_b0;
+  undefined4 uStack_ac;
+  undefined4 uStack_a8;
+  util__Darray_L_Level___G_ local_a4;
+  util__Darray_L_Level___G_ local_94;
+  int **local_84;
+  undefined **local_80;
+  void *pvStack_7c;
+  undefined4 uStack_78;
+  undefined4 uStack_74;
+  undefined **local_70;
+  void *local_6c;
+  int local_68;
+  undefined4 local_64;
+  undefined **local_60;
+  void *local_5c;
+  int local_58;
+  undefined4 local_54;
+  undefined **local_50;
+  void *local_4c;
+  int local_48;
+  undefined4 local_44;
+  undefined **local_40;
+  void *local_3c;
+  int local_38;
+  undefined4 local_34;
+  undefined **local_30;
+  void *local_2c;
+  int local_28;
+  undefined4 local_24;
+  undefined **local_20;
+  void *local_1c;
+  int local_18;
+  undefined4 local_14;
+  undefined1 local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_b8 = param_2;
+  local_bc = param_1;
+  if (*(char *)*param_1 != '\0') {
+    (**(code **)(*(int *)(uintptr_t)param_2 + 0x48))(&stack0xfffffecc);
+    puVar5 = (undefined1 *)
+             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,in_stack_fffffecc);
+    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
+           *)param_1[1],puVar5);
+    local_dc = ((void *)(0x009199e4u));
+    if (local_d8 != (void *)0x0) {
+      operator_delete__(local_d8);
+    }
+    local_d8 = (void *)0x0;
+    local_dc = ((void *)(0x00919488u));
+    if (local_e8[0] != (void *)0x0) {
+      operator_delete__(local_e8[0]);
+    }
+  }
+  piVar1 = (int *)param_1[2];
+  local_84 = &local_b8;
+  local_30 = ((void *)(0x009194a4u));
+  local_2c = (void *)0x0;
+  local_28 = 0;
+  local_24 = 0;
+  local_20 = ((void *)(0x009194a4u));
+  local_1c = (void *)0x0;
+  local_18 = 0;
+  local_14 = 0;
+  local_c = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar1 + 0xc))();
+  if (local_c < iVar6) {
+    do {
+      piVar7 = (int *)(**(code **)*piVar1)();
+      iVar6 = *piVar7;
+      if (*(char *)(iVar6 + 0xf8) == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x17,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+      iVar3 = local_18;
+      iVar2 = local_28;
+      if (*local_84 == *(int **)(iVar6 + 0xa8)) {
+        local_c0 = local_28 + 1;
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_30,&local_c0);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_30,iVar2);
+        pvVar9 = local_2c;
+        iVar6 = local_28;
+        if (bVar4) {
+LAB_00718036:
+          *(int *)((int)pvVar9 + iVar6 * 4 + -4) = *piVar7;
+        }
+      }
+      else {
+        local_c0 = local_18 + 1;
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_20,&local_c0);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_20,iVar3);
+        pvVar9 = local_1c;
+        iVar6 = local_18;
+        if (bVar4) goto LAB_00718036;
+      }
+      local_c = local_c + 1;
+      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar1 + 0xc))();
+      param_1 = local_bc;
+    } while (local_c < iVar6);
+  }
+  local_10 = 0;
+  local_70 = ((void *)(0x009194a4u));
+  local_6c = (void *)0x0;
+  local_68 = 0;
+  local_64 = 0;
+  local_60 = ((void *)(0x009194a4u));
+  local_5c = (void *)0x0;
+  local_58 = 0;
+  local_54 = 0;
+  local_c = 0;
+  iVar6 = (*(code *)local_30[3])();
+  if (local_c < iVar6) {
+    do {
+      puVar8 = (undefined4 *)(*(code *)*local_30)();
+      bVar4 = CelestialBody__IsMajorPlanet((CelestialBody *)*puVar8);
+      iVar2 = local_58;
+      iVar6 = local_68;
+      if (bVar4) {
+        local_bc = (undefined4 *)(local_68 + 1);
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_70,(int *)&local_bc);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_70,iVar6);
+        pvVar9 = local_6c;
+        iVar6 = local_68;
+        if (bVar4) {
+LAB_00718127:
+          *(undefined4 *)((int)pvVar9 + iVar6 * 4 + -4) = *puVar8;
+        }
+      }
+      else {
+        local_bc = (undefined4 *)(local_58 + 1);
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_60,(int *)&local_bc);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_60,iVar2);
+        pvVar9 = local_5c;
+        iVar6 = local_58;
+        if (bVar4) goto LAB_00718127;
+      }
+      local_c = local_c + 1;
+      iVar6 = (*(code *)local_30[3])();
+    } while (local_c < iVar6);
+  }
+  local_b4 = (undefined **)0x0;
+  pvStack_b0 = (void *)0x0;
+  uStack_ac = 0;
+  uStack_a8 = 0;
+  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_b4,(Darray_L_bool_P_G_ *)&local_70);
+  local_80 = (undefined **)0x0;
+  pvStack_7c = (void *)0x0;
+  uStack_78 = 0;
+  uStack_74 = 0;
+  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_80,(Darray_L_bool_P_G_ *)&local_60);
+  FUN_00716850();
+  local_10 = 0;
+  local_50 = ((void *)(0x009194a4u));
+  local_4c = (void *)0x0;
+  local_48 = 0;
+  local_44 = 0;
+  local_40 = ((void *)(0x009194a4u));
+  local_3c = (void *)0x0;
+  local_38 = 0;
+  local_34 = 0;
+  local_c = 0;
+  iVar6 = (*(code *)local_80[3])();
+  if (local_c < iVar6) {
+    do {
+      puVar8 = (undefined4 *)(*(code *)*local_80)();
+      bVar4 = CelestialBody__IsDwarfPlanet((CelestialBody *)*puVar8);
+      iVar2 = local_38;
+      iVar6 = local_48;
+      if (bVar4) {
+        local_bc = (undefined4 *)(local_48 + 1);
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_50,(int *)&local_bc);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_50,iVar6);
+        pvVar9 = local_4c;
+        iVar6 = local_48;
+        if (bVar4) {
+LAB_0071824f:
+          *(undefined4 *)((int)pvVar9 + iVar6 * 4 + -4) = *puVar8;
+        }
+      }
+      else {
+        local_bc = (undefined4 *)(local_38 + 1);
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_40,(int *)&local_bc);
+        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_40,iVar2);
+        pvVar9 = local_3c;
+        iVar6 = local_38;
+        if (bVar4) goto LAB_0071824f;
+      }
+      local_c = local_c + 1;
+      iVar6 = (*(code *)local_80[3])();
+    } while (local_c < iVar6);
+  }
+  (*(void **)&local_a4) = (undefined1 *)0x0;
+  local_a4.Data = (undefined1 **)0x0;
+  local_a4.Size = 0;
+  local_a4.Capacity = 0;
+  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_a4,(Darray_L_bool_P_G_ *)&local_50);
+  (*(void **)&local_94) = (undefined1 *)0x0;
+  local_94.Data = (undefined1 **)0x0;
+  local_94.Size = 0;
+  local_94.Capacity = 0;
+  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_94,(Darray_L_bool_P_G_ *)&local_40);
+  if (0 < local_a4.Size) {
+    util__Str_char___Str_char__o5(&local_f4,"DwarfPlanets");
+    local_cc.Data = 0;
+    local_cc.Capacity = 0;
+    local_cc.Length = 0;
+util__FUN_00717e80((util__Darray_L_Reflectable_G *)&stack0xfffffed8,&local_a4);
+    pSVar10 = &local_f4;
+    pcVar12 = extraout_ECX;
+    util__LocStr__LocStr((LocStr *)local_10c,(util__Str_L_char_G_ *)pSVar10,&local_cc);
+    puVar11 = util__LocStr__operator__o3((LocStr *)pSVar10);
+    util__Str_char___Str_char((Str_L_char_G_ *)&stack0xfffffecc,puVar11);
+    puVar5 = (undefined1 *)
+             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,pcVar12);
+    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
+           *)param_1[1],puVar5);
+    local_dc = ((void *)(0x009199e4u));
+    if (local_d8 != (void *)0x0) {
+      operator_delete__(local_d8);
+    }
+    local_d8 = (void *)0x0;
+    local_dc = ((void *)(0x00919488u));
+    if (local_e8[0] != (void *)0x0) {
+      operator_delete__(local_e8[0]);
+      local_e8[0] = (void *)0x0;
+    }
+    if (local_100 != (void *)0x0) {
+      operator_delete__(local_100);
+      local_100 = (void *)0x0;
+    }
+    if (local_10c[0] != (void *)0x0) {
+      operator_delete__(local_10c[0]);
+      local_10c[0] = (void *)0x0;
+    }
+    if ((void *)local_cc.Data != (void *)0x0) {
+      operator_delete__((void *)local_cc.Data);
+      local_cc.Data = 0;
+    }
+    if (local_f4.Data != (char *)0x0) {
+      operator_delete__(local_f4.Data);
+    }
+  }
+  if (0 < local_94.Size) {
+    util__Str_char___Str_char__o5(&local_f4,"Asteroids");
+    local_cc.Data = 0;
+    local_cc.Capacity = 0;
+    local_cc.Length = 0;
+util__FUN_00717e80((util__Darray_L_Reflectable_G *)&stack0xfffffed8,&local_94);
+    pSVar10 = &local_f4;
+    pcVar12 = extraout_ECX_00;
+    util__LocStr__LocStr((LocStr *)local_10c,(util__Str_L_char_G_ *)pSVar10,&local_cc);
+    puVar11 = util__LocStr__operator__o3((LocStr *)pSVar10);
+    util__Str_char___Str_char((Str_L_char_G_ *)&stack0xfffffecc,puVar11);
+    puVar5 = (undefined1 *)
+             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,pcVar12);
+    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
+           *)param_1[1],puVar5);
+    local_dc = ((void *)(0x009199e4u));
+    if (local_d8 != (void *)0x0) {
+      operator_delete__(local_d8);
+    }
+    local_d8 = (void *)0x0;
+    local_dc = ((void *)(0x00919488u));
+    if (local_e8[0] != (void *)0x0) {
+      operator_delete__(local_e8[0]);
+      local_e8[0] = (void *)0x0;
+    }
+    if (local_100 != (void *)0x0) {
+      operator_delete__(local_100);
+      local_100 = (void *)0x0;
+    }
+    if (local_10c[0] != (void *)0x0) {
+      operator_delete__(local_10c[0]);
+      local_10c[0] = (void *)0x0;
+    }
+    if ((void *)local_cc.Data != (void *)0x0) {
+      operator_delete__((void *)local_cc.Data);
+      local_cc.Data = 0;
+    }
+    if (local_f4.Data != (char *)0x0) {
+      operator_delete__(local_f4.Data);
+    }
+  }
+  (*(void **)&local_94) = (undefined1 *)((void *)(0x009194a4u));
+  if (local_94.Data != (undefined1 **)0x0) {
+    operator_delete__(local_94.Data);
+  }
+  local_94.Data = (undefined1 **)0x0;
+  (*(void **)&local_94) = (undefined1 *)((void *)(0x00919488u));
+  (*(void **)&local_a4) = (undefined1 *)((void *)(0x009194a4u));
+  if (local_a4.Data != (undefined1 **)0x0) {
+    operator_delete__(local_a4.Data);
+  }
+  local_a4.Data = (undefined1 **)0x0;
+  (*(void **)&local_a4) = (undefined1 *)((void *)(0x00919488u));
+  local_40 = ((void *)(0x009194a4u));
+  if (local_3c != (void *)0x0) {
+    operator_delete__(local_3c);
+  }
+  local_3c = (void *)0x0;
+  local_40 = ((void *)(0x00919488u));
+  local_50 = ((void *)(0x009194a4u));
+  if (local_4c != (void *)0x0) {
+    operator_delete__(local_4c);
+  }
+  local_4c = (void *)0x0;
+  local_50 = ((void *)(0x00919488u));
+  local_80 = ((void *)(0x009194a4u));
+  if (pvStack_7c != (void *)0x0) {
+    operator_delete__(pvStack_7c);
+  }
+  pvStack_7c = (void *)0x0;
+  local_80 = ((void *)(0x00919488u));
+  local_b4 = ((void *)(0x009194a4u));
+  if (pvStack_b0 != (void *)0x0) {
+    operator_delete__(pvStack_b0);
+  }
+  pvStack_b0 = (void *)0x0;
+  local_b4 = ((void *)(0x00919488u));
+  local_60 = ((void *)(0x009194a4u));
+  if (local_5c != (void *)0x0) {
+    operator_delete__(local_5c);
+  }
+  local_5c = (void *)0x0;
+  local_60 = ((void *)(0x00919488u));
+  local_70 = ((void *)(0x009194a4u));
+  if (local_6c != (void *)0x0) {
+    operator_delete__(local_6c);
+  }
+  local_6c = (void *)0x0;
+  local_70 = ((void *)(0x00919488u));
+  local_20 = ((void *)(0x009194a4u));
+  if (local_1c != (void *)0x0) {
+    operator_delete__(local_1c);
+  }
+  local_1c = (void *)0x0;
+  local_20 = ((void *)(0x00919488u));
+  local_30 = ((void *)(0x009194a4u));
+  if (local_2c != (void *)0x0) {
+    operator_delete__(local_2c);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 0073e220 0073e220_FindIndex ====
 // decompiled by BatchDecomp @ 0073e220 name=FindIndex conv=__thiscall body=106
 
-/* public: class util__Maybe_L_int_G_ __thiscall util__Darray_struct_ItineraryNode___FindIndex(struct
+/* public: class util__Maybe_L_int_G_ __thiscall util_Darray_struct_ItineraryNode_FindIndex(struct
    ItineraryNode const &)const  */
 
 util__Maybe_L_int_G __thiscall
@@ -4420,7 +5299,7 @@ util_Darray_struct_ItineraryNode_FindIndex(Darray_L_struct_ItineraryNode_G_ *thi
 //==== 0076f840 0076f840_MethodCaller_UIListBox_ActorDropdownAction___private__void___thiscall_U ====
 // decompiled by BatchDecomp @ 0076f840 name=MethodCaller_L_struct_UIListBox_L_struct_ActorDropdownAction_G___private_void___thiscall_UIListBox_L_struct_ActorDropdownAction_G___OnChangedSearchString_void__G conv=__cdecl body=12
 
-/* private: static void __cdecl util__Delegate_void___MethodCaller_struct_UIListBox_struct_ActorDropdownAction___private__void___thiscall_UIListBox_struct_ActorDropdownAction___OnChangedSearchString_void__(void *) */
+/* private: static void __cdecl util_Delegate_void_MethodCaller_struct_UIListBox_struct_ActorDropdownAction_private_void_thiscall_UIListBox_struct_ActorDropdownAction_OnChangedSearchString_void(void *) */
 
 void __cdecl
 util_Delegate_void_MethodCaller_struct_UIListBox_struct_ActorDropdownAction_private_void_thiscall_UIListBox_struct_ActorDropdownAction_OnChangedSearchString_void(void *param_1)
@@ -4434,7 +5313,7 @@ util_Delegate_void_MethodCaller_struct_UIListBox_struct_ActorDropdownAction_priv
 //==== 00778cd0 00778cd0_ScrollToDatum ====
 // decompiled by BatchDecomp @ 00778cd0 name=ScrollToDatum conv=__thiscall body=316
 
-/* public: void __thiscall UIListBox_struct_ActorDropdownAction___ScrollToDatum(struct
+/* public: void __thiscall UIListBox_struct_ActorDropdownAction_ScrollToDatum(struct
    ActorDropdownAction) */
 
 void __thiscall
@@ -4513,7 +5392,7 @@ LAB_00778d6f:
 //==== 0077a130 0077a130_MethodCaller_UIListBox_ItineraryNode___private__void___thiscall_UIListB ====
 // decompiled by BatchDecomp @ 0077a130 name=MethodCaller_L_struct_UIListBox_L_struct_ItineraryNode_G___private_void___thiscall_UIListBox_L_struct_ItineraryNode_G___OnChangedSearchString_void__G conv=__cdecl body=12
 
-/* private: static void __cdecl util__Delegate_void___MethodCaller_struct_UIListBox_struct_ItineraryNode___private__void___thiscall_UIListBox_struct_ItineraryNode___OnChangedSearchString_void__(void *) */
+/* private: static void __cdecl util_Delegate_void_MethodCaller_struct_UIListBox_struct_ItineraryNode_private_void_thiscall_UIListBox_struct_ItineraryNode_OnChangedSearchString_void(void *) */
 
 void __cdecl
 util_Delegate_void_MethodCaller_struct_UIListBox_struct_ItineraryNode_private_void_thiscall_UIListBox_struct_ItineraryNode_OnChangedSearchString_void(void *param_1)
@@ -4529,7 +5408,7 @@ util_Delegate_void_MethodCaller_struct_UIListBox_struct_ItineraryNode_private_vo
 // decompiled by BatchDecomp @ 0077e9b0 name=operator() conv=__thiscall body=334
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: struct ItineraryNode __thiscall util__Delegate_struct_ItineraryNode___operator__()(void)const  */
+/* public: struct ItineraryNode __thiscall util_Delegate_struct_ItineraryNode_operator()(void)const  */
 
 ItineraryNode * __thiscall
 util_Delegate_struct_ItineraryNode_operator
@@ -4708,7 +5587,7 @@ LAB_007846f1:
 //==== 00785040 00785040_ScrollToDatum ====
 // decompiled by BatchDecomp @ 00785040 name=ScrollToDatum conv=__thiscall body=319
 
-/* public: void __thiscall UIListBox_struct_ItineraryNode___ScrollToDatum(struct ItineraryNode) */
+/* public: void __thiscall UIListBox_struct_ItineraryNode_ScrollToDatum(struct ItineraryNode) */
 
 void __thiscall
 UIListBox_struct_ItineraryNode_ScrollToDatum(UIListBox_L_struct_ItineraryNode_G_ *this,int p1)
@@ -4893,7 +5772,7 @@ undefined4 * __thiscall OrbitUI__GetPointAndTangent_km(OrbitUI *this,double p1)
 // decompiled by BatchDecomp @ 0079ff50 name=operator() conv=__thiscall body=400
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: struct WorldObject __thiscall util__Delegate_struct_WorldObject___operator__()(void)const
+/* public: struct WorldObject __thiscall util_Delegate_struct_WorldObject_operator()(void)const
     */
 
 WorldObject * __thiscall

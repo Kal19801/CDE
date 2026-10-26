@@ -13,7 +13,7 @@
 
 断点续传：已有 OK/ERR 记录的 va 跳过（重跑只增量）。
 """
-import os, re, sys, subprocess
+import os, re, sys, subprocess, hashlib
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
@@ -59,7 +59,7 @@ def classify(msg):
 
 
 def run_one(job):
-    va, name, path = job
+    va, name, path, sha = job
     unit = WORK / f'i_{va}.c'
     obj = WORK / f'i_{va}.o'
     try:
@@ -70,11 +70,11 @@ def run_one(job):
                            capture_output=True, text=True, timeout=180, env=ENV)
         errs = [ln.split(': error:', 1)[1] if ': error:' in ln else ln
                 for ln in r.stderr.split('\n') if ': error:' in ln]
-        return va, name, errs
+        return va, name, errs, sha
     except subprocess.TimeoutExpired:
-        return va, name, ['TIMEOUT']
+        return va, name, ['TIMEOUT'], sha
     except Exception as e:
-        return va, name, [f'ISO_INTERNAL {e}']
+        return va, name, [f'ISO_INTERNAL {e}'], sha
 
 
 def main():
@@ -87,17 +87,21 @@ def main():
         m = re.match(r'0*([0-9a-f]+)_?(.*)\.c$', f.name)
         if not m:
             continue
-        jobs.append((m.group(1).lstrip('0') or '0', m.group(2), f))
-    done = set()
+        _txt = f.read_text(errors='replace')
+        _sha = hashlib.sha1((PRE.read_text(errors='replace') + _txt).encode('utf-8', 'replace')).hexdigest()[:12]
+        jobs.append((m.group(1).lstrip('0') or '0', m.group(2), f, _sha))
+    done = {}   # r25b: va -> sec sha —— 文本变化自动复验（防 resume 掩护回归）
     if OKF.exists():
         for ln in OKF.read_text().split('\n'):
-            if ln.strip():
-                done.add(ln.split('\t')[0])
+            p = ln.split('\t')
+            if p and p[0].strip():
+                done[p[0].strip()] = p[2].strip() if len(p) > 2 else ''
     if ERRF.exists():
         for ln in ERRF.read_text().split('\n'):
             if ln.strip():
-                done.add(ln.split('\t')[0])
-    jobs = [j for j in jobs if j[0] not in done]
+                done.setdefault(ln.split('\t')[0], None)   # errs 无 sha：仍跳过（成本低）
+    # sha 一致 → 真·已完成跳过；sha 漂移（prelude/sec 变化）→ 复验（防 resume 掩护回归）
+    jobs = [j for j in jobs if done.get(j[0]) != j[3]]
     print(f'iso: total={len(jobs)} (resumed skip={len(done)}) par={NPAR}')
     WORK.mkdir(parents=True, exist_ok=True)
     PRE_RAW = PRE.read_text(errors='replace')
@@ -106,9 +110,9 @@ def main():
     err_f = open(ERRF, 'a', encoding='utf-8')
 
     with ThreadPoolExecutor(max_workers=NPAR) as ex:
-        for va, name, errs in ex.map(run_one, jobs):
+        for va, name, errs, sha in ex.map(run_one, jobs):
             if not errs:
-                ok_f.write(f'{va}\t{name}\n')
+                ok_f.write(f'{va}\t{name}\t{sha}\n')
                 n_ok += 1
             else:
                 cls = [classify(e) for e in errs[:EBUDGET and 8]]
