@@ -879,8 +879,7 @@ def scalar_subscript_fix(txt):
 # 输入: SWEEP_ERRMAP = iso_sweep ISO_RAWERRS 产物 (va \t sec行 \t col \t msg)
 # 纪律: 只改错误命中的 (va,line) 站点；col 锚定失败/DB 缺证 → 不动（留给下轮）
 _ERRMAP_R25 = {}        # va -> {sec_line(1based): [(col, msg), ...]}
-_PADS_BY_UDT = {}       # esc_udt -> { padname: (off, size) }
-_PADS_AMBIG = set()     # 跨 UDT 偏移不一致的 pad 名
+_TILE_MEMBERS = {}      # esc_udt -> { member: [(kind, off, size, ctype), ...] }（w15 泛化瓦片成员表）
 _M_SNAPS = {}           # membname -> set((elem_size, elem_ctype, total_size))
 _M_NAV_PARENTS = {}     # 非标量成员名 -> set(esc_udt)
 
@@ -904,11 +903,29 @@ _ELEM_CTYPE = {'undefined1': 'undefined1', 'undefined2': 'undefined2',
                'int': 'int', 'double': 'double', 'float': 'float', 'ulonglong': 'undefined8',
                'undefined': 'undefined1'}
 
+def _classify_tile_type(typ):
+    """TSV 类型串 → (kind, ctype)。kind: bytes(数组退化)/scalar(标量值)/struct(结构体视图)"""
+    t = typ.strip()
+    m = re.fullmatch(r'([A-Za-z_]\w*)\s*\[\s*(\d+)\s*\]', t)
+    if m and m.group(1) in _ELEM_CTYPE:
+        return ('bytes', None)
+    if re.search(r'\*\s*(const\s*)?$', t) and '[' not in t:
+        return ('scalar', 'undefined4')
+    m = re.fullmatch(r'(undefined[1248]|int|uint|char|uchar|sbyte|ubyte|short|ushort|'
+                     r'float|double|longlong|ulonglong|bool|_Bool|long|ulong|dword|word|byte)', t)
+    if m:
+        ct = {'uint': 'undefined4', 'uchar': 'undefined1', 'ubyte': 'undefined1',
+              'ushort': 'undefined2', 'sbyte': 'signed char', 'bool': 'int',
+              '_Bool': 'int', 'long': 'int', 'ulong': 'undefined4', 'dword': 'undefined4',
+              'word': 'undefined2', 'byte': 'undefined1',
+              'longlong': 'undefined8', 'ulonglong': 'undefined8'}.get(m.group(1), m.group(1))
+        return ('scalar', ct)
+    return ('struct', _pdb_esc(t))
+
 def w13_load_members():
     tsv = Path(os.environ.get('SWEEP_MEMBERS', '/tmp/my-project/work/members_r25c_all.tsv'))
     if not tsv.exists():
         return
-    _pad_offs = {}
     for ln in open(tsv, encoding='utf-8', errors='replace'):
         q = ln.rstrip('\n').split('\t')
         if q[0] != 'MEMB' or len(q) < 6:
@@ -918,9 +935,6 @@ def w13_load_members():
             off_i, size_i = int(off), int(size)
         except ValueError:
             continue
-        if name.startswith('_pad'):
-            _PADS_BY_UDT.setdefault(_pdb_esc(udt), {})[name] = (off_i, size_i)
-            _pad_offs.setdefault(name, set()).add((off_i, size_i))
         # 数组快照: elem[N] —— 下标类的元素宽度证据
         m = re.fullmatch(r'([A-Za-z_][\w]*)\s*\[\s*(\d+)\s*\]', typ.strip())
         if m and m.group(1) in _ELEM_CTYPE:
@@ -931,19 +945,21 @@ def w13_load_members():
                   'int': 4, 'double': 8, 'float': 4}.get(e, 1), e, size_i))
         # 标量导航类的父类型证据（唯一父才发射）
         _M_NAV_PARENTS.setdefault(name, set()).add(_pdb_esc(udt))
-    for nm, offs in _pad_offs.items():
-        if len(offs) > 1:
-            _PADS_AMBIG.add(nm)
+        # 瓦片成员全量表（_padNN/_tail/field_0xN/Normal…）：esc_udt -> name -> rows
+        kind, ct = _classify_tile_type(typ)
+        _TILE_MEMBERS.setdefault(_pdb_esc(udt), {}) \
+            .setdefault(name, []).append((kind, off_i, size_i, ct))
 
 _PAD_TOK = re.compile(r'\b((?:[A-Za-z_]\w*)|(?:\([^()\n]{1,80}\)))->(_pad\d+)\b')
 
-def pad_member_fix(txt, va):
-    """no-member '_padNN' → DB (off,size) 数组指针重建（字节等价）
-       X->_padNN → (*(char (*)[S])((char *)X + O))
-       依据: DB 瓦片成员 = byte[S]@O；数组退化=首址，后续算术=字节步进。
-       pdb.h 生成器（r24 hdr-truth）丢弃 byte[N] pad 成员 → 反编译文本按 DB 名失配。
-       r25w13b: msg 已给 (struct,pad) —— 按行解析，无需全局唯一门；
-       同函数同名 pad 指不同结构时各行用各自的 msg 解析，互不干扰。"""
+def tile_member_fix(txt, va):
+    """r25w15: no-member 瓦片成员泛化重建（字节等价，三型按用法裁决）
+       bytes:   X->M → (*(char (*)[S])((char *)X + O))   [数组退化=首址，算术=字节步进]
+       scalar:  X->M → (*(CT)((char *)X + O))            [值语义]
+       struct:  X->M → (*(CT *)((char *)X + O))          [导航语义]
+       依据: msg 给 (struct,member)；DB TSV 给 (off,size,kind)；pdb.h 生成器
+       丢弃 pad/tail/field 成员 → 反编译文本按 DB 名失配。用法裁决：
+       M[ / M+ → bytes 行；M. / 其余 → scalar/struct 优先。"""
     sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
     if not sites:
         return txt
@@ -952,22 +968,39 @@ def pad_member_fix(txt, va):
     for ln_no, lst in sites.items():
         if not (1 <= ln_no <= len(lines)):
             continue
-        specs = []
+        specs = {}
         for col, msg in lst:
-            m = re.search(r"no member named '(_pad\d+)' in 'struct ([A-Za-z0-9_]+)'", msg)
-            if m:
-                info = _PADS_BY_UDT.get(m.group(2), {}).get(m.group(1))
-                if info:
-                    specs.append((m.group(1), info[0], info[1]))
+            m = re.search(r"no member named '([A-Za-z_]\w*)' in 'struct ([A-Za-z0-9_]+)'", msg)
+            if not m or m.group(1) in ('_vftable',):
+                continue
+            nm, sesc = m.group(1), m.group(2)
+            rows = _TILE_MEMBERS.get(sesc, {}).get(nm)
+            if rows and nm not in specs:
+                specs[nm] = rows
         if not specs:
             continue
         s = lines[ln_no - 1]
-        for pad, off, size in specs:
-            rep = lambda mm, _o=off, _s=size: \
-                f'(*(char (*)[{_s}])((char *){mm.group(1)} + {_o}))'
-            s = re.sub(r'\b((?:[A-Za-z_]\w*)|(?:\([^()\n]{1,80}\)))->' + pad + r'\b', rep, s)
-        lines[ln_no - 1] = s
-        hit = True
+        for memb, rows in specs.items():
+            use_arr = re.search(re.escape(memb) + r'\s*(\[|\+|-)', s)
+            if use_arr:
+                pick = next((r for r in rows if r[0] == 'bytes'), rows[0])
+            else:
+                pick = next((r for r in rows if r[0] != 'bytes'), rows[0])
+            kind, off, size, ct = pick
+            if kind == 'bytes':
+                rep = lambda mm, _o=off, _s=size: \
+                    f'(*(char (*)[{_s}])((char *){mm.group(1)} + {_o}))'
+            elif kind == 'scalar':
+                rep = lambda mm, _o=off, _c=ct: \
+                    f'(*({_c})((char *){mm.group(1)} + {_o}))'
+            else:
+                rep = lambda mm, _o=off, _c=ct: \
+                    f'(*({_c} *)((char *){mm.group(1)} + {_o}))'
+            s = re.sub(r'\b((?:[A-Za-z_]\w*)|(?:\([^()\n]{1,80}\)))->' + re.escape(memb) + r'\b',
+                       rep, s)
+        if s != lines[ln_no - 1]:
+            lines[ln_no - 1] = s
+            hit = True
     return '\n'.join(lines) if hit else txt
 
 def _nav_chain_back(line, pos):
@@ -1495,7 +1528,7 @@ def main():
         # r20: 负偏移栈伪符号 → 局部声明（Ghidra 丢局部类型的 sret 槽）
         txt, sloc = stack_pseudo_fix(txt)
         # r25w13: 错误驱动等价改写（iso 原始错误图 col 锚定 + DB 成员真值；不命中不动）
-        txt = pad_member_fix(txt, va)
+        txt = tile_member_fix(txt, va)
         txt = base_member_fix(txt, va)
         txt = member_addr_fix(txt, va)
         txt = subscript_member_fix(txt, va)
