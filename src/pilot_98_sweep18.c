@@ -1079,15 +1079,12 @@ extern int CraftBlueprintArmor_GetAxialMomentOfInertia_kg_m2_MemoizedFunction();
 extern int CraftBlueprintArmor_GetMaxArmorRadius_m_Memoize(); /* K&R stub; ret by call site */
 extern int CraftBlueprintArmor_GetRadialMomentOfInertia_kg_m2_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int CraftBlueprint_GetForwardDirection_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int CraftBlueprint_GetRightDirection_MemoizedFunction(); /* K&R stub; ret by call site */
+extern int CraftBlueprint__GetRightDirection_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int CraftInstance_CraftInstance__o2(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetCenterZDelta_m_Memoize(); /* K&R stub; ret by call site */
-extern int CraftInstance_GetEstimatedTurnTorque_N_m_Memoize(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetHeatSignatureOffset_m_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int CraftInstance_GetLengthRange_m_Clear(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetLengthRange_m_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetTightenedRadius_km_Memoize(); /* K&R stub; ret by call site */
-extern int CraftInstance_GetTotalLength_m_Memoize(); /* K&R stub; ret by call site */
 extern int CraftInstance__GetCapableMainEngineModules_Clear(); /* K&R stub; ret by call site */
 extern int CraftInstance__GetCenterZDelta_m_Clear(); /* K&R stub; ret by call site */
 extern int CraftInstance__GetEngineModules_Clear(); /* K&R stub; ret by call site */
@@ -1131,16 +1128,12 @@ extern int NuclearReactorSubModule_GetEmittedRadiation_Memoize(); /* K&R stub; r
 extern int NuclearReactorSubModule_GetTotalLifetime_s_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetArmorCollisionShells_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetAvoidanceDirection_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent_GetDesiredOrientation_Clear(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetDesiredOrientation_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetDesiredThrustDirection_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetEstimatedMaxAngularAcceleration_radians_s2_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_HasDeltaVLeft_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_HasFuelForTurningLeft_Memoize(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent_HasWeaponsLeft_Memoize(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent_IsThreatening_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_IsThreatening_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent_NeedsToTorque_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent__GetArmorCollisionShells_Clear(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent__GetAvoidanceDirection_Clear(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent__GetCombatIntersectRadius_km_Clear(); /* K&R stub; ret by call site */
@@ -1157,8 +1150,6 @@ extern int SpacecraftComponent__NeedsToTorque_Clear(); /* K&R stub; ret by call 
 extern int SpacecraftComponent__WillIntersectWithTargetsInTheFuture_Clear(); /* K&R stub; ret by call site */
 extern int StrategicManager_GetCelestialObjects_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int TacticalManager_GetCameraFocusedBodies_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int TacticalManager_GetFutureCelestials_Memoize(); /* K&R stub; ret by call site */
-extern int TacticalManager_GetRelevantCelestials_Memoize(); /* K&R stub; ret by call site */
 extern int TacticalManager_GetStrategicGame_Memoize(); /* K&R stub; ret by call site */
 extern int TacticalManager__GetAllBodies_Clear(); /* K&R stub; ret by call site */
 extern int TacticalManager__GetAllColliders_Clear(); /* K&R stub; ret by call site */
@@ -1177,6 +1168,7 @@ extern int UIListBox_struct_ActorDropdownAction___ListButton__ListButton(); /* K
 extern int UIListBox_struct_ActorDropdownAction___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___ListButton__ListButton(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___OnChangedSearchString(); /* K&R stub; ret by call site */
+extern int UIListBox_struct_ItineraryNode___ScrollToDatum(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int WorldObject__dtor(); /* K&R stub; ret by call site */
 extern int std__basic_filebuf_char_struct_std__char_traits_char_____seekoff(); /* K&R stub; ret by call site */
@@ -1255,6 +1247,7 @@ extern int util__Delegate_int_class_util__SharedPtr_struct_ModuleCategory_____op
 extern int util__Delegate_int_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_int_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
+extern int util__Delegate_struct_WorldObject___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__HashMap_class_util__WeakPtr_class_Fleet__double___HashMap_class_util__WeakPtr_class_Fleet__double(); /* K&R stub; ret by call site */
@@ -1290,6 +1283,37 @@ static const unsigned int _cde_badoff_slot = 0xFFFFFFFFu;
 #define free_exref free
 #define glTexParameteri_exref glTexParameteri
 #define rand_exref rand
+/* ---- r25w14: _Clear memoization-clear externs (K&R stub conv) ---- */
+extern void *FixedOrbit__GetEccentricityApoapsisRoot_Clear();
+extern void *FixedOrbit__GetEccentricityComplement_Clear();
+extern void *FixedOrbit__GetEccentricityPeriapsisRoot_Clear();
+extern void *FixedOrbit__GetVelocityStateConstant_km__s_Clear();
+extern void *Fleet__GetOriginalDeltaV_km__s_Clear();
+extern void *Fleet__GetRemainingDeltaV_km__s_Clear();
+extern void *GetDimensionScreenBounds_Clear();
+extern void *GetEccentricityApoapsisRoot_Clear();
+extern void *GetEccentricityComplement_Clear();
+extern void *GetEccentricityPeriapsisRoot_Clear();
+extern void *GetInverseMomentOfInertia_kg_m2_Clear();
+extern void *GetMaxAcceleration_m__s2_Clear();
+extern void *GetMouseOverNode_Clear();
+extern void *GetOriginalDeltaV_km__s_Clear();
+extern void *GetPathCameraDistances_km_Clear();
+extern void *GetRangesAgainstFleets_km_Clear();
+extern void *GetRemainingDeltaV_km__s_Clear();
+extern void *GetSmoothedPath_Clear();
+extern void *GetTotalTonnage_kg_Clear();
+extern void *GetVelocityStateConstant_km__s_Clear();
+extern void *HasDeltaVLeft_Clear();
+extern void *IsCapitalShipFleet_Clear();
+extern void *IsCompartmentDamagedFromPieceDamage_Clear();
+extern void *IsDroneFleet_Clear();
+extern void *IsGameplayRelevant_Clear();
+extern void *IsMissileFleet_Clear();
+extern void *IsOrigin_Clear();
+extern void *IsStationOnlyFleet_Clear();
+extern void *SpacecraftTargeting__FindAllViableCapitalShipTargets_Clear();
+extern void *SpacecraftTargeting__FindAllViableShotTargets_Clear();
 /* ---- GL PFN typedefs: Khronos headers directly (extraction-free) ---- */
 #include <glcorearb.h>
 #include <glext.h>
@@ -2063,10 +2087,8 @@ static const undefined1 ___xmm_c0000000000000004000000000000000[16] = {0xc0,0x00
 /* ---- r25: DB primitive / Win32 type names (tile-decomp text) ---- */
 typedef unsigned int dword;
 typedef void * HDROP;
-typedef long LPARAM;
-typedef long LRESULT;
-typedef unsigned int WPARAM;
 /* ---- r25 iso: in-batch canonical prototypes ---- */
+#include "cde_winuser_min.h"
 extern void __thiscall ActorDropButton__SelectButton(ActorDropButton *this);
 extern void __thiscall ActorDropButton__TranslatedAction(ActorDropButton *this,undefined4 p1);
 extern void __thiscall ActorDropdownAction__ActorDropdownAction(ActorDropdownAction *this,WorldObject *p1,undefined4 p2,bool p3);
@@ -2180,6 +2202,7 @@ extern bool __thiscall CompartmentButton__IsVisible(CompartmentButton *this);
 extern void __thiscall CompartmentButton__Render(CompartmentButton *this);
 extern void __thiscall CompartmentButton__Render3D(CompartmentButton *this);
 extern void __thiscall CompartmentCollisionShell__CompartmentCollisionShell(CompartmentCollisionShell *this,CompartmentCollisionShell *p1);
+extern CompartmentCollisionShell * __thiscall CompartmentCollisionShell__operator_(CompartmentCollisionShell *this,CompartmentCollisionShell *p1);
 extern void __thiscall ControllableComponent__ChangeOrder(ControllableComponent *this,undefined4 p1);
 extern void __thiscall ControllableComponent__CheckUnally(ControllableComponent *this);
 extern void __thiscall ControllableComponent__ClearOrder(ControllableComponent *this);
@@ -2414,6 +2437,7 @@ extern void __thiscall FlareCompartment__Tick(FlareCompartment *this,double p1);
 extern double __thiscall FlareModule__GetPowerOutput_W_MemoizedFunction(FlareModule *this);
 extern void __thiscall FleetLocation_FleetLocation__o5(FleetLocation *this);
 extern void __thiscall FleetLocation__ClearAll(FleetLocation *this);
+extern FleetLocation * __thiscall FleetLocation__operator_(FleetLocation *this,undefined1 *p1);
 extern void __thiscall FleetUIButton__FleetUIButton(FleetUIButton *this,undefined4 p1,undefined4 p2);
 extern double __thiscall FleetUIButton__GetDepthCue_Percent(FleetUIButton *this);
 extern void __thiscall FleetUIButton__RenderIcon(FleetUIButton *this,bool p1,bool p2);
@@ -2727,6 +2751,7 @@ extern void __thiscall StrategicManager__NextMission(StrategicManager *this);
 extern void __thiscall StrategicManager__OnFleetChanged(StrategicManager *this,undefined4 p1);
 extern void __thiscall StrategicManager__ResetWidgetScreen(StrategicManager *this);
 extern void __thiscall StrategicManager__SelectObject(StrategicManager *this,int p1);
+extern StrategicManager__SessionState * __thiscall StrategicManager__SessionState__operator_(SessionState *this,undefined1 *p1);
 extern void __thiscall StrategicManager__SetupShadows(StrategicManager *this,undefined4 p1);
 extern void __thiscall TacticalAI__LaunchFlares(TacticalAI *this);
 extern void __thiscall TacticalAI__Tick(TacticalAI *this,double p1);
@@ -2914,14 +2939,19 @@ extern DesignStatusBuffer * __thiscall CrewModule__GetStatuses(CrewModule *this,
 extern Font * __thiscall UIWidget__GetFont(UIWidget *this);
 extern ItineraryNode * __thiscall Itinerary__ClearBurns(Itinerary *this,ItineraryNode *__return_storage_ptr__,ItineraryNode *p1);
 extern ItineraryNode * __thiscall Itinerary__GetNodePriorToInterpNode(Itinerary *this,undefined1 *p1);
+extern LPSTR __glfwCreateUTF8FromWideStringWin32(LPCWSTR param_1);
 extern Str_L_char_G_ * __cdecl PrintAcceleration(Str_L_char_G_ *__return_storage_ptr__,double param_1);
 extern Str_L_char_G_ * __cdecl PrintDistance(Str_L_char_G_ *__return_storage_ptr__,double param_1);
+extern StrategicManager__SessionState * __thiscall StrategicManager__SessionState__operator_(SessionState *this,undefined1 *p1);
 extern UIWidget * __thiscall HUDItineraryInfoPanel__GetBurnCustomWidget(HUDItineraryInfoPanel *this,undefined4 p1);
 extern bool __thiscall CelestialObject__HasAnyOrbiters(CelestialObject *this);
+extern bool __thiscall CelestialObject__HasVisibleOrbit(CelestialObject *this);
 extern bool __thiscall CraftInstance__IsCombatDisarmed(CraftInstance *this);
 extern bool __thiscall Fleet__HasAShip(Fleet *this,util__SharedPtr_L_Body_G_ *p1);
 extern bool __thiscall Fleet__HasThrusterShips(Fleet *this);
 extern bool __thiscall Fleet__IsLocationValid(Fleet *this);
+extern bool __thiscall Fleet__IsMissileFleet_MemoizedFunction(Fleet *this);
+extern bool __thiscall ItineraryNodeUI__HitTest(ItineraryNodeUI *this,undefined4 p1);
 extern bool __thiscall ShipGroupUI__GetDeltaVWidgetVisible(ShipGroupUI *this);
 extern bool __thiscall SpacecraftComponent__NeedsToTorque_MemoizedFunction(SpacecraftComponent *this);
 extern bool __thiscall TacticalManager__CanExit(TacticalManager *this);
@@ -2929,6 +2959,7 @@ extern bool __thiscall TacticalManager__IsBodySelected(TacticalManager *this,int
 extern bool __thiscall TacticalManager__IsOnlyBodySelected(TacticalManager *this,int p1);
 extern bool __thiscall TacticalManager__IsSessionCombat(TacticalManager *this);
 extern bool __thiscall UIListBox_struct_ItineraryNode___ListButton__IsSelected(ListButton *this);
+extern bool __thiscall util_Darray_struct_WorldObject_Insert(Darray_L_struct_WorldObject_G_ *this,WorldObject *p1,int *p2);
 extern double * __thiscall Itinerary__GetInterceptState(Itinerary *this);
 extern double __cdecl Collision__GetPixelRadius_m(SpacecraftComponent *p0);
 extern double __thiscall ChemicalReaction__GetLaminarFlameSpeed_m__s(ChemicalReaction *this,int p1);
@@ -2940,6 +2971,7 @@ extern double __thiscall CraftBlueprint__GetMaxModulesOnlyRadius_m(CraftBlueprin
 extern double __thiscall CraftBlueprint__GetPrice_c(CraftBlueprint *this);
 extern double __thiscall CraftBlueprint__GetRadiatorInterreflectionEfficiency_Percent(CraftBlueprint *this,ModulePlacer *p1);
 extern double __thiscall CraftBlueprint__GetReactionMass_kg(CraftBlueprint *this,bool p1);
+extern double __thiscall Fleet__GetInterceptTimeMultiplier(Fleet *this);
 extern double __thiscall Itinerary__GetLastNodeTime_s(Itinerary *this);
 extern double __thiscall NuclearReactorSubModule__GetCorrectedEnrichmentPercent(NuclearReactorSubModule *this,double p1);
 extern double __thiscall ThermalRocketSubModule__GetPrimarySurfaceArea_m2(ThermalRocketSubModule *this);
@@ -2954,6 +2986,7 @@ extern util__Maybe_L_ItineraryNode_G_ * __thiscall Itinerary__GetLastNode(Itiner
 extern util__Maybe_L_ItineraryNode_G_ * __thiscall Itinerary__GetNodeAfterLastBurnNodeBefore(Itinerary *this,util__Maybe_L_ItineraryNode_G_ *__return_storage_ptr__,ItineraryNode *p1);
 extern util__Maybe_L_Itinerary_G_ * __thiscall Fleet__GetMissionItinerary(Fleet *this);
 extern util__Maybe_L_LibrationOrbit_G_ * __thiscall Fleet__GetLagrangeOrbit(Fleet *this);
+extern util__Maybe_L_PendingBattle_G_ * __thiscall StrategicManager__GetFutureBattles(StrategicManager *this,util__Maybe_L_PendingBattle_G_ *__return_storage_ptr__,double p1);
 extern util__Maybe_L_int_G __thiscall BarGraphChart__GetHoveredLine(BarGraphChart *this);
 extern util__Maybe_L_int_G __thiscall Faction__GetStringPropertyMaxLength(Faction *this,util__ClassMember *p1);
 extern util__Maybe_L_int_G __thiscall UILayout__FindChildIndex(UILayout *this,int *p1);
@@ -2975,7 +3008,6 @@ extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorCharLocation(UIEdit
 extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorPixelPosition(UIEditTextBox *this,int p1);
 extern util__Vec2_L_int_G __thiscall UIWidget__GetChildSize(UIWidget *this,undefined4 *p1);
 extern util__Vec3_L_double_G_ * __thiscall Body__GetCenterOfMass_km(Body *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
-extern util__Vec3_L_double_G_ * __thiscall CraftBlueprint__GetRightDirection_MemoizedFunction(CraftBlueprint *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall Itinerary__GetInterceptDirection(Itinerary *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraCenter(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraVelocity__s(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
@@ -2984,8 +3016,13 @@ extern void __cdecl compute_color_line_STDEV(float *param_1,float *param_2);
 extern void __cdecl convert_image_to_DXT5(int param_1,int param_2,size_t *param_3);
 extern void __glfwInputError(undefined4 param_1,int param_2);
 extern void __glfwPlatformGetMonitors(int *param_1);
+extern void __glfwPlatformGetVideoMode(int param_1,DWORD *param_2);
+extern void __glfwPlatformGetVideoModes(int param_1,int *param_2);
 extern void __glfwPlatformGetWindowSize(int param_1,LONG *param_2,LONG *param_3);
+extern void __glfwPlatformSetGammaRamp(int param_1,undefined4 *param_2);
 extern void __glfwPlatformTerminate(void);
+extern void __glfwRestoreVideoModeWin32(int param_1);
+extern void __glfwSetVideoModeWin32(int param_1,undefined4 param_2);
 extern void __thiscall BlastLauncherCompartment__GenerateCompartmentPieces(BlastLauncherCompartment *this);
 extern void __thiscall Body__PreTick(Body *this,double p1);
 extern void __thiscall CombustionRocketCompartment__Tick(CombustionRocketCompartment *this,double p1);
@@ -2998,9 +3035,16 @@ extern void __thiscall CraftInstance__GetBoundingCylinder_m_Memoize(CraftInstanc
 extern void __thiscall CraftInstance__GetEstimatedTurnTorque_N_m_Memoize(CraftInstance *this);
 extern void __thiscall CraftInstance__GetLengthRange_m_Clear(CraftInstance *this);
 extern void __thiscall CraftInstance__GetTotalLength_m_Memoize(CraftInstance *this);
+extern void __thiscall CraftInstance__HasDeltaVLeft_Memoize(CraftInstance *this);
 extern void __thiscall FUN_004ffcd0(int *param_1,util__Darray_L_util__Reflectable___G_ *param_2,LocStr *param_3,int param_4);
+extern void __thiscall Fleet__GetRangesAgainstFleets_km_Memoize(Fleet *this);
+extern void __thiscall Fleet__IsDroneFleet_Memoize(Fleet *this);
+extern void __thiscall Fleet__IsMissileFleet_Memoize(Fleet *this);
+extern void __thiscall Fleet__IsStationOnlyFleet_Memoize(Fleet *this);
 extern void __thiscall Fleet__PostCombat(Fleet *this);
+extern void __thiscall ItineraryNodeUI__GetMouseOverNode_Memoize(ItineraryNodeUI *this);
 extern void __thiscall ItineraryNode__CacheFleetInfo(ItineraryNode *this,StrategicManager *p1,Itinerary *p2);
+extern void __thiscall Itinerary__AppendNode(Itinerary *this,undefined4 p1,undefined4 p2,double p3);
 extern void __thiscall LibrationOrbit__LibrationOrbit(LibrationOrbit *this,LibrationOrbit *p1);
 extern void __thiscall MatterComponent__RicochetAtPoint(MatterComponent *this,undefined4 p1,undefined4 p2,undefined4 p3);
 extern void __thiscall ModuleCompartment__OnScarTexture(ModuleCompartment *this,undefined4 p1,undefined4 p2,int p3,undefined4 p4,double p5);
@@ -4901,7 +4945,7 @@ void __thiscall CraftInstance__GetBoundingCylinder_m_Memoize(CraftInstance *this
         bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)((int)&this->Armor + 4),iVar2);
         if (bVar6) {
           *(code **)(*(int *)(*(char (*)[12])((char *)this + 40)) + -4 + *(int *)((*(char (*)[12])((char *)this + 40)) + 4) * 4) =
-               CraftInstance_GetLengthRange_m_Clear;
+               CraftInstance__GetLengthRange_m_Clear;
         }
         puVar7 = CraftInstance_GetLengthRange_m_MemoizedFunction(this,&local_30);
         ((slice_view *)&uStack_10)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_10)->_1_3_[0] | (((slice_view *)&uStack_10)->_1_3_[1] << 8) | (((slice_view *)&uStack_10)->_1_3_[2] << 16)) << 8));
@@ -4954,7 +4998,7 @@ void __thiscall CraftInstance__GetBoundingCylinder_m_Memoize(CraftInstance *this
 
 
 //==== 0052ed40 0052ed40_GetEstimatedTurnTorque_N_m_Memoize ====
-// decompiled by BatchDecomp @ 0052ed40 name=CraftInstance_GetEstimatedTurnTorque_N_m_Memoize conv=__thiscall body=179
+// decompiled by BatchDecomp @ 0052ed40 name=CraftInstance__GetEstimatedTurnTorque_N_m_Memoize conv=__thiscall body=179
 
 /* public: void __thiscall CraftInstance__GetEstimatedTurnTorque_N_m_Memoize(void)const  */
 
@@ -5002,7 +5046,7 @@ void __thiscall CraftInstance__GetEstimatedTurnTorque_N_m_Memoize(CraftInstance 
 
 
 //==== 0052fd00 0052fd00_GetLengthRange_m_Clear ====
-// decompiled by BatchDecomp @ 0052fd00 name=CraftInstance_GetLengthRange_m_Clear conv=__thiscall body=18
+// decompiled by BatchDecomp @ 0052fd00 name=CraftInstance__GetLengthRange_m_Clear conv=__thiscall body=18
 
 /* public: void __thiscall CraftInstance__GetLengthRange_m_Clear(void)const  */
 
@@ -5019,7 +5063,7 @@ void __thiscall CraftInstance__GetLengthRange_m_Clear(CraftInstance *this)
 
 
 //==== 00531890 00531890_GetTotalLength_m_Memoize ====
-// decompiled by BatchDecomp @ 00531890 name=CraftInstance_GetTotalLength_m_Memoize conv=__thiscall body=247
+// decompiled by BatchDecomp @ 00531890 name=CraftInstance__GetTotalLength_m_Memoize conv=__thiscall body=247
 
 /* public: void __thiscall CraftInstance__GetTotalLength_m_Memoize(void)const  */
 
@@ -5053,7 +5097,7 @@ void __thiscall CraftInstance__GetTotalLength_m_Memoize(CraftInstance *this)
       bVar5 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)((int)&this->Armor + 4),iVar1);
       if (bVar5) {
         *(code **)(*(int *)(*(char (*)[12])((char *)this + 40)) + -4 + *(int *)((*(char (*)[12])((char *)this + 40)) + 4) * 4) =
-             CraftInstance_GetLengthRange_m_Clear;
+             CraftInstance__GetLengthRange_m_Clear;
       }
       puVar6 = CraftInstance_GetLengthRange_m_MemoizedFunction(this,&local_18);
       uVar2 = *(undefined4 *)((int)&puVar6->Lower + 4);
@@ -5078,6 +5122,99 @@ void __thiscall CraftInstance__GetTotalLength_m_Memoize(CraftInstance *this)
     *(undefined4 *)(((char *)&(this->GetTotalLength_m_MemoizedValue))+ 0xe) = ((slice_view *)&local_18.Upper)->_0_4_;
     *(undefined4 *)(((char *)&(this->GetCenterZDelta_m_MemoizedValue))+ 2) = ((slice_view *)&local_18.Upper)->_4_4_;
   }
+  return;
+}
+
+
+//==== 00532280 00532280_HasDeltaVLeft_Memoize ====
+// decompiled by BatchDecomp @ 00532280 name=HasDeltaVLeft_Memoize conv=__thiscall body=425
+
+/* public: void __thiscall CraftInstance__HasDeltaVLeft_Memoize(void)const  */
+
+void __thiscall CraftInstance__HasDeltaVLeft_Memoize(CraftInstance *this)
+
+{
+  undefined4 stack0xfffffffc;
+  CraftBlueprint *this_00;
+  bool bVar1;
+  undefined1 uVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_30[16];
+  Darray_L_class_util__WeakPtr_L_struct_ModuleCompartment_G___G_ local_20[16];
+  undefined1 local_10;
+  undefined8 local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if ((*(char (*)[18])((char *)this + 342))[5] == 0) {
+    iVar3 = *(int *)((*(char (*)[12])((char *)this + 40)) + 4);
+    local_c = iVar3 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)((int)&this->Armor + 4),&local_c);
+    bVar1 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)((int)&this->Armor + 4),iVar3);
+    if (bVar1) {
+      *(code **)(*(int *)(*(char (*)[12])((char *)this + 40)) + -4 + *(int *)((*(char (*)[12])((char *)this + 40)) + 4) * 4) = HasDeltaVLeft_Clear;
+    }
+    this_00 = this->Blueprint;
+    CraftBlueprint__IsThrustingCraft_Memoize(this_00);
+    if (((undefined1 *)&(this_00[1].MaterialClass__Armor.ArmorLayers))[9] == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+    if (((undefined1 *)&(this_00[1].MaterialClass__Armor.ArmorLayers))[8] != '\0') {
+      if (((undefined1 *)&(this->GetEngineModules_MemoizedValue))[0x10] == '\0') {
+        iVar3 = *(int *)((*(char (*)[12])((char *)this + 40)) + 4);
+        local_c = iVar3 + 1;
+        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)((int)&this->Armor + 4),&local_c);
+        bVar1 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)((int)&this->Armor + 4),iVar3);
+        if (bVar1) {
+          *(code **)(*(int *)(*(char (*)[12])((char *)this + 40)) + -4 + *(int *)((*(char (*)[12])((char *)this + 40)) + 4) * 4) =
+               CraftInstance__GetEngineModules_Clear;
+        }
+        CraftInstance__GetModulesOfType_L_struct_EngineCompartment_G_(this,local_30);
+        util__Darray_class_util__WeakPtr_struct_ModuleCompartment_____Darray_class_util__WeakPtr_struct_ModuleCompartment(local_20,local_30);
+        local_10 = 1;
+        util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+                  ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+                   &this->GetEngineModules_MemoizedValue,local_20);
+        ((undefined1 *)&(this->GetEngineModules_MemoizedValue))[0x10] = local_10;
+        util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_20);
+        util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_30);
+        if (((undefined1 *)&(this->GetEngineModules_MemoizedValue))[0x10] == '\0') {
+          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                          "IsValid()",(undefined1 *)0x0);
+          DebugBreak();
+        }
+      }
+      local_c = 0;
+      iVar3 = (**(code **)(*(int *)&this->GetEngineModules_MemoizedValue + 0xc))();
+      if (local_c < iVar3) {
+        do {
+          puVar4 = (undefined4 *)
+                   (*(code *)**(undefined4 **)&this->GetEngineModules_MemoizedValue)(&local_c);
+          if ((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) {
+            bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]);
+            if (!bVar1) {
+              *puVar4 = 0;
+            }
+          }
+          bVar1 = EngineCompartment__HasAllNeededReactionMass((EngineCompartment *)*puVar4);
+          if (bVar1) {
+            uVar2 = 1;
+            goto LAB_00532402;
+          }
+          local_c = local_c + 1;
+          iVar3 = (**(code **)(*(int *)&this->GetEngineModules_MemoizedValue + 0xc))();
+        } while (local_c < iVar3);
+      }
+    }
+    uVar2 = 0;
+LAB_00532402:
+    local_c = CONCAT13(1,CONCAT12(uVar2,(undefined2)local_c));
+    *(undefined2 *)((*(char (*)[18])((char *)this + 342)) + 4) = ((slice_view *)&local_c)->_2_2_;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
 }
 
@@ -5995,153 +6132,6 @@ LAB_0055816b:
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return (double)extraout_ST0;
-}
-
-
-//==== 00558af0 00558af0_GetRightDirection_MemoizedFunction ====
-// decompiled by BatchDecomp @ 00558af0 name=CraftBlueprint_GetRightDirection_MemoizedFunction conv=__thiscall body=618
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* private: struct Vec3_L_double_G_ __thiscall
-   CraftBlueprint__GetRightDirection_MemoizedFunction(void)const  */
-
-util__Vec3_L_double_G_ * __thiscall
-CraftBlueprint__GetRightDirection_MemoizedFunction(CraftBlueprint *this,util__Vec3_L_double_G_ *__return_storage_ptr__)
-
-{
-  Darray_L_class_util__Reflectable_P__G_ *this_00;
-  double dVar1;
-  int iVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  bool bVar6;
-  util__Vec3_L_double_G_ *puVar7;
-  util__Vec3_L_double_G_ *this_01;
-  code *pcVar8;
-  undefined8 local_68;
-  undefined4 uStack_64;
-  undefined8 uStack_60;
-  undefined4 uStack_5c;
-  util__Vec3_L_double_G_ local_58;
-  util__Vec3_L_double_G_ local_40;
-  util__Vec3_L_double_G_ local_20;
-  int local_8;
-  
-  if (((undefined1 *)&(this->GetUnstagedDryMass_kg_MemoizedValue))[0] == '\0') {
-    iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-    this_00 = (Darray_L_util__Reflectable_P_G_ *)
-              (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10);
-    local_8 = iVar2 + 1;
-    util__Darray_class_util__Reflectable____SetSize(this_00,&local_8);
-    bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)this_00,iVar2);
-    if (bVar6) {
-      *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-           CraftBlueprint__GetUpDirection_Clear;
-    }
-    pcVar8 = DebugBreak_exref;
-    if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-      iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-      local_8 = iVar2 + 1;
-      util__Darray_class_util__Reflectable____SetSize(this_00,&local_8);
-      bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)this_00,iVar2);
-      if (bVar6) {
-        *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                  *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-             CraftBlueprint__GetForwardDirection_Clear;
-      }
-      puVar7 = CraftBlueprint_GetForwardDirection_MemoizedFunction(this,&local_40);
-      ((slice_view *)&local_20.Z)->_0_4_ = CONCAT31(((slice_view *)&local_20.Z)->_1_3_,1);
-      dVar1 = puVar7->Z;
-      uVar3 = *(undefined4 *)((int)&puVar7->X + 4);
-      uVar4 = *(undefined4 *)&puVar7->Y;
-      uVar5 = *(undefined4 *)((int)&puVar7->Y + 4);
-      ((slice_view *)&local_20.Y)->_0_4_ = *(undefined4 *)&dVar1;
-      ((slice_view *)&local_20.Y)->_4_4_ = *(undefined4 *)((char *)&dVar1 + 4);
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4) =
-           *(undefined4 *)&puVar7->X;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8) = uVar3;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0xc) = uVar4;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0x10) = uVar5;
-      (*(char (*)[2])((char *)this + 768))[0] = ((slice_view *)&local_20.Y)->_0_1_;
-      (*(char (*)[2])((char *)this + 768))[1] = ((slice_view *)&local_20.Y)->_1_1_;
-      ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[0] = ((slice_view *)&local_20.Y)->_2_1_;
-      ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[1] = ((slice_view *)&local_20.Y)->_3_1_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 2) = ((slice_view *)&local_20.Y)->_4_4_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 6) = ((slice_view *)&local_20.Z)->_0_4_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 10) = ((slice_view *)&local_20.Z)->_4_4_;
-      pcVar8 = DebugBreak_exref;
-      local_20.Y = dVar1;
-      if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(undefined1 *)0x0);
-        pcVar8 = DebugBreak_exref;
-        DebugBreak();
-      }
-    }
-    puVar7 = &local_20;
-    this_01 = util__RenderCustomRotatedSplineLoop(&local_58,___xmm_00000000000000003ff0000000000000,_UNK_0091d464);
-    util__Vec3_double___SafeNormalized((Vec3_L_double_G_ *)this_01,puVar7);
-    uVar3 = ((slice_view *)&local_20.Z)->_0_4_;
-    dVar1 = (double)CONCAT44(((slice_view *)&local_20.Z)->_4_4_,((slice_view *)&local_20.Z)->_0_4_);
-    ((slice_view *)&local_20.Z)->_0_4_ = CONCAT31(((slice_view *)&local_20.Z)->_1_3_,1);
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 0xe) = ((slice_view *)&local_20.X)->_0_4_;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 0x12) = ((slice_view *)&local_20.X)->_4_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 2) = ((slice_view *)&local_20.Y)->_0_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 6) = ((slice_view *)&local_20.Y)->_4_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 10) = uVar3;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 0xe) = ((slice_view *)&local_20.Z)->_4_4_;
-    *(undefined4 *)&this->GetUnstagedDryMass_kg_MemoizedValue = ((slice_view *)&local_20.Z)->_0_4_;
-    *(undefined4 *)(((char *)&(this->GetUnstagedDryMass_kg_MemoizedValue))+ 4) = ((slice_view *)&local_20.Z)->_4_4_;
-    local_20.Y = dVar1;
-    if (((undefined1 *)&(this->GetUnstagedDryMass_kg_MemoizedValue))[0] == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(undefined1 *)0x0);
-      (*pcVar8)();
-    }
-  }
-  if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-    iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-    local_8 = iVar2 + 1;
-    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
-               (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),&local_8);
-    bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
-                       (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),iVar2);
-    if (bVar6) {
-      *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-           CraftBlueprint__GetForwardDirection_Clear;
-    }
-    puVar7 = CraftBlueprint_GetForwardDirection_MemoizedFunction(this,&local_20);
-    ((slice_view *)&uStack_60)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_60)->_1_3_[0] | (((slice_view *)&uStack_60)->_1_3_[1] << 8) | (((slice_view *)&uStack_60)->_1_3_[2] << 16)) << 8));
-    uVar3 = *(undefined4 *)((int)&puVar7->X + 4);
-    uVar4 = *(undefined4 *)&puVar7->Y;
-    uVar5 = *(undefined4 *)((int)&puVar7->Y + 4);
-    local_68 = *(undefined4 *)&puVar7->Z;
-    uStack_64 = (undefined4)((ulonglong)puVar7->Z >> 0x20);
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4) =
-         *(undefined4 *)&puVar7->X;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8) = uVar3;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0xc) = uVar4;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0x10) = uVar5;
-    (*(char (*)[2])((char *)this + 768))[0] = (undefined1)local_68;
-    (*(char (*)[2])((char *)this + 768))[1] = ((slice_view *)&local_68)->_1_1_;
-    ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[0] = ((slice_view *)&local_68)->_2_1_;
-    ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[1] = ((slice_view *)&local_68)->_3_1_;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 2) = uStack_64;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 6) = uStack_60;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 10) = uStack_5c;
-    if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(undefined1 *)0x0);
-      DebugBreak();
-    }
-  }
-util__RenderCustomRotatedSplineLoop(__return_storage_ptr__,
-             *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4),
-             *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8));
-  return __return_storage_ptr__;
 }
 
 
@@ -8406,7 +8396,7 @@ util__Vec2_L_int_G __thiscall LevelEditorBodyUI__GetScreenPosition(LevelEditorBo
 
 
 //==== 0070fb90 0070fb90_GetDesiredOrientation_Clear ====
-// decompiled by BatchDecomp @ 0070fb90 name=SpacecraftComponent_GetDesiredOrientation_Clear conv=__thiscall body=32
+// decompiled by BatchDecomp @ 0070fb90 name=SpacecraftComponent__GetDesiredOrientation_Clear conv=__thiscall body=32
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 /* public: void __thiscall SpacecraftComponent__GetDesiredOrientation_Clear(void)const  */
@@ -8936,6 +8926,134 @@ LAB_00728209:
 }
 
 
+//==== 00728240 00728240_HasVisibleOrbit ====
+extern undefined4 FUN_00722c60(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+
+// decompiled by BatchDecomp @ 00728240 name=HasVisibleOrbit conv=__thiscall body=561
+
+/* public: bool __thiscall CelestialObject__HasVisibleOrbit(void)const  */
+
+bool __thiscall CelestialObject__HasVisibleOrbit(CelestialObject *this)
+
+{
+  undefined4 stack0xfffffeec;
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  StrategicManager *this_00;
+  bool bVar4;
+  char cVar5;
+  bool bVar6;
+  undefined1 uVar7;
+  undefined4 p1;
+  undefined8 local_100;
+  ReferenceController *local_e8;
+  undefined **local_e0;
+  void *local_dc;
+  undefined **local_98;
+  void *local_94;
+  char local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if ((char)this[1]._pad_0x0_0 == '\0') {
+LAB_00728322:
+    bVar4 = false;
+  }
+  else {
+    if (*(ReferenceController **)(((char *)&(this->OrbitParameters))+ 0x10) != (ReferenceController *)0x0) {
+      bVar4 = util__ReferenceController__IsDataStillValid(*(ReferenceController **)(((char *)&(this->OrbitParameters))+ 0x10));
+      if (!bVar4) {
+        *(undefined4 *)(((char *)&(this->OrbitParameters))+ 0xc) = 0;
+      }
+    }
+    iVar1 = *(int *)(((char *)&(this->OrbitParameters))+ 0xc);
+    if (*(char *)(iVar1 + 0x45) == '\0') {
+      iVar2 = *(int *)(iVar1 + 0x14);
+      local_100 = (double)CONCAT44(iVar2 + 1,(undefined4)local_100);
+      util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)(iVar1 + 0xc),
+                 (int *)((int)&local_100 + 4));
+      p1 = 0x7282ad;
+      bVar4 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)(iVar1 + 0xc),iVar2);
+      if (bVar4) {
+        iVar2 = *(int *)(iVar1 + 0x10);
+        iVar3 = *(int *)(iVar1 + 0x14);
+        *(code **)(iVar2 + -8 + iVar3 * 8) = IsOrigin_Clear;
+        *(undefined4 *)(iVar2 + -4 + iVar3 * 8) = 0;
+      }
+util__GetScreenPosition_Memoize(&stack0xfffffeec);
+      bVar4 = StrategicManager__IsObjectOrigin(*(StrategicManager **)(iVar1 + 0x48),p1);
+      local_100 = (double)CONCAT17(1,CONCAT16(bVar4,(undefined6)local_100));
+      *(undefined2 *)(iVar1 + 0x44) = ((slice_view *)&local_100)->_6_2_;
+      if (*(char *)(iVar1 + 0x45) == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+    }
+    if (*(char *)(iVar1 + 0x44) == '\0') goto LAB_00728322;
+    bVar4 = true;
+  }
+  (**(code **)this->_pad_0x8_2)();
+  if (local_10 == '\0') {
+LAB_00728381:
+    bVar6 = false;
+  }
+  else {
+    this_00 = this->ParentStrategic;
+    StrategicManager__GetCelestialObjects_Memoize(this_00);
+    if (((undefined1 *)&(this_00->GetCelestialObjects_MemoizedValue))[0x10] == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+    cVar5 = FUN_00722c60(this_00->GetCelestialObjects_MemoizedValue,this);
+    if (cVar5 == '\0') goto LAB_00728381;
+    bVar6 = true;
+  }
+  local_98 = ((void *)(0x009194a4u));
+  if (local_94 != (void *)0x0) {
+    operator_delete__(local_94);
+  }
+  local_94 = (void *)0x0;
+  local_98 = ((void *)(0x00919488u));
+  local_e0 = ((void *)(0x00919980u));
+  if (local_dc != (void *)0x0) {
+    operator_delete__(local_dc);
+    local_dc = (void *)0x0;
+  }
+  if (local_e8 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_e8);
+  }
+  local_100 = CelestialBody__GetPopulation(this->BodyTemplate);
+  if (((local_100 <= /*0000000000000000*/0.0) || (bVar6)) || (!bVar4)) {
+LAB_0072842e:
+    bVar4 = false;
+  }
+  else {
+    bVar4 = CelestialBody__IsMediumObject(this->BodyTemplate);
+    if (!bVar4) {
+      bVar4 = CelestialBody__CanSupportOrbits(this->BodyTemplate);
+      if (!bVar4) goto LAB_0072842e;
+    }
+    bVar4 = true;
+  }
+  bVar6 = IsOriginAParent(this);
+  if (bVar6) {
+    bVar6 = CelestialBody__IsMajorObject(this->BodyTemplate);
+    if ((bVar6) || (bVar4)) {
+      uVar7 = 1;
+      __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+      return (bool)uVar7;
+    }
+  }
+  uVar7 = 0;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (bool)uVar7;
+}
+
+
 //==== 0072b410 0072b410_FUN_0072b410 ====
 void FUN_0072b410(int *param_1,int param_2,int *param_3);
 extern undefined4 FUN_0072d540(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -9356,6 +9474,134 @@ void __thiscall LibrationOrbit_LibrationOrbit__o2(LibrationOrbit *this)
 }
 
 
+//==== 00731380 00731380_GetInterceptTimeMultiplier ====
+// decompiled by BatchDecomp @ 00731380 name=GetInterceptTimeMultiplier conv=__thiscall body=548
+
+/* public: double __thiscall Fleet__GetInterceptTimeMultiplier(void)const  */
+
+double __thiscall Fleet__GetInterceptTimeMultiplier(Fleet *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  int *piVar2;
+  int iVar3;
+  undefined4 *puVar4;
+  CraftBlueprint *this_00;
+  uint uVar5;
+  undefined1 uVar6;
+  bool bVar7;
+  float10 extraout_ST0;
+  undefined8 uVar8;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_28[16];
+  undefined8 local_18;
+  undefined2 local_e;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_18 = (ulonglong)(uint)local_18;
+  bVar7 = ((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[3] == '\0';
+  if (bVar7) {
+    iVar3 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_c = iVar3 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_c);
+    bVar7 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar3);
+    if (bVar7) {
+      iVar3 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar3 + -8 + iVar1 * 8) = IsMissileFleet_Clear;
+      *(undefined4 *)(iVar3 + -4 + iVar1 * 8) = 0;
+    }
+    bVar7 = Fleet_IsMissileFleet_MemoizedFunction(this);
+    local_e = CONCAT11(1,bVar7);
+    *(undefined2 *)(((char *)&(this->GetRangesAgainstFleets_km_MemoizedValue))+ 2) = local_e;
+    bVar7 = ((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[3] == '\0';
+  }
+  if (bVar7) {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(undefined1 *)0x0);
+    DebugBreak();
+  }
+  uVar8 = /*3f947ae147ae147b*/0.02;
+  if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[2] == '\0') {
+    if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[1] == '\0') {
+      iVar3 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      local_c = iVar3 + 1;
+      util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+                 &this->FleetMemoizationHandlerInstance,&local_c);
+      bVar7 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                         &this->FleetMemoizationHandlerInstance,iVar3);
+      if (bVar7) {
+        iVar3 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+        iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+        *(code **)(iVar3 + -8 + iVar1 * 8) = IsDroneFleet_Clear;
+        *(undefined4 *)(iVar3 + -4 + iVar1 * 8) = 0;
+      }
+      Fleet_IsCapitalShipFleet_Memoize(this);
+      if (*(char *)((int)&this->IsMissileFleet_MemoizedValue + 1) == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+      if (*(char *)&this->IsMissileFleet_MemoizedValue == '\0') {
+        piVar2 = (int *)GetSpacecrafts(this);
+        local_c = 0;
+        iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
+        if (local_c < iVar3) {
+          do {
+            puVar4 = (undefined4 *)(**(code **)*piVar2)(&local_c);
+            if (((ReferenceController *)puVar4[1] != (ReferenceController *)0x0) &&
+               (bVar7 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar4[1]), !bVar7)) {
+              *puVar4 = 0;
+            }
+            this_00 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar4);
+            CraftBlueprint__IsADrone_Memoize(this_00);
+            if ((*(char (*)[18])((char *)this_00 + 730))[3] == 0) {
+              util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",
+                              0x13,"IsValid()",(undefined1 *)0x0);
+              DebugBreak();
+            }
+            if ((*(char (*)[18])((char *)this_00 + 730))[2] != 0) {
+              uVar6 = 1;
+              uVar5 = 1;
+              goto LAB_00731534;
+            }
+            local_c = local_c + 1;
+            iVar3 = (**(code **)(*(int *)(uintptr_t)piVar2 + 0xc))();
+          } while (local_c < iVar3);
+        }
+        uVar5 = 1;
+      }
+      else {
+        uVar5 = ((slice_view *)&local_18)->_4_4_;
+      }
+      uVar6 = 0;
+LAB_00731534:
+      if ((uVar5 & 1) != 0) {
+        util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_28);
+      }
+      local_e = CONCAT11(1,uVar6);
+      *(undefined2 *)&this->GetRangesAgainstFleets_km_MemoizedValue = local_e;
+      if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[1] == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+    }
+    uVar8 = /*3f947ae147ae147b*/0.02;
+    if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[0] == '\0') {
+      uVar8 = /*3fb999999999999a*/0.1;
+    }
+  }
+  local_18 = uVar8;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (double)extraout_ST0;
+}
+
+
 //==== 007315b0 007315b0_GetLagrangeOrbit ====
 // decompiled by BatchDecomp @ 007315b0 name=GetLagrangeOrbit conv=__thiscall body=7
 
@@ -9379,6 +9625,137 @@ util__Maybe_L_Itinerary_G_ * __thiscall Fleet__GetMissionItinerary(Fleet *this)
 
 {
   return (util__Maybe_L_Itinerary_G_ *)(((char *)&((this->Location).MissionItinerary))+ 0x14);
+}
+
+
+//==== 00732c20 00732c20_GetRangesAgainstFleets_km_Memoize ====
+void FUN_0072b410(int *param_1,int param_2,int *param_3);
+
+// decompiled by BatchDecomp @ 00732c20 name=Fleet_GetRangesAgainstFleets_km_Memoize conv=__thiscall body=512
+
+/* public: void __thiscall Fleet__GetRangesAgainstFleets_km_Memoize(void)const  */
+
+void __thiscall Fleet__GetRangesAgainstFleets_km_Memoize(Fleet *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  Fleet *pFVar2;
+  bool bVar3;
+  int *piVar4;
+  int iVar5;
+  undefined4 *puVar6;
+  Faction *pFVar7;
+  Faction *pFVar8;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_4c[16];
+  int *local_3c[2];
+  undefined1 local_34;
+  Fleet *local_30;
+  undefined8 local_2c;
+  int local_24;
+  Fleet *local_20;
+  int local_1c;
+  int iStack_18;
+  int iStack_14;
+  undefined4 uStack_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_30 = this;
+  if (*(char *)&this->ParentStrategic == '\0') {
+    iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_c = iVar5 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_c);
+    bVar3 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar5);
+    if (bVar3) {
+      iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar5 + -8 + iVar1 * 8) = GetRangesAgainstFleets_km_Clear;
+      *(undefined4 *)(iVar5 + -4 + iVar1 * 8) = 0;
+    }
+    local_20 = this;
+    piVar4 = (int *)StrategicManager__GetFleets(*(StrategicManager **)&(this->Location).OrbitParameters);
+    local_1c = 0;
+    iStack_18 = 0;
+    iStack_14 = 0;
+    uStack_10 = 0;
+    iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+    util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c,iVar5);
+    local_c = 0;
+    iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+    if (local_c < iVar5) {
+      do {
+        puVar6 = (undefined4 *)(**(code **)*piVar4)(&local_c);
+        if ((ReferenceController *)puVar6[1] != (ReferenceController *)0x0) {
+          bVar3 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar6[1]);
+          if (!bVar3) {
+            *puVar6 = 0;
+          }
+        }
+        pFVar7 = GetAlliance((Fleet *)*puVar6);
+        pFVar8 = GetAlliance(local_20);
+        iVar5 = iStack_14;
+        if (pFVar7 != pFVar8) {
+          local_24 = iStack_14 + 1;
+          util__Darray_class_util__WeakPtr_class_Body_____SetSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c,&local_24);
+          bVar3 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c,iVar5);
+          if (bVar3) {
+            this_00 = *(ReferenceController **)(iStack_18 + -4 + iStack_14 * 8);
+            iVar5 = iStack_18 + iStack_14 * 8;
+            *(undefined4 *)(iVar5 + -8) = *puVar6;
+            this_01 = (ReferenceController *)puVar6[1];
+            *(ReferenceController **)(iVar5 + -4) = this_01;
+            if (this_01 != (ReferenceController *)0x0) {
+              util__ReferenceController__AddWeakReference(this_01);
+            }
+            if (this_00 != (ReferenceController *)0x0) {
+              util__ReferenceController__ReleaseWeakReference(this_00);
+            }
+          }
+        }
+        local_c = local_c + 1;
+        iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+      } while (local_c < iVar5);
+    }
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_4c);
+    local_2c = 0;
+    local_24 = (**(code **)(local_1c + 0xc))();
+    local_24 = local_24 * 2;
+    util__HashMap_class_util__WeakPtr_class_Fleet__double___HashMap_class_util__WeakPtr_class_Fleet__double((HashMap_L_class_util__WeakPtr_L_class_Fleet_G__Cdouble_G_ *)&local_2c,&local_24);
+    pFVar2 = local_30;
+    FUN_0072b410(&local_1c,local_30,&local_2c);
+    util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&local_1c);
+    util__HashMap_class_util__WeakPtr_class_Fleet__double___HashMap_class_util__WeakPtr_class_Fleet__double__o2((HashMap_L_class_util__WeakPtr_L_class_Fleet_G__Cdouble_G_ *)local_3c,(undefined1 *)&local_2c)
+    ;
+    local_34 = 1;
+    util__HashMap_class_util__WeakPtr_class_Fleet__double___operator__o2
+              ((HashMap_L_class_util__WeakPtr_L_class_Fleet_G__Cdouble_G_ *)
+               (((char *)&(pFVar2->GetRangesAgainstFleets_km_MemoizedValue))+ 4),(undefined1 *)local_3c);
+    *(undefined1 *)&pFVar2->ParentStrategic = 1;
+    if (local_3c[0] != (int *)0x0) {
+      if (local_3c[0][-1] == 0) {
+        operator_delete__(local_3c[0] + -1);
+      }
+      else {
+        (**(code **)(*local_3c[0] + 0x18))(3);
+      }
+    }
+    if ((int *)local_2c != (int *)0x0) {
+      if (((int *)local_2c)[-1] != 0) {
+        (**(code **)(*(int *)local_2c + 0x18))(3);
+        __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+        return;
+      }
+      operator_delete__((int *)local_2c + -1);
+    }
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
 }
 
 
@@ -9461,6 +9838,94 @@ LAB_007337d4:
 }
 
 
+//==== 007339a0 007339a0_IsDroneFleet_Memoize ====
+// decompiled by BatchDecomp @ 007339a0 name=Fleet_IsDroneFleet_Memoize conv=__thiscall body=354
+
+/* public: void __thiscall Fleet__IsDroneFleet_Memoize(void)const  */
+
+void __thiscall Fleet__IsDroneFleet_Memoize(Fleet *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  bool bVar3;
+  int *piVar4;
+  int iVar5;
+  undefined4 *puVar6;
+  CraftBlueprint *this_00;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_24[16];
+  Fleet *local_14;
+  undefined8 local_e;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  bVar3 = false;
+  local_c = 0;
+  local_14 = this;
+  if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[1] == '\0') {
+    iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_c = iVar5 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_c);
+    bVar2 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar5);
+    if (bVar2) {
+      iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar5 + -8 + iVar1 * 8) = IsDroneFleet_Clear;
+      *(undefined4 *)(iVar5 + -4 + iVar1 * 8) = 0;
+    }
+    Fleet_IsCapitalShipFleet_Memoize(this);
+    if (*(char *)((int)&this->IsMissileFleet_MemoizedValue + 1) == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+    if (*(char *)&this->IsMissileFleet_MemoizedValue == '\0') {
+      piVar4 = (int *)GetSpacecrafts(this);
+      local_c = 0;
+      iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+      if (local_c < iVar5) {
+        do {
+          puVar6 = (undefined4 *)(**(code **)*piVar4)(&local_c);
+          if (((ReferenceController *)puVar6[1] != (ReferenceController *)0x0) &&
+             (bVar3 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar6[1]),
+             !bVar3)) {
+            *puVar6 = 0;
+          }
+          this_00 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar6);
+          CraftBlueprint__IsADrone_Memoize(this_00);
+          if ((*(char (*)[18])((char *)this_00 + 730))[3] == 0) {
+            util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13
+                            ,"IsValid()",(undefined1 *)0x0);
+            DebugBreak();
+          }
+          if ((*(char (*)[18])((char *)this_00 + 730))[2] != 0) {
+            local_e = CONCAT11(1,(byte)local_e);
+            bVar3 = true;
+            goto LAB_00733ac4;
+          }
+          local_c = local_c + 1;
+          iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+        } while (local_c < iVar5);
+      }
+      bVar3 = true;
+    }
+    local_e = (ushort)(byte)local_e;
+LAB_00733ac4:
+    if (bVar3) {
+      util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_24);
+    }
+    local_e = CONCAT11(1,((slice_view *)&local_e)->_1_1_);
+    *(ushort *)&local_14->GetRangesAgainstFleets_km_MemoizedValue = local_e;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 00733b30 00733b30_IsLocationValid ====
 // decompiled by BatchDecomp @ 00733b30 name=IsLocationValid conv=__thiscall body=44
 
@@ -9472,6 +9937,247 @@ bool __thiscall Fleet__IsLocationValid(Fleet *this)
   return (char)((((undefined1 *)&(this[1].Location.OrbitParameters))[0xc4] != '\0') +
                 (((undefined1 *)&((this->Location).MissionItinerary))[0xc] != '\0') +
                (((undefined1 *)&((this->Location).LagrangeOrbit))[4] != '\0')) == '\x01';
+}
+
+
+//==== 00733b70 00733b70_IsMissileFleet_Memoize ====
+// decompiled by BatchDecomp @ 00733b70 name=Fleet_IsMissileFleet_Memoize conv=__thiscall body=100
+
+/* public: void __thiscall Fleet__IsMissileFleet_Memoize(void)const  */
+
+void __thiscall Fleet__IsMissileFleet_Memoize(Fleet *this)
+
+{
+  int iVar1;
+  int iVar2;
+  bool bVar3;
+  undefined8 local_8;
+  
+  if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[3] == '\0') {
+    iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_8 = iVar1 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_8);
+    bVar3 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar1);
+    if (bVar3) {
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar2 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar1 + -8 + iVar2 * 8) = IsMissileFleet_Clear;
+      *(undefined4 *)(iVar1 + -4 + iVar2 * 8) = 0;
+    }
+    bVar3 = Fleet_IsMissileFleet_MemoizedFunction(this);
+    local_8 = CONCAT13(1,(uint3)bVar3 << 0x10);
+    *(undefined2 *)(((char *)&(this->GetRangesAgainstFleets_km_MemoizedValue))+ 2) = ((slice_view *)&local_8)->_2_2_;
+  }
+  return;
+}
+
+
+//==== 00733be0 00733be0_IsMissileFleet_MemoizedFunction ====
+// decompiled by BatchDecomp @ 00733be0 name=Fleet_IsMissileFleet_MemoizedFunction conv=__thiscall body=634
+
+/* private: bool __thiscall Fleet__IsMissileFleet_MemoizedFunction(void)const  */
+
+bool __thiscall Fleet__IsMissileFleet_MemoizedFunction(Fleet *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  undefined1 uVar3;
+  int *piVar4;
+  int iVar5;
+  undefined4 *puVar6;
+  CraftBlueprint *pCVar7;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_34[16];
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_24[16];
+  uint local_14;
+  undefined8 local_e;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_14 = 0;
+  Fleet_IsCapitalShipFleet_Memoize(this);
+  if (*(char *)((int)&this->IsMissileFleet_MemoizedValue + 1) == '\0') {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(undefined1 *)0x0);
+    DebugBreak();
+  }
+  if (*(char *)&this->IsMissileFleet_MemoizedValue == '\0') {
+    if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[1] == '\0') {
+      iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      local_c = iVar5 + 1;
+      util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+                 &this->FleetMemoizationHandlerInstance,&local_c);
+      bVar2 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                         &this->FleetMemoizationHandlerInstance,iVar5);
+      if (bVar2) {
+        iVar5 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+        iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+        *(code **)(iVar5 + -8 + iVar1 * 8) = IsDroneFleet_Clear;
+        *(undefined4 *)(iVar5 + -4 + iVar1 * 8) = 0;
+      }
+      Fleet_IsCapitalShipFleet_Memoize(this);
+      if (*(char *)((int)&this->IsMissileFleet_MemoizedValue + 1) == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+      if (*(char *)&this->IsMissileFleet_MemoizedValue == '\0') {
+        piVar4 = (int *)GetSpacecrafts(this);
+        local_c = 0;
+        iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+        if (local_c < iVar5) {
+          do {
+            puVar6 = (undefined4 *)(**(code **)*piVar4)(&local_c);
+            if (((ReferenceController *)puVar6[1] != (ReferenceController *)0x0) &&
+               (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar6[1]), !bVar2)) {
+              *puVar6 = 0;
+            }
+            pCVar7 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar6);
+            CraftBlueprint__IsADrone_Memoize(pCVar7);
+            if ((*(char (*)[18])((char *)pCVar7 + 730))[3] == 0) {
+              util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",
+                              0x13,"IsValid()",(undefined1 *)0x0);
+              DebugBreak();
+            }
+            if ((*(char (*)[18])((char *)pCVar7 + 730))[2] != 0) {
+              local_e = CONCAT11(1,(byte)local_e);
+              local_14 = 2;
+              goto LAB_00733d4e;
+            }
+            local_c = local_c + 1;
+            iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+          } while (local_c < iVar5);
+        }
+        local_14 = 2;
+      }
+      local_e = (ushort)(byte)local_e;
+LAB_00733d4e:
+      if ((local_14 & 2) != 0) {
+        local_14 = local_14 & 0xfffffffd;
+        util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_24);
+      }
+      local_e = CONCAT11(1,((slice_view *)&local_e)->_1_1_);
+      *(ushort *)&this->GetRangesAgainstFleets_km_MemoizedValue = local_e;
+      if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[1] == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+    }
+    if (((undefined1 *)&(this->GetRangesAgainstFleets_km_MemoizedValue))[0] == '\0') {
+      local_14 = local_14 | 1;
+      piVar4 = (int *)GetSpacecrafts(this);
+      local_c = 0;
+      iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+      if (local_c < iVar5) {
+        do {
+          puVar6 = (undefined4 *)(**(code **)*piVar4)(&local_c);
+          if (((ReferenceController *)puVar6[1] != (ReferenceController *)0x0) &&
+             (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar6[1]),
+             !bVar2)) {
+            *puVar6 = 0;
+          }
+          pCVar7 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar6);
+          CraftBlueprint__IsAMissile_Memoize(pCVar7);
+          if ((*(char (*)[18])((char *)pCVar7 + 730))[1] == 0) {
+            util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13
+                            ,"IsValid()",(undefined1 *)0x0);
+            DebugBreak();
+          }
+          if ((*(char (*)[18])((char *)pCVar7 + 730))[0] != 0) {
+            uVar3 = 1;
+            goto LAB_00733e35;
+          }
+          local_c = local_c + 1;
+          iVar5 = (**(code **)(*(int *)(uintptr_t)piVar4 + 0xc))();
+        } while (local_c < iVar5);
+      }
+    }
+  }
+  uVar3 = 0;
+LAB_00733e35:
+  if ((local_14 & 1) != 0) {
+    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_34);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (bool)uVar3;
+}
+
+
+//==== 00733e90 00733e90_IsStationOnlyFleet_Memoize ====
+// decompiled by BatchDecomp @ 00733e90 name=Fleet_IsStationOnlyFleet_Memoize conv=__thiscall body=284
+
+/* public: void __thiscall Fleet__IsStationOnlyFleet_Memoize(void)const  */
+
+void __thiscall Fleet__IsStationOnlyFleet_Memoize(Fleet *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  int *piVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  CraftBlueprint *this_00;
+  undefined1 uVar6;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_20[16];
+  Fleet *local_10;
+  undefined8 local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_10 = this;
+  if ((*(char (*)[2])((char *)this + 96))[1] == 0) {
+    iVar4 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_c = iVar4 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_c);
+    bVar2 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar4);
+    if (bVar2) {
+      iVar4 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar4 + -8 + iVar1 * 8) = IsStationOnlyFleet_Clear;
+      *(undefined4 *)(iVar4 + -4 + iVar1 * 8) = 0;
+    }
+    piVar3 = (int *)GetSpacecrafts(this);
+    local_c = 0;
+    iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
+    if (local_c < iVar4) {
+      do {
+        puVar5 = (undefined4 *)(**(code **)*piVar3)(&local_c);
+        if (((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) &&
+           (bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]),
+           !bVar2)) {
+          *puVar5 = 0;
+        }
+        this_00 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar5);
+        CraftBlueprint__IsAStation_Memoize(this_00);
+        if (((undefined1 *)&(this_00->GetMainEngineModulePlacers_MemoizedValue))[0xd] == '\0') {
+          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                          "IsValid()",(undefined1 *)0x0);
+          DebugBreak();
+        }
+        if (((undefined1 *)&(this_00->GetMainEngineModulePlacers_MemoizedValue))[0xc] == '\0') {
+          uVar6 = 0;
+          goto LAB_00733f7d;
+        }
+        local_c = local_c + 1;
+        iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
+      } while (local_c < iVar4);
+    }
+    uVar6 = 1;
+LAB_00733f7d:
+    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_20);
+    local_c = CONCAT13(1,CONCAT12(uVar6,(undefined2)local_c));
+    *(undefined2 *)(*(char (*)[2])((char *)local_10 + 96)) = ((slice_view *)&local_c)->_2_2_;
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
 }
 
 
@@ -9530,6 +10236,60 @@ void __thiscall Fleet__PostCombat(Fleet *this)
 util__GetScreenPosition_Memoize(&stack0xfffffff0);
     StrategicManager__OnFleetChanged(*(StrategicManager **)&(this->Location).OrbitParameters,in_stack_fffffff0);
   }
+  return;
+}
+
+
+//==== 007387e0 007387e0_AppendNode ====
+// decompiled by BatchDecomp @ 007387e0 name=AppendNode conv=__thiscall body=247
+
+/* private: void __thiscall Itinerary__AppendNode(struct util__PhysicalState_L_struct____util__Vec3_L_double_G___G,struct Vec3_L_double_G_,double)const  */
+
+void __thiscall Itinerary__AppendNode(Itinerary *this,undefined4 p1,undefined4 p2,double p3)
+
+{
+  undefined4 stack0xfffffffc;
+  int p1_00;
+  bool bVar1;
+  undefined4 in_stack_00000014;
+  int local_15c;
+  undefined1 local_158[244];
+  ReferenceController *local_64;
+  ReferenceController *local_5c;
+  ReferenceController *local_54;
+  ReferenceController *local_2c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  BuildNode(this,(ItineraryNode *)local_158,p1,p2,(double)CONCAT44(in_stack_00000014,((slice_view *)&p3)->_4_4_));
+  p1_00 = *(int *)(((char *)&(this->ItineraryNodes))+ 8);
+  local_15c = p1_00 + 1;
+  util__Darray_L_struct_ItineraryNode_G___SetSize
+            ((Darray_L_struct_ItineraryNode_G_ *)&this->ItineraryNodes,&local_15c);
+  bVar1 = util__Darray_L_struct_ItineraryNode_G___CheckSize
+                    ((Darray_L_struct_ItineraryNode_G_ *)&this->ItineraryNodes,p1_00);
+  if (bVar1) {
+    ItineraryNode__operator_
+              ((ItineraryNode *)
+               (*(int *)(((char *)&(this->ItineraryNodes))+ 8) * 0x150 +
+               *(int *)(((char *)&(this->ItineraryNodes))+ 4) + -0x150),(ItineraryNode *)local_158);
+  }
+  if (local_2c != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_2c);
+  }
+  if (local_54 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_54);
+  }
+  if (local_5c != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_5c);
+  }
+  if (local_64 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_64);
+  }
+  if ((ReferenceController *)((slice_view *)&local_158)->_4_4_ != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference((ReferenceController *)((slice_view *)&local_158)->_4_4_);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
 }
 
@@ -10593,6 +11353,186 @@ LAB_0074c454:
 }
 
 
+//==== 0075bcf0 0075bcf0_operator_ ====
+// decompiled by BatchDecomp @ 0075bcf0 name=operator= conv=__thiscall body=879
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* public: struct StrategicManager__SessionState & __thiscall
+   StrategicManager__SessionState__operator_(struct StrategicManager__SessionState &&) */
+
+StrategicManager__SessionState * __thiscall
+StrategicManager__SessionState__operator_(SessionState *this,undefined1 *p1)
+
+{
+  int *this_00;
+  undefined8 uVar1;
+  ReferenceController *pRVar2;
+  ReferenceController *pRVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  CelestialObject *pCVar7;
+  int iVar8;
+  undefined1 *p1_00;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *this_01;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *local_8;
+  
+  this->PlayerAlliance = *(Faction **)p1;
+  this->EnemyAlliance = *(Faction **)(p1 + 4);
+  this->CurrentTime_s = *(double *)(p1 + 8);
+  this->TurnRunTimeLeft_s = *(double *)(p1 + 0x10);
+  this->TurnStep_s = *(double *)(p1 + 0x18);
+  this->VisualTurnStep_s = *(double *)(p1 + 0x20);
+  this->ScreenFadeInOutTime_s = *(double *)(p1 + 0x28);
+  this->EndCreditsAreClosing = (bool)p1[0x30];
+  this->CurrentLevel = *(Level **)(p1 + 0x34);
+  this->RequiresLoading = (bool)p1[0x38];
+  this->VictorySoundPlayed = (bool)p1[0x39];
+  util__Str_char___operator__o8
+            ((Str_L_char_G_ *)&(this->MessagesStored)._pad_0x0_0,(util__Str_L_char_G_ *)(p1 + 0x40));
+  util__Darray_struct_LevelSpeakerMessage___operator
+            ((Darray_L_struct_LevelSpeakerMessage_G_ *)&(this->MessagesStored).Starting,
+             (util__Darray_L_LevelSpeakerMessage_G_ *)(p1 + 0x4c));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).StartingTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0x5c));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).NewTrajectoryTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0x6c));
+  util__Darray_struct_LevelSpeakerMessage___operator
+            ((Darray_L_struct_LevelSpeakerMessage_G_ *)&(this->MessagesStored).EnterCombat,
+             (util__Darray_L_LevelSpeakerMessage_G_ *)(p1 + 0x7c));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).EnterCombatTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0x8c));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).GotIntoRangeTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0x9c));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).EnemiesDamagedTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0xac));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).AlliesDamagedTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0xbc));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)
+             &(this->MessagesStored).EnemiesLostModuleTutorial,
+             (util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0xcc));
+  util__Darray_struct_LevelTutorialMessage___operator
+            ((Darray_L_struct_LevelTutorialMessage_G_ *)&(this->MessagesStored).AlliesLostModuleTutorial
+             ,(util__Darray_L_LevelTutorialMessage_G_ *)(p1 + 0xdc));
+  util__Darray_struct_LevelSpeakerMessage___operator
+            ((Darray_L_struct_LevelSpeakerMessage_G_ *)&(this->MessagesStored).MissionFailure,
+             (util__Darray_L_LevelSpeakerMessage_G_ *)(p1 + 0xec));
+  util__Darray_struct_LevelSpeakerMessage___operator
+            ((Darray_L_struct_LevelSpeakerMessage_G_ *)&(this->MessagesStored).MissionSuccess,
+             (util__Darray_L_LevelSpeakerMessage_G_ *)(p1 + 0xfc));
+  util__Str_char___operator__o8
+            ((Str_L_char_G_ *)&(this->MessagesStored).StartingCutscene.Data._pad_0x0_0,
+             (util__Str_L_char_G_ *)(p1 + 0x110));
+  (this->MessagesStored).StartingCutscene.Data.Talker = *(Speaker **)(p1 + 0x11c);
+  util__Str_char___operator__o8
+            (&(this->MessagesStored).StartingCutscene.Data.Message,(util__Str_L_char_G_ *)(p1 + 0x120));
+  util__Str_char___operator__o8
+            ((Str_L_char_G_ *)&(this->MessagesStored).StartingCutscene.IsValidData,
+             (util__Str_L_char_G_ *)(p1 + 300));
+  *(undefined1 *)&(this->MissionCriticalShips).Data = p1[0x138];
+  *(undefined1 *)&(this->MissionCriticalShips).Size = p1[0x13c];
+  local_8 = (Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+            (**(code **)(*(int *)(p1 + 0x140) + 0xc))();
+  util__Darray_class_util__Darray_class_util__WeakPtr_class_SpacecraftComponent_______SetSize((Darray_L_util__Darray_L_util__WeakPtr_L_SpacecraftComponent_G___G___G *)
+             &(this->MissionCriticalShips).Capacity,(int *)&local_8);
+  iVar8 = (**(code **)(*(int *)(p1 + 0x140) + 0xc))();
+  this_00 = &(this->MissionCriticalShips).Capacity;
+  if (iVar8 == 0) {
+    (**(code **)(*(int *)(uintptr_t)this_00 + 0x10))();
+  }
+  else {
+    util__Darray_class_util__Darray_class_util__WeakPtr_class_SpacecraftComponent_______CheckSizeDestructive((Darray_L_util__Darray_L_util__WeakPtr_L_SpacecraftComponent_G___G___G *)
+               this_00);
+    this_01 = (Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+              (this->ShipsWithStartFlag)._pad_0x0_0;
+    p1_00 = *(undefined1 **)(p1 + 0x144);
+    local_8 = this_01;
+    if (p1_00 != p1_00 + *(int *)(p1 + 0x148) * 0x10) {
+      do {
+        util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2(this_01,p1_00);
+        p1_00 = p1_00 + 0x10;
+        this_01 = this_01 + 0x10;
+      } while (p1_00 != (undefined1 *)(*(int *)(p1 + 0x148) * 0x10 + *(int *)(p1 + 0x144)));
+    }
+  }
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+            ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+             &(this->ShipsWithStartFlag).Capacity,p1 + 0x150);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+            ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+             &(this->ShipsWithEndFlag).Capacity,p1 + 0x160);
+  uVar1 = *(undefined8 *)(p1 + 0x170);
+  this->InitialCapitalShipsAlive = (int)uVar1;
+  this->InitialCapitalShipsUnscathed = (int)((ulonglong)uVar1 >> 0x20);
+  this->InitialEnemyCompartments = *(int *)(p1 + 0x178);
+  (this->CombatingFleets)._pad_0x0_0 = *(int *)(p1 + 0x17c);
+  (this->CombatingFleets).Data = *(WeakPtr_L_Fleet_G_ **)(p1 + 0x180);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+            ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)
+             &(this->CombatingFleets).Size,p1 + 0x184);
+  uVar4 = *(undefined4 *)(p1 + 0x19c);
+  uVar5 = *(undefined4 *)(p1 + 0x1a0);
+  uVar6 = *(undefined4 *)(p1 + 0x1a4);
+  *(undefined4 *)&(this->CombatReferenceState).Position.Y = *(undefined4 *)(p1 + 0x198);
+  *(undefined4 *)((int)&(this->CombatReferenceState).Position.Y + 4) = uVar4;
+  *(undefined4 *)&(this->CombatReferenceState).Position.Z = uVar5;
+  *(undefined4 *)((int)&(this->CombatReferenceState).Position.Z + 4) = uVar6;
+  uVar4 = *(undefined4 *)(p1 + 0x1ac);
+  uVar5 = *(undefined4 *)(p1 + 0x1b0);
+  uVar6 = *(undefined4 *)(p1 + 0x1b4);
+  *(undefined4 *)&(this->CombatReferenceState).Velocity.X = *(undefined4 *)(p1 + 0x1a8);
+  *(undefined4 *)((int)&(this->CombatReferenceState).Velocity.X + 4) = uVar4;
+  *(undefined4 *)&(this->CombatReferenceState).Velocity.Y = uVar5;
+  *(undefined4 *)((int)&(this->CombatReferenceState).Velocity.Y + 4) = uVar6;
+  uVar4 = *(undefined4 *)(p1 + 0x1bc);
+  pCVar7 = *(CelestialObject **)(p1 + 0x1c0);
+  pRVar2 = *(ReferenceController **)(p1 + 0x1c4);
+  *(undefined4 *)&(this->CombatReferenceState).Velocity.Z = *(undefined4 *)(p1 + 0x1b8);
+  *(undefined4 *)((int)&(this->CombatReferenceState).Velocity.Z + 4) = uVar4;
+  (this->GameplayRelevantRoot).Pointer = pCVar7;
+  (this->GameplayRelevantRoot).Controller = pRVar2;
+  pRVar2 = (this->OriginObject).Controller;
+  (this->OriginObject).Pointer = *(CelestialObject **)(p1 + 0x1c8);
+  pRVar3 = *(ReferenceController **)(p1 + 0x1cc);
+  (this->OriginObject).Controller = pRVar3;
+  if (pRVar3 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(pRVar3);
+  }
+  if (pRVar2 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(pRVar2);
+  }
+  pRVar2 = (this->ReferenceObject).Object.Controller;
+  (this->ReferenceObject).Object.Pointer = *(Actor **)(p1 + 0x1d0);
+  pRVar3 = *(ReferenceController **)(p1 + 0x1d4);
+  (this->ReferenceObject).Object.Controller = pRVar3;
+  if (pRVar3 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(pRVar3);
+  }
+  if (pRVar2 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(pRVar2);
+  }
+  WorldObject__operator_
+            ((WorldObject *)&(this->ReferenceObject).LPointID,(WorldObject *)(p1 + 0x1d8));
+  ItineraryNode__operator_
+            ((ItineraryNode *)&(this->HoveredItineraryNode).Value1.LastState,
+             (ItineraryNode *)(p1 + 0x490));
+  (this->SelectedItineraryNode).Parent = *(WeakPtr_L_Fleet_G_ *)(p1 + 0x5e0);
+  ItineraryNode__operator_
+            ((ItineraryNode *)&(this->SelectedItineraryNode).LastState,(ItineraryNode *)(p1 + 0x5e8)
+            );
+  WorldObject__operator_
+            ((WorldObject *)&(this->SelectedObject).LPointID,(WorldObject *)(p1 + 0x738));
+  return (StrategicManager__SessionState *)this;
+}
+
+
 //==== 007609e0 007609e0_DememoizeAll ====
 // decompiled by BatchDecomp @ 007609e0 name=DememoizeAll conv=__thiscall body=108
 
@@ -10623,6 +11563,236 @@ void __thiscall TacticalManager__DememoizeAll(TacticalManager *this)
   (**(code **)(*(int *)&this->TacticalManagerMemoizationHandlerInstance + 0x10))();
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
+}
+
+
+//==== 00764f20 00764f20_GetFutureBattles ====
+extern undefined4 FUN_007553c0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
+void FUN_0075d960(Maybe_L_struct_PendingBattle_G_ *param_1,int *param_2);
+
+// decompiled by BatchDecomp @ 00764f20 name=GetFutureBattles conv=__thiscall body=867
+
+/* public: class util__Maybe_L_PendingBattle_G_ __thiscall
+   StrategicManager__GetFutureBattles(double)const  */
+
+util__Maybe_L_PendingBattle_G_ * __thiscall
+StrategicManager__GetFutureBattles(StrategicManager *this,util__Maybe_L_PendingBattle_G_ *__return_storage_ptr__,double p1)
+
+{
+  undefined4 stack0xfffffffc;
+  double *pdVar1;
+  ReferenceController *pRVar2;
+  undefined1 *puVar3;
+  bool bVar4;
+  int *piVar5;
+  int iVar6;
+  undefined4 uVar7;
+  util__Darray_L_PendingBattle_G_ *p1_00;
+  int iVar8;
+  undefined4 *puVar9;
+  PendingBattle *pPVar10;
+  undefined4 unaff_EDI;
+  undefined4 in_stack_00000008;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_8c[16];
+  util__Darray_L_PendingBattle_G_ local_7c;
+  util__Maybe_L_PendingBattle_G_ *local_6c;
+  util__Darray_L_PendingBattle_G_ local_68;
+  int *local_58;
+  ReferenceController *local_54;
+  StrategicManager *local_50;
+  undefined4 local_4c;
+  ReferenceController *local_48;
+  undefined4 local_44;
+  ReferenceController *local_40;
+  double local_3c;
+  char local_34;
+  undefined8 local_2c;
+  StrategicManager *local_24;
+  undefined8 *local_20;
+  undefined **local_1c;
+  PendingBattle *pPStack_18;
+  int iStack_14;
+  undefined4 uStack_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_2c = CONCAT44(((slice_view *)&p1)->_0_4_,in_stack_00000008);
+  local_20 = &local_2c;
+  local_6c = __return_storage_ptr__;
+  local_1c = (undefined **)0x0;
+  pPStack_18 = (PendingBattle *)0x0;
+  iStack_14 = 0;
+  uStack_10 = 0;
+  local_50 = this;
+  local_24 = this;
+  piVar5 = (int *)GetRelevantFleets(this);
+  (*(void **)&local_68) = (undefined1 *)0x0;
+  local_68.Data = (undefined1 *)0x0;
+  local_68.Size = 0;
+  local_68.Capacity = 0;
+  local_58 = piVar5;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  util__Darray_struct_PendingBattle___Darray_struct_PendingBattle__o2((Darray_L_struct_PendingBattle_G_ *)&local_68,iVar6);
+  local_c = 0;
+  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+  if (local_c < iVar6) {
+    do {
+      uVar7 = (**(code **)*piVar5)(&local_c);
+      FUN_0075d960(&local_4c,uVar7);
+      pRVar2 = local_40;
+      iVar6 = local_68.Size;
+      if (local_34 != '\0') {
+        local_54 = (ReferenceController *)(local_68.Size + 1);
+        util__Darray_struct_PendingBattle___SetSize((Darray_L_struct_PendingBattle_G_ *)&local_68,(int *)&local_54);
+        bVar4 = util__Darray_L_struct_PendingBattle_G___CheckSize
+                          ((Darray_L_struct_PendingBattle_G_ *)&local_68,iVar6);
+        iVar6 = local_68.Size;
+        puVar3 = local_68.Data;
+        piVar5 = local_58;
+        if (bVar4) {
+          local_54 = *(ReferenceController **)
+                      ((int)&((PendingBattle *)((int)local_68.Data + (local_68.Size + -1) * 0x18))->
+                             Attacker + 4);
+          *(undefined4 *)
+           &((PendingBattle *)((int)local_68.Data + (local_68.Size + -1) * 0x18))->Attacker =
+               local_4c;
+          *(ReferenceController **)
+           ((int)&((PendingBattle *)((int)local_68.Data + (local_68.Size + -1) * 0x18))->Attacker +
+           4) = local_48;
+          if (local_48 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(local_48);
+          }
+          if (local_54 != (ReferenceController *)0x0) {
+            util__ReferenceController__ReleaseWeakReference(local_54);
+          }
+          local_54 = *(ReferenceController **)
+                      ((int)&((PendingBattle *)((int)puVar3 + (iVar6 + -1) * 0x18))->Defender + 4);
+          *(undefined4 *)&((PendingBattle *)((int)puVar3 + (iVar6 + -1) * 0x18))->Defender =
+               local_44;
+          *(ReferenceController **)
+           ((int)&((PendingBattle *)((int)puVar3 + (iVar6 + -1) * 0x18))->Defender + 4) = pRVar2;
+          if (pRVar2 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(pRVar2);
+          }
+          if (local_54 != (ReferenceController *)0x0) {
+            util__ReferenceController__ReleaseWeakReference(local_54);
+          }
+          ((PendingBattle *)((int)puVar3 + (iVar6 + -1) * 0x18))->TimeSinceJ2000_s = local_3c;
+          piVar5 = local_58;
+        }
+      }
+      if (pRVar2 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(pRVar2);
+      }
+      if (local_48 != (ReferenceController *)0x0) {
+        util__ReferenceController__ReleaseWeakReference(local_48);
+      }
+      local_c = local_c + 1;
+      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar5 + 0xc))();
+      __return_storage_ptr__ = local_6c;
+    } while (local_c < iVar6);
+  }
+  p1_00 = GetPendingBattles_s(local_50,&local_7c,
+                              (double)CONCAT44(unaff_EDI,(int)((ulonglong)local_2c >> 0x20)));
+  local_1c = (undefined **)0x0;
+  pPStack_18 = (PendingBattle *)0x0;
+  iStack_14 = 0;
+  uStack_10 = 0;
+  util__Darray_struct_PendingBattle___Darray_struct_PendingBattle((Darray_L_struct_PendingBattle_G_ *)&local_1c,&local_68);
+  if (iStack_14 == 0) {
+    util__Darray_L_struct_PendingBattle_G___operator_((Darray_L_struct_PendingBattle_G_ *)&local_1c,p1_00);
+  }
+  else {
+    iVar8 = (**(code **)((*(void **)&p1_00) + 0xc))();
+    iVar6 = iStack_14;
+    if (iVar8 != 0) {
+      iVar8 = (**(code **)((*(void **)&p1_00) + 0xc))();
+      local_50 = (StrategicManager *)(iVar8 + iStack_14);
+      util__Darray_struct_PendingBattle___SetSize((Darray_L_struct_PendingBattle_G_ *)&local_1c,(int *)&local_50);
+      util__Darray_struct_PendingBattle___CheckSize((Darray_L_struct_PendingBattle_G_ *)&local_1c,iVar6)
+      ;
+      puVar9 = (undefined4 *)p1_00->Data;
+      pPVar10 = pPStack_18 + iVar6;
+      if (pPVar10 != pPStack_18 + iStack_14) {
+        do {
+          local_50 = *(StrategicManager **)((int)&pPVar10->Attacker + 4);
+          *(undefined4 *)&pPVar10->Attacker = *puVar9;
+          pRVar2 = (ReferenceController *)puVar9[1];
+          *(ReferenceController **)((int)&pPVar10->Attacker + 4) = pRVar2;
+          if (pRVar2 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(pRVar2);
+          }
+          if (local_50 != (StrategicManager *)0x0) {
+            util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_50);
+          }
+          local_50 = *(StrategicManager **)((int)&pPVar10->Defender + 4);
+          *(undefined4 *)&pPVar10->Defender = puVar9[2];
+          pRVar2 = (ReferenceController *)puVar9[3];
+          *(ReferenceController **)((int)&pPVar10->Defender + 4) = pRVar2;
+          if (pRVar2 != (ReferenceController *)0x0) {
+            util__ReferenceController__AddWeakReference(pRVar2);
+          }
+          if (local_50 != (StrategicManager *)0x0) {
+            util__ReferenceController__ReleaseWeakReference((ReferenceController *)local_50);
+          }
+          pdVar1 = (double *)(puVar9 + 4);
+          puVar9 = puVar9 + 6;
+          pPVar10->TimeSinceJ2000_s = *pdVar1;
+          pPVar10 = pPVar10 + 1;
+        } while (pPVar10 != pPStack_18 + iStack_14);
+      }
+    }
+  }
+  (*(void **)&local_68) = (undefined1 *)((void *)(0x0093a558u));
+  if ((PendingBattle *)local_68.Data != (PendingBattle *)0x0) {
+    PendingBattle___vector_deleting_destructor_((PendingBattle *)local_68.Data,3);
+  }
+  local_68.Data = (undefined1 *)0x0;
+  (*(void **)&local_68) = (undefined1 *)((void *)(0x00919488u));
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_8c);
+  (*(void **)&local_7c) = (undefined1 *)((void *)(0x0093a558u));
+  if ((PendingBattle *)local_7c.Data != (PendingBattle *)0x0) {
+    PendingBattle___vector_deleting_destructor_((PendingBattle *)local_7c.Data,3);
+  }
+  if (iStack_14 < 1) {
+    *(undefined4 *)&(__return_storage_ptr__->Data).Attacker = 0;
+    *(undefined4 *)((int)&(__return_storage_ptr__->Data).Attacker + 4) = 0;
+    *(undefined4 *)&(__return_storage_ptr__->Data).Defender = 0;
+    *(undefined4 *)((int)&(__return_storage_ptr__->Data).Defender + 4) = 0;
+    (__return_storage_ptr__->Data).TimeSinceJ2000_s = 0.0;
+    *(undefined1 *)&__return_storage_ptr__->IsValidData = 0;
+  }
+  else {
+    local_50 = (StrategicManager *)((uint)local_50 & 0xffffff00);
+    puVar9 = (undefined4 *)FUN_007553c0(&local_4c,&local_1c,local_50);
+    *(undefined4 *)&(__return_storage_ptr__->Data).Attacker = *puVar9;
+    pRVar2 = (ReferenceController *)puVar9[1];
+    *(ReferenceController **)((int)&(__return_storage_ptr__->Data).Attacker + 4) = pRVar2;
+    if (pRVar2 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(pRVar2);
+    }
+    *(undefined4 *)&(__return_storage_ptr__->Data).Defender = puVar9[2];
+    pRVar2 = (ReferenceController *)puVar9[3];
+    *(ReferenceController **)((int)&(__return_storage_ptr__->Data).Defender + 4) = pRVar2;
+    if (pRVar2 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(pRVar2);
+    }
+    (__return_storage_ptr__->Data).TimeSinceJ2000_s = *(double *)(puVar9 + 4);
+    *(undefined1 *)&__return_storage_ptr__->IsValidData = 1;
+    if (local_40 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(local_40);
+    }
+    if (local_48 != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(local_48);
+    }
+  }
+  local_1c = ((void *)(0x0093a558u));
+  if (pPStack_18 != (PendingBattle *)0x0) {
+    PendingBattle___vector_deleting_destructor_(pPStack_18,3);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
 }
 
 
@@ -11185,6 +12355,155 @@ util_Delegate_struct_ItineraryNode_operator
 }
 
 
+//==== 0077f250 0077f250_Add ====
+// decompiled by BatchDecomp @ 0077f250 name=Add conv=__thiscall body=126
+
+/* public: bool __thiscall util__Darray_L_struct_util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G__G::Add(struct util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G const &) */
+
+bool __thiscall
+util_Darray_struct_util_tuple2_struct_ItineraryNode_class_util_WeakPtr_struct_UIWidget_Add(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_
+           *this,undefined1 *p1)
+
+{
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  bool bVar1;
+  int iVar2;
+  int local_8;
+  
+  iVar2 = *(int *)(this + 8);
+  local_8 = iVar2 + 1;
+  SetSize(this,&local_8);
+  bVar1 = CheckSize(this,iVar2);
+  if (!bVar1) {
+    return bVar1;
+  }
+  iVar2 = *(int *)(this + 4) + *(int *)(this + 8) * 0x158;
+  ItineraryNode__operator_((ItineraryNode *)(iVar2 + -0x158),(ItineraryNode *)p1);
+  this_00 = *(ReferenceController **)(iVar2 + -4);
+  *(undefined4 *)(iVar2 + -8) = *(undefined4 *)(p1 + 0x150);
+  this_01 = *(ReferenceController **)(p1 + 0x154);
+  *(ReferenceController **)(iVar2 + -4) = this_01;
+  if (this_01 != (ReferenceController *)0x0) {
+    ReferenceController__AddWeakReference(this_01);
+  }
+  if (this_00 != (ReferenceController *)0x0) {
+    ReferenceController__ReleaseWeakReference(this_00);
+  }
+  return true;
+}
+
+
+//==== 0077f620 0077f620_CheckSize ====
+// decompiled by BatchDecomp @ 0077f620 name=CheckSize conv=__thiscall body=446
+
+/* private: bool __thiscall util__Darray_L_struct_util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G__G::CheckSize(int) */
+
+bool __thiscall
+util_Darray_struct_util_tuple2_struct_ItineraryNode_class_util_WeakPtr_struct_UIWidget_CheckSize(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_
+          *this,int p1)
+
+{
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  bool bVar1;
+  uint *puVar2;
+  uint uVar3;
+  ItineraryNode *pIVar4;
+  undefined4 *puVar5;
+  uint uVar6;
+  ItineraryNode *p1_00;
+  undefined4 *puVar7;
+  bool bVar8;
+  ItineraryNode *local_c;
+  bool local_5;
+  
+  local_5 = true;
+  uVar3 = *(uint *)(this + 8);
+  bVar8 = -1 < (int)uVar3;
+  bVar1 = !bVar8;
+  if (bVar1) {
+    local_c = (ItineraryNode *)0x0;
+    SetSize(this,(int *)&local_c);
+    uVar3 = *(uint *)(this + 8);
+  }
+  local_5 = !bVar1;
+  bVar1 = (int)uVar3 < 0x40000000;
+  if (!bVar1) {
+    local_c = (ItineraryNode *)0x3fffffff;
+    SetSize(this,(int *)&local_c);
+    uVar3 = *(uint *)(this + 8);
+    local_5 = false;
+  }
+  uVar6 = *(uint *)(this + 0xc);
+  if ((int)uVar3 <= (int)uVar6) {
+    return bVar1 && bVar8;
+  }
+  if (uVar6 == 0) {
+    *(uint *)(this + 0xc) = uVar3;
+    uVar6 = uVar3;
+  }
+  if ((int)uVar6 < (int)uVar3) {
+    do {
+      uVar6 = uVar6 * 2;
+    } while ((int)uVar6 < (int)uVar3);
+    *(uint *)(this + 0xc) = uVar6;
+  }
+  if (0x3fffffff < (int)uVar6) {
+    *(undefined4 *)(this + 0xc) = 0x3fffffff;
+    uVar6 = 0x3fffffff;
+  }
+  uVar3 = -(uint)((int)((ulonglong)uVar6 * 0x158 >> 0x20) != 0) | (uint)((ulonglong)uVar6 * 0x158);
+  puVar2 = (uint *)operator_new__(-(uint)(0xfffffffb < uVar3) | uVar3 + 4);
+  if (puVar2 == (uint *)0x0) {
+    local_c = (ItineraryNode *)0x0;
+  }
+  else {
+    *puVar2 = uVar6;
+    pIVar4 = (ItineraryNode *)(puVar2 + 1);
+    local_c = pIVar4;
+    for (; uVar6 != 0; uVar6 = uVar6 - 1) {
+      ItineraryNode__ItineraryNode(pIVar4);
+      *(undefined4 *)&pIVar4[1].Parent = 0;
+      *(undefined4 *)((int)&pIVar4[1].Parent + 4) = 0;
+      pIVar4 = (ItineraryNode *)&pIVar4[1].LastState;
+    }
+  }
+  pIVar4 = *(ItineraryNode **)(this + 4);
+  if (pIVar4 != (ItineraryNode *)0x0) {
+    puVar5 = (undefined4 *)(*(int *)(this + 8) * 0x158 + (int)local_c);
+    if (pIVar4 != (ItineraryNode *)(p1 * 0x158 + (int)pIVar4)) {
+      puVar7 = (undefined4 *)((int)&local_c[1].Parent + 4);
+      p1_00 = pIVar4;
+      do {
+        if (puVar7 + -0x55 == puVar5) break;
+        ItineraryNode__operator_((ItineraryNode *)(puVar7 + -0x55),p1_00);
+        this_00 = (ReferenceController *)*puVar7;
+        puVar7[-1] = *(undefined4 *)&p1_00[1].Parent;
+        this_01 = *(ReferenceController **)((int)&p1_00[1].Parent + 4);
+        *puVar7 = this_01;
+        if (this_01 != (ReferenceController *)0x0) {
+          ReferenceController__AddWeakReference(this_01);
+        }
+        if (this_00 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(this_00);
+        }
+        p1_00 = (ItineraryNode *)&p1_00[1].LastState;
+        pIVar4 = *(ItineraryNode **)(this + 4);
+        puVar7 = puVar7 + 0x56;
+      } while (p1_00 != (ItineraryNode *)(p1 * 0x158 + (int)pIVar4));
+    }
+    if (pIVar4 != (ItineraryNode *)0x0) {
+      tuple2_L_struct_ItineraryNode_class_util__WeakPtr_L_struct_UIWidget_G___G____vector_deleting_destructor
+                ((tuple2_L_struct_ItineraryNode_Cclass_util__WeakPtr_L_struct_UIWidget_G___G_ *)pIVar4,3);
+    }
+    *(undefined4 *)(this + 4) = 0;
+  }
+  *(ItineraryNode **)(this + 4) = local_c;
+  return local_5;
+}
+
+
 //==== 00781290 00781290_GetBurnCustomWidget ====
 // decompiled by BatchDecomp @ 00781290 name=GetBurnCustomWidget conv=__thiscall body=221
 
@@ -11333,6 +12652,351 @@ LAB_007846f1:
     util__ReferenceController__ReleaseWeakReference(local_158);
   }
   return (bool)local_5;
+}
+
+
+//==== 00785180 00785180_SetAll ====
+// decompiled by BatchDecomp @ 00785180 name=SetAll conv=__thiscall body=122
+
+/* public: virtual void __thiscall util__Darray_L_struct_util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G__G::SetAll(struct util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G const &) */
+
+void __thiscall
+util_Darray_struct_util_tuple2_struct_ItineraryNode_class_util_WeakPtr_struct_UIWidget_SetAll(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_
+       *this,undefined1 *p1)
+
+{
+  ReferenceController *this_00;
+  ReferenceController *this_01;
+  ItineraryNode *this_02;
+  undefined4 *puVar1;
+  
+  this_02 = *(ItineraryNode **)(this + 4);
+  if (this_02 != (ItineraryNode *)(*(int *)(this + 8) * 0x158 + (int)this_02)) {
+    puVar1 = (undefined4 *)((int)&this_02[1].Parent + 4);
+    do {
+      ItineraryNode__operator_(this_02,(ItineraryNode *)p1);
+      this_00 = (ReferenceController *)*puVar1;
+      puVar1[-1] = *(undefined4 *)(p1 + 0x150);
+      this_01 = *(ReferenceController **)(p1 + 0x154);
+      *puVar1 = this_01;
+      if (this_01 != (ReferenceController *)0x0) {
+        ReferenceController__AddWeakReference(this_01);
+      }
+      if (this_00 != (ReferenceController *)0x0) {
+        ReferenceController__ReleaseWeakReference(this_00);
+      }
+      this_02 = (ItineraryNode *)&this_02[1].LastState;
+      puVar1 = puVar1 + 0x56;
+    } while (this_02 != (ItineraryNode *)(*(int *)(this + 8) * 0x158 + *(int *)(this + 4)));
+  }
+  return;
+}
+
+
+//==== 00785260 00785260_SetSize ====
+// decompiled by BatchDecomp @ 00785260 name=SetSize conv=__thiscall body=389
+
+/* private: void __thiscall util__Darray_L_struct_util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G__G::SetSize(int const &) */
+
+void __thiscall
+util_Darray_struct_util_tuple2_struct_ItineraryNode_class_util_WeakPtr_struct_UIWidget_SetSize(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_
+        *this,int *p1)
+
+{
+  bool bVar1;
+  ReferenceController *this_00;
+  int iVar2;
+  undefined4 *puVar3;
+  ItineraryNode *this_01;
+  undefined1 local_164[244];
+  ReferenceController *local_70;
+  ReferenceController *local_68;
+  ReferenceController *local_60;
+  ReferenceController *local_38;
+  undefined4 local_14;
+  ReferenceController *local_10;
+  int local_c;
+  ReferenceController *local_8;
+  
+  iVar2 = *p1;
+  if (((iVar2 < 1) && (0x3ffffffe < iVar2)) || ((iVar2 < 0x40000000 && (-1 < iVar2)))) {
+    bVar1 = true;
+  }
+  else {
+    bVar1 = false;
+  }
+  if (!bVar1) {
+    LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\darray.inl",0x2a5,
+              "Between(value, 0, DARRAY_MAX_SIZE)",(undefined1 *)0x0);
+    DebugBreak();
+    iVar2 = *p1;
+  }
+  if (iVar2 < 1) {
+    iVar2 = 0;
+  }
+  local_c = 0x3fffffff;
+  if (iVar2 < 0x3fffffff) {
+    local_c = iVar2;
+  }
+  if ((local_c < *(int *)(this + 8)) && (iVar2 = *(int *)(this + 4), iVar2 != 0)) {
+    this_01 = (ItineraryNode *)(local_c * 0x158 + iVar2);
+    if (this_01 != (ItineraryNode *)(*(int *)(this + 8) * 0x158 + iVar2)) {
+      puVar3 = (undefined4 *)((int)&this_01[1].Parent + 4);
+      do {
+        ItineraryNode__ItineraryNode((ItineraryNode *)local_164);
+        local_14 = 0;
+        local_10 = (ReferenceController *)0x0;
+        ItineraryNode__operator_(this_01,(ItineraryNode *)local_164);
+        this_00 = local_10;
+        local_8 = (ReferenceController *)*puVar3;
+        puVar3[-1] = local_14;
+        *puVar3 = local_10;
+        if (local_10 != (ReferenceController *)0x0) {
+          ReferenceController__AddWeakReference(local_10);
+        }
+        if (local_8 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(local_8);
+        }
+        if (this_00 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(this_00);
+        }
+        if (local_38 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(local_38);
+        }
+        if (local_60 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(local_60);
+        }
+        if (local_68 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(local_68);
+        }
+        if (local_70 != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference(local_70);
+        }
+        if ((ReferenceController *)((slice_view *)&local_164)->_4_4_ != (ReferenceController *)0x0) {
+          ReferenceController__ReleaseWeakReference((ReferenceController *)((slice_view *)&local_164)->_4_4_);
+        }
+        this_01 = (ItineraryNode *)&this_01[1].LastState;
+        puVar3 = puVar3 + 0x56;
+      } while (this_01 != (ItineraryNode *)(*(int *)(this + 8) * 0x158 + *(int *)(this + 4)));
+      *(int *)(this + 8) = local_c;
+      return;
+    }
+    *(int *)(this + 8) = local_c;
+    return;
+  }
+  *(int *)(this + 8) = local_c;
+  return;
+}
+
+
+//==== 0078e550 0078e550_FUN_0078e550 ====
+void __fastcall FUN_0078e550(int *param_1);
+
+// decompiled by BatchDecomp @ 0078e550 name=FUN_0078e550 conv=unknown body=145
+
+void __fastcall FUN_0078e550(int *param_1)
+
+{
+  undefined4 *puVar1;
+  ReferenceController *this;
+  undefined4 local_15c;
+  ReferenceController *local_158;
+  ItineraryNode local_154;
+  
+  if (((undefined1 *)*param_1)[0x158] != '\0') {
+    util_Darray_struct_util_tuple2_class_util_WeakPtr_struct_OrbiterInterface_struct_ItineraryNode_Add((Darray_L_util__tuple2_L_util__WeakPtr_L_OrbiterInterface_G__CItineraryNode_G___G
+           *)param_1[1],(undefined1 *)*param_1);
+    puVar1 = (undefined4 *)*param_1;
+    local_15c = 0;
+    local_158 = (ReferenceController *)0x0;
+    ItineraryNode__ItineraryNode(&local_154);
+    this = (ReferenceController *)puVar1[1];
+    *puVar1 = local_15c;
+    puVar1[1] = local_158;
+    if (local_158 != (ReferenceController *)0x0) {
+      util__ReferenceController__AddWeakReference(local_158);
+    }
+    if (this != (ReferenceController *)0x0) {
+      util__ReferenceController__ReleaseWeakReference(this);
+    }
+    ItineraryNode__operator_((ItineraryNode *)(puVar1 + 2),&local_154);
+    util__tuple2_class_util__WeakPtr_struct_OrbiterInterface__struct_ItineraryNode____tuple2_class_util__WeakPtr_struct_OrbiterInterface__struct_ItineraryNode((tuple2_L_class_util__WeakPtr_L_struct_OrbiterInterface_G__Cstruct_ItineraryNode_G_ *)
+               &local_15c);
+    *(undefined1 *)(puVar1 + 0x56) = 0;
+  }
+  return;
+}
+
+
+//==== 00792250 00792250_GetMouseOverNode_Memoize ====
+#undef t /* auto(v2): compat 僵尸宏撞成员名 */
+
+// decompiled by BatchDecomp @ 00792250 name=ItineraryNodeUI_GetMouseOverNode_Memoize conv=__thiscall body=240
+
+/* public: void __thiscall ItineraryNodeUI__GetMouseOverNode_Memoize(void)const  */
+
+void __thiscall ItineraryNodeUI__GetMouseOverNode_Memoize(ItineraryNodeUI *this)
+
+{
+  int iVar1;
+  bool bVar2;
+  NodeMouseOver *p1;
+  NodeMouseOver local_560;
+  NodeMouseOver local_2b8;
+  undefined1 local_10;
+  int local_8;
+  
+  if (((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8] == '\0') {
+    iVar1 = *(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 8);
+    local_8 = iVar1 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->ItineraryNodeUIMemoizationHandlerInstance,
+               &local_8);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                       &this->ItineraryNodeUIMemoizationHandlerInstance,iVar1);
+    if (bVar2) {
+      *(code **)(*(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 4) + -4 +
+                *(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 8) * 4) =
+           GetMouseOverNode_Clear;
+    }
+    p1 = ItineraryNodeUI_GetMouseOverNode_MemoizedFunction(this,&local_560);
+    ItineraryNode__ItineraryNode(&local_2b8.LastNode,(undefined1 *)p1);
+    ItineraryNode__ItineraryNode(&local_2b8.NextNode,(undefined1 *)&p1->NextNode);
+    local_2b8.t = p1->t;
+    local_10 = 1;
+    ItineraryNode__operator_
+              ((ItineraryNode *)&this->GetMouseOverNode_MemoizedValue,&local_2b8.LastNode);
+    ItineraryNode__operator_
+              ((ItineraryNode *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x150),&local_2b8.NextNode);
+    *(double *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x2a0) = local_2b8.t;
+    ((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8] = local_10;
+    NodeMouseOver__dtor(&local_2b8);
+    NodeMouseOver__dtor(&local_560);
+  }
+  return;
+}
+
+
+//==== 007954e0 007954e0_HitTest ====
+#undef t /* auto(v2): compat 僵尸宏撞成员名 */
+
+// decompiled by BatchDecomp @ 007954e0 name=HitTest conv=__thiscall body=450
+
+/* public: virtual bool __thiscall ItineraryNodeUI__HitTest(struct util__Vec2_L_double_G_)const  */
+
+bool __thiscall ItineraryNodeUI__HitTest(ItineraryNodeUI *this,undefined4 p1)
+
+{
+  char cVar1;
+  int iVar2;
+  bool bVar3;
+  NodeMouseOver *p1_00;
+  undefined4 in_stack_00000008;
+  undefined4 in_stack_0000000c;
+  undefined4 in_stack_00000010;
+  NodeMouseOver local_560;
+  undefined1 local_2b8;
+  NodeMouseOver local_2b0;
+  int local_8;
+  
+  if (((NAN(*(double *)&this->SavedMouseLocation) || NAN((double)CONCAT44(in_stack_00000008,p1))) ==
+       (*(double *)&this->SavedMouseLocation == (double)CONCAT44(in_stack_00000008,p1))) ||
+     ((NAN(*(double *)(((char *)&(this->SavedMouseLocation))+ 8)) ||
+      NAN((double)CONCAT44(in_stack_00000010,in_stack_0000000c))) ==
+      (*(double *)(((char *)&(this->SavedMouseLocation))+ 8) ==
+      (double)CONCAT44(in_stack_00000010,in_stack_0000000c)))) {
+    ItineraryNode__ItineraryNode(&local_2b0.LastNode);
+    ItineraryNode__ItineraryNode(&local_2b0.NextNode);
+    local_2b0.t = 0.0;
+    ItineraryNode__operator_
+              ((ItineraryNode *)&this->GetMouseOverNode_MemoizedValue,&local_2b0.LastNode);
+    ItineraryNode__operator_
+              ((ItineraryNode *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x150),&local_2b0.NextNode);
+    *(double *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x2a0) = local_2b0.t;
+    NodeMouseOver__dtor(&local_2b0);
+    ((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8] = 0;
+  }
+  cVar1 = ((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8];
+  *(undefined4 *)&this->SavedMouseLocation = p1;
+  *(undefined4 *)(((char *)&(this->SavedMouseLocation))+ 4) = in_stack_00000008;
+  *(undefined4 *)(((char *)&(this->SavedMouseLocation))+ 8) = in_stack_0000000c;
+  *(undefined4 *)(((char *)&(this->SavedMouseLocation))+ 0xc) = in_stack_00000010;
+  if (cVar1 == '\0') {
+    iVar2 = *(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 8);
+    local_8 = iVar2 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->ItineraryNodeUIMemoizationHandlerInstance,
+               &local_8);
+    bVar3 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                       &this->ItineraryNodeUIMemoizationHandlerInstance,iVar2);
+    if (bVar3) {
+      *(code **)(*(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 4) + -4 +
+                *(int *)(((char *)&(this->ItineraryNodeUIMemoizationHandlerInstance))+ 8) * 4) =
+           GetMouseOverNode_Clear;
+    }
+    p1_00 = ItineraryNodeUI_GetMouseOverNode_MemoizedFunction(this,&local_2b0);
+    ItineraryNode__ItineraryNode(&local_560.LastNode,(undefined1 *)p1_00);
+    ItineraryNode__ItineraryNode(&local_560.NextNode,(undefined1 *)&p1_00->NextNode);
+    local_560.t = p1_00->t;
+    local_2b8 = 1;
+    ItineraryNode__operator_
+              ((ItineraryNode *)&this->GetMouseOverNode_MemoizedValue,&local_560.LastNode);
+    ItineraryNode__operator_
+              ((ItineraryNode *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x150),&local_560.NextNode);
+    *(double *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x2a0) = local_560.t;
+    ((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8] = local_2b8;
+    NodeMouseOver__dtor(&local_560);
+    NodeMouseOver__dtor(&local_2b0);
+    if (((undefined1 *)&(this->GetMouseOverNode_MemoizedValue))[0x2a8] == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+  }
+  bVar3 = ItineraryNode__IsValid((ItineraryNode *)(((char *)&(this->GetMouseOverNode_MemoizedValue))+ 0x150));
+  return bVar3;
+}
+
+
+//==== 00795be0 00795be0_Insert ====
+// decompiled by BatchDecomp @ 00795be0 name=Insert conv=__thiscall body=139
+
+/* public: bool __thiscall util__Darray_struct_WorldObject___Insert(struct WorldObject const &,int
+   const &) */
+
+bool __thiscall
+util_Darray_struct_WorldObject_Insert(Darray_L_struct_WorldObject_G_ *this,WorldObject *p1,int *p2)
+
+{
+  WorldObject *p1_00;
+  bool bVar1;
+  int iVar2;
+  WorldObject *this_00;
+  Darray_L_struct_WorldObject_G_ *local_8;
+  
+  if (-1 < *p2) {
+    local_8 = this;
+    iVar2 = (**(code **)(*(int *)this + 0xc))();
+    if (*p2 <= iVar2) {
+      iVar2 = *(int *)(this + 8);
+      local_8 = (Darray_L_struct_WorldObject_G_ *)(iVar2 + 1);
+      SetSize(this,(int *)&local_8);
+      bVar1 = CheckSize(this,iVar2);
+      if ((bVar1) &&
+         (this_00 = (WorldObject *)(*(int *)(this + 8) * 0x2b8 + -0x2b8 + *(int *)(this + 4)),
+         *(WorldObject **)(this + 4) <= this_00)) {
+        do {
+          if (iVar2 == *p2) {
+            WorldObject__operator_(this_00,p1);
+            return true;
+          }
+          p1_00 = this_00 + -1;
+          WorldObject__operator_(this_00,p1_00);
+          iVar2 = iVar2 + -1;
+          this_00 = p1_00;
+        } while (*(WorldObject **)(this + 4) <= p1_00);
+      }
+    }
+  }
+  return false;
 }
 
 
@@ -12329,7 +13993,7 @@ void __thiscall SpacecraftTargeting_SpacecraftTargeting(SpacecraftTargeting *thi
 
 
 //==== 007d4560 007d4560_HasWeaponsLeft_Memoize ====
-// decompiled by BatchDecomp @ 007d4560 name=SpacecraftComponent_HasWeaponsLeft_Memoize conv=__thiscall body=356
+// decompiled by BatchDecomp @ 007d4560 name=SpacecraftComponent__HasWeaponsLeft_Memoize conv=__thiscall body=356
 
 /* public: void __thiscall SpacecraftComponent__HasWeaponsLeft_Memoize(void)const  */
 
@@ -12419,7 +14083,7 @@ LAB_007d465b:
 
 
 //==== 007d4ca0 007d4ca0_IsThreatening_Memoize ====
-// decompiled by BatchDecomp @ 007d4ca0 name=SpacecraftComponent_IsThreatening_Memoize conv=__thiscall body=92
+// decompiled by BatchDecomp @ 007d4ca0 name=SpacecraftComponent__IsThreatening_Memoize conv=__thiscall body=92
 
 /* public: void __thiscall SpacecraftComponent__IsThreatening_Memoize(void)const  */
 
@@ -12451,7 +14115,7 @@ void __thiscall SpacecraftComponent__IsThreatening_Memoize(SpacecraftComponent *
 
 
 //==== 007d5650 007d5650_NeedsToTorque_MemoizedFunction ====
-// decompiled by BatchDecomp @ 007d5650 name=SpacecraftComponent_NeedsToTorque_MemoizedFunction conv=__thiscall body=704
+// decompiled by BatchDecomp @ 007d5650 name=SpacecraftComponent__NeedsToTorque_MemoizedFunction conv=__thiscall body=704
 
 /* private: bool __thiscall SpacecraftComponent__NeedsToTorque_MemoizedFunction(void)const  */
 
@@ -12531,7 +14195,7 @@ bool __thiscall SpacecraftComponent__NeedsToTorque_MemoizedFunction(SpacecraftCo
       if (bVar9) {
         *(code **)(*(int *)(((char *)&(this->SpacecraftComponentMemoizationHandlerInstance))+ 4) + -4 +
                   *(int *)(((char *)&(this->SpacecraftComponentMemoizationHandlerInstance))+ 8) * 4) =
-             SpacecraftComponent_GetDesiredOrientation_Clear;
+             SpacecraftComponent__GetDesiredOrientation_Clear;
       }
       puVar11 = SpacecraftComponent_GetDesiredOrientation_MemoizedFunction(this,&local_b0);
       this_00 = ((slice_view *)&local_68)->_4_4_;
@@ -13693,7 +15357,7 @@ TacticalManager__GetCameraVelocity__s(TacticalManager *this,util__Vec3_L_double_
 //==== 007fe860 007fe860_GetFutureCelestials_Memoize ====
 extern undefined4 FUN_007f5aa0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
-// decompiled by BatchDecomp @ 007fe860 name=TacticalManager_GetFutureCelestials_Memoize conv=__thiscall body=281
+// decompiled by BatchDecomp @ 007fe860 name=FUN_007f5aa0 conv=__thiscall body=281
 
 /* public: void __thiscall TacticalManager__GetFutureCelestials_Memoize(void)const  */
 
@@ -13803,7 +15467,7 @@ undefined4 * __thiscall TacticalManager__GetParentManagerDelta(TacticalManager *
 //==== 007fee50 007fee50_GetRelevantCelestials_Memoize ====
 extern undefined4 FUN_007f5910(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
-// decompiled by BatchDecomp @ 007fee50 name=TacticalManager_GetRelevantCelestials_Memoize conv=__thiscall body=281
+// decompiled by BatchDecomp @ 007fee50 name=FUN_007f5910 conv=__thiscall body=281
 
 /* public: void __thiscall TacticalManager__GetRelevantCelestials_Memoize(void)const  */
 
@@ -15469,6 +17133,30 @@ void __glfwInputError(undefined4 param_1,int param_2)
 }
 
 
+//==== 008dd7b0 008dd7b0___glfwCreateUTF8FromWideStringWin32 ====
+// decompiled by BatchDecomp @ 008dd7b0 name=__glfwCreateUTF8FromWideStringWin32 conv=unknown body=100
+
+LPSTR __glfwCreateUTF8FromWideStringWin32(LPCWSTR param_1)
+
+{
+  size_t _Count;
+  LPSTR lpMultiByteStr;
+  int iVar1;
+  
+  _Count = WideCharToMultiByte(0xfde9,0,param_1,-1,(LPSTR)0x0,0,(LPCSTR)0x0,(LPBOOL)0x0);
+  if (_Count == 0) {
+    return (LPSTR)0x0;
+  }
+  lpMultiByteStr = (LPSTR)calloc(_Count,1);
+  iVar1 = WideCharToMultiByte(0xfde9,0,param_1,-1,lpMultiByteStr,_Count,(LPCSTR)0x0,(LPBOOL)0x0);
+  if (iVar1 == 0) {
+    free(lpMultiByteStr);
+    return (LPSTR)0x0;
+  }
+  return lpMultiByteStr;
+}
+
+
 //==== 008dd910 008dd910___glfwPlatformTerminate ====
 // decompiled by BatchDecomp @ 008dd910 name=__glfwPlatformTerminate conv=unknown body=158
 
@@ -15622,6 +17310,289 @@ LAB_008de03c:
 }
 
 
+//==== 008de1e0 008de1e0___glfwPlatformGetVideoMode ====
+// decompiled by BatchDecomp @ 008de1e0 name=__glfwPlatformGetVideoMode conv=unknown body=162
+
+void __glfwPlatformGetVideoMode(int param_1,DWORD *param_2)
+
+{
+  DEVMODEW local_e0;
+  uint local_4;
+  
+  local_4 = __security_cookie ^ (uint)&local_e0;
+  memset(&local_e0,0,0xdc);
+  local_e0.dmSize = 0xdc;
+  EnumDisplaySettingsW((LPCWSTR)(param_1 + 0x50),0xffffffff,&local_e0);
+  *param_2 = local_e0.dmPelsWidth;
+  param_2[1] = local_e0.dmPelsHeight;
+  param_2[5] = local_e0.dmDisplayFrequency;
+  __glfwSplitBPP(local_e0.dmBitsPerPel,param_2 + 2,param_2 + 3,param_2 + 4);
+  __security_check_cookie(local_4 ^ (uint)&local_e0);
+  return;
+}
+
+
+//==== 008de290 008de290___glfwPlatformGetVideoModes ====
+// decompiled by BatchDecomp @ 008de290 name=__glfwPlatformGetVideoModes conv=unknown body=574
+
+void __glfwPlatformGetVideoModes(int param_1,int *param_2)
+
+{
+  BOOL BVar1;
+  LONG LVar2;
+  DWORD *pDVar3;
+  void *_Memory;
+  int iVar4;
+  int iVar5;
+  void *pvVar6;
+  int local_108;
+  DWORD local_104;
+  int local_100;
+  size_t sStack_fc;
+  DWORD DStack_f8;
+  DWORD DStack_f4;
+  DWORD DStack_f0;
+  DWORD DStack_ec;
+  undefined4 uStack_e8;
+  DWORD DStack_e4;
+  DEVMODEW local_e0;
+  uint local_4;
+  
+  local_4 = __security_cookie ^ (uint)&local_108;
+  local_108 = param_1;
+  _Memory = (void *)0x0;
+  iVar5 = 0;
+  local_104 = 0;
+  *param_2 = 0;
+  local_100 = 0;
+  memset(&local_e0,0,0xdc);
+  local_e0.dmSize = 0xdc;
+  BVar1 = EnumDisplaySettingsW((LPCWSTR)(local_108 + 0x50),0,&local_e0);
+  if (BVar1 != 0) {
+    sStack_fc = 0;
+    do {
+      local_104 = local_104 + 1;
+      if (0xe < local_e0.dmBitsPerPel) {
+        DStack_f8 = local_e0.dmPelsWidth;
+        DStack_f4 = local_e0.dmPelsHeight;
+        DStack_e4 = local_e0.dmDisplayFrequency;
+        __glfwSplitBPP(local_e0.dmBitsPerPel,&DStack_f0,&DStack_ec,&uStack_e8);
+        iVar4 = 0;
+        pvVar6 = _Memory;
+        if (0 < *param_2) {
+          do {
+            iVar5 = __glfwCompareVideoModes(pvVar6,&DStack_f8);
+            if (iVar5 == 0) break;
+            iVar4 = iVar4 + 1;
+            pvVar6 = (void *)((int)pvVar6 + 0x18);
+          } while (iVar4 < *param_2);
+          iVar5 = local_100;
+          if (iVar4 < *param_2) goto LAB_008de3f2;
+        }
+        if ((*(int *)(local_108 + 0x150) == 0) ||
+           (LVar2 = ChangeDisplaySettingsExW
+                              ((LPCWSTR)(local_108 + 0x50),&local_e0,(HWND)0x0,2,(LPVOID)0x0),
+           LVar2 == 0)) {
+          if (*param_2 == iVar5) {
+            iVar5 = iVar5 + 0x80;
+            sStack_fc = sStack_fc + 0xc00;
+            local_100 = iVar5;
+            _Memory = realloc(_Memory,sStack_fc);
+          }
+          *param_2 = *param_2 + 1;
+          iVar4 = *param_2;
+          pDVar3 = (DWORD *)((int)_Memory + iVar4 * 0x18 + -0x18);
+          *pDVar3 = DStack_f8;
+          pDVar3[1] = DStack_f4;
+          pDVar3[2] = DStack_f0;
+          pDVar3[3] = DStack_ec;
+          *(ulonglong *)((int)_Memory + iVar4 * 0x18 + -8) = CONCAT44(DStack_e4,uStack_e8);
+        }
+      }
+LAB_008de3f2:
+      memset(&local_e0,0,0xdc);
+      local_e0.dmSize = 0xdc;
+      BVar1 = EnumDisplaySettingsW((LPCWSTR)(local_108 + 0x50),local_104,&local_e0);
+    } while (BVar1 != 0);
+  }
+  if (*param_2 == 0) {
+    pDVar3 = (DWORD *)calloc(1,0x18);
+    memset(&local_e0,0,0xdc);
+    local_e0.dmSize = 0xdc;
+    EnumDisplaySettingsW((LPCWSTR)(local_108 + 0x50),0xffffffff,&local_e0);
+    *pDVar3 = local_e0.dmPelsWidth;
+    pDVar3[1] = local_e0.dmPelsHeight;
+    pDVar3[5] = local_e0.dmDisplayFrequency;
+    __glfwSplitBPP(local_e0.dmBitsPerPel,pDVar3 + 2,pDVar3 + 3,pDVar3 + 4);
+    *param_2 = 1;
+  }
+  __security_check_cookie(local_4 ^ (uint)&local_108);
+  return;
+}
+
+
+//==== 008de590 008de590___glfwPlatformSetGammaRamp ====
+// decompiled by BatchDecomp @ 008de590 name=__glfwPlatformSetGammaRamp conv=unknown body=194
+
+void __glfwPlatformSetGammaRamp(int param_1,undefined4 *param_2)
+
+{
+  HDC hdc;
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 *puVar3;
+  undefined4 local_604[128];
+  undefined4 local_404[128];
+  undefined4 local_204[128];
+  uint local_4;
+  
+  local_4 = __security_cookie ^ (uint)local_604;
+  if (param_2[3] != 0x100) {
+    __glfwInputError(0x10008,"Win32: Gamma ramp size must be 256");
+    __security_check_cookie(local_4 ^ (uint)local_604);
+    return;
+  }
+  puVar2 = (undefined4 *)*param_2;
+  puVar3 = local_604;
+  for (iVar1 = 0x80; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar3 = *puVar2;
+    puVar2 = puVar2 + 1;
+    puVar3 = puVar3 + 1;
+  }
+  puVar2 = (undefined4 *)param_2[1];
+  puVar3 = local_404;
+  for (iVar1 = 0x80; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar3 = *puVar2;
+    puVar2 = puVar2 + 1;
+    puVar3 = puVar3 + 1;
+  }
+  puVar2 = (undefined4 *)param_2[2];
+  puVar3 = local_204;
+  for (iVar1 = 0x80; iVar1 != 0; iVar1 = iVar1 + -1) {
+    *puVar3 = *puVar2;
+    puVar2 = puVar2 + 1;
+    puVar3 = puVar3 + 1;
+  }
+  hdc = CreateDCW(L"DISPLAY",(LPCWSTR)(param_1 + 0x50),(LPCWSTR)0x0,(DEVMODEW *)0x0);
+  SetDeviceGammaRamp(hdc,local_604);
+  DeleteDC(hdc);
+  __security_check_cookie(local_4 ^ (uint)local_604);
+  return;
+}
+
+
+//==== 008de660 008de660___glfwRestoreVideoModeWin32 ====
+// decompiled by BatchDecomp @ 008de660 name=__glfwRestoreVideoModeWin32 conv=unknown body=44
+
+void __glfwRestoreVideoModeWin32(int param_1)
+
+{
+  if (*(int *)(param_1 + 0x154) != 0) {
+    ChangeDisplaySettingsExW((LPCWSTR)(param_1 + 0x50),(DEVMODEW *)0x0,(HWND)0x0,4,(LPVOID)0x0);
+    *(undefined4 *)(param_1 + 0x154) = 0;
+  }
+  return;
+}
+
+
+//==== 008de690 008de690___glfwSetVideoModeWin32 ====
+// decompiled by BatchDecomp @ 008de690 name=__glfwSetVideoModeWin32 conv=unknown body=288
+
+void __glfwSetVideoModeWin32(int param_1,undefined4 param_2)
+
+{
+  DWORD *pDVar1;
+  int iVar2;
+  LONG LVar3;
+  undefined1 local_f8[24];
+  DEVMODEW local_e0;
+  uint local_4;
+  
+  local_4 = __security_cookie ^ (uint)local_f8;
+  pDVar1 = (DWORD *)__glfwChooseVideoMode(param_1,param_2);
+  __glfwPlatformGetVideoMode(param_1,local_f8);
+  iVar2 = __glfwCompareVideoModes(local_f8,pDVar1);
+  if (iVar2 != 0) {
+    memset(&local_e0,0,0xdc);
+    local_e0.dmFields = 0x5c0000;
+    local_e0.dmSize = 0xdc;
+    local_e0.dmPelsWidth = *pDVar1;
+    local_e0.dmPelsHeight = pDVar1[1];
+    local_e0.dmBitsPerPel = pDVar1[4] + pDVar1[3] + pDVar1[2];
+    local_e0.dmDisplayFrequency = pDVar1[5];
+    if ((local_e0.dmBitsPerPel < 0xf) || (0x17 < local_e0.dmBitsPerPel)) {
+      local_e0.dmBitsPerPel = 0x20;
+    }
+    LVar3 = ChangeDisplaySettingsExW((LPCWSTR)(param_1 + 0x50),&local_e0,(HWND)0x0,4,(LPVOID)0x0);
+    if (LVar3 != 0) {
+      __glfwInputError(0x10008,"Win32: Failed to set video mode");
+      __security_check_cookie(local_4 ^ (uint)local_f8);
+      return;
+    }
+    *(undefined4 *)(param_1 + 0x154) = 1;
+  }
+  __security_check_cookie(local_4 ^ (uint)local_f8);
+  return;
+}
+
+
+//==== 008de7b0 008de7b0_FUN_008de7b0 ====
+int FUN_008de7b0(int param_1,int param_2);
+
+// decompiled by BatchDecomp @ 008de7b0 name=FUN_008de7b0 conv=unknown body=288
+
+int FUN_008de7b0(int param_1,int param_2)
+
+{
+  WCHAR WVar1;
+  void *_Memory;
+  HDC hdc;
+  int iVar2;
+  int iVar3;
+  LPCWSTR pWVar4;
+  LPCWSTR pWVar5;
+  
+  if (param_2 == 0) {
+    _Memory = (void *)__glfwCreateUTF8FromWideStringWin32(param_1 + 0x44);
+  }
+  else {
+    _Memory = (void *)__glfwCreateUTF8FromWideStringWin32(param_2 + 0x44);
+  }
+  if (_Memory == (void *)0x0) {
+    __glfwInputError(0x10008,"Win32: Failed to convert string to UTF-8");
+    return 0;
+  }
+  hdc = CreateDCW(L"DISPLAY",(LPCWSTR)(param_1 + 4),(LPCWSTR)0x0,(DEVMODEW *)0x0);
+  iVar2 = GetDeviceCaps(hdc,6);
+  iVar3 = GetDeviceCaps(hdc,4);
+  iVar2 = __glfwAllocMonitor(_Memory,iVar3,iVar2);
+  DeleteDC(hdc);
+  free(_Memory);
+  if ((*(uint *)(param_1 + 0x144) & 0x8000000) != 0) {
+    *(undefined4 *)(iVar2 + 0x150) = 1;
+  }
+  pWVar4 = (LPCWSTR)(param_1 + 4);
+  pWVar5 = pWVar4;
+  do {
+    WVar1 = *pWVar5;
+    pWVar5 = pWVar5 + 1;
+    *(WCHAR *)((iVar2 - (int)pWVar4) + 0x4e + (int)pWVar5) = WVar1;
+  } while (WVar1 != L'\0');
+  WideCharToMultiByte(0xfde9,0,pWVar4,-1,(LPSTR)(iVar2 + 0xd0),0x40,(LPCSTR)0x0,(LPBOOL)0x0);
+  if (param_2 != 0) {
+    pWVar5 = (LPCWSTR)(param_2 + 4);
+    pWVar4 = pWVar5;
+    do {
+      WVar1 = *pWVar4;
+      pWVar4 = pWVar4 + 1;
+      *(WCHAR *)((iVar2 - (int)pWVar5) + 0x8e + (int)pWVar4) = WVar1;
+    } while (WVar1 != L'\0');
+    WideCharToMultiByte(0xfde9,0,pWVar5,-1,(LPSTR)(iVar2 + 0x110),0x40,(LPCSTR)0x0,(LPBOOL)0x0);
+  }
+  return iVar2;
+}
+
+
 //==== 008debf0 008debf0___glfwPlatformGetWindowSize ====
 // decompiled by BatchDecomp @ 008debf0 name=__glfwPlatformGetWindowSize conv=unknown body=81
 
@@ -15640,6 +17611,90 @@ void __glfwPlatformGetWindowSize(int param_1,LONG *param_2,LONG *param_3)
     *param_3 = local_14.bottom;
   }
   __security_check_cookie(local_4 ^ (uint)&local_14);
+  return;
+}
+
+
+//==== 008e12f0 008e12f0_FUN_008e12f0 ====
+void FUN_008e12f0(int *param_1);
+
+// decompiled by BatchDecomp @ 008e12f0 name=FUN_008e12f0 conv=unknown body=413
+
+void FUN_008e12f0(int *param_1)
+
+{
+  UINT UVar1;
+  PRAWINPUTDEVICELIST pRawInputDeviceList;
+  char *pcVar2;
+  uint uVar3;
+  uint uVar4;
+  uint local_130[5];
+  undefined4 uStack_11c;
+  undefined4 uStack_118;
+  undefined4 uStack_114;
+  undefined4 uStack_110;
+  undefined4 uStack_10c;
+  undefined4 uStack_108;
+  char acStack_104[255];
+  undefined1 uStack_5;
+  uint local_4;
+  
+  local_4 = __security_cookie ^ (uint)local_130;
+  local_130[0] = 0;
+  local_130[2] = 0;
+  UVar1 = GetRawInputDeviceList((PRAWINPUTDEVICELIST)0x0,local_130,8);
+  if (UVar1 != 0) {
+    __security_check_cookie(local_4 ^ (uint)local_130);
+    return;
+  }
+  pRawInputDeviceList = (PRAWINPUTDEVICELIST)calloc(local_130[0],8);
+  UVar1 = GetRawInputDeviceList(pRawInputDeviceList,local_130,8);
+  if (UVar1 == 0xffffffff) {
+    free(pRawInputDeviceList);
+    __security_check_cookie(local_4 ^ (uint)local_130);
+    return;
+  }
+  uVar4 = 0;
+  uVar3 = local_130[0];
+  if (local_130[0] != 0) {
+    do {
+      if (pRawInputDeviceList[uVar4].dwType == 2) {
+        local_130[1] = 0x20;
+        local_130[4] = 0;
+        uStack_11c = 0;
+        uStack_118 = 0;
+        local_130[3] = 0x20;
+        uStack_114 = 0;
+        uStack_110 = 0;
+        uStack_10c = 0;
+        uStack_108 = 0;
+        UVar1 = GetRawInputDeviceInfoA
+                          (pRawInputDeviceList[uVar4].hDevice,0x2000000b,local_130 + 3,local_130 + 1
+                          );
+        uVar3 = local_130[0];
+        if (UVar1 != 0xffffffff) {
+          if (CONCAT22((undefined2)uStack_118,(undefined2)uStack_11c) == *param_1) {
+            memset(acStack_104,0,0x100);
+            local_130[1] = 0x100;
+            UVar1 = GetRawInputDeviceInfoA
+                              (pRawInputDeviceList[uVar4].hDevice,0x20000007,acStack_104,
+                               local_130 + 1);
+            if (UVar1 == 0xffffffff) break;
+            uStack_5 = 0;
+            pcVar2 = strstr(acStack_104,"IG_");
+            uVar3 = local_130[0];
+            if (pcVar2 != (char *)0x0) {
+              local_130[2] = 1;
+              break;
+            }
+          }
+        }
+      }
+      uVar4 = uVar4 + 1;
+    } while (uVar4 < uVar3);
+  }
+  free(pRawInputDeviceList);
+  __security_check_cookie(local_4 ^ (uint)local_130);
   return;
 }
 

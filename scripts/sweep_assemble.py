@@ -1205,6 +1205,48 @@ def stray_underscore_fix(txt):
     """decomp2c 渲染伪影: ` _/*hex*/字面量` → 剥离悬挂下划线（字面量本体等价）"""
     return re.sub(r'([\s(=+,]|\A)_(\s*)/\*([0-9a-fA-F]{8})\*/', r'\1\2/*\3*/', txt)
 
+def operator_eq_fix(txt):
+    """r25w14: decomp2c 未折叠的 operator 名 → 现网 esc 约定（_fname_esc 同款折叠）
+       X__operator=( → X__operator_( ；X__operator==( → X__operator__(
+       依据: 已覆盖定义 pilot_63 `ItineraryNode__operator_` 实证；纯名字层修复无语义改动"""
+    txt = re.sub(r'\b([A-Za-z_]\w*__operator)==(?=\s*\()', r'\1__', txt)
+    txt = re.sub(r'\b([A-Za-z_]\w*__operator)=((?!=))', r'\1_', txt)
+    return txt
+
+_WIN32_TYPE_RE = re.compile(
+    r'\b(DEVMODEW|RAWINPUTDEVICELIST|PRAWINPUTDEVICELIST|LPRAWINPUTDEVICELIST|'
+    r'MONITORINFO|MONITORINFOEXW|ICONINFO|BITMAPV4HEADER|BITMAPINFOHEADER|'
+    r'DISPLAY_DEVICEW|ENUMLOGFONTEXW|NEWTEXTMETRICW|LOGFONTW|FONTSIGNATURE|'
+    r'LPBOOL|HMONITOR|HDC__|HGLRC|PROC|WNDCLASSEXW|LRESULT|WPARAM|LPARAM|'
+    r'UINT_PTR|DWORD_PTR|COLORREF|HRAWINPUT|MSG)\b')
+
+def win32_types_fix(txt):
+    """r25w14b: 已上移 prelude 级发射（per-sec 前置会跨轮错位 errmap 行号）——
+    本函数保留为 no-op 以稳链序。见 _needs_winuser 块。"""
+    return txt
+
+def param_underscore_fix(txt, va):
+    """r25w14: decomp2c 掉前缀 —— 声明 pN 用到 _pN（did-you-mean 直证同函数）
+       _pN → pN（仅当 pN 在本 sec 有声明/参数位；恢复 decomp2c 丢失的名字拼写）"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    want = set()
+    for ln_no, lst in sites.items():
+        for col, msg in lst:
+            m = re.search(r"undeclared identifier '(_p[0-9]+)'; did you mean '(p[0-9]+)'", msg)
+            if m:
+                want.add((m.group(1), m.group(2)))
+    if not want:
+        return txt
+    for bad, good in want:
+        # 守卫: good 必须已在 sec 内声明（签名/声明行）才改写
+        if not re.search(r'\b' + re.escape(good) + r'\b(?!\s*\=)', txt.split('{', 1)[0]) \
+           and not re.search(r'^\s*[A-Za-z_][\w \t\*]*\b' + re.escape(good) + r'\s*(=|;|,|\[)', txt, re.M):
+            continue
+        txt = re.sub(r'\b' + re.escape(bad) + r'\b', good, txt)
+    return txt
+
 def bare_dtor_fix(txt, disp):
     def rep(m):
         cls = m.group(1)
@@ -1459,6 +1501,9 @@ def main():
         txt = subscript_member_fix(txt, va)
         txt = scalar_nav_fix(txt, va)
         txt = stray_underscore_fix(txt)
+        txt = param_underscore_fix(txt, va)
+        txt = operator_eq_fix(txt)
+        txt = win32_types_fix(txt)
         _typedef_pool.update(typedef_scan(txt))
         if prescreen(txt):
             auto_now.add(norm6(va))
@@ -1614,6 +1659,17 @@ def main():
         _exr_defines.append(f'#define {_e} {_n}')
     if _exr_defines:
         A.L(f'exref defines: {len(_exr_defines)}')
+
+    # ---- r25w14: _Clear 惰性清除函数 extern（K&R 约定 ret-by-call-site）----
+    # 三道门: hdr_ids2（头 id 集）/ stub-oracle（exts 发 int 版）/ cde_*.h 既有声明
+    _hdr_clear = set()
+    for _h in (REPO / 'src').glob('cde_*.h'):
+        _hdr_clear |= set(re.findall(r'\b([A-Za-z_]\w*_Clear)\b', _h.read_text(errors='replace')))
+    _clears = sorted({m for m in re.findall(r'\b([A-Za-z_]\w*_Clear)\b', body)
+                      if m not in hdr_ids2 and m not in A.sym_externs
+                      and m not in _hdr_clear and m not in proto_map})
+    if _clears:
+        A.L(f'clear externs: {len(_clears)}')
 
     # ---- 数据引用闭包 v2（r19）：全类型数据项宏 ----
     #   一手真值 = meta/data_items.tsv（DumpData.py 全量导出 219k 项）。
@@ -1899,6 +1955,9 @@ def main():
     if _exr_defines:
         parts.append('/* ---- r20 exref direct-bind (IAT slot reads -> direct refs) ---- */\n' +
                      '\n'.join(_exr_defines) + '\n')
+    if _clears:
+        parts.append('/* ---- r25w14: _Clear memoization-clear externs (K&R stub conv) ---- */\n'
+                     + '\n'.join(f'extern void *{_c}();' for _c in _clears) + '\n')
     if used_td:
         td_lines, seen = [], set()
 
@@ -1944,6 +2003,11 @@ def main():
         # 自身原型由 iso_sweep.strip_self 摘除，防 conflicting types）
         _proto_lines = [f'extern {sig2};' for nm2, sig2 in sorted(proto_map.items())
                         if nm2 not in hdr_ids2 and nm2 not in _FWD_NAMES]
+        # r25w14b: winuser 精细类型需求 → prelude 级一次发射（sec 相对行号免疫）
+        # 最小镜像头 cde_winuser_min.h —— 整拉 winuser.h 会撞 pdb.h _GUID tag
+        if any(_WIN32_TYPE_RE.search(_t) for _, _, _t in sections):
+            _proto_lines = ['#include "cde_winuser_min.h"'] + _proto_lines
+            A.L('winuser_min include: emitted at prelude')
         Path(str(OUT) + '.prelude').write_text(
             ''.join(parts) +
             '/* ---- r25 iso: in-batch canonical prototypes ---- */\n' +
