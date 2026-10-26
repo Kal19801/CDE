@@ -536,6 +536,11 @@ typedef Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__C_class_util__D
 typedef Darray_L_struct_util__tuple2_L_struct_ActorDropdownAction_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_ Darray_L_struct_util__tuple2_L_struct_ActorDropdownAction_class____util__WeakPtr_L_struct_UIWidget_G___G__G;
 typedef Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_class_util__WeakPtr_L_struct_UIWidget_G___G___G_ Darray_L_struct_util__tuple2_L_struct_ItineraryNode_class____util__WeakPtr_L_struct_UIWidget_G___G__G;
 typedef struct Darray_L_util__Darray_L_util__WeakPtr_L_SpacecraftComponent_G___G___G_ Darray_L_util__Darray_L_util__WeakPtr_L_SpacecraftComponent_G___G___G;
+typedef struct Darray_L_util__Vec2_L_double_G___G_ Darray_L_util__Vec2_L_double_G__G_;
+typedef struct Darray_L_util__Vec3_L_double_G___G_ Darray_L_util__Vec3_L_double_G__G_;
+typedef struct Darray_L_util__WeakPtr_L_CapitalShipComponent_G___G_ Darray_L_util__WeakPtr_L_CapitalShipComponent_G__G_;
+typedef struct Darray_L_util__WeakPtr_L_Fleet_G___G_ Darray_L_util__WeakPtr_L_Fleet_G__G_;
+typedef struct Darray_L_util__WeakPtr_L_ModuleCompartment_G___G_ Darray_L_util__WeakPtr_L_ModuleCompartment_G__G_;
 typedef struct Darray_L_util__tuple2_L_ActorDropdownAction_Cutil__WeakPtr_L_UIWidget_G___G___G_ Darray_L_util__tuple2_L_ActorDropdownAction_Cutil__WeakPtr_L_UIWidget_G___G___G;
 typedef struct Darray_L_util__tuple2_L_util__Str_L_char_G__Cdouble_G___G_ Darray_L_util__tuple2_L_util__Str_L_char_G__Cdouble_G___G;
 typedef struct Darray_L_util__tuple2_L_util__Vec2_L_double_G__Cutil__Color_G___G_ Darray_L_util__tuple2_L_util__Vec2_L_double_G__Cutil__Color_G___G;
@@ -1079,7 +1084,7 @@ extern int CraftBlueprintArmor_GetAxialMomentOfInertia_kg_m2_MemoizedFunction();
 extern int CraftBlueprintArmor_GetMaxArmorRadius_m_Memoize(); /* K&R stub; ret by call site */
 extern int CraftBlueprintArmor_GetRadialMomentOfInertia_kg_m2_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int CraftBlueprint_GetForwardDirection_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int CraftBlueprint_GetRightDirection_MemoizedFunction(); /* K&R stub; ret by call site */
+extern Vec3_L_double_G_ CraftBlueprint__GetRightDirection_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int CraftInstance_CraftInstance__o2(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetCenterZDelta_m_Memoize(); /* K&R stub; ret by call site */
 extern int CraftInstance_GetHeatSignatureOffset_m_MemoizedFunction(); /* K&R stub; ret by call site */
@@ -1188,7 +1193,7 @@ extern int util_SharedPtr_struct_CraftInstance_operator(); /* K&R stub; ret by c
 extern int util__AssocArray_class_WeaponModule__class_util__Darray_class_util__WeakPtr_class_Body_______AssocArray_class_WeaponModule__class_util__Darray_class_util__WeakPtr_class_Body(); /* K&R stub; ret by call site */
 extern int util__AssocArray_struct_ModulePlacer_const__double___AssocArray_struct_ModulePlacer_const__double(); /* K&R stub; ret by call site */
 extern int util__AssocArray_struct_ModulePlacer_const__double___operator__o2(); /* K&R stub; ret by call site */
-extern int util__Attribute_struct_util__Color___Get(); /* K&R stub; ret by call site */
+extern Color util__Attribute_struct_util__Color___Get(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__Darray_int_____operator(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__Reflectable____Darray_class_util__Reflectable__o2(); /* K&R stub; ret by call site */
 extern int util__Darray_class_util__SharedPtr_struct_AudioVoice_____operator__o2(); /* K&R stub; ret by call site */
@@ -2531,7 +2536,7 @@ extern void __thiscall ItineraryNodeUI__RenderThrusterBurns(ItineraryNodeUI *thi
 extern void __thiscall ItineraryNodeUI__Select(ItineraryNodeUI *this);
 extern void __thiscall ItineraryNode__CacheFleetInfo(ItineraryNode *this,StrategicManager *p1,Itinerary *p2);
 extern Itinerary * __thiscall ItineraryNode__GetMission(ItineraryNode *this,Itinerary *__return_storage_ptr__);
-extern void __thiscall Itinerary_Itinerary__o3(Itinerary *this);
+extern void __thiscall Itinerary_Itinerary__o2(Itinerary *this);
 extern void __thiscall Itinerary__AddMoreNodes(Itinerary *this);
 extern bool __thiscall Itinerary__AddSingleNode(Itinerary *this,int p1);
 extern void __thiscall Itinerary__AppendNode(Itinerary *this,undefined4 p1,undefined4 p2,double p3);
@@ -3000,12 +3005,12 @@ extern util__Vec2_L_int_G __cdecl UIButton__GetDefaultButtonSize(void);
 extern util__Vec2_L_int_G __thiscall CompartmentButton__GetControlLocation(CompartmentButton *this);
 extern util__Vec2_L_int_G __thiscall Icons__CustomCursor__GetSize(CustomCursor *this);
 extern util__Vec2_L_int_G __thiscall LevelEditorBodyUI__GetScreenPosition(LevelEditorBodyUI *this);
+extern util__Vec2_L_int_G __thiscall MainManager__GetMainTitleSize(MainManager *this);
 extern util__Vec2_L_int_G __thiscall SpacecraftButton__GetScreenLocation(SpacecraftButton *this);
 extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorCharLocation(UIEditTextBox *this,int p1);
 extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorPixelPosition(UIEditTextBox *this,int p1);
 extern util__Vec2_L_int_G __thiscall UIWidget__GetChildSize(UIWidget *this,undefined4 *p1);
 extern util__Vec3_L_double_G_ * __thiscall Body__GetCenterOfMass_km(Body *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
-extern util__Vec3_L_double_G_ * __thiscall CraftBlueprint__GetRightDirection_MemoizedFunction(CraftBlueprint *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall Itinerary__GetInterceptDirection(Itinerary *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraCenter(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraVelocity__s(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
@@ -3042,7 +3047,6 @@ extern void __thiscall Fleet__IsMissileFleet_Memoize(Fleet *this);
 extern void __thiscall Fleet__IsStationOnlyFleet_Memoize(Fleet *this);
 extern void __thiscall Fleet__PostCombat(Fleet *this);
 extern void __thiscall ItineraryNodeUI__GetMouseOverNode_Memoize(ItineraryNodeUI *this);
-extern void __thiscall ItineraryNode__CacheFleetInfo(ItineraryNode *this,StrategicManager *p1,Itinerary *p2);
 extern void __thiscall Itinerary__AppendNode(Itinerary *this,undefined4 p1,undefined4 p2,double p3);
 extern void __thiscall Itinerary__Itinerary(Itinerary *this,Itinerary *p1);
 extern void __thiscall LibrationOrbit__LibrationOrbit(LibrationOrbit *this,LibrationOrbit *p1);
@@ -3063,6 +3067,7 @@ extern void __thiscall TacticalManager__GetRelevantCelestials_Memoize(TacticalMa
 extern void __thiscall TacticalManager__KillBody(TacticalManager *this,Body *p1);
 extern void __thiscall TacticalManager__NotifyOfAllEnemiesDisabled(TacticalManager *this);
 extern void __thiscall TacticalManager__RenderTransparent(TacticalManager *this);
+extern void __thiscall TacticalManager__ResetData(TacticalManager *this);
 extern void __thiscall TacticalManager__SelectBodies(TacticalManager *this,undefined1 *p1,bool p2);
 extern void __thiscall TacticalManager__SetSolarProperties(TacticalManager *this,undefined4 p1);
 extern void __thiscall UIListBox_struct_ActorDropdownAction_ScrollToDatum(UIListBox_L_struct_ActorDropdownAction_G_ *this,int p1);
@@ -6136,153 +6141,6 @@ LAB_0055816b:
 }
 
 
-//==== 00558af0 00558af0_GetRightDirection_MemoizedFunction ====
-// decompiled by BatchDecomp @ 00558af0 name=CraftBlueprint_GetRightDirection_MemoizedFunction conv=__thiscall body=618
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* private: struct Vec3_L_double_G_ __thiscall
-   CraftBlueprint__GetRightDirection_MemoizedFunction(void)const  */
-
-util__Vec3_L_double_G_ * __thiscall
-CraftBlueprint__GetRightDirection_MemoizedFunction(CraftBlueprint *this,util__Vec3_L_double_G_ *__return_storage_ptr__)
-
-{
-  Darray_L_class_util__Reflectable_P__G_ *this_00;
-  double dVar1;
-  int iVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  bool bVar6;
-  util__Vec3_L_double_G_ *puVar7;
-  util__Vec3_L_double_G_ *this_01;
-  code *pcVar8;
-  undefined8 local_68;
-  undefined4 uStack_64;
-  undefined8 uStack_60;
-  undefined4 uStack_5c;
-  util__Vec3_L_double_G_ local_58;
-  util__Vec3_L_double_G_ local_40;
-  util__Vec3_L_double_G_ local_20;
-  int local_8;
-  
-  if (((undefined1 *)&(this->GetUnstagedDryMass_kg_MemoizedValue))[0] == '\0') {
-    iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-    this_00 = (Darray_L_util__Reflectable_P_G_ *)
-              (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10);
-    local_8 = iVar2 + 1;
-    util__Darray_class_util__Reflectable____SetSize(this_00,&local_8);
-    bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)this_00,iVar2);
-    if (bVar6) {
-      *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-           CraftBlueprint__GetUpDirection_Clear;
-    }
-    pcVar8 = DebugBreak_exref;
-    if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-      iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-      local_8 = iVar2 + 1;
-      util__Darray_class_util__Reflectable____SetSize(this_00,&local_8);
-      bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)this_00,iVar2);
-      if (bVar6) {
-        *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                  *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-             CraftBlueprint__GetForwardDirection_Clear;
-      }
-      puVar7 = CraftBlueprint_GetForwardDirection_MemoizedFunction(this,&local_40);
-      ((slice_view *)&local_20.Z)->_0_4_ = CONCAT31(((slice_view *)&local_20.Z)->_1_3_,1);
-      dVar1 = puVar7->Z;
-      uVar3 = *(undefined4 *)((int)&puVar7->X + 4);
-      uVar4 = *(undefined4 *)&puVar7->Y;
-      uVar5 = *(undefined4 *)((int)&puVar7->Y + 4);
-      ((slice_view *)&local_20.Y)->_0_4_ = *(undefined4 *)&dVar1;
-      ((slice_view *)&local_20.Y)->_4_4_ = *(undefined4 *)((char *)&dVar1 + 4);
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4) =
-           *(undefined4 *)&puVar7->X;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8) = uVar3;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0xc) = uVar4;
-      *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0x10) = uVar5;
-      (*(char (*)[2])((char *)this + 768))[0] = ((slice_view *)&local_20.Y)->_0_1_;
-      (*(char (*)[2])((char *)this + 768))[1] = ((slice_view *)&local_20.Y)->_1_1_;
-      ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[0] = ((slice_view *)&local_20.Y)->_2_1_;
-      ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[1] = ((slice_view *)&local_20.Y)->_3_1_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 2) = ((slice_view *)&local_20.Y)->_4_4_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 6) = ((slice_view *)&local_20.Z)->_0_4_;
-      *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 10) = ((slice_view *)&local_20.Z)->_4_4_;
-      pcVar8 = DebugBreak_exref;
-      local_20.Y = dVar1;
-      if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                        "IsValid()",(undefined1 *)0x0);
-        pcVar8 = DebugBreak_exref;
-        DebugBreak();
-      }
-    }
-    puVar7 = &local_20;
-    this_01 = util__RenderCustomRotatedSplineLoop(&local_58,___xmm_00000000000000003ff0000000000000,_UNK_0091d464);
-    util__Vec3_double___SafeNormalized((Vec3_L_double_G_ *)this_01,puVar7);
-    uVar3 = ((slice_view *)&local_20.Z)->_0_4_;
-    dVar1 = (double)CONCAT44(((slice_view *)&local_20.Z)->_4_4_,((slice_view *)&local_20.Z)->_0_4_);
-    ((slice_view *)&local_20.Z)->_0_4_ = CONCAT31(((slice_view *)&local_20.Z)->_1_3_,1);
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 0xe) = ((slice_view *)&local_20.X)->_0_4_;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 0x12) = ((slice_view *)&local_20.X)->_4_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 2) = ((slice_view *)&local_20.Y)->_0_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 6) = ((slice_view *)&local_20.Y)->_4_4_;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 10) = uVar3;
-    *(undefined4 *)((*(char (*)[18])((char *)this + 790)) + 0xe) = ((slice_view *)&local_20.Z)->_4_4_;
-    *(undefined4 *)&this->GetUnstagedDryMass_kg_MemoizedValue = ((slice_view *)&local_20.Z)->_0_4_;
-    *(undefined4 *)(((char *)&(this->GetUnstagedDryMass_kg_MemoizedValue))+ 4) = ((slice_view *)&local_20.Z)->_4_4_;
-    local_20.Y = dVar1;
-    if (((undefined1 *)&(this->GetUnstagedDryMass_kg_MemoizedValue))[0] == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(undefined1 *)0x0);
-      (*pcVar8)();
-    }
-  }
-  if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-    iVar2 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
-    local_8 = iVar2 + 1;
-    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
-               (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),&local_8);
-    bVar6 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
-                       (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),iVar2);
-    if (bVar6) {
-      *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
-                *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
-           CraftBlueprint__GetForwardDirection_Clear;
-    }
-    puVar7 = CraftBlueprint_GetForwardDirection_MemoizedFunction(this,&local_20);
-    ((slice_view *)&uStack_60)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_60)->_1_3_[0] | (((slice_view *)&uStack_60)->_1_3_[1] << 8) | (((slice_view *)&uStack_60)->_1_3_[2] << 16)) << 8));
-    uVar3 = *(undefined4 *)((int)&puVar7->X + 4);
-    uVar4 = *(undefined4 *)&puVar7->Y;
-    uVar5 = *(undefined4 *)((int)&puVar7->Y + 4);
-    local_68 = *(undefined4 *)&puVar7->Z;
-    uStack_64 = (undefined4)((ulonglong)puVar7->Z >> 0x20);
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4) =
-         *(undefined4 *)&puVar7->X;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8) = uVar3;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0xc) = uVar4;
-    *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 0x10) = uVar5;
-    (*(char (*)[2])((char *)this + 768))[0] = (undefined1)local_68;
-    (*(char (*)[2])((char *)this + 768))[1] = ((slice_view *)&local_68)->_1_1_;
-    ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[0] = ((slice_view *)&local_68)->_2_1_;
-    ((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[1] = ((slice_view *)&local_68)->_3_1_;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 2) = uStack_64;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 6) = uStack_60;
-    *(undefined4 *)(((char *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))+ 10) = uStack_5c;
-    if (((undefined1 *)&(this->GetAllMainEnginePropellantsUsed_MemoizedValue))[6] == '\0') {
-      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
-                      "IsValid()",(undefined1 *)0x0);
-      DebugBreak();
-    }
-  }
-util__RenderCustomRotatedSplineLoop(__return_storage_ptr__,
-             *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 4),
-             *(undefined4 *)(((char *)&(this->GetPowerableMainEngineModules_MemoizedValue))+ 8));
-  return __return_storage_ptr__;
-}
-
-
 //==== 005676a0 005676a0_GetStringPropertyMaxLength ====
 // decompiled by BatchDecomp @ 005676a0 name=GetStringPropertyMaxLength conv=__thiscall body=243
 
@@ -8870,6 +8728,58 @@ util__Vec2_L_int_G __thiscall LevelEditorBodyUI__GetScreenPosition(LevelEditorBo
 }
 
 
+//==== 0070b920 0070b920_GetMainTitleSize ====
+// decompiled by BatchDecomp @ 0070b920 name=GetMainTitleSize conv=__thiscall body=267
+
+/* private: struct util__Vec2_L_int_G_ __thiscall MainManager__GetMainTitleSize(void)const  */
+
+util__Vec2_L_int_G __thiscall MainManager__GetMainTitleSize(MainManager *this)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  int iVar2;
+  CustomTexture *this_00;
+  int extraout_EDX;
+  double dVar3;
+  util__Vec2_L_int_G_ uVar4;
+  double dVar5;
+  double dVar6;
+  int *in_stack_00000004;
+  double local_20;
+  double dStack_18;
+  int local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  iVar1 = ((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[0xf])->_0_4_ / 3;
+  iVar2 = ((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[0xf])->_4_4_ / 3;
+  this_00 = GameManager__GetMainLogo((GameManager *)this->_pad_0x4_1);
+  CustomTexture__GetSize(this_00);
+  local_20 = (double)iVar1 / (double)local_10;
+  dStack_18 = (double)iVar2 / (double)local_c;
+  dVar5 = util__Abs((undefined1 *)&dStack_18);
+  dVar6 = util__Abs((undefined1 *)&local_20);
+  dVar3 = local_20;
+  if ((dVar5 < dVar6) && (dVar5 < dVar6)) {
+    dVar3 = dStack_18;
+  }
+  if (dVar3 <= /*0000000000000000*/0.0) {
+    dVar3 = /*0000000000000000*/0.0;
+  }
+  if (/*3ff0000000000000*/1.0 <= dVar3) {
+    dVar3 = /*3ff0000000000000*/1.0;
+  }
+  *in_stack_00000004 = (int)((double)local_10 * dVar3);
+  in_stack_00000004[1] = (int)((double)local_c * dVar3);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  uVar4.Y = extraout_EDX;
+  uVar4.X = (int)in_stack_00000004;
+  return uVar4;
+}
+
+
 //==== 0070fb90 0070fb90_GetDesiredOrientation_Clear ====
 // decompiled by BatchDecomp @ 0070fb90 name=SpacecraftComponent__GetDesiredOrientation_Clear conv=__thiscall body=32
 
@@ -9928,7 +9838,7 @@ void __thiscall FleetLocation_FleetLocation__o5(FleetLocation *this)
   int *piVar1;
   ReferenceController *this_00;
   
-  Itinerary_Itinerary__o3((Itinerary *)(((char *)&(this->MissionItinerary))+ 0x10));
+  Itinerary_Itinerary__o2((Itinerary *)(((char *)&(this->MissionItinerary))+ 0x10));
   LibrationOrbit_LibrationOrbit__o2((LibrationOrbit *)(((char *)&(this->LagrangeOrbit))+ 8));
   *(undefined ***)(((char *)&(this->OrbitParameters))+ 0x60) =
        ((void *)(0x009194a4u));
@@ -10818,135 +10728,6 @@ void __thiscall Itinerary__AppendNode(Itinerary *this,undefined4 p1,undefined4 p
   }
   if ((ReferenceController *)((slice_view *)&local_158)->_4_4_ != (ReferenceController *)0x0) {
     util__ReferenceController__ReleaseWeakReference((ReferenceController *)((slice_view *)&local_158)->_4_4_);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
-//==== 00738bb0 00738bb0_CacheFleetInfo ====
-extern undefined4 FUN_00736060(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-
-// decompiled by BatchDecomp @ 00738bb0 name=CacheFleetInfo conv=__thiscall body=393
-
-/* public: void __thiscall ItineraryNode__CacheFleetInfo(class StrategicManager *,struct Itinerary
-   const *) */
-
-void __thiscall
-ItineraryNode__CacheFleetInfo(ItineraryNode *this,StrategicManager *p1,Itinerary *p2)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  undefined4 uVar2;
-  ReferenceController *pRVar3;
-  ReferenceController *pRVar4;
-  ReferenceController *this_00;
-  Itinerary *pIVar5;
-  ItineraryNode *pIVar6;
-  util__Line3_L_double_G_ *puVar7;
-  undefined4 *puVar8;
-  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_7c[16];
-  Itinerary *local_6c;
-  ItineraryNode *pIStack_68;
-  util__Line3_L_double_G_ *puStack_64;
-  undefined4 *puStack_60;
-  ReferenceController *local_5c;
-  util__Line3_L_double_G_ local_58;
-  undefined4 local_28;
-  ReferenceController *local_24;
-  undefined4 local_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  char local_10;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_5c = (ReferenceController *)0x0;
-  GetRelativeSweepLine(this,&local_58,(util__WeakPtr_L_CelestialObject_G_ *)(*(char (*)[4])((char *)this + 240)));
-  pRVar3 = *(ReferenceController **)((int)&p2->ParentFleet + 4);
-  puStack_64 = &local_58;
-  local_28 = 0;
-  puStack_60 = &local_28;
-  local_24 = (ReferenceController *)0x0;
-  local_10 = '\0';
-  local_6c = p2;
-  local_20 = 0;
-  uStack_1c = 0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  pIStack_68 = this;
-  if ((pRVar3 != (ReferenceController *)0x0) &&
-     (bVar1 = util__ReferenceController__IsDataStillValid(pRVar3), !bVar1)) {
-    *(undefined4 *)&p2->ParentFleet = 0;
-  }
-  pIVar5 = local_6c;
-  pIVar6 = pIStack_68;
-  puVar7 = puStack_64;
-  puVar8 = puStack_60;
-  uVar2 = StrategicManager__GetFleets(*(StrategicManager **)(*(int *)&p2->ParentFleet + 0x74));
-  FUN_00736060(uVar2,pIVar5,pIVar6,puVar7,puVar8);
-  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_7c);
-  pRVar3 = local_24;
-  if (local_10 == '\0') {
-    pRVar4 = (ReferenceController *)0x0;
-    bVar1 = false;
-    pRVar3 = (ReferenceController *)0x0;
-    this_00 = local_5c;
-  }
-  else {
-    local_5c = (ReferenceController *)local_28;
-    pRVar4 = (ReferenceController *)local_28;
-    if (local_24 != (ReferenceController *)0x0) {
-      util__ReferenceController__AddWeakReference(local_24);
-      pRVar4 = local_5c;
-    }
-    bVar1 = true;
-    this_00 = pRVar3;
-  }
-  local_5c = *(ReferenceController **)&this->CachedNearestFleetDistance_km;
-  *(ReferenceController **)(*(char (*)[4])((char *)this + 256)) = pRVar4;
-  *(ReferenceController **)&this->CachedNearestFleetDistance_km = pRVar3;
-  if (pRVar3 != (ReferenceController *)0x0) {
-    util__ReferenceController__AddWeakReference(pRVar3);
-  }
-  if (local_5c != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(local_5c);
-  }
-  if ((this_00 != (ReferenceController *)0x0) && (bVar1)) {
-    util__ReferenceController__ReleaseWeakReference(this_00);
-  }
-  if (local_10 == '\0') {
-    local_6c = (Itinerary *)0x0;
-    pIStack_68 = (ItineraryNode *)0x0;
-    puStack_64 = (util__Line3_L_double_G_ *)((uint)((slice_view *)&puStack_64)->_1_3_ << 8);
-  }
-  else {
-    local_6c = (Itinerary *)local_20;
-    pIStack_68 = (ItineraryNode *)uStack_1c;
-    ((slice_view *)&puStack_64)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&puStack_64)->_1_3_[0] | (((slice_view *)&puStack_64)->_1_3_[1] << 8) | (((slice_view *)&puStack_64)->_1_3_[2] << 16)) << 8));
-  }
-  *(Itinerary **)(((char *)&(this->CachedNearestFleetDistance_km))+ 4) = local_6c;
-  *(ItineraryNode **)(((char *)&(this->CachedNearestFleetDistance_km))+ 8) = pIStack_68;
-  *(util__Line3_L_double_G_ **)(((char *)&(this->CachedNearestFleetDistance_km))+ 0xc) = puStack_64;
-  *(undefined4 **)(*(char (*)[12])((char *)this + 276)) = puStack_60;
-  if (local_10 == '\0') {
-    local_6c = (Itinerary *)0x0;
-    pIStack_68 = (ItineraryNode *)0x0;
-    puStack_64 = (util__Line3_L_double_G_ *)((uint)((slice_view *)&puStack_64)->_1_3_ << 8);
-  }
-  else {
-    local_6c = (Itinerary *)uStack_18;
-    pIStack_68 = (ItineraryNode *)uStack_14;
-    ((slice_view *)&puStack_64)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&puStack_64)->_1_3_[0] | (((slice_view *)&puStack_64)->_1_3_[1] << 8) | (((slice_view *)&puStack_64)->_1_3_[2] << 16)) << 8));
-  }
-  *(Itinerary **)((*(char (*)[12])((char *)this + 276)) + 4) = local_6c;
-  *(ItineraryNode **)((*(char (*)[12])((char *)this + 276)) + 8) = pIStack_68;
-  *(util__Line3_L_double_G_ **)&this->CachedNearestOrbiter = puStack_64;
-  *(undefined4 **)((int)&this->CachedNearestOrbiter + 4) = puStack_60;
-  if (local_24 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(local_24);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
@@ -16709,6 +16490,121 @@ void __thiscall TacticalManager__RenderTransparent(TacticalManager *this)
 }
 
 
+//==== 00802600 00802600_ResetData ====
+// decompiled by BatchDecomp @ 00802600 name=ResetData conv=__thiscall body=428
+
+/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
+/* private: void __thiscall TacticalManager__ResetData(void) */
+
+void __thiscall TacticalManager__ResetData(TacticalManager *this)
+
+{
+  ReferenceController *this_00;
+  undefined1 *p1;
+  ActorHandler *this_01;
+  undefined1 local_dc[32];
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_bc[16];
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_ac[16];
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_9c[16];
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_8c[16];
+  Darray_L_util__WeakPtr_L_CapitalShipComponent_G___G_ local_7c;
+  double local_6c;
+  undefined1 local_64;
+  undefined4 local_5c;
+  undefined4 uStack_58;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined4 local_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined4 uStack_40;
+  undefined4 local_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  Darray_L_class_util__WeakPtr_L_class_Body_G___G_ local_2c[16];
+  undefined4 local_1c;
+  ReferenceController *local_18;
+  undefined8 local_14;
+  double local_c;
+  
+  (**(code **)(this->_pad_0x0_0 + 0x78))();
+  local_7c.Size = 1;
+  local_7c._pad_0x0_0 = 0;
+  local_7c.Data = (WeakPtr_L_CapitalShipComponent_G_ *)0x0;
+  local_6c = /*3ff0000000000000*/1.0;
+  local_64 = 0;
+  local_5c = 0;
+  uStack_58 = 0;
+  uStack_54 = 0;
+  uStack_50 = 0;
+  local_4c = 0;
+  uStack_48 = 0;
+  uStack_44 = 0;
+  uStack_40 = 0;
+  local_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  util__Darray_class_util__WeakPtr_class_Body_____Darray_class_util__WeakPtr_class_Body(local_2c,100);
+  *(int *)(((char *)&(this->Session))+ 0x18) = local_7c.Size;
+  local_c = 0.0;
+  *(undefined8 *)(((char *)&(this->Session))+ 0x10) = ((slice_view *)&local_7c)->_0_8_;
+  *(double *)(((char *)&(this->Session))+ 0x20) = local_6c;
+  ((undefined1 *)&(this->Session))[0x28] = local_64;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x30) = local_5c;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x34) = uStack_58;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x38) = uStack_54;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x3c) = uStack_50;
+  local_1c = 0;
+  local_18 = (ReferenceController *)0x0;
+  local_14 = 0;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x40) = local_4c;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x44) = uStack_48;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x48) = uStack_44;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x4c) = uStack_40;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x50) = local_3c;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x54) = uStack_38;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x58) = uStack_34;
+  *(undefined4 *)(((char *)&(this->Session))+ 0x5c) = uStack_30;
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent_____operator__o2
+            ((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)(((char *)&(this->Session))+ 0x60),
+             local_2c);
+  this_00 = *(ReferenceController **)(((char *)&(this->Session))+ 0x74);
+  *(undefined4 *)(((char *)&(this->Session))+ 0x70) = local_1c;
+  *(ReferenceController **)(((char *)&(this->Session))+ 0x74) = local_18;
+  if (local_18 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(local_18);
+  }
+  if (this_00 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(this_00);
+  }
+  ((undefined1 *)&(this->Optimizers))[0] = (undefined1)local_14;
+  p1 = (undefined1 *)(uint)((slice_view *)&local_14)->_1_1_;
+  ((undefined1 *)&(this->Optimizers))[1] = ((slice_view *)&local_14)->_1_1_;
+  *(double *)(((char *)&(this->Optimizers))+ 8) = local_c;
+  if (local_18 != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(local_18);
+  }
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body(local_2c);
+  OptimizationStructures__OptimizationStructures((OptimizationStructures *)local_dc);
+  OptimizationStructures__operator_((OptimizationStructures *)(((char *)&(this->Optimizers))+ 0x10),p1);
+  util__Darray_class_util__WeakPtr_struct_UIWidget______Darray_class_util__WeakPtr_struct_UIWidget((Darray_L_class_util__WeakPtr_L_struct_UIWidget_G___G_ *)&local_7c);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_8c);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_9c);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_ac);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_bc);
+  util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent((Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ *)(local_dc + 0x10));
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)local_dc);
+  this_01 = (ActorHandler *)
+            util__Darray_enum_CrewDepartment__Type___Num((Darray_L_enum_CrewDepartment__Type_G_ *)this);
+  ActorHandler__ResetAllActors(this_01);
+  EffectManager__DestroyAll(*(EffectManager **)&this->AlliedController);
+  Collision__TearDownCollisionDataStructures();
+  return;
+}
+
+
 //==== 00803780 00803780_SelectBodies ====
 // decompiled by BatchDecomp @ 00803780 name=SelectBodies conv=__thiscall body=624
 
@@ -18389,6 +18285,130 @@ void FUN_008e12f0(int *param_1)
   }
   free(pRawInputDeviceList);
   __security_check_cookie(local_4 ^ (uint)local_130);
+  return;
+}
+
+
+//==== 0090fed0 0090fed0_FUN_0090fed0 ====
+void FUN_0090fed0(void);
+
+// decompiled by BatchDecomp @ 0090fed0 name=FUN_0090fed0 conv=unknown body=49
+
+void FUN_0090fed0(void)
+
+{
+  (*(pointer *)0x0095f4a0u) =
+       (undefined *)((void *)(0x00920638u));
+  if (DAT_0095f4a4 != (void *)0x0) {
+    operator_delete__(DAT_0095f4a4);
+  }
+  (*(pointer *)0x0095f4a0u) = (undefined *)((void *)(0x00919488u));
+  DAT_0095f4a4 = (void *)0x0;
+  return;
+}
+
+
+//==== 0090ff30 0090ff30_FUN_0090ff30 ====
+void FUN_0090ff30(void);
+
+// decompiled by BatchDecomp @ 0090ff30 name=FUN_0090ff30 conv=unknown body=29
+
+void FUN_0090ff30(void)
+
+{
+  if ((*(Str_L_char_G_ *)0x00988cd8u).Data != 0) {
+    operator_delete__((void *)(*(Str_L_char_G_ *)0x00988cd8u).Data);
+    (*(Str_L_char_G_ *)0x00988cd8u).Data = 0;
+  }
+  return;
+}
+
+
+//==== 0090ffa0 0090ffa0_FUN_0090ffa0 ====
+void FUN_0090ffa0(void);
+
+// decompiled by BatchDecomp @ 0090ffa0 name=FUN_0090ffa0 conv=unknown body=69
+
+void FUN_0090ffa0(void)
+
+{
+  (*(pointer *)0x0095f4b0u) =
+       (undefined *)((void *)(0x00940210u));
+  util__AutoDarray_class_util__LocalizationLibrary___FreeAll((AutoDarray_L_class_util__LocalizationLibrary_G_ *)&(*(pointer *)0x0095f4b0u));
+  (*(pointer *)0x0095f4b0u) =
+       (undefined *)((void *)(0x009194a4u));
+  if (DAT_0095f4b4 != (void *)0x0) {
+    operator_delete__(DAT_0095f4b4);
+  }
+  (*(pointer *)0x0095f4b0u) =
+       (undefined *)((void *)(0x00919488u));
+  DAT_0095f4b4 = (void *)0x0;
+  return;
+}
+
+
+//==== 00910420 00910420_FUN_00910420 ====
+void FUN_00910420(void);
+
+// decompiled by BatchDecomp @ 00910420 name=FUN_00910420 conv=unknown body=77
+
+void FUN_00910420(void)
+
+{
+  ((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[9])->_0_4_ =
+       ((void *)(0x00940b50u));
+  if (((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[9])->_4_4_ != (void *)0x0) {
+    operator_delete__(((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[9])->_4_4_);
+  }
+  ((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[9])->_4_4_ = (void *)0x0;
+  ((slice_view *)&(*(Graphics *)0x00989890u).ViewMatrix.Data[9])->_0_4_ =
+       ((void *)(0x00919488u));
+  if ((*(Graphics *)0x00989890u).TransformationMatrix.Data != (Matrix4x4_L_double_G_ *)0x0) {
+    operator_delete__((*(Graphics *)0x00989890u).TransformationMatrix.Data);
+  }
+  (*(Graphics *)0x00989890u).TransformationMatrix.Data = (Matrix4x4_L_double_G_ *)0x0;
+  return;
+}
+
+
+//==== 00910600 00910600_FUN_00910600 ====
+void FUN_00910600(void);
+
+// decompiled by BatchDecomp @ 00910600 name=FUN_00910600 conv=unknown body=10
+
+void FUN_00910600(void)
+
+{
+  util__Darray_class_util__Str_char______Darray_class_util__Str_char((Darray_L_class_util__Str_L_char_G___G_ *)((*(Graphics *)0x00989890u).ViewMatrix.Data + 0xb));
+  return;
+}
+
+
+//==== 00910620 00910620_FUN_00910620 ====
+void FUN_00910620(void);
+
+// decompiled by BatchDecomp @ 00910620 name=FUN_00910620 conv=unknown body=10
+
+void FUN_00910620(void)
+
+{
+  util__Darray_class_util__LocStr____Darray_class_util__LocStr((Darray_L_class_util__LocStr_G_ *)((*(Graphics *)0x00989890u).ViewMatrix.Data + 0xd));
+  return;
+}
+
+
+//==== 00910b30 00910b30_FUN_00910b30 ====
+void FUN_00910b30(void);
+
+// decompiled by BatchDecomp @ 00910b30 name=FUN_00910b30 conv=unknown body=29
+
+void FUN_00910b30(void)
+
+{
+  if ((*(Str_L_char_G_ *)0x0098cce0u).Data != 0) {
+    operator_delete__((void *)(*(Str_L_char_G_ *)0x0098cce0u).Data);
+    (*(Str_L_char_G_ *)0x0098cce0u).Data = 0;
+  }
   return;
 }
 

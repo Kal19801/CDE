@@ -1280,6 +1280,195 @@ def param_underscore_fix(txt, va):
         txt = re.sub(r'\b' + re.escape(bad) + r'\b', good, txt)
     return txt
 
+# ---- r25w17: 强转字面量的成员访问等价化 ----
+# `(*(T *)&0xADDRu).Lower` —— Ghidra 语义 = 该地址处的对象；&字面量是渲染残渣
+# 等价: (*(T *)&0xADDRu) ≡ (*(T *)0xADDRu)（同一地址的对象视图）
+_CASTLIT_RE = re.compile(
+    r'\(\s*\*\s*\(\s*([A-Za-z_][\w:]*?)\s*\*\s*\)\s*&\s*(0x[0-9a-fA-F]+u?l*)\s*\)')
+
+def cast_literal_fix(txt):
+    return _CASTLIT_RE.sub(r'(*(\1 *)\2)', txt)
+
+# ---- r25w17: xmm 常量赋值等价化 ----
+# movsd/movd/movdqu 语义：LHS 宽度 W = 取 const 低位 W 字节（内存序已在发射期修正）
+_XMM_CAST_EQ = re.compile(
+    r'\*\s*\(\s*([A-Za-z_][\w]*)\s*\*\s*\)\s*&\s*([A-Za-z_]\w*)\s*=\s*(___xmm_[0-9a-f]{32})\s*;')
+_XMM_WIDTH = {'double': 8, 'float': 4, 'undefined4': 4, 'undefined8': 8,
+              'undefined2': 2, 'undefined1': 1, 'int': 4, 'uint': 4,
+              'unsigned int': 4, 'long long': 8, 'unsigned long long': 8}
+
+def xmm_assign_fix(txt):
+    """r25w17: `*(T *)&SLOT = ___xmm_X;` → `*(T *)&SLOT = *(const T *)&___xmm_X[0];`
+       （T 宽度 W：movs 系列指令存寄存器低 W 字节；const 已按 XMM_TRUTH 内存序）
+       及数组槽整块赋值 `SLOT = ___xmm_X;` → memcpy 16（movdqu 语义）"""
+    def _cast_rep(m):
+        t = m.group(1)
+        if t not in _XMM_WIDTH:
+            return m.group(0)
+        return (f'*({t} *)&{m.group(2)} = *(const {t} *)&{m.group(3)}[0];')
+    txt = _XMM_CAST_EQ.sub(_cast_rep, txt)
+    # 数组槽整块：仅当 LHS 是声明过的 undefined1[N] 数组才等价（movdqu 16 字节）
+    arrs = {m.group(1): int(m.group(2)) for m in re.finditer(
+        r'^\s*undefined1\s+([A-Za-z_]\w*)\s*\[\s*(\d+)\s*\]\s*;', txt, re.M)}
+    def _arr_rep(m):
+        nm = m.group(1)
+        if nm in arrs and arrs[nm] == 16:
+            return f'memcpy({nm}, {m.group(2)}, 16);'
+        return m.group(0)
+    txt = re.sub(r'\b([A-Za-z_]\w*)\s*=\s*(___xmm_[0-9a-f]{32})\s*;', _arr_rep, txt)
+    return txt
+
+# ---- r25w17: 结构体返回值/成员赋给 undefined4 变量 → 变量声明类型修正 ----
+_RET_STRUCT = {}       # callee -> esc 返回类型（非标量）
+_M_STRUCT_TYPES = {}   # member -> set(esc 结构体类型)（跨 UDT 唯一才用）
+_SCALDECL = re.compile(
+    r'^(\s*)(undefined4|undefined8|undefined2|undefined1|int|uint|unsigned int)\s+'
+    r'((?:u|p|pc|pi|pu|pp|i|l|f|d|b|c|s|e)[A-Z]\w*)(\s*;)\s*$', re.M)
+
+def w17_load_rettypes(tu_dir=None):
+    """callee → 非标量返回类型表。
+    主源 = r23_sigs.tsv(VA→ret) JOIN orig_full2.tsv(VA→fullname)（全量 21,443）；
+    pilot 定义行 / TU 签名区为补充。"""
+    sigs = Path(os.environ.get('SWEEP_SIGS', '/tmp/my-project/work/r23_sigs.tsv'))
+    full2 = Path(os.environ.get('SWEEP_FULL2', str(REPO / 'reports' / 'orig_full2.tsv')))
+    va_ret = {}
+    if sigs.exists():
+        for ln in open(sigs, encoding='utf-8', errors='replace'):
+            q = ln.rstrip('\n').split('\t')
+            if len(q) >= 3 and re.fullmatch(r'[0-9a-f]{8}', q[0]):
+                va_ret.setdefault(q[0], q[2])
+    va_name = {}
+    if full2.exists():
+        for ln in open(full2, encoding='utf-8', errors='replace'):
+            q = ln.rstrip('\n').split('\t')
+            if len(q) >= 4 and re.fullmatch(r'[0-9a-f]{8}', q[3]):
+                va_name.setdefault(q[3], q[1])
+    for va, ret in va_ret.items():
+        nm_full = va_name.get(va)
+        if not nm_full:
+            continue
+        # 函数名 esc 用 _fname_esc 约定（保留类前缀；调用点文本即此形态）
+        nm = _fname_esc(nm_full)
+        if nm in _RET_STRUCT:
+            continue
+        base = re.sub(r'\s+', '', ret)
+        base = re.sub(r'^(struct|class|enum)\s*', '', base)
+        if not base:
+            continue
+        if base.endswith('*') or '[' in base or '(' in base:
+            continue
+        if re.fullmatch(r'(undefined[1248]|int|uint|char|uchar|sbyte|ubyte|short|'
+                        r'ushort|float|double|bool|void|long|ulong|longlong|'
+                        r'ulonglong|code|_Bool|dword|word|byte|qword)', base):
+            continue
+        _RET_STRUCT[nm] = _pdb_esc(base)
+    # 已覆盖 pilot 定义行补充（col-0 `RET [__cc] NAME(`，含 r23 后命名）
+    import glob as _g
+    for f in _g.glob(str(REPO / 'src' / 'pilot_*.c')):
+        try:
+            txt = open(f, encoding='utf-8', errors='replace').read()
+        except OSError:
+            continue
+        for mm in re.finditer(r'(?m)^([A-Za-z_][\w \t\*]*?)\s+(?:__\w+\s+)?([A-Za-z_]\w*)\s*\(', txt):
+            ret, nm = mm.group(1).strip(), mm.group(2)
+            if not ret or nm in _RET_STRUCT:
+                continue
+            if 'extern' in ret or 'typedef' in ret:
+                continue   # r25w17b: pilot 内的 extern 声明行不是定义（externint 毒）
+            base = re.sub(r'\s+', '', ret).rstrip('*')
+            if not base or base in ('undefined1', 'undefined2', 'undefined4', 'undefined8',
+                                    'int', 'uint', 'char', 'uchar', 'sbyte', 'ubyte',
+                                    'short', 'ushort', 'float', 'double', 'bool',
+                                    'void', 'long', 'ulong', 'longlong', 'ulonglong', 'code',
+                                    'static', 'const'):
+                continue
+            if '[' in base or '(' in base:
+                continue
+            _RET_STRUCT[nm] = _pdb_esc(base)
+    if tu_dir:
+        import glob as _g
+        for f in _g.glob(str(Path(tu_dir) / '*.tu.c')):
+            try:
+                head = open(f, encoding='utf-8', errors='replace').read(8192)
+            except OSError:
+                continue
+            head = head.split('{', 1)[0]
+            for mm in re.finditer(r'(?m)^\s*([A-Za-z_][\w \t\*]*?)\s*\b([A-Za-z_]\w*)\s*\(', head):
+                ret, nm = mm.group(1).strip(), mm.group(2)
+                if not ret or nm in _RET_STRUCT:
+                    continue
+                base = re.sub(r'\s+', '', ret).rstrip('*')
+                if not base or base in ('undefined1', 'undefined2', 'undefined4', 'undefined8',
+                                        'int', 'uint', 'char', 'uchar', 'sbyte', 'ubyte',
+                                        'short', 'ushort', 'float', 'double', 'bool',
+                                        'void', 'long', 'ulong', 'longlong', 'ulonglong', 'code'):
+                    continue
+                if '[' in base or '(' in base:
+                    continue
+                _RET_STRUCT[nm] = _pdb_esc(base)
+
+def w17_load_mstructtypes():
+    """member → 唯一结构体类型集（TSV 非标量行）"""
+    tsv = Path(os.environ.get('SWEEP_MEMBERS', '/tmp/my-project/work/members_r25c_all.tsv'))
+    if not tsv.exists():
+        return
+    acc = {}
+    for ln in open(tsv, encoding='utf-8', errors='replace'):
+        q = ln.rstrip('\n').split('\t')
+        if q[0] != 'MEMB' or len(q) < 6:
+            continue
+        kind, ct = _classify_tile_type(q[4])
+        if kind == 'struct':
+            acc.setdefault(q[2], set()).add(ct)
+    for nm, ts in acc.items():
+        if len(ts) == 1:
+            _M_STRUCT_TYPES[nm] = next(iter(ts))
+
+def var_decl_type_fix(txt, va):
+    """r25w17: `undefined4 v = 结构体返回调用 / 结构体成员` → 变量声明改结构体类型
+       （Ghidra 变量槽宽 4 但语义持有结构体——声明忠实化；混合用法守卫防误改）"""
+    lines = txt.split('\n')
+    decls = {}
+    for m in _SCALDECL.finditer(txt):
+        decls[m.group(3)] = m
+    if not decls:
+        return txt
+    retype = {}
+    for nm in decls:
+        # 收集 VAR 的全部赋值源类型
+        rets = set()
+        ok = True
+        uses = 0
+        for mm in re.finditer(r'\b' + re.escape(nm) + r'\b', txt):
+            uses += 1
+        n_assign = 0
+        for mm in re.finditer(r'\b' + re.escape(nm) + r'\s*=\s*([^;]+);', txt):
+            n_assign += 1
+            rhs = mm.group(1)
+            c = re.match(r'\s*([A-Za-z_]\w*)\s*\(', rhs)
+            if c and c.group(1) in _RET_STRUCT:
+                rets.add(_RET_STRUCT[c.group(1)])
+                continue
+            c2 = re.match(r'\s*(?:[A-Za-z_]\w*(?:->|\.))+([A-Za-z_]\w*)\s*$', rhs)
+            if c2 and c2.group(1) in _M_STRUCT_TYPES:
+                rets.add(_M_STRUCT_TYPES[c2.group(1)])
+                continue
+            rets.add('?')   # 未知源 —— 弃（混合源不忠实）
+        if n_assign == 0 or len(rets) != 1 or '?' in rets:
+            continue
+        # 混合用法守卫：算术/下标/取址即弃
+        n_other = uses - n_assign - 1   # -1 声明位
+        if n_other > 0 and re.search(r'&\s*' + re.escape(nm) + r'\b|' + re.escape(nm) + r'\s*[\[\+\-\*/]', txt.replace('\n', ' ')):
+            continue
+        esc_t = next(iter(rets))
+        d = decls[nm]
+        lines_txt = txt
+        new_decl = f'{d.group(1)}{esc_t} {d.group(3)}{d.group(4)}'
+        txt = txt[:d.start()] + new_decl + txt[d.end():]
+        # 重建 decls 位置失效 —— 一次只改一个（多站留下轮）
+        return txt
+    return txt
+
 def bare_dtor_fix(txt, disp):
     def rep(m):
         cls = m.group(1)
@@ -1498,6 +1687,8 @@ def main():
     build_strict_types()          # r20b: 严格类型名集
     w13_load_errmap()             # r25w13: iso 原始错误图
     w13_load_members()            # r25w13: DB 成员真值（pad/数组快照/父类型）
+    w17_load_rettypes()           # r25w17: r23_sigs 全量返回类型
+    w17_load_mstructtypes()       # r25w17: member → 唯一结构体类型
     A.scan_templates(files)
     A.L(f'batch={BATCH} total={n_total} in={len(files)} '
         f'(env_defer={len(ENV_DEFER)} auto_prev={len(auto_prev)}) '
@@ -1537,6 +1728,10 @@ def main():
         txt = param_underscore_fix(txt, va)
         txt = operator_eq_fix(txt)
         txt = win32_types_fix(txt)
+        # r25w17: 强转字面量对象视图 / xmm 赋值低位语义 / 结构体返回值声明忠实化
+        txt = cast_literal_fix(txt)
+        txt = xmm_assign_fix(txt)
+        txt = var_decl_type_fix(txt, va)
         _typedef_pool.update(typedef_scan(txt))
         if prescreen(txt):
             auto_now.add(norm6(va))
@@ -1910,7 +2105,15 @@ def main():
                 continue
             exts.append(f'extern int {s}(); /* K&R; ret by call site */')
         else:
-            exts.append(f'extern int {s}(); /* K&R stub; ret by call site */')
+            # r25w17: ret 真值升级（r23_sigs JOIN）—— 结构体返回的 K&R int 误型
+            # 是 assigning-incompatible 主族根因；K&R 仍无原型（参数不标），ret 忠实
+            # 守卫: ret 类型名必须在 hdr_ids2 已有 typedef（fpos<dword> 等无定义类型退 int）
+            _rt = _RET_STRUCT.get(s)
+            if _rt and _rt not in hdr_ids2:
+                _rt = None
+            exts.append(f'extern {_rt} {s}(); /* K&R stub; ret by call site */'
+                        if _rt else
+                        f'extern int {s}(); /* K&R stub; ret by call site */')
     parts = [
         f'// pilot_sweep_{BATCH}.c - assembled by scripts/sweep_assemble.py (r19)\n'
         '// reuses fam8_assemble fix passes (zip oracle/in-batch protos/vft channel/data closure)\n',
