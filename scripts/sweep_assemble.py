@@ -875,6 +875,336 @@ def scalar_subscript_fix(txt):
                 txt = txt.replace(d, d.rstrip() [:-1].rstrip() + f'[{mx + 1}];', 1)
     return txt
 
+# ==================== r25w13: 错误驱动等价改写（iso 原始错误图 + DB 成员真值） ====================
+# 输入: SWEEP_ERRMAP = iso_sweep ISO_RAWERRS 产物 (va \t sec行 \t col \t msg)
+# 纪律: 只改错误命中的 (va,line) 站点；col 锚定失败/DB 缺证 → 不动（留给下轮）
+_ERRMAP_R25 = {}        # va -> {sec_line(1based): [(col, msg), ...]}
+_PADS_BY_UDT = {}       # esc_udt -> { padname: (off, size) }
+_PADS_AMBIG = set()     # 跨 UDT 偏移不一致的 pad 名
+_M_SNAPS = {}           # membname -> set((elem_size, elem_ctype, total_size))
+_M_NAV_PARENTS = {}     # 非标量成员名 -> set(esc_udt)
+
+def w13_load_errmap():
+    p = os.environ.get('SWEEP_ERRMAP', '')
+    if not p or not Path(p).exists():
+        return
+    for ln in open(p, encoding='utf-8', errors='replace'):
+        q = ln.rstrip('\n').split('\t')
+        if len(q) >= 4:
+            try:
+                _ERRMAP_R25.setdefault(q[0].lstrip('0') or '0', {}) \
+                    .setdefault(int(q[1]), []).append((int(q[2]), q[3]))
+            except ValueError:
+                pass
+
+_ELEM_CTYPE = {'undefined1': 'undefined1', 'undefined2': 'undefined2',
+               'undefined4': 'undefined4', 'undefined8': 'undefined8',
+               'byte': 'undefined1', 'char': 'char', 'uchar': 'undefined1',
+               'sbyte': 'signed char', 'ushort': 'undefined2', 'uint': 'undefined4',
+               'int': 'int', 'double': 'double', 'float': 'float', 'ulonglong': 'undefined8',
+               'undefined': 'undefined1'}
+
+def w13_load_members():
+    tsv = Path(os.environ.get('SWEEP_MEMBERS', '/tmp/my-project/work/members_r25c_all.tsv'))
+    if not tsv.exists():
+        return
+    _pad_offs = {}
+    for ln in open(tsv, encoding='utf-8', errors='replace'):
+        q = ln.rstrip('\n').split('\t')
+        if q[0] != 'MEMB' or len(q) < 6:
+            continue
+        udt, name, off, typ, size = q[1], q[2], q[3], q[4], q[5]
+        try:
+            off_i, size_i = int(off), int(size)
+        except ValueError:
+            continue
+        if name.startswith('_pad'):
+            _PADS_BY_UDT.setdefault(_pdb_esc(udt), {})[name] = (off_i, size_i)
+            _pad_offs.setdefault(name, set()).add((off_i, size_i))
+        # 数组快照: elem[N] —— 下标类的元素宽度证据
+        m = re.fullmatch(r'([A-Za-z_][\w]*)\s*\[\s*(\d+)\s*\]', typ.strip())
+        if m and m.group(1) in _ELEM_CTYPE:
+            e = _ELEM_CTYPE[m.group(1)]
+            _M_SNAPS.setdefault(name, set()).add(
+                ({'undefined1': 1, 'char': 1, 'signed char': 1}.get(e, None) or
+                 {'undefined2': 2, 'undefined4': 4, 'undefined8': 8,
+                  'int': 4, 'double': 8, 'float': 4}.get(e, 1), e, size_i))
+        # 标量导航类的父类型证据（唯一父才发射）
+        _M_NAV_PARENTS.setdefault(name, set()).add(_pdb_esc(udt))
+    for nm, offs in _pad_offs.items():
+        if len(offs) > 1:
+            _PADS_AMBIG.add(nm)
+
+_PAD_TOK = re.compile(r'\b((?:[A-Za-z_]\w*)|(?:\([^()\n]{1,80}\)))->(_pad\d+)\b')
+
+def pad_member_fix(txt, va):
+    """no-member '_padNN' → DB (off,size) 数组指针重建（字节等价）
+       X->_padNN → (*(char (*)[S])((char *)X + O))
+       依据: DB 瓦片成员 = byte[S]@O；数组退化=首址，后续算术=字节步进。
+       pdb.h 生成器（r24 hdr-truth）丢弃 byte[N] pad 成员 → 反编译文本按 DB 名失配。
+       r25w13b: msg 已给 (struct,pad) —— 按行解析，无需全局唯一门；
+       同函数同名 pad 指不同结构时各行用各自的 msg 解析，互不干扰。"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    lines = txt.split('\n')
+    hit = False
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        specs = []
+        for col, msg in lst:
+            m = re.search(r"no member named '(_pad\d+)' in 'struct ([A-Za-z0-9_]+)'", msg)
+            if m:
+                info = _PADS_BY_UDT.get(m.group(2), {}).get(m.group(1))
+                if info:
+                    specs.append((m.group(1), info[0], info[1]))
+        if not specs:
+            continue
+        s = lines[ln_no - 1]
+        for pad, off, size in specs:
+            rep = lambda mm, _o=off, _s=size: \
+                f'(*(char (*)[{_s}])((char *){mm.group(1)} + {_o}))'
+            s = re.sub(r'\b((?:[A-Za-z_]\w*)|(?:\([^()\n]{1,80}\)))->' + pad + r'\b', rep, s)
+        lines[ln_no - 1] = s
+        hit = True
+    return '\n'.join(lines) if hit else txt
+
+def _nav_chain_back(line, pos):
+    """从 pos(0based) 向左扫导航链: 标识符/./->/[]/配对括号；链内空白处停。
+       返回链起点(0based)或 None。`-` 仅在 `->` 中消费（`a - b` 是减法）。"""
+    while pos >= 0 and line[pos] == ' ':
+        pos -= 1          # 前导空白跳过（`Size + 0xc` 的尾空格）
+    i = pos
+    j = None
+    while i >= 0:
+        j = i
+        while j >= 0 and (line[j].isalnum() or line[j] == '_'):
+            j -= 1
+        if j == i:   # 非标识符字符
+            if i >= 0 and line[i] == '.':
+                i -= 1
+                continue
+            if i >= 1 and line[i] == '>' and line[i-1] == '-':
+                i -= 2
+                continue
+            if i >= 0 and line[i] == ']':
+                depth = 0
+                k = i
+                while k >= 0:
+                    if line[k] == ']':
+                        depth += 1
+                    elif line[k] == '[':
+                        depth -= 1
+                        if depth == 0:
+                            break
+                    k -= 1
+                if k < 0:
+                    return None
+                i = k - 1
+                continue
+            if i >= 0 and line[i] == ')':
+                depth = 0
+                k = i
+                while k >= 0:
+                    if line[k] == ')':
+                        depth += 1
+                    elif line[k] == '(':
+                        depth -= 1
+                        if depth == 0:
+                            break
+                    k -= 1
+                if k < 0:
+                    return None
+                # 前驱延续链（./->/word/]/(/)），否则括号组即链首
+                kk = k - 1
+                while kk >= 0 and line[kk] == ' ':
+                    kk -= 1
+                if kk < 0:
+                    return k
+                c2 = line[kk]
+                if c2 in '.)]' or c2.isalnum() or c2 == '_':
+                    i = k - 1
+                    continue
+                if c2 == '>' and kk >= 1 and line[kk - 1] == '-':
+                    i = k - 1
+                    continue
+                return k
+            return None
+        i = j
+        if i < 0:
+            return 0
+        c = line[i]
+        if c == '.':
+            i -= 1
+            continue
+        if c == '>' and i >= 1 and line[i-1] == '-':
+            i -= 2
+            continue
+        break
+    return j + 1 if j is not None else None
+
+def member_addr_fix(txt, va):
+    """invalid-operands(struct)/arithmetic-required(struct) → 成员地址形式（字节等价）
+       (E).M + K → ((char *)&((E).M)) + K   [Ghidra 语义: 成员地址 + K 字节]
+       *(T *)(E).M / *(T *)E.M → 插 &（操作数首列锚定）"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    lines = txt.split('\n')
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        s = lines[ln_no - 1]
+        orig = s
+        for col, msg in sorted(lst, key=lambda x: -x[0]):
+            if "'struct" not in msg:
+                continue
+            if 'invalid operands to binary' in msg:
+                c0 = col - 1   # 0based，应指向 +- 运算符
+                if 0 <= c0 < len(s) and s[c0] in '+-' and not (c0 >= 1 and s[c0-1] == '-'):
+                    start = _nav_chain_back(s, c0 - 1)
+                    if start is not None and start < c0:
+                        chain = s[start:c0].rstrip()
+                        if chain and re.search(r'(\.|->)[A-Za-z_]\w*$', chain):
+                            s = (s[:start] + '((char *)&(' + chain + '))'
+                                 + s[c0:])
+            elif 'where arithmetic or pointer type is required' in msg:
+                c0 = col - 1
+                if 0 <= c0 < len(s) and (s[c0] == '(' or s[c0].isalpha() or s[c0] == '_'):
+                    m = re.match(r'(?:\([^()\n]+\)|[A-Za-z_][\w\.\>\[\]\-]*)'
+                                 r'(?:\.|->)[A-Za-z_]\w*', s[c0:])
+                    if m:
+                        # 防二次 &: 操作数前不是 &
+                        pre = ''
+                        k = c0 - 1
+                        while k >= 0 and s[k] == ' ':
+                            k -= 1
+                        if k >= 0 and s[k] == '&':
+                            continue
+                        s = s[:c0] + '&' + s[c0:]
+        if s != orig:
+            lines[ln_no - 1] = s
+    return '\n'.join(lines)
+
+def subscript_member_fix(txt, va):
+    """subscripted-not-array → DB 数组快照边界验证后的元素视图重建（字节等价）
+       BASE.M[K] → ((ELEM *)&(BASE.M))[K]
+       依据: M 的 DB 数组快照 (elem,S)；(K+1)*elem ≤ S 才发射；歧义跳过"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    lines = txt.split('\n')
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        s = lines[ln_no - 1]
+        orig = s
+        for col, msg in sorted(lst, key=lambda x: -x[0]):
+            if 'subscripted value is not an array' not in msg:
+                continue
+            c0 = col - 1    # '[' 位置
+            if not (0 <= c0 < len(s) and s[c0] == '['):
+                continue
+            # K
+            mK = re.match(r'\[\s*(0x[0-9a-fA-F]+|\d+)\s*\]', s[c0:])
+            if not mK:
+                continue
+            K = int(mK.group(1), 16) if mK.group(1).startswith('0x') else int(mK.group(1))
+            # M: '[' 前的标识符
+            j = c0 - 1
+            while j >= 0 and (s[j].isalnum() or s[j] == '_'):
+                j -= 1
+            memb = s[j+1:c0]
+            if not memb or j < 0 or s[j] not in '.':
+                if not (j >= 1 and s[j] == '>' and s[j-1] == '-'):
+                    continue
+            # 元素证据: 反编译器只对"数组视图"下标 → 视图必是 M 的某数组快照。
+            # 全部快照字节宽 → 字节语义必真（地址 = M 首址 + K 字节）；混合宽度保守跳过。
+            cands = _M_SNAPS.get(memb, ())
+            if not cands or any(e != 1 for e, ct, S in cands):
+                continue
+            if not any(S >= K + 1 for e, ct, S in cands):
+                continue   # 反编译视图必有 S ≥ K+1（否则 Ghidra 不会发 [K]）
+            start = _nav_chain_back(s, j)
+            if start is None:
+                continue
+            base = s[start:c0]
+            if not base:
+                continue
+            s = (s[:start] + f'((undefined1 *)&({base})){mK.group(0)}' + s[c0 + mK.end():])
+        if s != orig:
+            lines[ln_no - 1] = s
+    return '\n'.join(lines)
+
+def scalar_nav_fix(txt, va):
+    """member-reference-not-a-pointer → 槽位即对象基址的等价类型视图
+       (SLOT)->F → ((T *)&(SLOT))->F   [T=F 的唯一父 UDT]
+       依据: 槽内 4 字节 = 对象首 4 字节（内嵌对象），&槽 = 对象地址"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    want_lines = {ln for ln, lst in sites.items()
+                  for col, msg in lst
+                  if 'member reference type' in msg and 'is not a pointer' in msg}
+    if not want_lines:
+        return txt
+    lines = txt.split('\n')
+    for ln_no in want_lines:
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        s = lines[ln_no - 1]
+        orig = s
+        # 右到左: )->F 形态，平衡回扫取 SLOT，唯一父才发射（右先防位移）
+        for m in reversed(list(re.finditer(r'\)->([A-Za-z_]\w*)\b', s))):
+            memb = m.group(1)
+            pars = _M_NAV_PARENTS.get(memb)
+            if not pars or len(pars) != 1:
+                continue
+            T = next(iter(pars))
+            close = m.start()          # ')' 位置
+            depth = 0
+            k = close
+            while k >= 0:
+                if s[k] == ')':
+                    depth += 1
+                elif s[k] == '(':
+                    depth -= 1
+                    if depth == 0:
+                        break
+                k -= 1
+            if k < 0 or k == close:
+                continue
+            base = s[k + 1:close]
+            s = s[:k] + f'(({T} *)&({base}))' + s[close + 1:]
+        if s != orig:
+            lines[ln_no - 1] = s
+    return '\n'.join(lines)
+
+def base_member_fix(txt, va):
+    """no-member 'base_X' → 单继承基类 offset-0 等价
+       (E).base_X._vftable → (*(void **)(E))   [虚表槽 = 基首 4 字节]
+       &E.base_X → (void *)&E                 [基址 = 对象地址]"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    want = False
+    for ln_no, lst in sites.items():
+        for col, msg in lst:
+            if re.search(r"no member named 'base_[A-Za-z0-9_]+'", msg):
+                want = True
+    if not want:
+        return txt
+    txt = re.sub(r'\(([^()\n]+?)(?:->|\.)base_[A-Za-z0-9_]+\)\._vftable\b',
+                 r'(*(void **)(\1))', txt)
+    txt = re.sub(r'&([A-Za-z_][\w\.\>\[\]]*?)(?:->|\.)base_[A-Za-z0-9_]+\b',
+                 r'(void *)&\1', txt)
+    return txt
+
+def stray_underscore_fix(txt):
+    """decomp2c 渲染伪影: ` _/*hex*/字面量` → 剥离悬挂下划线（字面量本体等价）"""
+    return re.sub(r'([\s(=+,]|\A)_(\s*)/\*([0-9a-fA-F]{8})\*/', r'\1\2/*\3*/', txt)
+
 def bare_dtor_fix(txt, disp):
     def rep(m):
         cls = m.group(1)
@@ -1091,6 +1421,8 @@ def main():
     RENAMES_MAP.update(load_renames())   # r21: hdr 冲突改名表
     scan_inbatch_defs(files)      # r20b: VA->批内 def 名
     build_strict_types()          # r20b: 严格类型名集
+    w13_load_errmap()             # r25w13: iso 原始错误图
+    w13_load_members()            # r25w13: DB 成员真值（pad/数组快照/父类型）
     A.scan_templates(files)
     A.L(f'batch={BATCH} total={n_total} in={len(files)} '
         f'(env_defer={len(ENV_DEFER)} auto_prev={len(auto_prev)}) '
@@ -1120,6 +1452,13 @@ def main():
         txt = vft_bare_fix(txt, va)
         # r20: 负偏移栈伪符号 → 局部声明（Ghidra 丢局部类型的 sret 槽）
         txt, sloc = stack_pseudo_fix(txt)
+        # r25w13: 错误驱动等价改写（iso 原始错误图 col 锚定 + DB 成员真值；不命中不动）
+        txt = pad_member_fix(txt, va)
+        txt = base_member_fix(txt, va)
+        txt = member_addr_fix(txt, va)
+        txt = subscript_member_fix(txt, va)
+        txt = scalar_nav_fix(txt, va)
+        txt = stray_underscore_fix(txt)
         _typedef_pool.update(typedef_scan(txt))
         if prescreen(txt):
             auto_now.add(norm6(va))
@@ -1264,10 +1603,14 @@ def main():
     _exr_defines = []
     for _e in _exrefs:
         _n = _e[:-len('_exref')]
-        if _n in hdr_ids2:      # 已有头声明/宏（DebugBreak 等）
+        if _n.startswith('_'):
+            # 数据导入（_BADOFF 等）——IAT 槽地址+值等价：static const 同值槽
+            if _n == '_BADOFF':
+                _exr_defines.append('static const unsigned int _cde_badoff_slot = 0xFFFFFFFFu;')
+                _exr_defines.append(f'#define {_e} ((void *)&_cde_badoff_slot)')
             continue
-        if _n.startswith('_'):  # _BADOFF 等数据导入——直连无等价保证，留给 defer
-            continue
+        # 头符号（free/glTexParameteri/DebugBreak…）直连正是等价目标——
+        # IAT 槽运行时值 = 函数地址；r25w13: 修复 hdr_ids2 误跳过（原逻辑漏发 define）
         _exr_defines.append(f'#define {_e} {_n}')
     if _exr_defines:
         A.L(f'exref defines: {len(_exr_defines)}')

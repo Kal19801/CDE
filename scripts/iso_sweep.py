@@ -64,17 +64,25 @@ def run_one(job):
     obj = WORK / f'i_{va}.o'
     try:
         pre = strip_self(PRE_RAW, name) if name else PRE_RAW
+        pre_n = pre.count('\n') + 1   # unit 内 prelude 行数（sec 相对行 = err_line - pre_n）
         txt = Path(path).read_text(errors='replace')
         unit.write_text(pre + '\n' + txt)
         r = subprocess.run([CC] + FLAGS + [str(unit), '-o', str(obj)],
                            capture_output=True, text=True, timeout=180, env=ENV)
-        errs = [ln.split(': error:', 1)[1] if ': error:' in ln else ln
-                for ln in r.stderr.split('\n') if ': error:' in ln]
-        return va, name, errs, sha
+        errs, raw = [], []
+        upre = f'i_{va}.c:'
+        for ln in r.stderr.split('\n'):
+            if ': error:' not in ln:
+                continue
+            errs.append(ln.split(': error:', 1)[1])
+            m = re.search(re.escape(upre) + r'(\d+):(\d+): error: (.*)', ln)
+            if m:
+                raw.append((int(m.group(1)) - pre_n, int(m.group(2)), m.group(3)))
+        return va, name, errs, sha, raw
     except subprocess.TimeoutExpired:
-        return va, name, ['TIMEOUT'], sha
+        return va, name, ['TIMEOUT'], sha, []
     except Exception as e:
-        return va, name, [f'ISO_INTERNAL {e}'], sha
+        return va, name, [f'ISO_INTERNAL {e}'], sha, []
 
 
 def main():
@@ -108,21 +116,28 @@ def main():
     n_ok = 0
     ok_f = open(OKF, 'a', encoding='utf-8')
     err_f = open(ERRF, 'a', encoding='utf-8')
+    raw_path = os.environ.get('ISO_RAWERRS', '')
+    raw_f = open(raw_path, 'w', encoding='utf-8') if raw_path else None
 
     with ThreadPoolExecutor(max_workers=NPAR) as ex:
-        for va, name, errs, sha in ex.map(run_one, jobs):
+        for va, name, errs, sha, raw in ex.map(run_one, jobs):
             if not errs:
                 ok_f.write(f'{va}\t{name}\t{sha}\n')
                 n_ok += 1
             else:
                 cls = [classify(e) for e in errs[:EBUDGET and 8]]
                 err_f.write(f'{va}\t{name}\t{len(errs)}\t' + ' || '.join(cls) + '\n')
+            if raw_f is not None:
+                for sl, col, msg in raw:
+                    raw_f.write(f'{va}\t{sl}\t{col}\t{msg}\n')
             if (n_ok + len(done)) % 200 == 0:
                 ok_f.flush()
                 err_f.flush()
+                if raw_f: raw_f.flush()
                 print(f'.. progress ok={n_ok} done={n_ok + len(done)}', flush=True)
     ok_f.close()
     err_f.close()
+    if raw_f: raw_f.close()
     print(f'iso done: ok={n_ok} err={len(jobs) - n_ok} -> {OKF.name}/{ERRF.name}')
 
 
