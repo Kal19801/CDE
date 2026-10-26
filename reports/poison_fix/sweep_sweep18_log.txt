@@ -1,6 +1,6 @@
 pool=20839 fullnames, multi=570
-oracle: 1524 stub names
-cov_name: 10415 entries
+oracle: 1516 stub names
+cov_name: 10423 entries
 vftable_map: 1749 entries
 batch=sweep18 total=1685 in=1407 (env_defer=0 auto_prev=278) tpl_defs=59
 WARN 004f6240_GetCurrentNotification: slice local local_14: no decl found
@@ -223,6 +223,6 @@ typedef forwards: 207 (r23 complete 39) (alias 4)
 renames applied: 224
 extra typedefs: 2
 winuser_min include: emitted at prelude
-iso prelude: 844 protos -> /tmp/sweep_sweep18_draft.c.prelude
+iso prelude: 873 protos -> /tmp/sweep_sweep18_draft.c.prelude
 l2 statics: +0 (of 4)
-WROTE /tmp/sweep_sweep18_draft.c (8611474B) sections=1407 externs=220 unresolved=1359
+WROTE /tmp/sweep_sweep18_draft.c (8640957B) sections=1407 externs=220 unresolved=1359

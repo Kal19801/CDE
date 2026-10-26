@@ -2930,6 +2930,35 @@ extern util__Maybe_L_int_G __cdecl util__FindToken_L_char_G_(util__Str_L_char_G_
 extern util__Vec2_L_double_G_ * __cdecl util__OnScarTexture(util__Vec2_L_double_G_ *__return_storage_ptr__,undefined4 p0,undefined4 p1,double p2, undefined4 p3,undefined4 p4);
 extern void __thiscall util__Quaternion_L_double_G___Quaternion_L_double_G(Quaternion_L_double_G_ *this,undefined4 p1,undefined4 p2);
 extern util__Maybe_L_int_G __thiscall util__Reflectable__GetStringPropertyMaxLength(Reflectable *this,util__ClassMember *p1);
+extern void FUN_004d6f30(int *param_1,Str_L_char_G_ *param_2);
+extern void FUN_00524a50(int *param_1,undefined1 (*param_2) [16],undefined4 *param_3,undefined4 param_4);
+extern void FUN_00577460(int *param_1,int *param_2,SharedPtr_L_struct_ModuleCategory_G_ *param_3,int *param_4);
+extern void __thiscall FUN_0057c4f0(undefined4 *param_1,util__SharedPtr_L_ModuleCategory_G_ *param_2);
+extern void FUN_00691ac0(int *param_1,int param_2,Data *param_3,util__WeakPtr_L_UIModuleInfo_G_ *param_4, UIWidget *param_5,util__WeakPtr_L_UIModuleInfo_G_ *param_6);
+extern Darray_L_bool_P_G_ * __thiscall FUN_00699c00(int *param_1,Darray_L_bool_P__G_ *param_2,ModulePlacer *param_3);
+extern void __thiscall FUN_006deef0(undefined4 *param_1,util__Str_L_char_G_ *param_2);
+extern void FUN_0070c340(Darray_L_struct_util__Vec3_L_double_G___G_ *param_1,int *param_2, undefined1 (*param_3) [16],double *param_4);
+extern void FUN_00716850(int *param_1,int *param_2, Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__C_class_util__Darray_L_class_util__Reflectable_P__G___G___G_ *param_3);
+extern void FUN_0072af10(int *param_1, Darray_L_struct_util__tuple4_L_class_CraftBlueprint_const_P__C_int_C_struct_util__Range_L_double_G__C_double_G___G_ *param_2);
+extern void FUN_0074a990(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3);
+extern void FUN_00754ce0(int *param_1,StrategicManager *param_2,int *param_3,undefined1 (*param_4) [16], undefined8 *param_5);
+extern void FUN_00756210(int *param_1,Darray_L_class_util__SharedPtr_L_struct_UIWidget_G___G_ *param_2, StrategicManager *param_3,int param_4,double *param_5,double *param_6,char *param_7,char *param_8,char *param_9,char *param_10);
+extern void FUN_00756fa0(int *param_1,StrategicManager *param_2,undefined8 *param_3,char *param_4, double *param_5,double *param_6,Darray_L_struct_WorldLight_G_ *param_7);
+extern void FUN_00757e30(int *param_1,Darray_L_struct_WorldObject_G_ *param_2);
+extern void FUN_00758290(int *param_1,int *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3);
+extern void __thiscall FUN_0075d3e0(int *param_1,Maybe_L_struct_PendingBattle_G_ *param_2,int *param_3);
+extern void __thiscall FUN_0075db30(int *param_1,util__SharedPtr_L_BalloonPopup_G_ *param_2);
+extern void FUN_0076efe0(int *param_1,int *param_2, tuple2_L_struct_ActorDropdownAction,class_util__WeakPtr_L_struct_UIWidget_G___G_ *param_3, int *param_4);
+extern void FUN_0076f3b0(ReferenceController *param_1,int param_2, Darray_L_struct_ActorDropdownAction_G_ *param_3);
+extern void FUN_0078b390(int *param_1,undefined1 (*param_2) [16]);
+extern void FUN_007c8360(int *param_1,DamagerContainer *param_2,int *param_3,double *param_4, double *param_5,SpacecraftComponent *param_6,undefined4 param_7,undefined8 *param_8,Darray_L_struct_util__AABB_L_struct_util__Vec3_L_double_G___G___G_ *param_9);
+extern void FUN_007dcaa0(int *param_1,int param_2,int *param_3,undefined1 (*param_4) [16]);
+extern void FUN_007dcdd0(int *param_1,int param_2,undefined1 (*param_3) [16]);
+extern void FUN_007f5dc0(int *param_1,undefined4 *param_2,double *param_3,undefined1 (*param_4) [16]);
+extern void FUN_0080dfc0(int *param_1,Str_L_char_G_ *param_2);
+extern void __thiscall FUN_00827230(undefined4 *param_1,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_2);
+extern void __thiscall FUN_008972b0(undefined4 *param_1,util__Str_L_char_G_ *param_2,int param_3);
+extern void __cdecl RenderShape(Type param_1,Vec2_L_double_G_ param_2,bool param_3);
 
 /* ---- r25w13: 定义导出 extern（cc 忠实，防前置调用隐式声明） ---- */
 extern Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ * __thiscall TacticalManager__GetCameraFocusedSpacecrafts(TacticalManager *this);
@@ -2976,6 +3005,8 @@ extern double __thiscall NuclearReactorSubModule__GetReproductionFactor(NuclearR
 extern double __thiscall NuclearReactorSubModule__GetUtilizationFactor(NuclearReactorSubModule *this,undefined4 p1,double p2,bool p3);
 extern double __thiscall ThermalRocketSubModule__GetPrimarySurfaceArea_m2(ThermalRocketSubModule *this);
 extern double __thiscall WeaponCompartment__GetAmmoLeft_Percent(WeaponCompartment *this);
+extern float10 __thiscall FUN_005c2830(undefined4 *param_1,double param_2);
+extern int FUN_008de7b0(int param_1,int param_2);
 extern int __thiscall CraftBlueprintArmor__GetRadialArmorPlates(CraftBlueprintArmor *this);
 extern int __thiscall CraftBlueprintArmor__GetRadialSegments(CraftBlueprintArmor *this);
 extern undefined1 * __thiscall SpacecraftTargeting__GetRangesAgainstThis_km(SpacecraftTargeting *this,undefined1 *p1);
@@ -2983,6 +3014,7 @@ extern undefined1 * __thiscall TurboelectricFissionReactorCompartment___scalar_d
 extern undefined1 * __thiscall WeaponModule__GetOneLineStatusBarPercentages(WeaponModule *this,undefined1 *p1);
 extern undefined4 * __thiscall OrbitUI__GetPointAndTangent_km(OrbitUI *this,double p1);
 extern undefined4 * __thiscall TacticalManager__GetParentManagerDelta(TacticalManager *this);
+extern undefined4 __thiscall FUN_006c2bb0(undefined4 *param_1,CraftBlueprint *param_2);
 extern util__Maybe_L_ItineraryNode_G_ * __thiscall Itinerary__GetLastNode(Itinerary *this,util__Maybe_L_ItineraryNode_G_ *__return_storage_ptr__);
 extern util__Maybe_L_ItineraryNode_G_ * __thiscall Itinerary__GetNodeAfterLastBurnNodeBefore(Itinerary *this,util__Maybe_L_ItineraryNode_G_ *__return_storage_ptr__,ItineraryNode *p1);
 extern util__Maybe_L_Itinerary_G_ * __thiscall Fleet__GetMissionItinerary(Fleet *this);
@@ -3014,9 +3046,23 @@ extern util__Vec3_L_double_G_ * __thiscall Body__GetCenterOfMass_km(Body *this,u
 extern util__Vec3_L_double_G_ * __thiscall Itinerary__GetInterceptDirection(Itinerary *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraCenter(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall TacticalManager__GetCameraVelocity__s(TacticalManager *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
+extern void FUN_00445600(void);
+extern void FUN_0067ce10(int *param_1);
+extern void FUN_0072b410(int *param_1,int param_2,int *param_3);
+extern void FUN_0074a990(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3);
+extern void FUN_00808fc0(int *param_1);
+extern void FUN_008e12f0(int *param_1);
+extern void FUN_0090fed0(void);
+extern void FUN_0090ff30(void);
+extern void FUN_0090ffa0(void);
+extern void FUN_00910420(void);
+extern void FUN_00910600(void);
+extern void FUN_00910620(void);
+extern void FUN_00910b30(void);
 extern void __cdecl EnsignDesigns__RadioactiveRisingSun(double p0);
 extern void __cdecl compute_color_line_STDEV(float *param_1,float *param_2);
 extern void __cdecl convert_image_to_DXT5(int param_1,int param_2,size_t *param_3);
+extern void __fastcall FUN_0078e550(int *param_1);
 extern void __glfwInputError(undefined4 param_1,int param_2);
 extern void __glfwPlatformGetMonitors(int *param_1);
 extern void __glfwPlatformGetVideoMode(int param_1,DWORD *param_2);
@@ -3041,6 +3087,9 @@ extern void __thiscall CraftInstance__GetLengthRange_m_Clear(CraftInstance *this
 extern void __thiscall CraftInstance__GetTotalLength_m_Memoize(CraftInstance *this);
 extern void __thiscall CraftInstance__HasDeltaVLeft_Memoize(CraftInstance *this);
 extern void __thiscall FUN_004ffcd0(int *param_1,util__Darray_L_util__Reflectable___G_ *param_2,LocStr *param_3,int param_4);
+extern void __thiscall FUN_006c2a60(undefined4 *param_1,bool param_2);
+extern void __thiscall FUN_0074bac0(int *param_1,undefined8 *param_2);
+extern void __thiscall FUN_007f9860(undefined4 *param_1,int *param_2);
 extern void __thiscall Fleet__GetRangesAgainstFleets_km_Memoize(Fleet *this);
 extern void __thiscall Fleet__IsDroneFleet_Memoize(Fleet *this);
 extern void __thiscall Fleet__IsMissileFleet_Memoize(Fleet *this);
@@ -3074,7 +3123,7 @@ extern void __thiscall UIListBox_struct_ActorDropdownAction_ScrollToDatum(UIList
 extern void __thiscall WeaponCompartment__PostSetup(WeaponCompartment *this,util__WeakPtr_L_CraftInstance_G_ *p1);
 
 //==== 00445600 00445600_FUN_00445600 ====
-void FUN_00445600(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00445600(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00445600 name=FUN_00445600 conv=unknown body=105
 
@@ -5319,6 +5368,7 @@ bool __thiscall CraftInstance__IsCombatDisarmed(CraftInstance *this)
 
 
 //==== 005353b0 005353b0_FUN_005353b0 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_005353b0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 005353b0 name=FUN_005353b0 conv=unknown body=457
 
@@ -5436,6 +5486,7 @@ void FUN_005353b0(int *param_1,undefined4 *param_2,
 
 
 //==== 00535580 00535580_FUN_00535580 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00535580(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00535580 name=FUN_00535580 conv=unknown body=503
 
@@ -5564,6 +5615,7 @@ void FUN_00535580(int *param_1,undefined4 *param_2,
 
 
 //==== 00535780 00535780_FUN_00535780 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00535780(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00535780 name=FUN_00535780 conv=unknown body=473
 
@@ -5685,6 +5737,7 @@ void FUN_00535780(int *param_1,undefined4 param_2,
 
 
 //==== 00535c60 00535c60_FUN_00535c60 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00535c60(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00535c60 name=FUN_00535c60 conv=unknown body=496
 
@@ -6698,7 +6751,7 @@ util__GetMouseRayHit(&local_78,SUB84(dVar1,0),(int)((ulonglong)dVar1 >> 0x20));
 
 
 //==== 005c2830 005c2830_FUN_005c2830 ====
-float10 __thiscall FUN_005c2830(undefined4 *param_1,double param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_005c2830(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 005c2830 name=FUN_005c2830 conv=unknown body=161
 
@@ -8057,7 +8110,7 @@ double __thiscall ChemicalReaction__GetLaminarFlameWidth_m(ChemicalReaction *thi
 
 
 //==== 0067ce10 0067ce10_FUN_0067ce10 ====
-void FUN_0067ce10(int *param_1);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0067ce10(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0067ce10 name=FUN_0067ce10 conv=unknown body=487
 
@@ -8382,7 +8435,7 @@ LAB_0069f122:
 
 
 //==== 006c2a60 006c2a60_FUN_006c2a60 ====
-void __thiscall FUN_006c2a60(undefined4 *param_1,bool param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_006c2a60(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 006c2a60 name=FUN_006c2a60 conv=unknown body=230
 
@@ -8438,7 +8491,7 @@ LAB_006c2b31:
 
 
 //==== 006c2bb0 006c2bb0_FUN_006c2bb0 ====
-undefined4 __thiscall FUN_006c2bb0(undefined4 *param_1,CraftBlueprint *param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_006c2bb0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 006c2bb0 name=FUN_006c2bb0 conv=unknown body=389
 
@@ -8507,6 +8560,7 @@ LAB_006c2cbf:
 
 
 //==== 006cfca0 006cfca0_FUN_006cfca0 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_006cfca0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 006cfca0 name=FUN_006cfca0 conv=unknown body=678
 
@@ -8814,394 +8868,6 @@ void __thiscall SpacecraftComponent__GetDesiredOrientation_Clear(SpacecraftCompo
 }
 
 
-//==== 00717e80 00717e80_FUN_00717e80 ====
-extern undefined4 FUN_00716850(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-void __thiscall FUN_00717e80(undefined4 *param_1,int *param_2);
-
-// decompiled by BatchDecomp @ 00717e80 name=FUN_00717e80 conv=unknown body=2119
-
-void __thiscall FUN_00717e80(undefined4 *param_1,int *param_2)
-
-{
-  undefined4 stack0xfffffecc;
-  undefined4 stack0xfffffed8;
-  undefined4 stack0xfffffffc;
-  int *piVar1;
-  int iVar2;
-  int iVar3;
-  bool bVar4;
-  undefined1 *puVar5;
-  int iVar6;
-  int *piVar7;
-  undefined4 *puVar8;
-  void *pvVar9;
-  Str_L_char_G_ *pSVar10;
-  util__Str_L_char_G_ *puVar11;
-  char *extraout_ECX;
-  char *extraout_ECX_00;
-  char *in_stack_fffffecc;
-  char *pcVar12;
-  void *local_10c[3];
-  void *local_100;
-  Str_L_char_G_ local_f4;
-  void *local_e8[3];
-  undefined **local_dc;
-  void *local_d8;
-  util__Str_L_char_G_ local_cc;
-  int local_c0;
-  undefined4 *local_bc;
-  int *local_b8;
-  undefined **local_b4;
-  void *pvStack_b0;
-  undefined4 uStack_ac;
-  undefined4 uStack_a8;
-  util__Darray_L_Level___G_ local_a4;
-  util__Darray_L_Level___G_ local_94;
-  int **local_84;
-  undefined **local_80;
-  void *pvStack_7c;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined **local_70;
-  void *local_6c;
-  int local_68;
-  undefined4 local_64;
-  undefined **local_60;
-  void *local_5c;
-  int local_58;
-  undefined4 local_54;
-  undefined **local_50;
-  void *local_4c;
-  int local_48;
-  undefined4 local_44;
-  undefined **local_40;
-  void *local_3c;
-  int local_38;
-  undefined4 local_34;
-  undefined **local_30;
-  void *local_2c;
-  int local_28;
-  undefined4 local_24;
-  undefined **local_20;
-  void *local_1c;
-  int local_18;
-  undefined4 local_14;
-  undefined1 local_10;
-  int local_c;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  local_b8 = param_2;
-  local_bc = param_1;
-  if (*(char *)*param_1 != '\0') {
-    (**(code **)(*(int *)(uintptr_t)param_2 + 0x48))(&stack0xfffffecc);
-    puVar5 = (undefined1 *)
-             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,in_stack_fffffecc);
-    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
-           *)param_1[1],puVar5);
-    local_dc = ((void *)(0x009199e4u));
-    if (local_d8 != (void *)0x0) {
-      operator_delete__(local_d8);
-    }
-    local_d8 = (void *)0x0;
-    local_dc = ((void *)(0x00919488u));
-    if (local_e8[0] != (void *)0x0) {
-      operator_delete__(local_e8[0]);
-    }
-  }
-  piVar1 = (int *)param_1[2];
-  local_84 = &local_b8;
-  local_30 = ((void *)(0x009194a4u));
-  local_2c = (void *)0x0;
-  local_28 = 0;
-  local_24 = 0;
-  local_20 = ((void *)(0x009194a4u));
-  local_1c = (void *)0x0;
-  local_18 = 0;
-  local_14 = 0;
-  local_c = 0;
-  iVar6 = (**(code **)(*(int *)(uintptr_t)piVar1 + 0xc))();
-  if (local_c < iVar6) {
-    do {
-      piVar7 = (int *)(**(code **)*piVar1)();
-      iVar6 = *piVar7;
-      if (*(char *)(iVar6 + 0xf8) == '\0') {
-        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x17,
-                        "IsValid()",(undefined1 *)0x0);
-        DebugBreak();
-      }
-      iVar3 = local_18;
-      iVar2 = local_28;
-      if (*local_84 == *(int **)(iVar6 + 0xa8)) {
-        local_c0 = local_28 + 1;
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_30,&local_c0);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_30,iVar2);
-        pvVar9 = local_2c;
-        iVar6 = local_28;
-        if (bVar4) {
-LAB_00718036:
-          *(int *)((int)pvVar9 + iVar6 * 4 + -4) = *piVar7;
-        }
-      }
-      else {
-        local_c0 = local_18 + 1;
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_20,&local_c0);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_20,iVar3);
-        pvVar9 = local_1c;
-        iVar6 = local_18;
-        if (bVar4) goto LAB_00718036;
-      }
-      local_c = local_c + 1;
-      iVar6 = (**(code **)(*(int *)(uintptr_t)piVar1 + 0xc))();
-      param_1 = local_bc;
-    } while (local_c < iVar6);
-  }
-  local_10 = 0;
-  local_70 = ((void *)(0x009194a4u));
-  local_6c = (void *)0x0;
-  local_68 = 0;
-  local_64 = 0;
-  local_60 = ((void *)(0x009194a4u));
-  local_5c = (void *)0x0;
-  local_58 = 0;
-  local_54 = 0;
-  local_c = 0;
-  iVar6 = (*(code *)local_30[3])();
-  if (local_c < iVar6) {
-    do {
-      puVar8 = (undefined4 *)(*(code *)*local_30)();
-      bVar4 = CelestialBody__IsMajorPlanet((CelestialBody *)*puVar8);
-      iVar2 = local_58;
-      iVar6 = local_68;
-      if (bVar4) {
-        local_bc = (undefined4 *)(local_68 + 1);
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_70,(int *)&local_bc);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_70,iVar6);
-        pvVar9 = local_6c;
-        iVar6 = local_68;
-        if (bVar4) {
-LAB_00718127:
-          *(undefined4 *)((int)pvVar9 + iVar6 * 4 + -4) = *puVar8;
-        }
-      }
-      else {
-        local_bc = (undefined4 *)(local_58 + 1);
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_60,(int *)&local_bc);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_60,iVar2);
-        pvVar9 = local_5c;
-        iVar6 = local_58;
-        if (bVar4) goto LAB_00718127;
-      }
-      local_c = local_c + 1;
-      iVar6 = (*(code *)local_30[3])();
-    } while (local_c < iVar6);
-  }
-  local_b4 = (undefined **)0x0;
-  pvStack_b0 = (void *)0x0;
-  uStack_ac = 0;
-  uStack_a8 = 0;
-  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_b4,(Darray_L_bool_P_G_ *)&local_70);
-  local_80 = (undefined **)0x0;
-  pvStack_7c = (void *)0x0;
-  uStack_78 = 0;
-  uStack_74 = 0;
-  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_80,(Darray_L_bool_P_G_ *)&local_60);
-  FUN_00716850();
-  local_10 = 0;
-  local_50 = ((void *)(0x009194a4u));
-  local_4c = (void *)0x0;
-  local_48 = 0;
-  local_44 = 0;
-  local_40 = ((void *)(0x009194a4u));
-  local_3c = (void *)0x0;
-  local_38 = 0;
-  local_34 = 0;
-  local_c = 0;
-  iVar6 = (*(code *)local_80[3])();
-  if (local_c < iVar6) {
-    do {
-      puVar8 = (undefined4 *)(*(code *)*local_80)();
-      bVar4 = CelestialBody__IsDwarfPlanet((CelestialBody *)*puVar8);
-      iVar2 = local_38;
-      iVar6 = local_48;
-      if (bVar4) {
-        local_bc = (undefined4 *)(local_48 + 1);
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_50,(int *)&local_bc);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_50,iVar6);
-        pvVar9 = local_4c;
-        iVar6 = local_48;
-        if (bVar4) {
-LAB_0071824f:
-          *(undefined4 *)((int)pvVar9 + iVar6 * 4 + -4) = *puVar8;
-        }
-      }
-      else {
-        local_bc = (undefined4 *)(local_38 + 1);
-        util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_40,(int *)&local_bc);
-        bVar4 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_40,iVar2);
-        pvVar9 = local_3c;
-        iVar6 = local_38;
-        if (bVar4) goto LAB_0071824f;
-      }
-      local_c = local_c + 1;
-      iVar6 = (*(code *)local_80[3])();
-    } while (local_c < iVar6);
-  }
-  (*(void **)&local_a4) = (undefined1 *)0x0;
-  local_a4.Data = (undefined1 **)0x0;
-  local_a4.Size = 0;
-  local_a4.Capacity = 0;
-  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_a4,(Darray_L_bool_P_G_ *)&local_50);
-  (*(void **)&local_94) = (undefined1 *)0x0;
-  local_94.Data = (undefined1 **)0x0;
-  local_94.Size = 0;
-  local_94.Capacity = 0;
-  util__Darray_bool____Darray_bool((Darray_L_bool_P_G_ *)&local_94,(Darray_L_bool_P_G_ *)&local_40);
-  if (0 < local_a4.Size) {
-    util__Str_char___Str_char__o5(&local_f4,"DwarfPlanets");
-    local_cc.Data = 0;
-    local_cc.Capacity = 0;
-    local_cc.Length = 0;
-util__FUN_00717e80((util__Darray_L_Reflectable_G *)&stack0xfffffed8,&local_a4);
-    pSVar10 = &local_f4;
-    pcVar12 = extraout_ECX;
-    util__LocStr__LocStr((LocStr *)local_10c,(util__Str_L_char_G_ *)pSVar10,&local_cc);
-    puVar11 = util__LocStr__operator__o3((LocStr *)pSVar10);
-    util__Str_char___Str_char((Str_L_char_G_ *)&stack0xfffffecc,puVar11);
-    puVar5 = (undefined1 *)
-             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,pcVar12);
-    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
-           *)param_1[1],puVar5);
-    local_dc = ((void *)(0x009199e4u));
-    if (local_d8 != (void *)0x0) {
-      operator_delete__(local_d8);
-    }
-    local_d8 = (void *)0x0;
-    local_dc = ((void *)(0x00919488u));
-    if (local_e8[0] != (void *)0x0) {
-      operator_delete__(local_e8[0]);
-      local_e8[0] = (void *)0x0;
-    }
-    if (local_100 != (void *)0x0) {
-      operator_delete__(local_100);
-      local_100 = (void *)0x0;
-    }
-    if (local_10c[0] != (void *)0x0) {
-      operator_delete__(local_10c[0]);
-      local_10c[0] = (void *)0x0;
-    }
-    if ((void *)local_cc.Data != (void *)0x0) {
-      operator_delete__((void *)local_cc.Data);
-      local_cc.Data = 0;
-    }
-    if (local_f4.Data != (char *)0x0) {
-      operator_delete__(local_f4.Data);
-    }
-  }
-  if (0 < local_94.Size) {
-    util__Str_char___Str_char__o5(&local_f4,"Asteroids");
-    local_cc.Data = 0;
-    local_cc.Capacity = 0;
-    local_cc.Length = 0;
-util__FUN_00717e80((util__Darray_L_Reflectable_G *)&stack0xfffffed8,&local_94);
-    pSVar10 = &local_f4;
-    pcVar12 = extraout_ECX_00;
-    util__LocStr__LocStr((LocStr *)local_10c,(util__Str_L_char_G_ *)pSVar10,&local_cc);
-    puVar11 = util__LocStr__operator__o3((LocStr *)pSVar10);
-    util__Str_char___Str_char((Str_L_char_G_ *)&stack0xfffffecc,puVar11);
-    puVar5 = (undefined1 *)
-             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_e8,pcVar12);
-    util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________Add((Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__class_util__Darray_L_class_util__Reflectable__G___G__G
-           *)param_1[1],puVar5);
-    local_dc = ((void *)(0x009199e4u));
-    if (local_d8 != (void *)0x0) {
-      operator_delete__(local_d8);
-    }
-    local_d8 = (void *)0x0;
-    local_dc = ((void *)(0x00919488u));
-    if (local_e8[0] != (void *)0x0) {
-      operator_delete__(local_e8[0]);
-      local_e8[0] = (void *)0x0;
-    }
-    if (local_100 != (void *)0x0) {
-      operator_delete__(local_100);
-      local_100 = (void *)0x0;
-    }
-    if (local_10c[0] != (void *)0x0) {
-      operator_delete__(local_10c[0]);
-      local_10c[0] = (void *)0x0;
-    }
-    if ((void *)local_cc.Data != (void *)0x0) {
-      operator_delete__((void *)local_cc.Data);
-      local_cc.Data = 0;
-    }
-    if (local_f4.Data != (char *)0x0) {
-      operator_delete__(local_f4.Data);
-    }
-  }
-  (*(void **)&local_94) = (undefined1 *)((void *)(0x009194a4u));
-  if (local_94.Data != (undefined1 **)0x0) {
-    operator_delete__(local_94.Data);
-  }
-  local_94.Data = (undefined1 **)0x0;
-  (*(void **)&local_94) = (undefined1 *)((void *)(0x00919488u));
-  (*(void **)&local_a4) = (undefined1 *)((void *)(0x009194a4u));
-  if (local_a4.Data != (undefined1 **)0x0) {
-    operator_delete__(local_a4.Data);
-  }
-  local_a4.Data = (undefined1 **)0x0;
-  (*(void **)&local_a4) = (undefined1 *)((void *)(0x00919488u));
-  local_40 = ((void *)(0x009194a4u));
-  if (local_3c != (void *)0x0) {
-    operator_delete__(local_3c);
-  }
-  local_3c = (void *)0x0;
-  local_40 = ((void *)(0x00919488u));
-  local_50 = ((void *)(0x009194a4u));
-  if (local_4c != (void *)0x0) {
-    operator_delete__(local_4c);
-  }
-  local_4c = (void *)0x0;
-  local_50 = ((void *)(0x00919488u));
-  local_80 = ((void *)(0x009194a4u));
-  if (pvStack_7c != (void *)0x0) {
-    operator_delete__(pvStack_7c);
-  }
-  pvStack_7c = (void *)0x0;
-  local_80 = ((void *)(0x00919488u));
-  local_b4 = ((void *)(0x009194a4u));
-  if (pvStack_b0 != (void *)0x0) {
-    operator_delete__(pvStack_b0);
-  }
-  pvStack_b0 = (void *)0x0;
-  local_b4 = ((void *)(0x00919488u));
-  local_60 = ((void *)(0x009194a4u));
-  if (local_5c != (void *)0x0) {
-    operator_delete__(local_5c);
-  }
-  local_5c = (void *)0x0;
-  local_60 = ((void *)(0x00919488u));
-  local_70 = ((void *)(0x009194a4u));
-  if (local_6c != (void *)0x0) {
-    operator_delete__(local_6c);
-  }
-  local_6c = (void *)0x0;
-  local_70 = ((void *)(0x00919488u));
-  local_20 = ((void *)(0x009194a4u));
-  if (local_1c != (void *)0x0) {
-    operator_delete__(local_1c);
-  }
-  local_1c = (void *)0x0;
-  local_20 = ((void *)(0x00919488u));
-  local_30 = ((void *)(0x009194a4u));
-  if (local_2c != (void *)0x0) {
-    operator_delete__(local_2c);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
-}
-
-
 //==== 00728070 00728070_HasAnyOrbiters ====
 extern undefined4 FUN_007231a0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 extern undefined4 FUN_00723310(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
@@ -9440,7 +9106,7 @@ LAB_0072842e:
 
 
 //==== 0072b410 0072b410_FUN_0072b410 ====
-void FUN_0072b410(int *param_1,int param_2,int *param_3);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0072b410(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 extern undefined4 FUN_0072d540(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
 
 // decompiled by BatchDecomp @ 0072b410 name=FUN_0072b410 conv=unknown body=594
@@ -11186,9 +10852,100 @@ ItineraryNode * __thiscall Itinerary__GetNodePriorToInterpNode(Itinerary *this,u
 }
 
 
+//==== 0074a990 0074a990_FUN_0074a990 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0074a990(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
+
+// decompiled by BatchDecomp @ 0074a990 name=FUN_0074a990 conv=unknown body=403
+
+void FUN_0074a990(int *param_1,undefined4 *param_2,Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *param_3)
+
+{
+  undefined4 stack0xfffffffc;
+  ReferenceController *this;
+  ReferenceController *this_00;
+  bool bVar1;
+  int iVar2;
+  int *piVar3;
+  CraftBlueprint *this_01;
+  undefined4 *local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_c = 0;
+  iVar2 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
+  if (local_c < iVar2) {
+    do {
+      piVar3 = (int *)(**(code **)*param_1)(&local_c);
+      local_10 = param_2;
+      if (((ReferenceController *)piVar3[1] != (ReferenceController *)0x0) &&
+         (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
+         !bVar1)) {
+        *piVar3 = 0;
+      }
+      this_01 = (CraftBlueprint *)(**(code **)(**(int **)(*(int *)(uintptr_t)piVar3 + 0x38) + 0x188))();
+      if (this_01 != (CraftBlueprint *)0x0) {
+        if (((ReferenceController *)piVar3[1] != (ReferenceController *)0x0) &&
+           (bVar1 = util__ReferenceController__IsDataStillValid((ReferenceController *)piVar3[1]),
+           !bVar1)) {
+          *piVar3 = 0;
+        }
+        bVar1 = WeaponCompartment__HasAmmo((WeaponCompartment *)*piVar3);
+        if (bVar1) {
+          CraftBlueprint__GetShipClass_Memoize(this_01);
+          if ((*(char (*)[18])((char *)this_01 + 730))[10] == 0) {
+            util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13
+                            ,"IsValid()",(undefined1 *)0x0);
+            DebugBreak();
+          }
+          if (*(char *)*local_10 == '\0') {
+            bVar1 = *(int *)((*(char (*)[18])((char *)this_01 + 730)) + 6) == 3;
+          }
+          else {
+            bVar1 = *(int *)((*(char (*)[18])((char *)this_01 + 730)) + 6) == 2;
+          }
+          if (bVar1) {
+            CraftBlueprint__IsThrustingCraft_Memoize(this_01);
+            if (((undefined1 *)&(this_01[1].MaterialClass__Armor.ArmorLayers))[9] == '\0') {
+              util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",
+                              0x13,"IsValid()",(undefined1 *)0x0);
+              DebugBreak();
+            }
+            if (((undefined1 *)&(this_01[1].MaterialClass__Armor.ArmorLayers))[8] != '\0') {
+              iVar2 = *(int *)(param_3 + 8);
+              local_10 = (undefined4 *)(iVar2 + 1);
+              util__Darray_class_util__WeakPtr_class_Body_____SetSize(param_3,(int *)&local_10);
+              bVar1 = util__Darray_class_util__WeakPtr_class_Body_____CheckSize(param_3,iVar2);
+              if (bVar1) {
+                this = *(ReferenceController **)
+                        (*(int *)(param_3 + 4) + -4 + *(int *)(param_3 + 8) * 8);
+                iVar2 = *(int *)(param_3 + 4) + *(int *)(param_3 + 8) * 8;
+                *(int *)(iVar2 + -8) = *piVar3;
+                this_00 = (ReferenceController *)piVar3[1];
+                *(ReferenceController **)(iVar2 + -4) = this_00;
+                if (this_00 != (ReferenceController *)0x0) {
+                  util__ReferenceController__AddWeakReference(this_00);
+                }
+                if (this != (ReferenceController *)0x0) {
+                  util__ReferenceController__ReleaseWeakReference(this);
+                }
+              }
+            }
+          }
+        }
+      }
+      local_c = local_c + 1;
+      iVar2 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
+    } while (local_c < iVar2);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
 //==== 0074bac0 0074bac0_FUN_0074bac0 ====
 #undef DeltaVBudget_Percent /* auto(v2): compat 僵尸宏撞成员名 */
-void __thiscall FUN_0074bac0(int *param_1,undefined8 *param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0074bac0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0074bac0 name=FUN_0074bac0 conv=unknown body=2471
 
@@ -13101,7 +12858,7 @@ util_Darray_struct_util_tuple2_struct_ItineraryNode_class_util_WeakPtr_struct_UI
 
 
 //==== 0078e550 0078e550_FUN_0078e550 ====
-void __fastcall FUN_0078e550(int *param_1);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0078e550(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0078e550 name=FUN_0078e550 conv=unknown body=145
 
@@ -13610,7 +13367,7 @@ LAB_007b60da:
 
 //==== 007bba50 007bba50_FUN_007bba50 ====
 extern undefined4 FUN_007bb110(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 */
-void FUN_007bba50(Darray_L_struct_util__tuple3_L_class_util__WeakPtr_L_class_Body_G__C_double_C_double_G___G_ *param_1,int *param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_007bba50(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 007bba50 name=FUN_007bba50 conv=unknown body=377
 
@@ -15043,7 +14800,7 @@ void __thiscall TacticalManager_TacticalManager__o2(TacticalManager *this)
 
 
 //==== 007f9860 007f9860_FUN_007f9860 ====
-void __thiscall FUN_007f9860(undefined4 *param_1,int *param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_007f9860(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 007f9860 name=FUN_007f9860 conv=unknown body=1099
 
@@ -16836,7 +16593,7 @@ util__Vec2_L_int_G __thiscall SpacecraftButton__GetScreenLocation(SpacecraftButt
 
 
 //==== 00808fc0 00808fc0_FUN_00808fc0 ====
-void FUN_00808fc0(int *param_1);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00808fc0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00808fc0 name=FUN_00808fc0 conv=unknown body=496
 
@@ -16922,7 +16679,7 @@ void FUN_00808fc0(int *param_1)
 
 
 //==== 00809850 00809850_FUN_00809850 ====
-void FUN_00809850(Darray_L_struct_util__tuple3_L_class_CraftBlueprint_const_P__C_bool_C_bool_G___G_ *param_1, int *param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00809850(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00809850 name=FUN_00809850 conv=unknown body=640
 
@@ -18127,7 +17884,7 @@ void __glfwSetVideoModeWin32(int param_1,undefined4 param_2)
 
 
 //==== 008de7b0 008de7b0_FUN_008de7b0 ====
-int FUN_008de7b0(int param_1,int param_2);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_008de7b0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 008de7b0 name=FUN_008de7b0 conv=unknown body=288
 
@@ -18206,7 +17963,7 @@ void __glfwPlatformGetWindowSize(int param_1,LONG *param_2,LONG *param_3)
 
 
 //==== 008e12f0 008e12f0_FUN_008e12f0 ====
-void FUN_008e12f0(int *param_1);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_008e12f0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 008e12f0 name=FUN_008e12f0 conv=unknown body=413
 
@@ -18290,7 +18047,7 @@ void FUN_008e12f0(int *param_1)
 
 
 //==== 0090fed0 0090fed0_FUN_0090fed0 ====
-void FUN_0090fed0(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0090fed0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0090fed0 name=FUN_0090fed0 conv=unknown body=49
 
@@ -18309,7 +18066,7 @@ void FUN_0090fed0(void)
 
 
 //==== 0090ff30 0090ff30_FUN_0090ff30 ====
-void FUN_0090ff30(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0090ff30(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0090ff30 name=FUN_0090ff30 conv=unknown body=29
 
@@ -18325,7 +18082,7 @@ void FUN_0090ff30(void)
 
 
 //==== 0090ffa0 0090ffa0_FUN_0090ffa0 ====
-void FUN_0090ffa0(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0090ffa0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 0090ffa0 name=FUN_0090ffa0 conv=unknown body=69
 
@@ -18348,7 +18105,7 @@ void FUN_0090ffa0(void)
 
 
 //==== 00910420 00910420_FUN_00910420 ====
-void FUN_00910420(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00910420(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00910420 name=FUN_00910420 conv=unknown body=77
 
@@ -18372,7 +18129,7 @@ void FUN_00910420(void)
 
 
 //==== 00910600 00910600_FUN_00910600 ====
-void FUN_00910600(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00910600(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00910600 name=FUN_00910600 conv=unknown body=10
 
@@ -18385,7 +18142,7 @@ void FUN_00910600(void)
 
 
 //==== 00910620 00910620_FUN_00910620 ====
-void FUN_00910620(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00910620(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00910620 name=FUN_00910620 conv=unknown body=10
 
@@ -18398,7 +18155,7 @@ void FUN_00910620(void)
 
 
 //==== 00910b30 00910b30_FUN_00910b30 ====
-void FUN_00910b30(void);
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00910b30(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
 // decompiled by BatchDecomp @ 00910b30 name=FUN_00910b30 conv=unknown body=29
 

@@ -1286,6 +1286,25 @@ def param_underscore_fix(txt, va):
 _CASTLIT_RE = re.compile(
     r'\(\s*\*\s*\(\s*([A-Za-z_][\w:]*?)\s*\*\s*\)\s*&\s*(0x[0-9a-fA-F]+u?l*)\s*\)')
 
+def own_autoextern_fix(txt, va):
+    """r25w19: sec 头部自身 K&R auto(v2) extern（Ghidra x87 判读伪声明）与自身
+       定义冲突 → 原位注释化。保行数（1:1 替换）—— errmap 行号对齐纪律。"""
+    lines = txt.split('\n')
+    for i, ln in enumerate(lines):
+        m = re.match(r'^\s*extern\s+\S+\s+([A-Za-z_]\w*)\(\);?\s*/\*\s*K&R auto', ln)
+        if not m:
+            continue
+        nm = m.group(1)
+        # 该名字在本 sec 有列 0 定义 → 自身伪声明，整行注释化（保行数）
+        for l2 in lines[i + 1:]:
+            if re.match(r'[A-Za-z_][\w \t\*]*\b' + re.escape(nm) + r'\s*\(', l2) \
+               and not l2.startswith((' ', '\t', '/', '#')):
+                lines[i] = '/* r25w19 own-auto-extern elided: ' + ln.replace('*/', '* /') + ' */'
+                break
+        else:
+            continue
+    return '\n'.join(lines)
+
 def cast_literal_fix(txt):
     return _CASTLIT_RE.sub(r'(*(\1 *)\2)', txt)
 
@@ -1718,6 +1737,8 @@ def main():
         txt = vft_bare_fix(txt, va)
         # r20: 负偏移栈伪符号 → 局部声明（Ghidra 丢局部类型的 sret 槽）
         txt, sloc = stack_pseudo_fix(txt)
+        # r25w19: 自身 auto-extern 注释化（保行数，链首）
+        txt = own_autoextern_fix(txt, va)
         # r25w13: 错误驱动等价改写（iso 原始错误图 col 锚定 + DB 成员真值；不命中不动）
         txt = tile_member_fix(txt, va)
         txt = base_member_fix(txt, va)
@@ -2109,11 +2130,13 @@ def main():
             # 是 assigning-incompatible 主族根因；K&R 仍无原型（参数不标），ret 忠实
             # 守卫: ret 类型名必须在 hdr_ids2 已有 typedef（fpos<dword> 等无定义类型退 int）
             _rt = _RET_STRUCT.get(s)
-            if _rt and _rt not in hdr_ids2:
-                _rt = None
+            if _rt and (_rt not in hdr_ids2 or _rt.startswith('_func')):
+                _rt = None   # _func_* = 函数类型 typedef，不能作返回类型
             exts.append(f'extern {_rt} {s}(); /* K&R stub; ret by call site */'
                         if _rt else
                         f'extern int {s}(); /* K&R stub; ret by call site */')
+    # r25w19c: ret 真值 extern 兜底 —— 已回退（净伤 -18：int 语境调用点
+    # （比较/算术）无配套 fixer，暴露新错比修复多；等 assign/compare 联合 fixer 后再启）
     parts = [
         f'// pilot_sweep_{BATCH}.c - assembled by scripts/sweep_assemble.py (r19)\n'
         '// reuses fam8_assemble fix passes (zip oracle/in-batch protos/vft channel/data closure)\n',
@@ -2237,8 +2260,55 @@ def main():
             _f.unlink()
         # r25: iso prelude = 批级前奏 + 批内规范原型（兄弟调用类型齐全；
         # 自身原型由 iso_sweep.strip_self 摘除，防 conflicting types）
-        _proto_lines = [f'extern {sig2};' for nm2, sig2 in sorted(proto_map.items())
-                        if nm2 not in hdr_ids2 and nm2 not in _FWD_NAMES]
+        # r25w19: 原型源切换 —— fixer 后最终 sec 的定义行（col-0 + 回溯拼接）
+        #         取代 pre-fixer TU 头推导的 proto_map（esc/qual 双源分歧是
+        #         conflicting-types 主族根因；定义即权威声明）
+        def _def_sig_from(sec, fnm):
+            slines = sec.split('\n')
+            for i, ln in enumerate(slines):
+                if ln.startswith((' ', '\t', '/', '#', '{', '}')) or not ln.strip():
+                    continue
+                if re.search(re.escape(fnm) + r'\s*\(', ln):
+                    sig = ln.strip()
+                    k = i - 1
+                    while k >= 0:
+                        p = slines[k]
+                        if (p.startswith((' ', '\t', '/', '#', '{', '}')) or not p.strip()
+                                or p.rstrip().endswith((';', '{', '}'))):
+                            break
+                        sig = p.strip() + ' ' + sig
+                        k -= 1
+                    # r25w19b: 尾逗号/括号未闭 → 向前拼接续行（跨行签名）
+                    j = i + 1
+                    while j < len(slines) and j < i + 6:
+                        if sig.count('(') > sig.count(')') or sig.rstrip().endswith(','):
+                            sig = sig + ' ' + slines[j].strip()
+                            j += 1
+                        else:
+                            break
+                    return sig.rstrip()
+            return None
+        _def_sigs, _def_names = {}, set()
+        for _va, _disp, _t in sections:
+            _fnm = re.sub(r'^[0-9a-fA-F]{5,8}_', '', _disp)
+            _sg = _def_sig_from(_t, _fnm)
+            if _sg and re.search(r'\b' + re.escape(_fnm) + r'\s*\(', _sg) \
+               and not re.match(r'^(typedef|extern|#)', _sg) \
+               and _sg.count('(') == _sg.count(')') and _sg.rstrip().endswith(')'):
+                _def_sigs.setdefault(_fnm, _sg)
+                _def_names.add(_fnm)
+        _proto_lines = []
+        for nm2, sig2 in sorted(proto_map.items()):
+            if nm2 in _def_sigs:
+                if nm2 in hdr_ids2:
+                    continue   # 头侧 K&R decl 治权（定义即权威，但头已声明者不重复）
+                _proto_lines.append(f'extern {_def_sigs[nm2]};')
+            elif nm2 not in hdr_ids2 and nm2 not in _FWD_NAMES:
+                _proto_lines.append(f'extern {sig2};')
+        # 批内 def 名不在 proto_map 的（重命名/新增）也导出——兄弟调用需要
+        for _fnm, _sg in sorted(_def_sigs.items()):
+            if _fnm not in proto_map and _fnm not in hdr_ids2 and _fnm not in _FWD_NAMES:
+                _proto_lines.append(f'extern {_sg};')
         # r25w14b: winuser 精细类型需求 → prelude 级一次发射（sec 相对行号免疫）
         # 最小镜像头 cde_winuser_min.h —— 整拉 winuser.h 会撞 pdb.h _GUID tag
         if any(_WIN32_TYPE_RE.search(_t) for _, _, _t in sections):
