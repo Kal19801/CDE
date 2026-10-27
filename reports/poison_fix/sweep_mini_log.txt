@@ -1,0 +1,9 @@
+pool=20839 fullnames, multi=570
+oracle: 1460 stub names
+cov_name: 10479 entries
+vftable_map: 1749 entries
+batch=mini total=1 in=1 (env_defer=0 auto_prev=0) tpl_defs=0
+prescreen: auto-defer now=0 total=0
+prototypes: 0 (all-CC)
+iso prelude: 0 protos -> /tmp/sweep_mini_draft.c.prelude
+WROTE /tmp/sweep_mini_draft.c (3289B) sections=1 externs=0 unresolved=0

@@ -1477,6 +1477,210 @@ def simd_shift_fix(txt, va):
     return '\n'.join(lines)
 
 
+# ==================== r27w1: 字符串标签定址 + 常量切片位精确等价 ====================
+# 战役②(asm 真值通道)首波: 两族错误面 (const char* 40 站 / double 68 站) + 静默错码
+# 证据: /tmp/orig_disasm.txt 逐函数立即数 + PE 字节读取(r27_strlabel_resolve /
+# r27_probe_amb / r27_probe_sites / Disarmed 0x91ef30 xorps 对照)。
+# 本块 fixer 为内容锚定(非行号/errmap 门控): 所匹配形态经取证证明恒为错误或错码,
+# 零误伤面; 且可一次性治愈解析错误屏蔽clang后续报错的掩蔽站点(4e9060 实证)。
+# 行号键控被否决的实证: 链内文本与落盘 sec 行号按函数漂移(67c870 s____ 链内 L55
+# vs sec L56; 源= stack_pseudo_fix 加行 + fix_externs 剩头区 extern), 内容锚定免疫。
+
+
+def _r27_load_strtable():
+    """函数键控字符串定址表: func6 → {label: addr8 或 [按出现序的 addr8]}
+    全部 45 (func,label) 对已定址: 38 objdump 立即数唯一命中 +
+    3 order-paired(7406f0/8972b0/897630, 反汇编地址序↔文本出现序) +
+    4 手工取证(68efe0 s___1=00933548 '^-1' push@68f39b; 85dc90/89fc80
+    s__txt=0091e580 '.txt'; 6909a0 s__s_K=00929830 'K')"""
+    return {
+        '4e1e80': {'s__': '0091e17c'},
+        '5362b0': {'s___': '00920c98'},
+        '54b9d0': {'s__': '0091e17c'},
+        '555c20': {'s__': '0091e17c'},
+        '56bbc0': {'s__': '0091e17c'},
+        '577020': {'s__': '0091e17c'},
+        '5ac080': {'s__': '0091e17c'},
+        '5b6f30': {'s__': '0091e17c', 's___': '0091e128'},
+        '5c81c0': {'s__': '0091e17c', 's___': '0091e128'},
+        '600760': {'s__': '0091e17c'},
+        '663580': {'s__': '0091e17c'},
+        '6649f0': {'s__': '0091e17c'},
+        '664e50': {'s__': '0091e17c'},
+        '67c870': {'s____': '009323a8'},
+        '68efe0': {'s___1': '00933548'},
+        '6909a0': {'s__s_K': '00929830'},
+        '69bd50': {'s__': '0091e17c'},
+        '6bc7d0': {'s__': '0091e17c'},
+        '6bcb10': {'s__': '0091e17c'},
+        '6d0190': {'s___': '0091e128'},
+        '6e5db0': {'s__': '0091e17c'},
+        '71ec50': {'s__': '0091e17c'},
+        '72ada0': {'s___': '00920c98'},
+        '7406f0': {'s__': ['0091e17c', '0092f384', '0091e17c', '0092f384', '0091e17c']},
+        '7436e0': {'s__': '0091e17c'},
+        '768470': {'s___': '0091e128'},
+        '782130': {'s__': '0091e17c'},
+        '7911f0': {'s__': '0091e17c'},
+        '7944a0': {'s__': '0091e17c'},
+        '7a69b0': {'s__': '0091e17c', 's___': '0091e128'},
+        '80ac00': {'s__': '0091e17c'},
+        '80dfc0': {'s___': '00920c98'},
+        '816030': {'s__': '0091e17c'},
+        '85dc90': {'s__txt': '0091e580'},
+        '88d0e0': {'s__': '0091e17c'},
+        '8972b0': {'s__': ['0092f384', '0091e17c']},
+        '897630': {'s__': ['0092f384', '0091e17c', '0092f384']},
+        '89a650': {'s__': '0092f384'},
+        '89fc80': {'s__txt': '0091e580'},
+    }
+
+
+_STR_BYLINE = _r27_load_strtable()
+
+
+def _xmm_hex_bytes32(h):
+    """__xmm_<32hex>/___xmm_<32hex> 名内嵌 128 位值(MSB-first) → 内存字节(LE 序)"""
+    return [int(h[(15 - i) * 2:(15 - i) * 2 + 2], 16) for i in range(16)]
+
+
+def _dbl_bytes(lit, hexes):
+    """double 字面量 → 8 内存字节(LE); 有 /*16hex*/ 注释时校验(大端=字节逆序)"""
+    try:
+        import struct as _s
+        b = list(_s.pack('<d', float(lit)))
+    except Exception:
+        return None
+    if hexes:
+        for hx in hexes:
+            if [int(hx[(7 - i) * 2:(7 - i) * 2 + 2], 16) for i in range(8)] != b:
+                return None
+    return b
+
+
+def _intlit(bs):
+    """字节切片 → 整型字面量(4B=u32 / 8B=u64)"""
+    v = 0
+    for k, b in enumerate(bs):
+        v |= b << (8 * k)
+    if len(bs) == 8:
+        return f'0x{v:016x}ull'
+    return f'0x{v:x}u'
+
+
+def strlabel_fix(txt, va):
+    """&s_LABEL → ((const char *)0xADDRu) —— 内容锚定+出现序(免疫链内/落盘行号漂移)。
+    语义: Ghidra &s_LABEL = 字符串数据地址; 根因 = 数据宏通道对多地址同名标签
+    (s__×9 短串)跳发宏(L2303), 及零候选标签(s___1/s__txt)无宏。
+    列表值 = 反汇编地址序↔文本出现序 1:1 配对(7406f0/8972b0/897630 取证);
+    出现数与表不符则不动(防错配)。"""
+    key = va.lstrip('0') or '0'
+    tab = _STR_BYLINE.get(key)
+    if not tab:
+        return txt
+    for lab, addr in tab.items():
+        pat = re.compile(r'&' + re.escape(lab) + r'(?![A-Za-z0-9_])')
+        hits = pat.findall(txt)
+        if not hits:
+            continue
+        if isinstance(addr, list):
+            if len(hits) != len(addr):
+                continue    # 出现数与定址表不符 → 不动(宁漏勿错)
+            _it = iter(addr)
+            txt = pat.sub(lambda m, _it=_it: f'((const char *)0x{next(_it)}u)', txt)
+        else:
+            txt = pat.sub(f'((const char *)0x{addr}u)', txt)
+    return txt
+
+
+_R1_SLICE = re.compile(
+    r'/\*([0-9a-f]{16})\*/\s*\(\(slice_view\s*\*\)&(-?[0-9][0-9.]*(?:[eE][-+]?\d+)?)\)->_(\d+)_(\d+)_'
+    r'|\(\(slice_view\s*\*\)&(-?[0-9][0-9.]*(?:[eE][-+]?\d+)?)\)->_(\d+)_(\d+)_')
+_R3_XSLICE = re.compile(
+    r'\(\(slice_view\s*\*\)&__xmm_([0-9a-f]{32})\)->_(\d+)_(\d+)_')
+_R4_CAST = re.compile(
+    r'\((uint|unsigned int|int|undefined4|ulonglong|unsigned long long)\)'
+    r'\s*(_+)xmm_([0-9a-f]{32})\b')
+_R2_HEAD = re.compile(r'\((?:double|float)\)\s*CONCAT44\s*\(')
+
+
+def constslice_fix(txt, va):
+    """double/xmm 常量切片位精确等价(全站点, 模式锚定):
+    R1 ((slice_view *)&DBLIT)->_N_M_ → 位还原字面量(/*16hex*/ 注释=真值, 校验)
+    R2 (double)CONCAT44(常量腿...)   → DBLIT 本身(CONCAT44 拼半字后 (double)
+      数值转换≠位重现=错码; 十进制字面量 round-trip 位精确)
+    R3 ((slice_view *)&__xmm_HEX)->_N_M_ → 名内嵌 128 位值字节切片
+      (2 下划线拼写 Ghidra 合成常量, 无符号无宏; 3 下划线 ___xmm_ 为已定义
+      数组地址语境合法——不碰)
+    R4 (CAST)__xmm_HEX → 低 dword(u32)/低 qword(u64) cast 值语义
+      (Disarmed 0x91ef30 xorps 车道对照实证: 低车道 XOR 0 = lo dword 不变)"""
+    lines = txt.split('\n')
+    changed = False
+    for ln_no in range(len(lines)):
+        s = lines[ln_no]
+        if 'slice_view' not in s and '__xmm_' not in s:
+            continue
+        ns = s
+        # R2 先行(整 span 替换, 防止 R1 修腿后残留错码 CONVERT)
+        for m in _R2_HEAD.finditer(ns):
+            start = m.end()
+            depth = 1
+            i = start
+            while i < len(ns) and depth:
+                if ns[i] == '(':
+                    depth += 1
+                elif ns[i] == ')':
+                    depth -= 1
+                i += 1
+            if depth:
+                continue
+            span = ns[start:i - 1]
+            if 'slice_view' not in span:
+                continue
+            lits = set(re.findall(r'[0-9]+\.[0-9]+', span))
+            if len(lits) != 1:
+                continue
+            lit = next(iter(lits))
+            hexes = set(re.findall(r'/\*([0-9a-f]{16})\*/', span))
+            if _dbl_bytes(lit, hexes) is None:
+                continue
+            ns = ns[:m.start()] + lit + ns[i:]
+            break
+        # R1: 字面量切片
+        def _r1(m):
+            if m.group(1) is not None:
+                hx, lit, nn, mm = m.group(1), m.group(2), m.group(3), m.group(4)
+            else:
+                hx, lit, nn, mm = None, m.group(5), m.group(6), m.group(7)
+            n, msz = int(nn), int(mm)
+            if n + msz > 8:
+                return m.group(0)
+            b = _dbl_bytes(lit, {hx} if hx else None)
+            if b is None:
+                return m.group(0)
+            return _intlit(b[n:n + msz])
+        ns = _R1_SLICE.sub(_r1, ns)
+        # R3: __xmm(2下划线) 合成常量切片
+        def _r3(m):
+            n, msz = int(m.group(2)), int(m.group(3))
+            if n + msz > 16:
+                return m.group(0)
+            return _intlit(_xmm_hex_bytes32(m.group(1))[n:n + msz])
+        ns = _R3_XSLICE.sub(_r3, ns)
+        # R4: cast 值语义 (uint/undefined4/int=低 dword; ulonglong=低 qword)
+        # 2/3 下划线拼写都修: 2=无宏 undeclared 错误; 3=数组宏地址错码(静默)
+        def _r4(m):
+            b = _xmm_hex_bytes32(m.group(3))
+            if m.group(1) in ('ulonglong', 'unsigned long long'):
+                return _intlit(b[0:8])
+            return _intlit(b[0:4])
+        ns = _R4_CAST.sub(_r4, ns)
+        if ns != s:
+            lines[ln_no] = ns
+            changed = True
+    return '\n'.join(lines) if changed else txt
+
+
 def operator_eq_fix(txt):
     """r25w14: decomp2c 未折叠的 operator 名 → 现网 esc 约定（_fname_esc 同款折叠）
        X__operator=( → X__operator_( ；X__operator==( → X__operator__(
@@ -1998,6 +2202,9 @@ def main():
         txt = simd_binop_fix(txt, va)
         txt = simd_shift_fix(txt, va)
         txt = simd_assign_fix(txt, va)
+        # r27w1: 字符串标签逐函数定址 + 常量切片位精确等价（战役②首波）
+        txt = strlabel_fix(txt, va)
+        txt = constslice_fix(txt, va)
         _typedef_pool.update(typedef_scan(txt))
         if prescreen(txt):
             auto_now.add(norm6(va))

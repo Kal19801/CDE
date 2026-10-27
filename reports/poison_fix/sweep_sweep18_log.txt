@@ -1,8 +1,8 @@
 pool=20839 fullnames, multi=570
-oracle: 1516 stub names
-cov_name: 10423 entries
+oracle: 1460 stub names
+cov_name: 10479 entries
 vftable_map: 1749 entries
-batch=sweep18 total=1685 in=1407 (env_defer=0 auto_prev=278) tpl_defs=59
+batch=sweep18 total=1442 in=1164 (env_defer=0 auto_prev=278) tpl_defs=56
 WARN 004f6240_GetCurrentNotification: slice local local_14: no decl found
 WARN 004f7550_IsCurrentNotificationFullyWritten: slice local local_34: no decl found
 WARN 00507ba0_FUN_00507ba0: slice local local_280: no decl found
@@ -152,16 +152,12 @@ WARN 00799600_Select: slice local local_320: no decl found
 WARN 007a69b0_GetAdditionalTooltip: slice local local_c: no decl found
 WARN 007a7090_GetRulerPointsAndVelocity_km: slice local local_40: no decl found
 WARN 007aa4c0_GetTooltip: slice local local_18: no decl found
-WARN 007adb30_FUN_007adb30: slice local local_50: no decl found
 WARN 007ae5d0_FUN_007ae5d0: slice local local_e8: no decl found
 WARN 007b5500_IsSignificantlyVisibleOnScreen: slice local local_1c: no decl found
 WARN 007bdb30_ShipVsExplosion: slice local local_140: no decl found
 WARN 007c1fc0_OnDestroy: slice local local_18: no decl found
 WARN 007c4250_GetRandomParticlePosition_km: slice local local_38: no decl found
 WARN 007c6610_OnDestroy: slice local local_18: no decl found
-WARN 007c8360_FUN_007c8360: slice local local_1c: no decl found
-WARN 007c8360_FUN_007c8360: slice local local_5c: no decl found
-WARN 007c8360_FUN_007c8360: slice local local_7c: no decl found
 WARN 007cafa0_FUN_007cafa0: slice local local_194: no decl found
 WARN 007cf020_DoesRayCollideWithBoundingCylinder: slice local local_50: no decl found
 WARN 007cf820_GetAvoidanceDirection_MemoizedFunction: slice local local_a0: no decl found
@@ -175,8 +171,6 @@ WARN 007f8b10_FUN_007f8b10: slice local local_f0: no decl found
 WARN 007fa490_ConflictExists: slice local local_58: no decl found
 WARN 007fb110_FocusCameraOnCombat: slice local local_58: no decl found
 WARN 007ff360_GetShadowRelevantSpacecrafts: slice local local_7c: no decl found
-WARN 00801090_NotifyOfAllEnemiesDisabled: slice local local_14: no decl found
-WARN 00802600_ResetData: slice local local_7c: no decl found
 WARN 008027b0_ResetWidgetScreen: slice local local_10: no decl found
 WARN 00807640_DrawDirectionCircles: slice local local_68: no decl found
 WARN 0080c410_Render: slice local local_5c: no decl found
@@ -208,21 +202,20 @@ WARN 008972b0_FUN_008972b0: slice local local_14: no decl found
 WARN 00897630_FUN_00897630: slice local local_18: no decl found
 WARN 0089fc80_FUN_0089fc80: slice local local_18: no decl found
 WARN 008af2f0_RenderTooltip: slice local local_5c: no decl found
-WARN 008c1740_GetCursorPixelPosition: slice local local_20: no decl found
-WARN 008d0f10_GetHoveredLine: slice local local_1c: no decl found
 WARN 008d1260_Render: slice local local_28: no decl found
 WARN 008dadd0_MouseCapturedMove: slice local local_28: no decl found
 prescreen: auto-defer now=0 total=278
-prototypes: 1132 (all-CC)
-hdr sig conflicts renamed: 143
+prototypes: 928 (all-CC)
+hdr sig conflicts renamed: 124
 renames: +0 (alias +0)
 exref defines: 6
-clear externs: 30
-data closure v2: 285 macros (skipped 1087) pfn=244
-typedef forwards: 207 (r23 complete 39) (alias 4)
-renames applied: 224
+clear externs: 28
+data closure v2: 279 macros (skipped 995) pfn=244
+typedef forwards: 192 (r23 complete 32) (alias 4)
+renames applied: 202
 extra typedefs: 2
 winuser_min include: emitted at prelude
-iso prelude: 873 protos -> /tmp/sweep_sweep18_draft.c.prelude
+cde_simd include: emitted at prelude
+iso prelude: 690 protos -> /tmp/sweep_sweep18_draft.c.prelude
 l2 statics: +0 (of 4)
-WROTE /tmp/sweep_sweep18_draft.c (8640957B) sections=1407 externs=220 unresolved=1359
+WROTE /tmp/sweep_sweep18_draft.c (7682785B) sections=1164 externs=200 unresolved=1227
