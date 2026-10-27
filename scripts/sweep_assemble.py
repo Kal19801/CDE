@@ -1238,6 +1238,245 @@ def stray_underscore_fix(txt):
     """decomp2c 渲染伪影: ` _/*hex*/字面量` → 剥离悬挂下划线（字面量本体等价）"""
     return re.sub(r'([\s(=+,]|\A)_(\s*)/\*([0-9a-fA-F]{8})\*/', r'\1\2/*\3*/', txt)
 
+# ==================== r26w1: SIMD auVar 等价接入（战役①） ====================
+# 取证: objdump 0048a690 —— pmovzxbd/pshuflw/pshufhw 首参=Ghidra 渲染死 dst（原指令
+# 不读 dst，丢弃等价）；pmulld/divpd/pand 双活。ZEXT48=纯整数 zext（port_prelude
+# 标量宏语义正确）；ZEXT416/816/412/812 = >8 字节 blob（Ghidra i686 无 128 位整型
+# 的落槽渲染，高位补零）。cde_simd.h 提供值语义载体与伪指令宏，本组 fixer 做站点级
+# 形式改写（错误驱动，列锚定）。_local_NN = Ghidra 同栈槽异型别名（大视图），以
+# *(auV16_t *)&local_NN 重建（写穿相邻槽 = 原程序行为，stack 布局由 Ghidra 保证）。
+_SIMD_RVAL_CALL = re.compile(
+    r'\s*(?:\([^()]+\)\s*)*(?:ZEXT(?:416|816|412|812)|pmovzxbd|pmulld|pshuflw|'
+    r'pshufhw|divpd|au_and2|au_or2|au_xor2)\b')
+_SIMD_VT = {8: 'auV8_t', 12: 'auV12_t', 16: 'auV16_t'}
+_SIMD_BLOB_NAMES = re.compile(r'^(auVar\d+|local_\w+|auStack_\w+|uStack_\w+|'
+                              r'in_XMM\w+|_DAT_[0-9a-f]+|___xmm_[0-9a-f]+)$')
+
+def _simd_blobs(txt):
+    """sec 内 blob 局部名 → 声明字节数（undefined1 NAME[N] 声明位）"""
+    m = {}
+    for mm in re.finditer(r'\bundefined1\s+(auVar\d+|local_\w+|auStack_\w+|'
+                          r'uStack_\w+|in_XMM\w+)\s*\[\s*(\d+)\s*\]', txt):
+        m[mm.group(1)] = int(mm.group(2))
+    return m
+
+def simd_alias_fix(txt, va):
+    """Ghidra 同栈槽异型别名: _local_NN 未声明而 local_NN 已声明 →
+       _local_NN → (*(auV16_t *)&local_NN)（16 字节大视图；写穿 = 原行为）"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    need = set()
+    for ln_no, lst in sites.items():
+        for _c, m in lst:
+            if "use of undeclared identifier '_local_" in m or \
+               "use of undeclared identifier '_auStack_" in m:
+                need.add(re.search(r"'(_(?:local|auStack)_\w+)'", m).group(1))
+    if not need:
+        return txt
+    decls = set(re.findall(r'\b(?:undefined1|undefined)\s+(local_\w+|auStack_\w+)\s*\[', txt))
+    for nm in sorted(need):
+        base = nm[1:]
+        if base not in decls:
+            continue
+        # 仅替换裸名（_local_38 非标识符后半 —— 用否定环视防 _local_38x）
+        txt = re.sub(r'(?<![\w])' + re.escape(nm) + r'(?![\w])',
+                     f'(*(auV16_t *)&{base})', txt)
+    return txt
+
+def simd_cast_fix(txt, va):
+    """(T)ZEXTkn(...) blob cast → *(T *)&ZEXTkn(...)（blob 复合字面量地址重释）
+       依据: (struct)整数 在 clang 即本类错误（simd_probe.c 实证同消息同列锚）。
+       ZEXT48 纯标量不在此列（(double)(u64) 合法，绝不可动）"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    lines = txt.split('\n')
+    hit = False
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        if not any(('where arithmetic or pointer type is required' in m) or
+                   ('invalid operands' in m) for _c, m in lst):
+            continue
+        s = lines[ln_no - 1]
+        ns = re.sub(r'\(([^()\n]+)\)\s*(ZEXT(?:416|816|412|812))\(',
+                    r'*(\1 *)&\2(', s)
+        if ns != s:
+            lines[ln_no - 1] = ns
+            hit = True
+    return '\n'.join(lines) if hit else txt
+
+def _simd_blob_lval(rhs, blobs):
+    """RHS 是否 blob lvalue（数组/union 亦可 memcpy 读取的左值）。
+    只认简单形态: 裸名/带下标、* 解引用、slice 成员、alias 产物。
+    含二元运算符的复合表达式一律拒绝（binop fixer 辖区）"""
+    t = rhs.strip()
+    if t.startswith('*') or t.startswith('(*(auV'):
+        return True
+    if re.fullmatch(r'[A-Za-z_]\w*(\s*\[[^\]]*\])?', t):
+        m = re.match(r'[A-Za-z_]\w*', t)
+        return bool(_SIMD_BLOB_NAMES.match(m.group(0)) or m.group(0) in blobs)
+    if t.startswith('((slice_view'):
+        return True
+    return False
+
+def simd_assign_fix(txt, va):
+    """blob 整体赋值（数组不可赋值 / incompatible type）等价化:
+       memcpy(&(LHS), &(RHS), N) —— N = RHS 真值尺寸优先（伪指令宏表 / blob 声明 /
+       (*)[N] 解析），兜底 LHS 尺寸。Ghidra COPY 语义 = 按源尺寸搬运。
+       伪指令结果经 cde_simd 池化为 lvalue（可 &），blob 复合字面量可 &，
+       数组/union lvalue 可 & —— 三类 RHS 统一 memcpy。"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    blobs = _simd_blobs(txt)
+    lines = txt.split('\n')
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        msg_all = ' '.join(m for _c, m in lst)
+        if 'is not assignable' not in msg_all and \
+           'assigning to' not in msg_all:
+            continue
+        s = lines[ln_no - 1]
+        # LHS 已是解引用/池化 lvalue 形态 → memcpy 同样可写（防双包靠 RHS 门）
+        # 顶层 '='（不在括号内、非比较/复合赋值）
+        depth = 0
+        eq = -1
+        for i, ch in enumerate(s):
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+            elif ch == '=' and depth == 0:
+                if i + 1 < len(s) and s[i + 1] == '=':
+                    continue
+                if i >= 1 and s[i - 1] in '<>!+-*/%&|^=':
+                    continue
+                eq = i
+                break
+        if eq <= 0:
+            continue
+        lhs = s[:eq].strip()
+        rhs = s[eq + 1:].strip().rstrip(';').strip()
+        if not rhs:
+            continue
+        # LHS 尺寸（slice 成员 _N_S_ → S；blob 名 → 声明；其余 16 兜底）
+        lhs_size = 16
+        mm = re.search(r'->_(\d+)_(\d+)_\s*$', lhs)
+        if mm:
+            lhs_size = int(mm.group(2))
+        else:
+            nm = re.findall(r'[A-Za-z_]\w*', lhs)
+            if nm:
+                lhs_size = blobs.get(nm[-1], 16)
+        # RHS 真值尺寸
+        n = None
+        mc = re.match(r'(?:\([^()]+\)\s*)*(ZEXT\d+|pmovzxbd|pmulld|pshuflw|'
+                      r'pshufhw|divpd|au_and2|au_or2|au_xor2)\b', rhs)
+        if mc:
+            n = 12 if mc.group(1) in ('ZEXT412', 'ZEXT812') else 16
+        elif not _simd_blob_lval(rhs, blobs):
+            continue    # 标量 RHS 等 park
+        if n is None:
+            ma = re.match(r'\*\s*\(undefined1\s*\(\*\)\s*\[\s*(\d+)\s*\]\)', rhs)
+            if ma:
+                n = int(ma.group(1))
+        if n is None:
+            msa = re.match(r'\(\(slice_view\s*\*\)&[A-Za-z_]\w*\)->_(\d+)_(\d+)_', rhs)
+            if msa:
+                n = int(msa.group(2))
+        if n is None:
+            mt = re.match(r'[A-Za-z_]\w*', rhs)
+            if mt:
+                n = blobs.get(mt.group(0))
+        if n is None:
+            n = lhs_size    # 兜底
+        if n not in (1, 2, 4, 8, 12, 16, 24, 32):
+            n = 16
+        ns = f'memcpy(&({lhs}), &({rhs}), {n});'
+        if ns != s:
+            lines[ln_no - 1] = ns
+    return '\n'.join(lines)
+
+def simd_binop_fix(txt, va):
+    """blob 按位运算 (pand/por/pxor) → au_and2/au_or2/au_xor2 值语义调用
+       仅当两侧均为已声明 blob（含 ___xmm_/_DAT_/in_XMM），先 3 元链后 2 元"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    blobs = _simd_blobs(txt)
+    lines = txt.split('\n')
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        if not any('invalid operands' in m for _c, m in lst):
+            continue
+        s = lines[ln_no - 1]
+
+        def _is_blob(tok):
+            return bool(_SIMD_BLOB_NAMES.match(tok)) or tok in blobs
+
+        for _pass in range(4):
+            ns = re.sub(r'\b([A-Za-z_]\w*)\s*&\s*([A-Za-z_]\w*)\s*\|\s*([A-Za-z_]\w*)\b',
+                        lambda m: (f'au_or2(au_and2(*(const auV16_t *)&({m.group(1)}), '
+                                   f'*(const auV16_t *)&({m.group(2)})), '
+                                   f'*(const auV16_t *)&({m.group(3)}))')
+                         if _is_blob(m.group(1)) and _is_blob(m.group(2))
+                         and _is_blob(m.group(3)) else m.group(0), s)
+            # 2 元: C 优先级 & > ^ > | —— 邻接更高优先级运算符时禁配（防 X | Y & Z 误对）
+            _PREC = {'|': 0, '^': 1, '&': 2}
+
+            def _pair(m):
+                a, op, b = m.group(1), m.group(2), m.group(3)
+                if not (_is_blob(a) and _is_blob(b)):
+                    return m.group(0)
+                i0 = m.start()
+                k = i0 - 1
+                while k >= 0 and ns[k] == ' ':
+                    k -= 1
+                if k >= 0 and ns[k] in _PREC and _PREC[ns[k]] > _PREC[op]:
+                    return m.group(0)
+                j = m.end()
+                while j < len(ns) and ns[j] == ' ':
+                    j += 1
+                if j < len(ns) and ns[j] in _PREC and _PREC[ns[j]] > _PREC[op]:
+                    return m.group(0)
+                return (f"au_{ {'&':'and2','|':'or2','^':'xor2'}[op] }"
+                        f"(*(const auV16_t *)&({a}), *(const auV16_t *)&({b}))")
+            ns = re.sub(r'\b([A-Za-z_]\w*)\s*([&|^])\s*([A-Za-z_]\w*)\b', _pair, ns)
+            # SUB164(blob-op, k) 后处理: 位运算结果为 auV 并值, SUB164 标量宏的
+            # (a)-(b) 展开会撞 union-int —— 等价于提取 dword k 再减:
+            # SUB164(au_xor2(...), k) → (*(const unsigned int *)&au_xor2(...) - k)
+            ns = re.sub(r'SUB164\(\s*(au_(?:and2|or2|xor2)\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\))\s*,\s*([^(),]+?)\s*\)',
+                        r'(*(const unsigned int *)&\1 - \2)', ns)
+            if ns == s:
+                break
+            s = ns
+        lines[ln_no - 1] = s
+    return '\n'.join(lines)
+
+def simd_shift_fix(txt, va):
+    """向量移位计数: >> auVarN → >> (*(unsigned int *)&auVarN)
+       （PSRLD 计数取低 8/32 位；站点计数恒为常量初始化的小值，低 dword 等价）"""
+    sites = _ERRMAP_R25.get(va.lstrip('0') or '0')
+    if not sites:
+        return txt
+    lines = txt.split('\n')
+    for ln_no, lst in sites.items():
+        if not (1 <= ln_no <= len(lines)):
+            continue
+        if not any('invalid operands' in m for _c, m in lst):
+            continue
+        s = lines[ln_no - 1]
+        ns = re.sub(r'(>>|<<)\s*(auVar\d+)\b',
+                    r'\1 (*(unsigned int *)&\2)', s)
+        if ns != s:
+            lines[ln_no - 1] = ns
+    return '\n'.join(lines)
+
+
 def operator_eq_fix(txt):
     """r25w14: decomp2c 未折叠的 operator 名 → 现网 esc 约定（_fname_esc 同款折叠）
        X__operator=( → X__operator_( ；X__operator==( → X__operator__(
@@ -1753,6 +1992,12 @@ def main():
         txt = cast_literal_fix(txt)
         txt = xmm_assign_fix(txt)
         txt = var_decl_type_fix(txt, va)
+        # r26w1: SIMD auVar 等价接入（战役①）—— 错误驱动站点改写
+        txt = simd_alias_fix(txt, va)
+        txt = simd_cast_fix(txt, va)
+        txt = simd_binop_fix(txt, va)
+        txt = simd_shift_fix(txt, va)
+        txt = simd_assign_fix(txt, va)
         _typedef_pool.update(typedef_scan(txt))
         if prescreen(txt):
             auto_now.add(norm6(va))
@@ -2314,6 +2559,13 @@ def main():
         if any(_WIN32_TYPE_RE.search(_t) for _, _, _t in sections):
             _proto_lines = ['#include "cde_winuser_min.h"'] + _proto_lines
             A.L('winuser_min include: emitted at prelude')
+        # r26w1: SIMD 伪指令等价库（战役①）—— 批内出现 auVar/ZEXT blob/SSE 伪指令
+        # 即发射（自包含头，#undef port_prelude 标量 ZEXT 后重定义 blob 版）
+        _simd_need = re.compile(r'\bauVar\d+\b|ZEXT(?:416|816|412|812)|pmovzxbd|'
+                                r'pmulld|pshuflw|pshufhw|divpd|_local_\d')
+        if any(_simd_need.search(_t) for _, _, _t in sections):
+            _proto_lines = ['#include "cde_simd.h"'] + _proto_lines
+            A.L('cde_simd include: emitted at prelude')
         Path(str(OUT) + '.prelude').write_text(
             ''.join(parts) +
             '/* ---- r25 iso: in-batch canonical prototypes ---- */\n' +
