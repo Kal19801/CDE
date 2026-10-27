@@ -1056,7 +1056,6 @@ extern int SpacecraftComponent_GetDesiredOrientation_MemoizedFunction(); /* K&R 
 extern int SpacecraftComponent_GetDesiredThrustDirection_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_GetEstimatedMaxAngularAcceleration_radians_s2_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_HasDeltaVLeft_MemoizedFunction(); /* K&R stub; ret by call site */
-extern int SpacecraftComponent_HasFuelForTurningLeft_Memoize(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent_IsThreatening_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent__GetArmorCollisionShells_Clear(); /* K&R stub; ret by call site */
 extern int SpacecraftComponent__GetAvoidanceDirection_Clear(); /* K&R stub; ret by call site */
@@ -1087,7 +1086,6 @@ extern int UIListBox_class_util__Str_char_____ListButton__ListButton(); /* K&R s
 extern int UIListBox_struct_ActorDropdownAction___ListButton__ListButton(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ActorDropdownAction___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___ListButton__ListButton(); /* K&R stub; ret by call site */
-extern int UIListBox_struct_ItineraryNode___ScrollToDatum(); /* K&R stub; ret by call site */
 extern int UIListBox_struct_ItineraryNode___TriggerOnSelect(); /* K&R stub; ret by call site */
 extern int WorldObject__dtor(); /* K&R stub; ret by call site */
 extern int std__basic_filebuf_char_struct_std__char_traits_char_____seekoff(); /* K&R stub; ret by call site */
@@ -1149,10 +1147,6 @@ extern int util__Darray_struct_util__Line2_double_____operator(); /* K&R stub; r
 extern int util__Darray_struct_util__Vec2_double_____operator__o2(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_util__Vec3_double_____Darray_struct_util__Vec3_double__o2(); /* K&R stub; ret by call site */
 extern int util__Darray_struct_util__Vec3_double_____operator(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____Add(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____CheckSize(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____SetAll(); /* K&R stub; ret by call site */
-extern int util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____SetSize(); /* K&R stub; ret by call site */
 extern int util__Delegate_class_util__Str_char__class_util__Reflectable____operator(); /* K&R stub; ret by call site */
 extern int util__Delegate_class_util__Str_char__class_util__SharedPtr_struct_ModuleCategory_____operator(); /* K&R stub; ret by call site */
 extern int util__Delegate_class_util__Str_char__class_util__Str_char_____operator(); /* K&R stub; ret by call site */
@@ -1163,7 +1157,6 @@ extern int util__Delegate_int_class_util__SharedPtr_struct_ModuleCategory_____op
 extern int util__Delegate_int_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_int_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
-extern int util__Delegate_struct_WorldObject___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ActorDropdownAction___operator__(); /* K&R stub; ret by call site */
 extern int util__Delegate_void_struct_ItineraryNode___operator__(); /* K&R stub; ret by call site */
 extern int util__HashMap_class_util__WeakPtr_class_Fleet__double___HashMap_class_util__WeakPtr_class_Fleet__double(); /* K&R stub; ret by call site */
@@ -2677,7 +2670,6 @@ extern LibrationOrbit * __thiscall util_Maybe_struct_LibrationOrbit_operator(May
 extern void __thiscall util_Maybe_struct_PendingBattle_Maybe_struct_PendingBattle(Maybe_L_struct_PendingBattle_G_ *this,PendingBattle *p1);
 extern PendingBattle * __thiscall util_Maybe_struct_PendingBattle_operator(Maybe_L_struct_PendingBattle_G_ *this);
 extern undefined1 * __thiscall util_Maybe_struct_util_tuple2_class_util_WeakPtr_class_Fleet_struct_ItineraryNode_operator (Maybe_L_struct_util__tuple2_L_class_util__WeakPtr_L_class_Fleet_G__C_struct_ItineraryNode_G___G_ *this, undefined1 *p1);
-extern undefined1 * __thiscall util_Maybe_struct_util_tuple2_struct_ItineraryNode_bool_operator (Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_C_bool_G___G_ *this,undefined1 *p1);
 extern void __thiscall util__Darray_L_struct_ActorDropdownAction_G___Darray_L_struct_ActorDropdownAction_G (Darray_L_struct_ActorDropdownAction_G_ *this,int p1);
 extern void __thiscall util__Darray_L_struct_ItineraryNode_G___Darray_L_struct_ItineraryNode_G (Darray_L_struct_ItineraryNode_G_ *this,int p1);
 extern void __thiscall util__Darray_L_struct_WorldObject_G___Darray_L_struct_WorldObject_G (Darray_L_struct_WorldObject_G_ *this,int p1);
@@ -2721,9 +2713,11 @@ extern void __thiscall FUN_008972b0(undefined4 *param_1,util__Str_L_char_G_ *par
 extern void __cdecl RenderShape(Type param_1,Vec2_L_double_G_ param_2,bool param_3);
 
 /* ---- r25w13: 定义导出 extern（cc 忠实，防前置调用隐式声明） ---- */
+extern ItineraryNode * __thiscall Itinerary__GetAccelerationAndResidualBurn(Itinerary *this,ItineraryNode *p1,double p2,double p3);
 extern ItineraryNode * __thiscall StrategicManager__GetHoveredItineraryNode(StrategicManager *this);
 extern ReferenceController * __thiscall CelestialObject__GetStateAt(CelestialObject *this,double p1);
 extern bool __thiscall GhostedUIButton__Hover(GhostedUIButton *this,undefined4 p1);
+extern bool __thiscall SpacecraftComponent__HasNoDeltaVButUsedTo(SpacecraftComponent *this);
 extern double * FUN_007adb30(double *param_1,undefined4 *param_2,double param_3,Body *param_4);
 extern double __thiscall ConventionalGunCompartment__GetOperatingTemperature_K(ConventionalGunCompartment *this);
 extern undefined1 * __thiscall HUDTactical___scalar_deleting_destructor_(HUDTactical *this,dword p1);
@@ -2734,6 +2728,7 @@ extern util__Darray_L_WorldLight_G_ * __thiscall RadiatorCompartment__GetWorldLi
 extern util__Maybe_L_int_G __thiscall LevelMessages__GetStringPropertyMaxLength(LevelMessages *this,util__ClassMember *p1);
 extern util__Vec2_L_int_G __thiscall HUDItineraryNodeDragger__GetHUDLocation(HUDItineraryNodeDragger *this);
 extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorPixelPosition(UIEditTextBox *this,int *p1);
+extern util__Vec3_L_double_G_ * __thiscall EngineCompartment__GetGimballedThrustDirection(EngineCompartment *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern void FUN_00501d70(int *param_1,double *param_2,double *param_3);
 extern void FUN_005b57b2(void);
 extern void FUN_00759160(double *param_1,undefined4 *param_2,double param_3);
@@ -2741,11 +2736,19 @@ extern void FUN_007ae360(undefined1 (*param_1) [16],int *param_2,undefined1 (*pa
 extern void FUN_007dcaa0(int *param_1,int param_2,int *param_3,undefined1 (*param_4) [16]);
 extern void FUN_007f5dc0(int *param_1,undefined4 *param_2,double *param_3,undefined1 (*param_4) [16]);
 extern void FUN_0083cce0(undefined4 *param_1,int *param_2,undefined4 *param_3);
+extern void __cdecl _dtol3(void);
+extern void __cdecl _dtol3_NaN(void);
+extern void __cdecl _dtol3_work(void);
+extern void __cdecl _ftol3(void);
+extern void __cdecl _ftol3_NaN(void);
+extern void __cdecl _ftol3_common(void);
+extern void __cdecl _ftol3_work(void);
 extern void __thiscall CelestialObject__ValidateOrbit(CelestialObject *this);
 extern void __thiscall FlareCompartment__Render(FlareCompartment *this);
 extern void __thiscall FleetLocation__FleetLocation(FleetLocation *this,FixedOrbit *p1);
+extern void __thiscall Fleet__IsCapitalShipFleet_Memoize(Fleet *this);
+extern void __thiscall NuclearThermalRocketCompartment__Tick(NuclearThermalRocketCompartment *this,double p1);
 extern void __thiscall OrbitUI__RenderLookaheadArrows(OrbitUI *this);
-extern void __thiscall SelectionMarker__Tick(SelectionMarker *this,double p1);
 extern void __thiscall SpacecraftComponent__HasDeltaVLeft_Memoize(SpacecraftComponent *this);
 extern void __thiscall SpacecraftComponent__HasFuelForTurningLeft_Memoize(SpacecraftComponent *this);
 extern void __thiscall SpacecraftTargeting__DememoizeAll(SpacecraftTargeting *this);
@@ -3048,6 +3051,185 @@ memcpy(&(((slice_view *)&local_48)->_9_7_), &(uStack_7b), 16);
 }
 
 
+//==== 00535e50 00535e50_FUN_00535e50 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_00535e50(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
+
+// decompiled by BatchDecomp @ 00535e50 name=FUN_00535e50 conv=unknown body=611
+
+/* WARNING: Removing unreachable block (ram,0x00535f47) */
+
+void FUN_00535e50(int *param_1,int *param_2,
+                 Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__C_class_util__Darray_L_class_util__Reflectable_P__G___G___G_
+                 *param_3)
+
+{
+  undefined4 stack0xffffff78;
+  undefined4 stack0xffffff84;
+  undefined4 stack0xfffffffc;
+  CraftBlueprint *this;
+  undefined4 *puVar1;
+  bool bVar2;
+  int iVar3;
+  int *piVar4;
+  Type uVar5;
+  util__Str_L_char_G_ *p1;
+  int *piVar6;
+  char *in_stack_ffffff78;
+  void *local_5c[3];
+  undefined **local_50;
+  void *local_4c;
+  undefined8 local_3c;
+  int *local_38;
+  int *local_34;
+  int local_30;
+  int *local_2c;
+  undefined4 *local_28;
+  int *local_24;
+  util__Darray_L_util__Reflectable___G_ local_20;
+  int local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_38 = param_1;
+  local_10 = 0;
+  iVar3 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
+  if (local_10 < iVar3) {
+    do {
+      piVar4 = (int *)(**(code **)*param_1)();
+      (*(void **)(void *)&local_20) = (undefined1 *)0x0;
+      local_20.Data = (undefined1 **)0x0;
+      local_20.Size = 0;
+      local_20.Capacity = 0;
+      local_34 = param_2;
+      local_2c = piVar4;
+      local_24 = piVar4;
+      iVar3 = (**(code **)(*(int *)(uintptr_t)param_2 + 0xc))();
+      util__Darray_class_util__Reflectable____Darray_class_util__Reflectable__o2((Darray_L_util__Reflectable_P_G_ *)&local_20,iVar3);
+      local_c = 0;
+      iVar3 = (**(code **)(*(int *)(uintptr_t)param_2 + 0xc))();
+      piVar6 = param_2;
+      if (local_c < iVar3) {
+        do {
+          local_28 = (undefined4 *)(**(code **)*piVar6)();
+          this = (CraftBlueprint *)*local_28;
+          if ((*(char (*)[18])((char *)this + 730))[10] == 0) {
+            iVar3 = *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2);
+            local_30 = iVar3 + 1;
+            util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                       (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),&local_30);
+            bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                               (((char *)&(this->GetAllModulesNeedingCooling_MemoizedValue))+ 0x10),iVar3);
+            if (bVar2) {
+              *(code **)(*(int *)(*(char (*)[2])((char *)this + 708)) + -4 +
+                        *(int *)(((char *)&(this->GetMainEngineModulePlacers_MemoizedValue))+ 2) * 4) =
+                   CraftBlueprint__GetShipClass_Clear;
+            }
+            uVar5 = CraftBlueprint__GetShipClass_MemoizedFunction(this);
+            ((slice_view *)&local_3c)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&local_3c)->_1_3_[0] | (((slice_view *)&local_3c)->_1_3_[1] << 8) | (((slice_view *)&local_3c)->_1_3_[2] << 16)) << 8));
+            *(undefined4 *)((*(char (*)[18])((char *)this + 730)) + 6) = uVar5;
+            *(undefined4 *)((*(char (*)[18])((char *)this + 730)) + 10) = local_3c;
+            piVar6 = local_34;
+          }
+          iVar3 = local_20.Size;
+          puVar1 = local_28;
+          if (*(int *)((*(char (*)[18])((char *)this + 730)) + 6) == *local_24) {
+            local_28 = (undefined4 *)(local_20.Size + 1);
+            util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_20,(int *)&local_28);
+            bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_20,iVar3);
+            if (bVar2) {
+              local_20.Data[local_20.Size + -1] = (undefined1 *)*puVar1;
+            }
+          }
+          local_c = local_c + 1;
+          iVar3 = (**(code **)(*(int *)(uintptr_t)piVar6 + 0xc))();
+          piVar4 = local_2c;
+        } while (local_c < iVar3);
+      }
+      if (0 < local_20.Size) {
+        util__Darray_class_util__Reflectable____Darray_class_util__Reflectable((Darray_L_util__Reflectable_P_G_ *)&stack0xffffff84,&local_20);
+        util__Str_char___Str_char((Str_L_char_G_ *)&stack0xffffff78,(util__Str_L_char_G_ *)(piVar4 + 1));
+        p1 = (util__Str_L_char_G_ *)
+             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_5c,in_stack_ffffff78);
+        iVar3 = *(int *)(param_3 + 8);
+        local_2c = (int *)(iVar3 + 1);
+        util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________SetSize(param_3,(int *)&local_2c);
+        bVar2 = util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________CheckSize(param_3,iVar3);
+        if (bVar2) {
+          iVar3 = *(int *)(param_3 + 4) + *(int *)(param_3 + 8) * 0x1c;
+          util__Str_char___operator__o8((Str_L_char_G_ *)(iVar3 + -0x1c),p1);
+          util__Darray_class_Module____operator
+                    ((Darray_L_class_Module_P_G_ *)(iVar3 + -0x10),
+                     (util__Darray_L_ModulePlacer___G *)(p1 + 1));
+        }
+        local_50 = ((void *)(0x009199e4u));
+        if (local_4c != (void *)0x0) {
+          operator_delete__(local_4c);
+        }
+        local_4c = (void *)0x0;
+        local_50 = ((void *)(0x00919488u));
+        if (local_5c[0] != (void *)0x0) {
+          operator_delete__(local_5c[0]);
+        }
+      }
+      (*(void **)(void *)&local_20) =
+           (undefined1 *)((void *)(0x009199e4u));
+      if (local_20.Data != (undefined1 **)0x0) {
+        operator_delete__(local_20.Data);
+      }
+      param_1 = local_38;
+      local_10 = local_10 + 1;
+      local_20.Data = (undefined1 **)0x0;
+      (*(void **)(void *)&local_20) =
+           (undefined1 *)((void *)(0x00919488u));
+      iVar3 = (**(code **)(*(int *)(uintptr_t)local_38 + 0xc))();
+    } while (local_10 < iVar3);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 005b3510 005b3510_GetGimballedThrustDirection ====
+// decompiled by BatchDecomp @ 005b3510 name=GetGimballedThrustDirection conv=__thiscall body=320
+
+/* protected: struct Vec3_L_double_G_ __thiscall
+   EngineCompartment__GetGimballedThrustDirection(void)const  */
+
+util__Vec3_L_double_G_ * __thiscall
+EngineCompartment__GetGimballedThrustDirection(EngineCompartment *this,util__Vec3_L_double_G_ *__return_storage_ptr__)
+
+{
+  undefined1 auVar1[16];
+  double dVar2;
+  undefined4 p0;
+  undefined4 p1;
+  util__Quaternion_L_double_G_ *puVar3;
+  util__Quaternion_L_double_G_ local_3c;
+  undefined1 local_1c[16];
+  double local_c;
+  
+  puVar3 = ModuleCompartment__GetOrientation((ModuleCompartment *)this,&local_3c);
+  dVar2 = ((*(double *)((*(char (*)[30])((char *)this + 265)) + 7) * puVar3->W +
+           *(double *)((*(char (*)[30])((char *)this + 265)) + 0xf) * puVar3->Z) -
+          *(double *)((*(char (*)[30])((char *)this + 265)) + 0x17) * puVar3->Y) +
+          *(double *)(((char *)&(this->GimbalTargetOrientation))+ 1) * puVar3->X;
+  ((slice_view *)&auVar1)->_8_8_ = 0;
+  ((slice_view *)&auVar1)->_0_8_ = dVar2;
+  local_c = *(double *)(((char *)&(this->GimbalTargetOrientation))+ 1) * puVar3->W -
+            (*(double *)((*(char (*)[30])((char *)this + 265)) + 7) * puVar3->X +
+             *(double *)((*(char (*)[30])((char *)this + 265)) + 0xf) * puVar3->Y +
+            *(double *)((*(char (*)[30])((char *)this + 265)) + 0x17) * puVar3->Z);
+  ((slice_view *)&local_1c)->_0_4_ = *(undefined4 *)&dVar2;
+  p0 = ((slice_view *)&local_1c)->_0_4_;
+  ((slice_view *)&local_1c)->_4_4_ = *(undefined4 *)((char *)&dVar2 + 4);
+  p1 = ((slice_view *)&local_1c)->_4_4_;
+memcpy(&(local_1c), &(auVar1), 16);
+util__GetMouseRayHit(__return_storage_ptr__,p0,p1);
+  return __return_storage_ptr__;
+}
+
+
 //==== 005b57b2 005b57b2_FUN_005b57b2 ====
 /* r25w19 own-auto-extern elided: extern undefined4 FUN_005b57b2(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
@@ -3109,6 +3291,67 @@ memcpy(&(*(undefined1 (*) [16])(unaff_EBP - 0x28)), &(auVar9), 16);
   ((slice_view *)&auVar8)->_12_4_ = (int)((ulonglong)dVar15 >> 0x20);
 memcpy(&(*(undefined1 (*) [16])(unaff_ESI + 0x120)), &(auVar8), 16);
   __security_check_cookie(*(uint *)(unaff_EBP - 4) ^ unaff_EBP);
+  return;
+}
+
+
+//==== 005b8670 005b8670_Tick ====
+// decompiled by BatchDecomp @ 005b8670 name=Tick conv=__thiscall body=288
+
+/* public: virtual void __thiscall NuclearThermalRocketCompartment__Tick(double) */
+
+void __thiscall
+NuclearThermalRocketCompartment__Tick(NuclearThermalRocketCompartment *this,double p1)
+
+{
+  int iVar1;
+  bool bVar2;
+  double dVar3;
+  double dVar4;
+  undefined4 local_1c;
+  undefined4 uStack_18;
+  undefined8 uStack_14;
+  undefined4 uStack_10;
+  
+  dVar3 = /*3ff0000000000000*/1.0;
+  if (p1 * /*3fe0000000000000*/0.5 <= /*3ff0000000000000*/1.0) {
+    dVar3 = p1 * /*3fe0000000000000*/0.5;
+  }
+  if ((char)this->_pad_0x108_66 != '\0') {
+    if (((undefined1 *)&(this->GetWallTemperature_K_MemoizedValue))[8] == '\0') {
+      iVar1 = *(int *)(((char *)&(this->NuclearThermalRocketCompartmentMemoizationHandlerInstance))+ 8);
+      ((slice_view *)&p1)->_4_4_ = iVar1 + 1;
+      util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                 &this->NuclearThermalRocketCompartmentMemoizationHandlerInstance,
+                 (int *)((int)&p1 + 4));
+      bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                         &this->NuclearThermalRocketCompartmentMemoizationHandlerInstance,iVar1);
+      if (bVar2) {
+        *(code **)(*(int *)(((char *)&(this->NuclearThermalRocketCompartmentMemoizationHandlerInstance))+ 4) +
+                   -4 + *(int *)(((char *)&(this->NuclearThermalRocketCompartmentMemoizationHandlerInstance))+ 8
+                                ) * 4) = Body__GetTightRadius_km_Clear;
+      }
+      dVar4 = ThermalRocketSubModule__GetSteadyStateWallTemperature_K((ThermalRocketSubModule *)(this->_pad_0x38_14 + 0x280));
+      ((slice_view *)&uStack_14)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_14)->_1_3_[0] | (((slice_view *)&uStack_14)->_1_3_[1] << 8) | (((slice_view *)&uStack_14)->_1_3_[2] << 16)) << 8));
+      local_1c = *(undefined4 *)&dVar4;
+      uStack_18 = *(undefined4 *)((char *)&dVar4 + 4);
+      *(undefined4 *)&this->GetWallTemperature_K_MemoizedValue = local_1c;
+      *(undefined4 *)(((char *)&(this->GetWallTemperature_K_MemoizedValue))+ 4) = uStack_18;
+      *(undefined4 *)(((char *)&(this->GetWallTemperature_K_MemoizedValue))+ 8) = uStack_14;
+      *(undefined4 *)(((char *)&(this->GetWallTemperature_K_MemoizedValue))+ 0xc) = uStack_10;
+      if (((undefined1 *)&(this->GetWallTemperature_K_MemoizedValue))[8] == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+    }
+    this->Temperature_K =
+         (*(double *)&this->GetWallTemperature_K_MemoizedValue - this->Temperature_K) * dVar3 +
+         this->Temperature_K;
+    return;
+  }
+  this->Temperature_K =
+       (Physics__AmbientSpaceTemperature_K - this->Temperature_K) * dVar3 + this->Temperature_K;
   return;
 }
 
@@ -3497,6 +3740,322 @@ void __thiscall FlareCompartment__Render(FlareCompartment *this)
 }
 
 
+//==== 00614220 00614220_GetStatuses ====
+// decompiled by BatchDecomp @ 00614220 name=GetStatuses conv=__thiscall body=1740
+
+/* public: virtual class DesignStatusBuffer __thiscall
+   TurboelectricFissionReactorModule__GetStatuses(class DataParser *)const  */
+
+DesignStatusBuffer * __thiscall
+TurboelectricFissionReactorModule__GetStatuses(TurboelectricFissionReactorModule *this,DesignStatusBuffer *__return_storage_ptr__,
+          DataParser *p1)
+
+{
+  undefined4 stack0xfffffffc;
+  uint uVar1;
+  undefined8 uVar2;
+  undefined8 uVar3;
+  Material *pMVar4;
+  bool bVar5;
+  CompressibleFlowPoint *pCVar6;
+  CompressibleFlowPoint *pCVar7;
+  int *piVar8;
+  int iVar9;
+  char *pcVar10;
+  char *pcVar11;
+  char cVar12;
+  char *pcVar13;
+  undefined4 unaff_EDI;
+  double dVar14;
+  undefined4 uVar15;
+  undefined4 uVar16;
+  util__Str_L_char_G_ *p2;
+  Str_L_char_G_ *pSVar17;
+  util__Str_L_char_G_ *puVar18;
+  util__Str_L_char_G_ *puVar19;
+  util__Str_L_char_G_ *puVar20;
+  undefined4 uVar21;
+  undefined4 uVar22;
+  ModulePlacer *pMVar23;
+  CompressibleFlowPoint local_b8;
+  DesignStatusBuffer *local_80;
+  CompressibleFlowPoint *local_7c;
+  Darray_L_struct_util__tuple2_L_struct_CompressibleFlowPoint_C_class_util__Str_L_char_G___G___G_ local_78[4];
+  Str_L_char_G_ local_74;
+  util__Str_L_char_G_ local_68;
+  util__Str_L_char_G_ local_5c;
+  util__Str_L_char_G_ local_50;
+  CompressibleFlowPoint local_44;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  __return_storage_ptr__->DataManager = (DataParser *)0x0;
+  *(undefined4 *)&__return_storage_ptr__->Messages = 0;
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->Messages))+ 4) = 0;
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->Messages))+ 8) = 0;
+  local_80 = __return_storage_ptr__;
+  *(undefined8 *)(((char *)&(__return_storage_ptr__->Messages))+ 0xc) = 0;
+  PowerModule__GetStatuses((PowerModule *)this,__return_storage_ptr__,p1);
+  util__Str_char___Str_char__o5(&local_74,"TurboelectricFissionReactorColdDrop");
+  local_68.Data = 0;
+  local_68.Capacity = 0;
+  local_68.Length = 0;
+  local_5c.Data = 0;
+  local_5c.Capacity = 0;
+  local_5c.Length = 0;
+  local_50.Data = 0;
+  local_50.Capacity = 0;
+  local_50.Length = 0;
+  dVar14 = TurbopumpSubModule__GetTotalCrossSectionalArea_m2((TurbopumpSubModule *)((*(char (*)[68])((char *)this + 280)) + 0x30));
+  pCVar7 = &local_44;
+  uVar15 = *(undefined4 *)((char *)&dVar14 + 4);
+  pCVar6 = GetTurbineExitFlowPoint(this,&local_b8);
+  CompressibleFlowPoint__GetAreaChangedExitFlow(pCVar6,pCVar7,(double)CONCAT44(unaff_EDI,uVar15));
+  DesignStatusBuffer__CheckError(__return_storage_ptr__,local_44.Temperature_K - *(double *)&this[1]._pad_0x28_10 < 0.0,
+             (util__Str_L_char_G_ *)&local_74,&local_50,&local_5c,&local_68,(ModulePlacer *)0x0);
+  if ((void *)local_50.Data != (void *)0x0) {
+    operator_delete__((void *)local_50.Data);
+    local_50.Data = 0;
+  }
+  if ((void *)local_5c.Data != (void *)0x0) {
+    operator_delete__((void *)local_5c.Data);
+    local_5c.Data = 0;
+  }
+  if ((void *)local_68.Data != (void *)0x0) {
+    operator_delete__((void *)local_68.Data);
+    local_68.Data = 0;
+  }
+  if (local_74.Data != (char *)0x0) {
+    operator_delete__(local_74.Data);
+  }
+  util__Str_char___Str_char__o5(&local_74,"TurboelectricFissionReactorPressureDrop");
+  local_50.Data = 0;
+  local_50.Capacity = 0;
+  local_50.Length = 0;
+  local_5c.Data = 0;
+  local_5c.Capacity = 0;
+  local_5c.Length = 0;
+  local_68.Data = 0;
+  local_68.Capacity = 0;
+  local_68.Length = 0;
+  dVar14 = TurbopumpSubModule__GetTotalCrossSectionalArea_m2((TurbopumpSubModule *)((*(char (*)[68])((char *)this + 280)) + 0x30));
+  pCVar7 = &local_44;
+  uVar15 = *(undefined4 *)((char *)&dVar14 + 4);
+  pCVar6 = GetTurbineExitFlowPoint(this,&local_b8);
+  CompressibleFlowPoint__GetAreaChangedExitFlow(pCVar6,pCVar7,(double)CONCAT44(unaff_EDI,uVar15));
+  DesignStatusBuffer__CheckError(__return_storage_ptr__,local_44.Pressure_Pa - *(double *)&this[1]._pad_0x20_8 < 0.0,
+             (util__Str_L_char_G_ *)&local_74,&local_68,&local_5c,&local_50,(ModulePlacer *)0x0);
+  if ((void *)local_68.Data != (void *)0x0) {
+    operator_delete__((void *)local_68.Data);
+    local_68.Data = 0;
+  }
+  if ((void *)local_5c.Data != (void *)0x0) {
+    operator_delete__((void *)local_5c.Data);
+    local_5c.Data = 0;
+  }
+  if ((void *)local_50.Data != (void *)0x0) {
+    operator_delete__((void *)local_50.Data);
+    local_50.Data = 0;
+  }
+  if (local_74.Data != (char *)0x0) {
+    operator_delete__(local_74.Data);
+  }
+  util__Str_char___Str_char__o5(&local_74,"TurboelectricFissionReactorEntrySonicPoint");
+  local_50.Data = 0;
+  local_50.Capacity = 0;
+  local_50.Length = 0;
+  local_5c.Data = 0;
+  local_5c.Capacity = 0;
+  local_5c.Length = 0;
+  local_68.Data = 0;
+  local_68.Capacity = 0;
+  local_68.Length = 0;
+  GetTurbopumpExitFlowPoint(this,&local_44);
+  pMVar4 = (this->NuclearReactor).NeutronReflector;
+  uVar21 = 0;
+  uVar22 = 0;
+  uVar15 = *(undefined4 *)&local_44.Pressure_Pa;
+  uVar16 = (undefined4)((ulonglong)local_44.Pressure_Pa >> 0x20);
+  dVar14 = NuclearReactorSubModule__GetTemperatureJump_K((NuclearReactorSubModule *)
+                      &(this->NuclearReactor).GetEmittedRadiation_MemoizedValue);
+  CompressibleFlowPoint__CompressibleFlowPoint(&local_b8,pMVar4,
+             (double)CONCAT44(uVar15,(int)((ulonglong)(dVar14 + local_44.Temperature_K) >> 0x20)),
+             (double)CONCAT44(((slice_view *)&local_44.MassFlowRate_kg__s)->_0_4_,uVar16),
+             (double)CONCAT44(((slice_view *)&local_44.Area_m2)->_0_4_,((slice_view *)&local_44.MassFlowRate_kg__s)->_4_4_),
+             (double)CONCAT44(uVar21,((slice_view *)&local_44.Area_m2)->_4_4_),(double)CONCAT44(unaff_EDI,uVar22));
+  pMVar23 = (ModulePlacer *)0x0;
+  puVar20 = &local_50;
+  puVar19 = &local_5c;
+  puVar18 = &local_68;
+  pSVar17 = &local_74;
+  dVar14 = TurbineSubModule__GetTotalCrossSectionalArea_m2((TurbineSubModule *)&(this->Turbine).CachedFluidDensity_kg__m3);
+  bVar5 = CompressibleFlowPoint__DoesAreaChangeHaveASonicPoint(&local_b8,dVar14);
+  DesignStatusBuffer__CheckError(__return_storage_ptr__,bVar5,(util__Str_L_char_G_ *)pSVar17,puVar18,puVar19,puVar20,pMVar23
+            );
+  if ((void *)local_68.Data != (void *)0x0) {
+    operator_delete__((void *)local_68.Data);
+    local_68.Data = 0;
+  }
+  if ((void *)local_5c.Data != (void *)0x0) {
+    operator_delete__((void *)local_5c.Data);
+    local_5c.Data = 0;
+  }
+  if ((void *)local_50.Data != (void *)0x0) {
+    operator_delete__((void *)local_50.Data);
+    local_50.Data = 0;
+  }
+  if (local_74.Data != (char *)0x0) {
+    operator_delete__(local_74.Data);
+  }
+  util__Str_char___Str_char__o5(&local_74,"TurboelectricFissionReactorExitSonicPoint");
+  pMVar23 = (ModulePlacer *)0x0;
+  puVar20 = &local_50;
+  local_50.Data = 0;
+  puVar19 = &local_5c;
+  local_50.Capacity = 0;
+  puVar18 = &local_68;
+  local_50.Length = 0;
+  pSVar17 = &local_74;
+  local_5c.Data = 0;
+  local_5c.Capacity = 0;
+  local_5c.Length = 0;
+  local_68.Data = 0;
+  local_68.Capacity = 0;
+  local_68.Length = 0;
+  dVar14 = TurbopumpSubModule__GetTotalCrossSectionalArea_m2((TurbopumpSubModule *)((*(char (*)[68])((char *)this + 280)) + 0x30));
+  uVar15 = *(undefined4 *)&dVar14;
+  uVar16 = *(undefined4 *)((char *)&dVar14 + 4);
+  pCVar7 = GetTurbineExitFlowPoint(this,&local_b8);
+  bVar5 = CompressibleFlowPoint__DoesAreaChangeHaveASonicPoint(pCVar7,(double)CONCAT44(uVar16,uVar15));
+  DesignStatusBuffer__CheckError(__return_storage_ptr__,bVar5,(util__Str_L_char_G_ *)pSVar17,puVar18,puVar19,puVar20,pMVar23
+            );
+  if ((void *)local_68.Data != (void *)0x0) {
+    operator_delete__((void *)local_68.Data);
+    local_68.Data = 0;
+  }
+  if ((void *)local_5c.Data != (void *)0x0) {
+    operator_delete__((void *)local_5c.Data);
+    local_5c.Data = 0;
+  }
+  if ((void *)local_50.Data != (void *)0x0) {
+    operator_delete__((void *)local_50.Data);
+    local_50.Data = 0;
+  }
+  if (local_74.Data != (char *)0x0) {
+    operator_delete__(local_74.Data);
+  }
+  util__Str_char___Str_char__o5(&local_74,"TurboelectricFissionReactorCondensation");
+  pMVar4 = (this->NuclearReactor).NeutronReflector;
+  local_50.Data = 0;
+  local_50.Capacity = 0;
+  local_50.Length = 0;
+  local_5c.Data = 0;
+  local_5c.Capacity = 0;
+  local_5c.Length = 0;
+  local_68.Data = 0;
+  local_68.Capacity = 0;
+  local_68.Length = 0;
+  uVar21 = 0;
+  uVar22 = 0;
+  dVar14 = TurbopumpSubModule__GetTotalCrossSectionalArea_m2((TurbopumpSubModule *)((*(char (*)[68])((char *)this + 280)) + 0x30));
+  uVar15 = *(undefined4 *)&dVar14;
+  uVar16 = *(undefined4 *)((char *)&dVar14 + 4);
+  dVar14 = TurbopumpSubModule__GetMassFlowRate_kg__s((TurbopumpSubModule *)((*(char (*)[68])((char *)this + 280)) + 0x30));
+  ((slice_view *)&uVar2)->_0_4_ = this[1]._pad_0x20_8;
+  ((slice_view *)&uVar2)->_4_4_ = this[1]._pad_0x24_9;
+  ((slice_view *)&uVar3)->_0_4_ = this[1]._pad_0x28_10;
+  ((slice_view *)&uVar3)->_4_4_ = this[1]._pad_0x2c_11;
+  CompressibleFlowPoint__CompressibleFlowPoint(&local_b8,pMVar4,(double)CONCAT44((int)uVar2,(int)((ulonglong)uVar3 >> 0x20)),
+             (double)CONCAT44(SUB84(dVar14,0),(int)((ulonglong)uVar2 >> 0x20)),
+             (double)CONCAT44(uVar15,(int)((ulonglong)dVar14 >> 0x20)),
+             (double)CONCAT44(uVar21,uVar16),(double)CONCAT44(unaff_EDI,uVar22));
+  DesignStatusBuffer__CheckError(__return_storage_ptr__,
+             local_b8.Temperature_K < ((this->NuclearReactor).NeutronReflector)->ThermalExpansion__K
+             ,(util__Str_L_char_G_ *)&local_74,&local_68,&local_5c,&local_50,(ModulePlacer *)0x0);
+  if ((void *)local_68.Data != (void *)0x0) {
+    operator_delete__((void *)local_68.Data);
+    local_68.Data = 0;
+  }
+  if ((void *)local_5c.Data != (void *)0x0) {
+    operator_delete__((void *)local_5c.Data);
+    local_5c.Data = 0;
+  }
+  if ((char *)local_50.Data != (char *)0x0) {
+    operator_delete__((void *)local_50.Data);
+    local_50.Data = 0;
+  }
+  if (local_74.Data != (char *)0x0) {
+    operator_delete__(local_74.Data);
+  }
+  piVar8 = (int *)GetAllFlowPoints(this);
+  local_c = 0;
+  iVar9 = (**(code **)(*(int *)(uintptr_t)piVar8 + 0xc))();
+  if (local_c < iVar9) {
+    do {
+      local_7c = (CompressibleFlowPoint *)(**(code **)*piVar8)(&local_c);
+      local_50.Data = 0;
+      local_50.Length = 0;
+      do {
+        iVar9 = local_50.Length;
+        local_50.Length = iVar9 + 1;
+      } while ("TurboelectricFissionReactorFlowPointInvalid"[iVar9 + 1] != '\0');
+      uVar1 = iVar9 + 2;
+      local_50.Capacity = uVar1;
+      pcVar10 = (char *)operator_new__(uVar1);
+      if (pcVar10 == (char *)0x0) {
+        pcVar10 = (char *)0x0;
+      }
+      else {
+        memset(pcVar10,0,uVar1);
+      }
+      pcVar11 = "TurboelectricFissionReactorFlowPointInvalid";
+      cVar12 = 'T';
+      pcVar13 = pcVar10;
+      do {
+        *pcVar13 = cVar12;
+        pcVar11 = pcVar11 + 1;
+        cVar12 = *pcVar11;
+        pcVar13 = pcVar13 + 1;
+      } while (cVar12 != '\0');
+      *pcVar13 = '\0';
+      puVar20 = &local_5c;
+      pMVar23 = (ModulePlacer *)0x0;
+      puVar19 = &local_68;
+      local_5c.Data = 0;
+      puVar18 = (util__Str_L_char_G_ *)&local_7c[1].SpecificGasConstant_J__kg_K;
+      local_5c.Capacity = 0;
+      p2 = &local_50;
+      local_5c.Length = 0;
+      local_68.Data = 0;
+      local_68.Capacity = 0;
+      local_68.Length = 0;
+      local_50.Data = (int)pcVar10;
+      bVar5 = CompressibleFlowPoint__IsFlowPointValid(local_7c);
+      __return_storage_ptr__ = local_80;
+      DesignStatusBuffer__CheckError(local_80,!bVar5,p2,puVar18,puVar19,puVar20,pMVar23);
+      if ((void *)local_68.Data != (void *)0x0) {
+        operator_delete__((void *)local_68.Data);
+        local_68.Data = 0;
+      }
+      if ((void *)local_5c.Data != (void *)0x0) {
+        operator_delete__((void *)local_5c.Data);
+        local_5c.Data = 0;
+      }
+      if ((char *)local_50.Data != (char *)0x0) {
+        operator_delete__((void *)local_50.Data);
+        local_50.Data = 0;
+      }
+      local_c = local_c + 1;
+      iVar9 = (**(code **)(*(int *)(uintptr_t)piVar8 + 0xc))();
+    } while (local_c < iVar9);
+  }
+  util__Darray_struct_util__tuple2_struct_CompressibleFlowPoint_class_util__Str_char________Darray_struct_util__tuple2_struct_CompressibleFlowPoint_class_util__Str_char(local_78);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
+}
+
+
 //==== 00635760 00635760_GetOperatingTemperature_K ====
 // decompiled by BatchDecomp @ 00635760 name=GetOperatingTemperature_K conv=__thiscall body=142
 
@@ -3528,6 +4087,145 @@ ConventionalGunCompartment__GetOperatingTemperature_K(ConventionalGunCompartment
     dVar3 = dVar4;
   }
   return dVar3;
+}
+
+
+//==== 0067cba0 0067cba0_FUN_0067cba0 ====
+/* r25w19 own-auto-extern elided: extern undefined4 FUN_0067cba0(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
+
+// decompiled by BatchDecomp @ 0067cba0 name=FUN_0067cba0 conv=unknown body=611
+
+/* WARNING: Removing unreachable block (ram,0x0067cc97) */
+
+void FUN_0067cba0(int *param_1,int *param_2,
+                 Darray_L_struct_util__tuple2_L_class_util__Str_L_char_G__C_class_util__Darray_L_class_util__Reflectable_P__G___G___G_
+                 *param_3)
+
+{
+  undefined4 stack0xffffff78;
+  undefined4 stack0xffffff84;
+  undefined4 stack0xfffffffc;
+  Material *this;
+  undefined4 *puVar1;
+  bool bVar2;
+  int iVar3;
+  int *piVar4;
+  Type uVar5;
+  util__Str_L_char_G_ *p1;
+  int *piVar6;
+  char *in_stack_ffffff78;
+  void *local_5c[3];
+  undefined **local_50;
+  void *local_4c;
+  undefined8 local_3c;
+  int *local_38;
+  int *local_34;
+  int local_30;
+  int *local_2c;
+  undefined4 *local_28;
+  int *local_24;
+  util__Darray_L_util__Reflectable___G_ local_20;
+  int local_10;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_38 = param_1;
+  local_10 = 0;
+  iVar3 = (**(code **)(*(int *)(uintptr_t)param_1 + 0xc))();
+  if (local_10 < iVar3) {
+    do {
+      piVar4 = (int *)(**(code **)*param_1)();
+      (*(void **)(void *)&local_20) = (undefined1 *)0x0;
+      local_20.Data = (undefined1 **)0x0;
+      local_20.Size = 0;
+      local_20.Capacity = 0;
+      local_34 = param_2;
+      local_2c = piVar4;
+      local_24 = piVar4;
+      iVar3 = (**(code **)(*(int *)(uintptr_t)param_2 + 0xc))();
+      util__Darray_class_util__Reflectable____Darray_class_util__Reflectable__o2((Darray_L_util__Reflectable_P_G_ *)&local_20,iVar3);
+      local_c = 0;
+      iVar3 = (**(code **)(*(int *)(uintptr_t)param_2 + 0xc))();
+      piVar6 = param_2;
+      if (local_c < iVar3) {
+        do {
+          local_28 = (undefined4 *)(**(code **)*piVar6)();
+          this = (Material *)*local_28;
+          if (((undefined1 *)&(this->GetEmissivePowers_W_MemoizedValue))[8] == '\0') {
+            iVar3 = *(int *)(((char *)&(this->GetReflectanceColor_MemoizedValue))+ 4);
+            local_30 = iVar3 + 1;
+            util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+                       (((char *)&(this->GetSaturationMagnetization_A__m_MemoizedValue))+ 0xc),&local_30);
+            bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                               (((char *)&(this->GetSaturationMagnetization_A__m_MemoizedValue))+ 0xc),iVar3);
+            if (bVar2) {
+              *(code **)(*(int *)&this->GetReflectanceColor_MemoizedValue + -4 +
+                        *(int *)(((char *)&(this->GetReflectanceColor_MemoizedValue))+ 4) * 4) =
+                   Material__GetCategory_Clear;
+            }
+            uVar5 = Material__GetCategory_MemoizedFunction(this);
+            ((slice_view *)&local_3c)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&local_3c)->_1_3_[0] | (((slice_view *)&local_3c)->_1_3_[1] << 8) | (((slice_view *)&local_3c)->_1_3_[2] << 16)) << 8));
+            *(undefined4 *)(((char *)&(this->GetEmissivePowers_W_MemoizedValue))+ 4) = uVar5;
+            *(undefined4 *)(((char *)&(this->GetEmissivePowers_W_MemoizedValue))+ 8) = local_3c;
+            piVar6 = local_34;
+          }
+          iVar3 = local_20.Size;
+          puVar1 = local_28;
+          if (*(int *)(((char *)&(this->GetEmissivePowers_W_MemoizedValue))+ 4) == *local_24) {
+            local_28 = (undefined4 *)(local_20.Size + 1);
+            util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&local_20,(int *)&local_28);
+            bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&local_20,iVar3);
+            if (bVar2) {
+              local_20.Data[local_20.Size + -1] = (undefined1 *)*puVar1;
+            }
+          }
+          local_c = local_c + 1;
+          iVar3 = (**(code **)(*(int *)(uintptr_t)piVar6 + 0xc))();
+          piVar4 = local_2c;
+        } while (local_c < iVar3);
+      }
+      if (0 < local_20.Size) {
+        util__Darray_class_util__Reflectable____Darray_class_util__Reflectable((Darray_L_util__Reflectable_P_G_ *)&stack0xffffff84,&local_20);
+        util__Str_char___Str_char((Str_L_char_G_ *)&stack0xffffff78,(util__Str_L_char_G_ *)(piVar4 + 1));
+        p1 = (util__Str_L_char_G_ *)
+             util__MakeTuple_class_util__Str_char__class_util__Darray_class_util__Reflectable__o2(local_5c,in_stack_ffffff78);
+        iVar3 = *(int *)(param_3 + 8);
+        local_2c = (int *)(iVar3 + 1);
+        util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________SetSize(param_3,(int *)&local_2c);
+        bVar2 = util__Darray_struct_util__tuple2_class_util__Str_char__class_util__Darray_class_util__Reflectable________CheckSize(param_3,iVar3);
+        if (bVar2) {
+          iVar3 = *(int *)(param_3 + 4) + *(int *)(param_3 + 8) * 0x1c;
+          util__Str_char___operator__o8((Str_L_char_G_ *)(iVar3 + -0x1c),p1);
+          util__Darray_class_Module____operator
+                    ((Darray_L_class_Module_P_G_ *)(iVar3 + -0x10),
+                     (util__Darray_L_ModulePlacer___G *)(p1 + 1));
+        }
+        local_50 = ((void *)(0x009199e4u));
+        if (local_4c != (void *)0x0) {
+          operator_delete__(local_4c);
+        }
+        local_4c = (void *)0x0;
+        local_50 = ((void *)(0x00919488u));
+        if (local_5c[0] != (void *)0x0) {
+          operator_delete__(local_5c[0]);
+        }
+      }
+      (*(void **)(void *)&local_20) =
+           (undefined1 *)((void *)(0x009199e4u));
+      if (local_20.Data != (undefined1 **)0x0) {
+        operator_delete__(local_20.Data);
+      }
+      param_1 = local_38;
+      local_10 = local_10 + 1;
+      local_20.Data = (undefined1 **)0x0;
+      (*(void **)(void *)&local_20) =
+           (undefined1 *)((void *)(0x00919488u));
+      iVar3 = (**(code **)(*(int *)(uintptr_t)local_38 + 0xc))();
+    } while (local_10 < iVar3);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
 }
 
 
@@ -3750,21 +4448,186 @@ void __thiscall FleetLocation__FleetLocation(FleetLocation *this,FixedOrbit *p1)
 }
 
 
-//==== 00736c00 00736c00_operator_ ====
-// decompiled by BatchDecomp @ 00736c00 name=operator= conv=__thiscall body=50
+//==== 00733810 00733810_IsCapitalShipFleet_Memoize ====
+// decompiled by BatchDecomp @ 00733810 name=Fleet_IsCapitalShipFleet_Memoize conv=__thiscall body=380
 
-/* public: class util__Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_bool_G___G & __thiscall
-   util__Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_bool_G___G___operator_(class util__Maybe_L_struct____util__tuple2_L_struct_ItineraryNode_bool_G___G const &) */
+/* public: void __thiscall Fleet__IsCapitalShipFleet_Memoize(void)const  */
 
-undefined1 * __thiscall
-util_Maybe_struct_util_tuple2_struct_ItineraryNode_bool_operator
-          (Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_C_bool_G___G_ *this,undefined1 *p1)
+void __thiscall Fleet__IsCapitalShipFleet_Memoize(Fleet *this)
 
 {
-  ItineraryNode__operator_((ItineraryNode *)this,(ItineraryNode *)p1);
-memcpy(&(this[0x150]), &(*(Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_Cbool_G___G_ *)(p1 + 0x150)), 16);
-memcpy(&(this[0x158]), &(*(Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_Cbool_G___G_ *)(p1 + 0x158)), 16);
-  return this;
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  bool bVar2;
+  int *piVar3;
+  int iVar4;
+  undefined4 *puVar5;
+  CraftBlueprint *pCVar6;
+  undefined1 uVar7;
+  Darray_L_class_util__WeakPtr_L_class_SpacecraftComponent_G___G_ local_20[16];
+  Fleet *local_10;
+  undefined8 local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_10 = this;
+  if (*(char *)((int)&this->IsMissileFleet_MemoizedValue + 1) == '\0') {
+    iVar4 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+    local_c = iVar4 + 1;
+    util__Darray_struct_util__tuple2_enum_Order__Type_int_____SetSize((Darray_L_struct_util__tuple2_L_enum_Order__Type_Cint_G___G_ *)
+               &this->FleetMemoizationHandlerInstance,&local_c);
+    bVar2 = util__Darray_void____thiscall_Fleet_____void_const____CheckSize((Darray_L_void____thiscall_Fleet___P__void_const__G_ *)
+                       &this->FleetMemoizationHandlerInstance,iVar4);
+    if (bVar2) {
+      iVar4 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 4);
+      iVar1 = *(int *)(((char *)&(this->FleetMemoizationHandlerInstance))+ 8);
+      *(code **)(iVar4 + -8 + iVar1 * 8) = IsCapitalShipFleet_Clear;
+      *(undefined4 *)(iVar4 + -4 + iVar1 * 8) = 0;
+    }
+    piVar3 = (int *)GetSpacecrafts(this);
+    local_c = 0;
+    iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
+    if (local_c < iVar4) {
+      do {
+        puVar5 = (undefined4 *)(**(code **)*piVar3)(&local_c);
+        if ((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) {
+          bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]);
+          if (!bVar2) {
+            *puVar5 = 0;
+          }
+        }
+        pCVar6 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar5);
+        CraftBlueprint__IsAStation_Memoize(pCVar6);
+        if (((undefined1 *)&(pCVar6->GetMainEngineModulePlacers_MemoizedValue))[0xd] == '\0') {
+          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                          "IsValid()",(undefined1 *)0x0);
+          DebugBreak();
+        }
+        if (((undefined1 *)&(pCVar6->GetMainEngineModulePlacers_MemoizedValue))[0xc] != '\0') {
+LAB_00733988:
+          uVar7 = 1;
+          goto LAB_0073395d;
+        }
+        if ((ReferenceController *)puVar5[1] != (ReferenceController *)0x0) {
+          bVar2 = util__ReferenceController__IsDataStillValid((ReferenceController *)puVar5[1]);
+          if (!bVar2) {
+            *puVar5 = 0;
+          }
+        }
+        pCVar6 = SpacecraftComponent__GetCraftDesign((SpacecraftComponent *)*puVar5);
+        CraftBlueprint__IsACapitalShip_Memoize(pCVar6);
+        if (((undefined1 *)&(pCVar6->GetMainEngineModulePlacers_MemoizedValue))[0xf] == '\0') {
+          util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                          "IsValid()",(undefined1 *)0x0);
+          DebugBreak();
+        }
+        if (((undefined1 *)&(pCVar6->GetMainEngineModulePlacers_MemoizedValue))[0xe] != '\0') goto LAB_00733988;
+        local_c = local_c + 1;
+        iVar4 = (**(code **)(*(int *)(uintptr_t)piVar3 + 0xc))();
+      } while (local_c < iVar4);
+    }
+    uVar7 = 0;
+LAB_0073395d:
+    util__Darray_class_util__WeakPtr_class_SpacecraftComponent______Darray_class_util__WeakPtr_class_SpacecraftComponent(local_20);
+    local_c = CONCAT13(1,CONCAT12(uVar7,(undefined2)local_c));
+memcpy(&(local_10->IsMissileFleet_MemoizedValue), &(((slice_view *)&local_c)->_2_2_), 2);
+  }
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return;
+}
+
+
+//==== 0073e9f0 0073e9f0_GetAccelerationAndResidualBurn ====
+// decompiled by BatchDecomp @ 0073e9f0 name=GetAccelerationAndResidualBurn conv=__thiscall body=457
+
+/* private: struct util__tuple2_L_struct_util__Vec3_L_double_G__struct_util__Vec3_L_double_G___G __thiscall
+   Itinerary__GetAccelerationAndResidualBurn(struct ItineraryNode const &,double,double)const  */
+
+ItineraryNode * __thiscall
+Itinerary__GetAccelerationAndResidualBurn(Itinerary *this,ItineraryNode *p1,double p2,double p3)
+
+{
+  undefined1 auVar1[16];
+  undefined1 auVar2[16];
+  double dVar3;
+  undefined1 auVar4[16];
+  util__Maybe_L_double_G_ *puVar5;
+  double dVar6;
+  double dVar7;
+  double dVar8;
+  int in_stack_00000008;
+  util__Maybe_L_double_G_ local_44;
+  undefined8 local_34;
+  double dStack_2c;
+  double local_24;
+  double local_1c;
+  double local_14;
+  double local_c;
+  
+  dVar6 = 0.0;
+  dVar3 = 0.0;
+  dVar7 = 0.0;
+  dVar8 = 0.0;
+  local_1c = *(double *)(in_stack_00000008 + 0x78) + *(double *)(in_stack_00000008 + 0x90);
+  dStack_2c = *(double *)(in_stack_00000008 + 0x88) + *(double *)(in_stack_00000008 + 0xa0);
+  local_24 = *(double *)(in_stack_00000008 + 0x80) + *(double *)(in_stack_00000008 + 0x98);
+  if (((NAN(local_1c) == (local_1c == 0.0)) || (NAN(local_24) == (local_24 == 0.0))) ||
+     (NAN(dStack_2c) == (dStack_2c == 0.0))) {
+    local_c = local_24 * local_24 + local_1c * local_1c + dStack_2c * dStack_2c;
+    if (p2 * p3 * p2 * p3 < local_c) {
+      puVar5 = util__Sqrt(&local_44,(undefined1 *)&local_c);
+      if ((char)puVar5->IsValidData == '\0') {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                        "IsValid()",(undefined1 *)0x0);
+        DebugBreak();
+      }
+      local_14 = puVar5->Data;
+      if (local_14 <= /*0000000000000000*/0.0) {
+        util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\coremath\\vector.inl",
+                        0x1a9,"len > 0",(undefined1 *)0x0);
+        DebugBreak();
+      }
+      dVar6 = dStack_2c;
+      local_14 = /*3ff0000000000000*/1.0 / local_14;
+      dVar3 = local_14 * local_1c * p3;
+      dVar7 = local_14 * local_24 * p3;
+      dVar8 = local_14 * dStack_2c * p3;
+      ((slice_view *)&auVar2)->_8_4_ = *(undefined4 *)&dVar7;
+      ((slice_view *)&auVar2)->_0_8_ = dVar3;
+      ((slice_view *)&auVar2)->_12_4_ = (int)((ulonglong)dVar7 >> 0x20);
+      local_24 = local_24 - dVar7 * p2;
+      local_1c = local_1c - dVar3 * p2;
+      dStack_2c = ((slice_view *)&auVar2)->_8_8_;
+      dVar6 = dVar6 - dVar8 * p2;
+      goto LAB_0073eb9f;
+    }
+    dVar3 = local_1c / p2;
+    dVar7 = local_24 / p2;
+    dVar8 = dStack_2c / p2;
+  }
+  local_1c = 0.0;
+  local_24 = 0.0;
+  dStack_2c = dVar7;
+LAB_0073eb9f:
+  ((slice_view *)&auVar1)->_8_4_ = *(undefined4 *)&dStack_2c;
+  ((slice_view *)&auVar1)->_0_8_ = dVar3;
+  ((slice_view *)&auVar1)->_12_4_ = (int)((ulonglong)dStack_2c >> 0x20);
+memcpy(&(p1->Parent), &(((slice_view *)&auVar1)->_0_8_), 8);
+  ((undefined1 *)&(p1->LastState))[0] = auVar1[8];
+  ((undefined1 *)&(p1->LastState))[1] = auVar1[9];
+  ((undefined1 *)&(p1->LastState))[2] = auVar1[10];
+  ((undefined1 *)&(p1->LastState))[3] = auVar1[0xb];
+  ((undefined1 *)&(p1->LastState))[4] = auVar1[0xc];
+  ((undefined1 *)&(p1->LastState))[5] = auVar1[0xd];
+  ((undefined1 *)&(p1->LastState))[6] = auVar1[0xe];
+  ((undefined1 *)&(p1->LastState))[7] = auVar1[0xf];
+  ((slice_view *)&auVar4)->_8_4_ = *(undefined4 *)&local_24;
+  ((slice_view *)&auVar4)->_0_8_ = local_1c;
+  ((slice_view *)&auVar4)->_12_4_ = (int)((ulonglong)local_24 >> 0x20);
+memcpy(&(*(undefined1 (*) [16])(((char *)&(p1->LastState))+ 0x10)), &(auVar4), 16);
+  *(double *)(((char *)&(p1->LastState))+ 8) = dVar8;
+  *(double *)(((char *)&(p1->LastState))+ 0x20) = dVar6;
+  return p1;
 }
 
 
@@ -3996,7 +4859,7 @@ memcpy(&(in_stack_00000004[1].Parent), &(*(undefined8 *)((*(char (*)[2432])((cha
 //==== 00785040 00785040_ScrollToDatum ====
 // decompiled by BatchDecomp @ 00785040 name=ScrollToDatum conv=__thiscall body=319
 
-/* public: void __thiscall UIListBox_struct_ItineraryNode___ScrollToDatum(struct ItineraryNode) */
+/* public: void __thiscall UIListBox_struct_ItineraryNode_ScrollToDatum(struct ItineraryNode) */
 
 void __thiscall
 UIListBox_struct_ItineraryNode_ScrollToDatum(UIListBox_L_struct_ItineraryNode_G_ *this,int p1)
@@ -4355,7 +5218,7 @@ LAB_00787bf5:
 //==== 0078f760 0078f760_Add ====
 // decompiled by BatchDecomp @ 0078f760 name=Add conv=__thiscall body=92
 
-/* public: bool __thiscall util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____Add(struct util__tuple2_L_struct_ItineraryNode_enum____ItineraryMarker__Type_G const &) */
+/* public: bool __thiscall util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Add(struct util__tuple2_L_struct_ItineraryNode_enum____ItineraryMarker__Type_G const &) */
 
 bool __thiscall
 util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Add(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_enum_ItineraryMarker__Type_G___G_ *this,
@@ -4383,7 +5246,7 @@ util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Ad
 //==== 0078fc70 0078fc70_CheckSize ====
 // decompiled by BatchDecomp @ 0078fc70 name=CheckSize conv=__thiscall body=385
 
-/* private: bool __thiscall util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____CheckSize(int) */
+/* private: bool __thiscall util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_CheckSize(int) */
 
 bool __thiscall
 util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_CheckSize(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_enum_ItineraryMarker__Type_G___G_ *this,
@@ -4482,7 +5345,7 @@ util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Ch
 //==== 00799cf0 00799cf0_SetAll ====
 // decompiled by BatchDecomp @ 00799cf0 name=SetAll conv=__thiscall body=79
 
-/* public: virtual void __thiscall util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____SetAll(struct util__tuple2_L_struct_ItineraryNode_enum____ItineraryMarker__Type_G const &) */
+/* public: virtual void __thiscall util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_SetAll(struct util__tuple2_L_struct_ItineraryNode_enum____ItineraryMarker__Type_G const &) */
 
 void __thiscall
 util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_SetAll(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_enum_ItineraryMarker__Type_G___G_ *this,
@@ -4506,7 +5369,7 @@ util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Se
 //==== 0079a800 0079a800_SetSize ====
 // decompiled by BatchDecomp @ 0079a800 name=SetSize conv=__thiscall body=283
 
-/* private: void __thiscall util__Darray_struct_util__tuple2_struct_ItineraryNode_enum_ItineraryMarker__Type_____SetSize(int const &) */
+/* private: void __thiscall util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_SetSize(int const &) */
 
 void __thiscall
 util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_SetSize(Darray_L_struct_util__tuple2_L_struct_ItineraryNode_C_enum_ItineraryMarker__Type_G___G_ *this,
@@ -4946,7 +5809,7 @@ memcpy(&(auVar2), &(*pauVar10), 16);
 // decompiled by BatchDecomp @ 0079ff50 name=operator() conv=__thiscall body=400
 
 /* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: struct WorldObject __thiscall util__Delegate_struct_WorldObject___operator__()(void)const
+/* public: struct WorldObject __thiscall util_Delegate_struct_WorldObject_operator()(void)const
     */
 
 WorldObject * __thiscall
@@ -5032,46 +5895,6 @@ util_Delegate_struct_WorldObject_operator
     }
   }
   return __return_storage_ptr__;
-}
-
-
-//==== 007a0f60 007a0f60_Tick ====
-// decompiled by BatchDecomp @ 007a0f60 name=Tick conv=__thiscall body=212
-
-/* WARNING: Enum "FT_Encoding_": Some values do not have unique names */
-/* public: virtual void __thiscall SelectionMarker__Tick(double) */
-
-void __thiscall SelectionMarker__Tick(SelectionMarker *this,double p1)
-
-{
-  undefined4 stack0xfffffffc;
-  bool bVar1;
-  bool bVar2;
-  WorldObject local_2c0;
-  uint local_8;
-  
-  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
-  util_Delegate_struct_WorldObject_operator
-            ((Delegate_L_struct_WorldObject_G *)(this + 1),&local_2c0);
-  if (((*(ReferenceController **)((*(char (*)[696])((char *)this + 376)) + 4) == local_2c0.Object.Controller) &&
-      (*(Actor **)(*(char (*)[696])((char *)this + 376)) == local_2c0.Object.Pointer)) &&
-     (local_2c0.LPointID == *(int *)((*(char (*)[696])((char *)this + 376)) + 8))) {
-    bVar1 = ItineraryNode__IsValid((ItineraryNode *)((*(char (*)[696])((char *)this + 376)) + 0x10));
-    bVar2 = ItineraryNode__IsValid((ItineraryNode *)&local_2c0.Node);
-    if (bVar2 == bVar1) {
-      UIZoomCrosshairs__Tick(&this->Zoom,p1);
-      goto LAB_007a1008;
-    }
-  }
-  UIZoomCrosshairs__Reset(&this->Zoom);
-  WorldObject__operator_((WorldObject *)(*(char (*)[696])((char *)this + 376)),(WorldObject *)&local_2c0);
-LAB_007a1008:
-  NodeMouseOver__dtor((NodeMouseOver *)&local_2c0.Node);
-  if (local_2c0.Object.Controller != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(local_2c0.Object.Controller);
-  }
-  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
-  return;
 }
 
 
@@ -5642,7 +6465,7 @@ memcpy(&(this->HasDeltaVLeft_MemoizedValue), &(((slice_view *)&local_8)->_2_2_),
 
 
 //==== 007d42a0 007d42a0_HasFuelForTurningLeft_Memoize ====
-// decompiled by BatchDecomp @ 007d42a0 name=SpacecraftComponent_HasFuelForTurningLeft_Memoize conv=__thiscall body=92
+// decompiled by BatchDecomp @ 007d42a0 name=SpacecraftComponent__HasFuelForTurningLeft_Memoize conv=__thiscall body=92
 
 /* public: void __thiscall SpacecraftComponent__HasFuelForTurningLeft_Memoize(void)const  */
 
@@ -5670,6 +6493,59 @@ void __thiscall SpacecraftComponent__HasFuelForTurningLeft_Memoize(SpacecraftCom
 memcpy(&(this->HasWeaponsLeft_MemoizedValue), &(((slice_view *)&local_8)->_2_2_), 2);
   }
   return;
+}
+
+
+//==== 007d4470 007d4470_HasNoDeltaVButUsedTo ====
+// decompiled by BatchDecomp @ 007d4470 name=HasNoDeltaVButUsedTo conv=__thiscall body=203
+
+/* public: bool __thiscall SpacecraftComponent__HasNoDeltaVButUsedTo(void)const  */
+
+bool __thiscall SpacecraftComponent__HasNoDeltaVButUsedTo(SpacecraftComponent *this)
+
+{
+  int iVar1;
+  CraftBlueprint *this_00;
+  bool bVar2;
+  undefined8 local_8;
+  
+  bVar2 = *(char *)((int)&this->HasDeltaVLeft_MemoizedValue + 1) == '\0';
+  local_8 = this;
+  if (bVar2) {
+    iVar1 = *(int *)(((char *)&(this->SpacecraftComponentMemoizationHandlerInstance))+ 8);
+    local_8 = (SpacecraftComponent *)(iVar1 + 1);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)
+               &this->SpacecraftComponentMemoizationHandlerInstance,&local_8);
+    bVar2 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                       &this->SpacecraftComponentMemoizationHandlerInstance,iVar1);
+    if (bVar2) {
+      *(code **)(*(int *)(((char *)&(this->SpacecraftComponentMemoizationHandlerInstance))+ 4) + -4 +
+                *(int *)(((char *)&(this->SpacecraftComponentMemoizationHandlerInstance))+ 8) * 4) =
+           HasDeltaVLeft_Clear;
+    }
+    bVar2 = SpacecraftComponent_HasDeltaVLeft_MemoizedFunction(this);
+    local_8 = (SpacecraftComponent *)CONCAT13(1,CONCAT12(bVar2,(undefined2)local_8));
+memcpy(&(this->HasDeltaVLeft_MemoizedValue), &(((slice_view *)&local_8)->_2_2_), 2);
+    bVar2 = *(char *)((int)&this->HasDeltaVLeft_MemoizedValue + 1) == '\0';
+  }
+  if (bVar2) {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(undefined1 *)0x0);
+    DebugBreak();
+  }
+  if (*(char *)&this->HasDeltaVLeft_MemoizedValue == '\0') {
+    this_00 = *(CraftBlueprint **)(*(int *)&this->GetCompartmentCollisionShells_MemoizedValue + 8);
+    CraftBlueprint__IsThrustingCraft_Memoize(this_00);
+    if (((undefined1 *)&(this_00[1].MaterialClass__Armor.ArmorLayers))[9] == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+    if (((undefined1 *)&(this_00[1].MaterialClass__Armor.ArmorLayers))[8] != '\0') {
+      return true;
+    }
+  }
+  return false;
 }
 
 
@@ -6257,5 +7133,450 @@ util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorPixelPosition(UIEditTextBo
   uVar6.Y = extraout_EDX;
   uVar6.X = (int)piVar5;
   return uVar6;
+}
+
+
+//==== 008e3b3e 008e3b3e__ftol3 ====
+// decompiled by BatchDecomp @ 008e3b3e name=_ftol3 conv=__cdecl body=13
+
+/* WARNING: Removing unreachable block (ram,0x008e3b68) */
+/* WARNING: Removing unreachable block (ram,0x008e3b76) */
+
+void __cdecl _ftol3(void)
+
+{
+  double dVar1;
+  ushort in_FPUControlWord;
+  float in_XMM0_Da;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar2[16];
+  undefined1 auVar3[16];
+  undefined1 auVar4[16];
+  longlong lVar5;
+  undefined1 auVar6[16];
+  
+  if (((0x7f7fffff < (uint)ABS(in_XMM0_Da)) ||
+      (dVar1 = (double)in_XMM0_Da, (double)_MaxInt64 <= dVar1)) || (dVar1 < (double)_MinInt64)) {
+    _ftol3_except();
+    return;
+  }
+  ((slice_view *)&auVar2)->_0_8_ = ABS(dVar1);
+  ((slice_view *)&auVar2)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+  if (((((slice_view *)&auVar2)->_0_8_ <= (double)_MinFP32) && (((slice_view *)&auVar2)->_0_8_ != 0.0)) &&
+     ((in_FPUControlWord & 0x10) == 0)) {
+    _ftol3_except();
+    return;
+  }
+  if (((slice_view *)&auVar2)->_0_8_ != 0.0) {
+    ((slice_view *)&auVar4)->_8_8_ = 0;
+    ((slice_view *)&auVar4)->_0_8_ = _MantissaMask;
+    ((slice_view *)&auVar3)->_8_8_ = 0;
+    ((slice_view *)&auVar3)->_0_8_ = _IntegerBit;
+memcpy(&(auVar3), &(au_or2(au_and2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar4)), *(const auV16_t *)&(auVar3))), 16);
+    lVar5 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&auVar2)->_0_8_ >> 0x34);
+    if ((0 < (int)lVar5) &&
+       (((slice_view *)&auVar6)->_0_8_ = (((slice_view *)&auVar3)->_0_8_ >> lVar5) << lVar5,
+       ((slice_view *)&auVar6)->_8_8_ = (((slice_view *)&auVar3)->_8_8_ >> lVar5) << -(((slice_view *)&auVar2)->_8_8_ >> 0x34),
+       (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar6)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar6)) - 4) != 0)) {
+      _ftol3_except();
+    }
+  }
+  return;
+}
+
+
+//==== 008e3b4b 008e3b4b__ftol3_NaN ====
+// decompiled by BatchDecomp @ 008e3b4b name=_ftol3_NaN conv=__cdecl body=24
+
+void __cdecl _ftol3_NaN(void)
+
+{
+  int in_ECX;
+  int extraout_ECX;
+  ushort in_FPUControlWord;
+  float in_XMM0_Da;
+  double dVar1;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar2[16];
+  undefined1 auVar3[16];
+  undefined1 auVar4[16];
+  longlong lVar5;
+  double in_XMM5_Qa;
+  undefined1 auVar6[16];
+  
+  if ((uint)ABS(in_XMM0_Da) < 0x7f800000) {
+    dVar1 = (double)in_XMM0_Da;
+    if ((in_ECX == 2) && ((double)_MinSubInexact < dVar1)) {
+      _ftol3_except();
+      in_ECX = extraout_ECX;
+    }
+    if ((dVar1 < in_XMM5_Qa) && ((double)_MinInt64 <= dVar1)) {
+      ((slice_view *)&auVar2)->_0_8_ = ABS(dVar1);
+      ((slice_view *)&auVar2)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+      if (((in_ECX != 1) && (((slice_view *)&auVar2)->_0_8_ <= (double)_MinFP32)) && (((slice_view *)&auVar2)->_0_8_ != 0.0)) {
+        if ((in_FPUControlWord & 0x10) == 0) {
+          _ftol3_except();
+          return;
+        }
+      }
+      if (((slice_view *)&auVar2)->_0_8_ != 0.0) {
+        ((slice_view *)&auVar4)->_8_8_ = 0;
+        ((slice_view *)&auVar4)->_0_8_ = _MantissaMask;
+        ((slice_view *)&auVar3)->_8_8_ = 0;
+        ((slice_view *)&auVar3)->_0_8_ = _IntegerBit;
+memcpy(&(auVar3), &(au_or2(au_and2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar4)), *(const auV16_t *)&(auVar3))), 16);
+        lVar5 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&auVar2)->_0_8_ >> 0x34);
+        if ((0 < (int)lVar5) &&
+           (((slice_view *)&auVar6)->_0_8_ = (((slice_view *)&auVar3)->_0_8_ >> lVar5) << lVar5,
+           ((slice_view *)&auVar6)->_8_8_ = (((slice_view *)&auVar3)->_8_8_ >> lVar5) << -(((slice_view *)&auVar2)->_8_8_ >> 0x34),
+           (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar6)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar6)) - 4) != 0)) {
+          _ftol3_except();
+        }
+      }
+      return;
+    }
+  }
+  _ftol3_except();
+  return;
+}
+
+
+//==== 008e3b63 008e3b63__ftol3_work ====
+// decompiled by BatchDecomp @ 008e3b63 name=_ftol3_work conv=__cdecl body=134
+
+void __cdecl _ftol3_work(void)
+
+{
+  int in_ECX;
+  int extraout_ECX;
+  ushort in_FPUControlWord;
+  double in_XMM0_Qa;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar1[16];
+  undefined1 auVar2[16];
+  undefined1 auVar3[16];
+  longlong lVar4;
+  double in_XMM5_Qa;
+  undefined1 auVar5[16];
+  
+  if ((in_ECX == 2) && ((double)_MinSubInexact < in_XMM0_Qa)) {
+    _ftol3_except();
+    in_ECX = extraout_ECX;
+  }
+  if ((in_XMM0_Qa < in_XMM5_Qa) && ((double)_MinInt64 <= in_XMM0_Qa)) {
+    ((slice_view *)&auVar1)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar1)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+    if (((in_ECX != 1) && (((slice_view *)&auVar1)->_0_8_ <= (double)_MinFP32)) && (((slice_view *)&auVar1)->_0_8_ != 0.0)) {
+      if ((in_FPUControlWord & 0x10) == 0) {
+        _ftol3_except();
+        return;
+      }
+    }
+    if (((slice_view *)&auVar1)->_0_8_ != 0.0) {
+      ((slice_view *)&auVar3)->_8_8_ = 0;
+      ((slice_view *)&auVar3)->_0_8_ = _MantissaMask;
+      ((slice_view *)&auVar2)->_8_8_ = 0;
+      ((slice_view *)&auVar2)->_0_8_ = _IntegerBit;
+memcpy(&(auVar2), &(au_or2(au_and2(*(const auV16_t *)&(auVar1), *(const auV16_t *)&(auVar3)), *(const auV16_t *)&(auVar2))), 16);
+      lVar4 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&auVar1)->_0_8_ >> 0x34);
+      if ((0 < (int)lVar4) &&
+         (((slice_view *)&auVar5)->_0_8_ = (((slice_view *)&auVar2)->_0_8_ >> lVar4) << lVar4,
+         ((slice_view *)&auVar5)->_8_8_ = (((slice_view *)&auVar2)->_8_8_ >> lVar4) << -(((slice_view *)&auVar1)->_8_8_ >> 0x34),
+         (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar5)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar5)) - 4) != 0)) {
+        _ftol3_except();
+      }
+    }
+    return;
+  }
+  _ftol3_except();
+  return;
+}
+
+
+//==== 008e3be9 008e3be9__ftol3_common ====
+// decompiled by BatchDecomp @ 008e3be9 name=_ftol3_common conv=__cdecl body=194
+
+void __cdecl _ftol3_common(void)
+
+{
+  undefined1 in_XMM1[16];
+  undefined1 auVar1[16];
+  undefined1 auVar2[16];
+  longlong lVar3;
+  undefined1 auVar4[16];
+  
+  if (((slice_view *)&in_XMM1)->_0_8_ != 0.0) {
+    ((slice_view *)&auVar2)->_8_8_ = 0;
+    ((slice_view *)&auVar2)->_0_8_ = _MantissaMask;
+    ((slice_view *)&auVar1)->_8_8_ = 0;
+    ((slice_view *)&auVar1)->_0_8_ = _IntegerBit;
+memcpy(&(auVar1), &(au_or2(au_and2(*(const auV16_t *)&(in_XMM1), *(const auV16_t *)&(auVar2)), *(const auV16_t *)&(auVar1))), 16);
+    lVar3 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&in_XMM1)->_0_8_ >> 0x34);
+    if ((0 < (int)lVar3) &&
+       (((slice_view *)&auVar4)->_0_8_ = (((slice_view *)&auVar1)->_0_8_ >> lVar3) << lVar3,
+       ((slice_view *)&auVar4)->_8_8_ = (((slice_view *)&auVar1)->_8_8_ >> lVar3) << -(((slice_view *)&in_XMM1)->_8_8_ >> 0x34),
+       (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar1), *(const auV16_t *)&(auVar4)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar1), *(const auV16_t *)&(auVar4)) - 4) != 0)) {
+      _ftol3_except();
+    }
+  }
+  return;
+}
+
+
+//==== 008e3d1f 008e3d1f__dtol3 ====
+// decompiled by BatchDecomp @ 008e3d1f name=_dtol3 conv=__cdecl body=13
+
+/* WARNING: Removing unreachable block (ram,0x008e3b63) */
+/* WARNING: Removing unreachable block (ram,0x008e3d89) */
+/* WARNING: Removing unreachable block (ram,0x008e3b68) */
+/* WARNING: Removing unreachable block (ram,0x008e3b76) */
+/* WARNING: Removing unreachable block (ram,0x008e3b80) */
+/* WARNING: Removing unreachable block (ram,0x008e3b8a) */
+/* WARNING: Removing unreachable block (ram,0x008e3b9c) */
+/* WARNING: Removing unreachable block (ram,0x008e3baf) */
+/* WARNING: Removing unreachable block (ram,0x008e3bbd) */
+/* WARNING: Removing unreachable block (ram,0x008e3bc7) */
+/* WARNING: Removing unreachable block (ram,0x008e3bd7) */
+
+void __cdecl _dtol3(void)
+
+{
+  int iVar1;
+  int extraout_ECX;
+  double in_XMM0_Qa;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar2[16];
+  undefined1 auVar3[16];
+  double dVar4;
+  undefined1 auVar5[16];
+  longlong lVar6;
+  double dVar7;
+  undefined1 auVar8[16];
+  
+  iVar1 = 5;
+  if (((uint)((ulonglong)in_XMM0_Qa >> 0x20) & 0x7fffffff) < 0x7ff00000) {
+    ((slice_view *)&auVar2)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar2)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+    dVar7 = (double)_MaxInt64;
+    if ((double)_MaxFP32 < ((slice_view *)&auVar2)->_0_8_) {
+      _ftol3_except();
+      _ftol3_except();
+      iVar1 = extraout_ECX;
+    }
+    dVar4 = ((slice_view *)&auVar2)->_0_8_;
+    if (dVar4 < (double)_MinFP32) {
+      if (dVar4 == 0.0) {
+        if (dVar4 != 0.0) {
+          ((slice_view *)&auVar5)->_8_8_ = 0;
+          ((slice_view *)&auVar5)->_0_8_ = _MantissaMask;
+          ((slice_view *)&auVar3)->_8_8_ = 0;
+          ((slice_view *)&auVar3)->_0_8_ = _IntegerBit;
+memcpy(&(auVar3), &(au_or2(au_and2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar5)), *(const auV16_t *)&(auVar3))), 16);
+          lVar6 = (ulonglong)_i1075 - ((ulonglong)dVar4 >> 0x34);
+          if ((0 < (int)lVar6) &&
+             (((slice_view *)&auVar8)->_0_8_ = (((slice_view *)&auVar3)->_0_8_ >> lVar6) << lVar6,
+             ((slice_view *)&auVar8)->_8_8_ = (((slice_view *)&auVar3)->_8_8_ >> lVar6) << -(((slice_view *)&auVar2)->_8_8_ >> 0x34),
+             (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar8)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar3), *(const auV16_t *)&(auVar8)) - 4) != 0)) {
+            _ftol3_except();
+          }
+        }
+        return;
+      }
+      _ftol3_except();
+      _ftol3_except();
+      _ftol3_common();
+      return;
+    }
+    dVar4 = in_XMM0_Qa;
+    if ((iVar1 == 4) && ((double)_MaxInt64 <= in_XMM0_Qa)) {
+      dVar4 = in_XMM0_Qa - (double)_MaxInt64;
+    }
+    if ((int)((ulonglong)((longlong)dVar4 << 0x23) >> 0x20) != 0) {
+      _ftol3_except();
+    }
+    if ((in_XMM0_Qa < dVar7) && ((double)_MinInt64 <= in_XMM0_Qa)) {
+      _ftol3_common();
+      return;
+    }
+  }
+  _ftol3_except();
+  return;
+}
+
+
+//==== 008e3d2c 008e3d2c__dtol3_NaN ====
+// decompiled by BatchDecomp @ 008e3d2c name=_dtol3_NaN conv=__cdecl body=29
+
+/* WARNING: Removing unreachable block (ram,0x008e3b68) */
+/* WARNING: Removing unreachable block (ram,0x008e3b76) */
+/* WARNING: Removing unreachable block (ram,0x008e3baf) */
+/* WARNING: Removing unreachable block (ram,0x008e3bbd) */
+/* WARNING: Removing unreachable block (ram,0x008e3bc7) */
+/* WARNING: Removing unreachable block (ram,0x008e3bd7) */
+
+void __cdecl _dtol3_NaN(void)
+
+{
+  int in_ECX;
+  int extraout_ECX;
+  int extraout_ECX_00;
+  double in_XMM0_Qa;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar1[16];
+  undefined1 auVar2[16];
+  double dVar3;
+  undefined1 auVar4[16];
+  longlong lVar5;
+  double in_XMM5_Qa;
+  undefined1 auVar6[16];
+  
+  if (0x7fefffff < ((uint)((ulonglong)in_XMM0_Qa >> 0x20) & 0x7fffffff)) {
+_ftol3_arg_error:
+    _ftol3_except();
+    return;
+  }
+  if (in_ECX == 1) {
+    if ((in_XMM5_Qa <= in_XMM0_Qa) || (in_XMM0_Qa < (double)_MinInt64)) goto _ftol3_arg_error;
+    ((slice_view *)&auVar1)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar1)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+  }
+  else {
+    ((slice_view *)&auVar1)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar1)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+    if ((double)_MaxFP32 < ((slice_view *)&auVar1)->_0_8_) {
+      if (in_ECX == 4) {
+        _ftol3_except();
+        _ftol3_except();
+        in_ECX = extraout_ECX_00;
+      }
+      else {
+        _ftol3_except();
+        _ftol3_except();
+        in_ECX = extraout_ECX;
+      }
+    }
+    if ((double)_MinFP32 <= ((slice_view *)&auVar1)->_0_8_) {
+      dVar3 = in_XMM0_Qa;
+      if ((in_ECX == 4) && ((double)_MaxInt64 <= in_XMM0_Qa)) {
+        dVar3 = in_XMM0_Qa - (double)_MaxInt64;
+      }
+      if ((int)((ulonglong)((longlong)dVar3 << 0x23) >> 0x20) != 0) {
+        _ftol3_except();
+      }
+      if ((in_XMM0_Qa < in_XMM5_Qa) && ((double)_MinInt64 <= in_XMM0_Qa)) {
+        _ftol3_common();
+        return;
+      }
+      goto _ftol3_arg_error;
+    }
+    if (((slice_view *)&auVar1)->_0_8_ != 0.0) {
+      _ftol3_except();
+      _ftol3_except();
+      _ftol3_common();
+      return;
+    }
+  }
+  if (((slice_view *)&auVar1)->_0_8_ != 0.0) {
+    ((slice_view *)&auVar4)->_8_8_ = 0;
+    ((slice_view *)&auVar4)->_0_8_ = _MantissaMask;
+    ((slice_view *)&auVar2)->_8_8_ = 0;
+    ((slice_view *)&auVar2)->_0_8_ = _IntegerBit;
+memcpy(&(auVar2), &(au_or2(au_and2(*(const auV16_t *)&(auVar1), *(const auV16_t *)&(auVar4)), *(const auV16_t *)&(auVar2))), 16);
+    lVar5 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&auVar1)->_0_8_ >> 0x34);
+    if ((0 < (int)lVar5) &&
+       (((slice_view *)&auVar6)->_0_8_ = (((slice_view *)&auVar2)->_0_8_ >> lVar5) << lVar5,
+       ((slice_view *)&auVar6)->_8_8_ = (((slice_view *)&auVar2)->_8_8_ >> lVar5) << -(((slice_view *)&auVar1)->_8_8_ >> 0x34),
+       (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar6)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar6)) - 4) != 0)) {
+      _ftol3_except();
+    }
+  }
+  return;
+}
+
+
+//==== 008e3d49 008e3d49__dtol3_work ====
+// decompiled by BatchDecomp @ 008e3d49 name=_dtol3_work conv=__cdecl body=229
+
+/* WARNING: Removing unreachable block (ram,0x008e3b68) */
+/* WARNING: Removing unreachable block (ram,0x008e3b76) */
+/* WARNING: Removing unreachable block (ram,0x008e3baf) */
+/* WARNING: Removing unreachable block (ram,0x008e3bbd) */
+/* WARNING: Removing unreachable block (ram,0x008e3bc7) */
+/* WARNING: Removing unreachable block (ram,0x008e3bd7) */
+
+void __cdecl _dtol3_work(void)
+
+{
+  int in_ECX;
+  int extraout_ECX;
+  int extraout_ECX_00;
+  double in_XMM0_Qa;
+  ulonglong in_XMM0_Qb;
+  undefined1 auVar1[16];
+  undefined1 auVar2[16];
+  double dVar3;
+  undefined1 auVar4[16];
+  longlong lVar5;
+  double in_XMM5_Qa;
+  undefined1 auVar6[16];
+  
+  if (in_ECX == 1) {
+    if ((in_XMM5_Qa <= in_XMM0_Qa) || (in_XMM0_Qa < (double)_MinInt64)) goto _ftol3_arg_error;
+    ((slice_view *)&auVar1)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar1)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+  }
+  else {
+    ((slice_view *)&auVar1)->_0_8_ = ABS(in_XMM0_Qa);
+    ((slice_view *)&auVar1)->_8_8_ = in_XMM0_Qb & 0x7fffffffffffffff;
+    if ((double)_MaxFP32 < ((slice_view *)&auVar1)->_0_8_) {
+      if (in_ECX == 4) {
+        _ftol3_except();
+        _ftol3_except();
+        in_ECX = extraout_ECX_00;
+      }
+      else {
+        _ftol3_except();
+        _ftol3_except();
+        in_ECX = extraout_ECX;
+      }
+    }
+    if ((double)_MinFP32 <= ((slice_view *)&auVar1)->_0_8_) {
+      dVar3 = in_XMM0_Qa;
+      if ((in_ECX == 4) && ((double)_MaxInt64 <= in_XMM0_Qa)) {
+        dVar3 = in_XMM0_Qa - (double)_MaxInt64;
+      }
+      if ((int)((ulonglong)((longlong)dVar3 << 0x23) >> 0x20) != 0) {
+        _ftol3_except();
+      }
+      if ((in_XMM0_Qa < in_XMM5_Qa) && ((double)_MinInt64 <= in_XMM0_Qa)) {
+        _ftol3_common();
+        return;
+      }
+_ftol3_arg_error:
+      _ftol3_except();
+      return;
+    }
+    if (((slice_view *)&auVar1)->_0_8_ != 0.0) {
+      _ftol3_except();
+      _ftol3_except();
+      _ftol3_common();
+      return;
+    }
+  }
+  if (((slice_view *)&auVar1)->_0_8_ != 0.0) {
+    ((slice_view *)&auVar4)->_8_8_ = 0;
+    ((slice_view *)&auVar4)->_0_8_ = _MantissaMask;
+    ((slice_view *)&auVar2)->_8_8_ = 0;
+    ((slice_view *)&auVar2)->_0_8_ = _IntegerBit;
+memcpy(&(auVar2), &(au_or2(au_and2(*(const auV16_t *)&(auVar1), *(const auV16_t *)&(auVar4)), *(const auV16_t *)&(auVar2))), 16);
+    lVar5 = (ulonglong)_i1075 - ((ulonglong)((slice_view *)&auVar1)->_0_8_ >> 0x34);
+    if ((0 < (int)lVar5) &&
+       (((slice_view *)&auVar6)->_0_8_ = (((slice_view *)&auVar2)->_0_8_ >> lVar5) << lVar5,
+       ((slice_view *)&auVar6)->_8_8_ = (((slice_view *)&auVar2)->_8_8_ >> lVar5) << -(((slice_view *)&auVar1)->_8_8_ >> 0x34),
+       (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar6)) - 0) != 0 || (*(const unsigned int *)&au_xor2(*(const auV16_t *)&(auVar2), *(const auV16_t *)&(auVar6)) - 4) != 0)) {
+      _ftol3_except();
+    }
+  }
+  return;
 }
 
