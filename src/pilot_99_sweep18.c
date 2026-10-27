@@ -1035,7 +1035,6 @@ extern int Fleet_GetMaxAcceleration_m_s2_Memoize(); /* K&R stub; ret by call sit
 extern int Fleet_GetOriginalDeltaV_km_s_Memoize(); /* K&R stub; ret by call site */
 extern int Fleet_GetRemainingDeltaV_km_s_Memoize(); /* K&R stub; ret by call site */
 extern int Fleet_GetTotalTonnage_kg_Memoize(); /* K&R stub; ret by call site */
-extern int Fleet_IsCapitalShipFleet_Memoize(); /* K&R stub; ret by call site */
 extern int Fleet__IsMissileFleet_MemoizedFunction(); /* K&R stub; ret by call site */
 extern int Graphics__TextureStack__TextureStack_struct_CustomTexture(); /* K&R stub; ret by call site */
 extern int Icons_Disarmed(); /* K&R stub; ret by call site */
@@ -2670,6 +2669,7 @@ extern LibrationOrbit * __thiscall util_Maybe_struct_LibrationOrbit_operator(May
 extern void __thiscall util_Maybe_struct_PendingBattle_Maybe_struct_PendingBattle(Maybe_L_struct_PendingBattle_G_ *this,PendingBattle *p1);
 extern PendingBattle * __thiscall util_Maybe_struct_PendingBattle_operator(Maybe_L_struct_PendingBattle_G_ *this);
 extern undefined1 * __thiscall util_Maybe_struct_util_tuple2_class_util_WeakPtr_class_Fleet_struct_ItineraryNode_operator (Maybe_L_struct_util__tuple2_L_class_util__WeakPtr_L_class_Fleet_G__C_struct_ItineraryNode_G___G_ *this, undefined1 *p1);
+extern undefined1 * __thiscall util_Maybe_struct_util_tuple2_struct_ItineraryNode_bool_operator (Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_C_bool_G___G_ *this,undefined1 *p1);
 extern void __thiscall util__Darray_L_struct_ActorDropdownAction_G___Darray_L_struct_ActorDropdownAction_G (Darray_L_struct_ActorDropdownAction_G_ *this,int p1);
 extern void __thiscall util__Darray_L_struct_ItineraryNode_G___Darray_L_struct_ItineraryNode_G (Darray_L_struct_ItineraryNode_G_ *this,int p1);
 extern void __thiscall util__Darray_L_struct_WorldObject_G___Darray_L_struct_WorldObject_G (Darray_L_struct_WorldObject_G_ *this,int p1);
@@ -2715,12 +2715,15 @@ extern void __cdecl RenderShape(Type param_1,Vec2_L_double_G_ param_2,bool param
 /* ---- r25w13: 定义导出 extern（cc 忠实，防前置调用隐式声明） ---- */
 extern ItineraryNode * __thiscall Itinerary__GetAccelerationAndResidualBurn(Itinerary *this,ItineraryNode *p1,double p2,double p3);
 extern ItineraryNode * __thiscall StrategicManager__GetHoveredItineraryNode(StrategicManager *this);
+extern LibrationOrbit * __thiscall OrbitUI__GetLagrangeOrbit(OrbitUI *this,LibrationOrbit *__return_storage_ptr__);
 extern ReferenceController * __thiscall CelestialObject__GetStateAt(CelestialObject *this,double p1);
 extern bool __thiscall GhostedUIButton__Hover(GhostedUIButton *this,undefined4 p1);
 extern bool __thiscall SpacecraftComponent__HasNoDeltaVButUsedTo(SpacecraftComponent *this);
 extern double * FUN_007adb30(double *param_1,undefined4 *param_2,double param_3,Body *param_4);
+extern double * __thiscall Body__GetCollisionAABB_MemoizedFunction(Body *this);
 extern double __thiscall ConventionalGunCompartment__GetOperatingTemperature_K(ConventionalGunCompartment *this);
-extern undefined1 * __thiscall HUDTactical___scalar_deleting_destructor_(HUDTactical *this,dword p1);
+extern double __thiscall FixedOrbit__GetTrueAnomalyFromProjectingStateOnToOrbit_radians(FixedOrbit *this,undefined4 p1);
+extern undefined1 * __thiscall CelestialObject___scalar_deleting_destructor_(CelestialObject *this,dword p1);
 extern undefined4 * __thiscall HUDItineraryNodeDragger__GetMousePlaneIntersect_km(HUDItineraryNodeDragger *this,undefined4 *p1);
 extern undefined4 * __thiscall HUDItineraryNodeDragger__GetScreenDragDirection(HUDItineraryNodeDragger *this,undefined4 *p1);
 extern undefined4 * __thiscall OrbitUI__GetLagrangePointAndTangent_km(OrbitUI *this,double p1);
@@ -2728,6 +2731,7 @@ extern util__Darray_L_WorldLight_G_ * __thiscall RadiatorCompartment__GetWorldLi
 extern util__Maybe_L_int_G __thiscall LevelMessages__GetStringPropertyMaxLength(LevelMessages *this,util__ClassMember *p1);
 extern util__Vec2_L_int_G __thiscall HUDItineraryNodeDragger__GetHUDLocation(HUDItineraryNodeDragger *this);
 extern util__Vec2_L_int_G __thiscall UIEditTextBox__GetCursorPixelPosition(UIEditTextBox *this,int *p1);
+extern util__Vec3_L_double_G_ * __thiscall CraftInstance__GetHeatSignatureOffset_m_MemoizedFunction(CraftInstance *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern util__Vec3_L_double_G_ * __thiscall EngineCompartment__GetGimballedThrustDirection(EngineCompartment *this,util__Vec3_L_double_G_ *__return_storage_ptr__);
 extern void FUN_00501d70(int *param_1,double *param_2,double *param_3);
 extern void FUN_005b57b2(void);
@@ -2747,6 +2751,7 @@ extern void __thiscall CelestialObject__ValidateOrbit(CelestialObject *this);
 extern void __thiscall FlareCompartment__Render(FlareCompartment *this);
 extern void __thiscall FleetLocation__FleetLocation(FleetLocation *this,FixedOrbit *p1);
 extern void __thiscall Fleet__IsCapitalShipFleet_Memoize(Fleet *this);
+extern void __thiscall Itinerary__Itinerary(Itinerary *this);
 extern void __thiscall NuclearThermalRocketCompartment__Tick(NuclearThermalRocketCompartment *this,double p1);
 extern void __thiscall OrbitUI__RenderLookaheadArrows(OrbitUI *this);
 extern void __thiscall SpacecraftComponent__HasDeltaVLeft_Memoize(SpacecraftComponent *this);
@@ -2880,6 +2885,145 @@ memcpy(&(auVar2), &(*(undefined1 (*) [16])(param_2 + 2)), 16);
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
+}
+
+
+//==== 0052f200 0052f200_GetHeatSignatureOffset_m_MemoizedFunction ====
+// decompiled by BatchDecomp @ 0052f200 name=CraftInstance_GetHeatSignatureOffset_m_MemoizedFunction conv=__thiscall body=487
+
+/* private: struct Vec3_L_double_G_ __thiscall
+   CraftInstance__GetHeatSignatureOffset_m_MemoizedFunction(void)const  */
+
+util__Vec3_L_double_G_ * __thiscall
+CraftInstance__GetHeatSignatureOffset_m_MemoizedFunction(CraftInstance *this,util__Vec3_L_double_G_ *__return_storage_ptr__)
+
+{
+  undefined4 stack0xffffffd0;
+  undefined4 stack0xfffffffc;
+  undefined1 auVar1[16];
+  undefined4 uVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined1 auVar5[16];
+  double dVar6;
+  double dVar7;
+  bool bVar8;
+  int iVar9;
+  undefined4 *puVar10;
+  util__Vec3_L_double_G_ *puVar11;
+  undefined8 *puVar12;
+  float10 fVar13;
+  float10 fVar14;
+  util__Vec3_L_double_G_ local_68;
+  undefined8 local_50;
+  undefined8 uStack_48;
+  undefined8 local_40;
+  undefined1 local_38[12];
+  undefined4 uStack_2c;
+  undefined8 uStack_28;
+  double local_20;
+  double local_14;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  local_20 = 0.0;
+  if (((undefined1 *)&(this->GetHeatSignature_W_MemoizedValue))[0xe] == '\0') {
+    iVar9 = *(int *)((*(char (*)[12])((char *)this + 40)) + 4);
+    local_c = iVar9 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)((int)&this->Armor + 4),&local_c);
+    bVar8 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)((int)&this->Armor + 4),iVar9);
+    if (bVar8) {
+      *(code **)(*(int *)(*(char (*)[12])((char *)this + 40)) + -4 + *(int *)((*(char (*)[12])((char *)this + 40)) + 4) * 4) =
+           CraftInstance__GetHeatSignature_W_Clear;
+    }
+    local_c = 0;
+    local_14 = 0.0;
+    iVar9 = (**(code **)(*(int *)&this->Compartments + 0xc))();
+    if (local_c < iVar9) {
+      uStack_28 = local_14;
+      do {
+        puVar10 = (undefined4 *)(*(code *)**(undefined4 **)&this->Compartments)(&local_c);
+        fVar13 = (float10)(**(code **)(*(int *)*puVar10 + 0x2c))();
+        fVar14 = (float10)uStack_28;
+        local_c = local_c + 1;
+        uStack_28 = (double)(fVar13 + fVar14);
+        local_14 = (double)(fVar13 + fVar14);
+        iVar9 = (**(code **)(*(int *)&this->Compartments + 0xc))();
+      } while (local_c < iVar9);
+    }
+    dVar6 = uStack_28;
+    stack0xffffffd0 = local_14;
+memcpy(&(auVar1), &((*(auV16_t *)&local_38)), 16);
+    uStack_28 = (double)CONCAT71(((slice_view *)&uStack_28)->_1_7_,1);
+    dVar7 = uStack_28;
+    ((slice_view *)&local_38)->_8_4_ = *(undefined4 *)&local_14;
+    uStack_2c = *(undefined4 *)((char *)&local_14 + 4);
+    ((slice_view *)&uStack_28)->_4_4_ = SUB84(dVar6,4);
+    *(undefined4 *)(((char *)&(this->GetHeatSignature_W_MemoizedValue))+ 6) = ((slice_view *)&local_38)->_8_4_;
+    *(undefined4 *)(((char *)&(this->GetHeatSignature_W_MemoizedValue))+ 10) = uStack_2c;
+    *(undefined4 *)(((char *)&(this->GetHeatSignature_W_MemoizedValue))+ 0xe) = (undefined4)uStack_28;
+    *(undefined4 *)(((char *)&(this->GetHeatSignatureOffset_m_MemoizedValue))+ 2) = ((slice_view *)&uStack_28)->_4_4_;
+memcpy(&((*(auV16_t *)&local_38)), &(auVar1), 16);
+    uStack_28 = dVar7;
+    if (((undefined1 *)&(this->GetHeatSignature_W_MemoizedValue))[0xe] == '\0') {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+  }
+  local_14 = *(double *)(((char *)&(this->GetHeatSignature_W_MemoizedValue))+ 6);
+  ((slice_view *)&local_50)->_0_4_ = 0;
+  ((slice_view *)&local_50)->_4_4_ = 0;
+  local_50 = 0.0;
+  ((slice_view *)&uStack_48)->_0_4_ = 0;
+  ((slice_view *)&uStack_48)->_4_4_ = 0;
+  dVar6 = 0.0;
+  if (local_14 <= 0.0) {
+    local_40 = 0;
+    puVar12 = &local_50;
+  }
+  else {
+    local_c = 0;
+    iVar9 = (**(code **)(*(int *)&this->Compartments + 0xc))();
+    dVar6 = uStack_48;
+    if (local_c < iVar9) {
+      do {
+        puVar10 = (undefined4 *)(*(code *)**(undefined4 **)&this->Compartments)(&local_c);
+        fVar14 = (float10)(**(code **)(*(int *)*puVar10 + 0x2c))();
+        uStack_28 = (double)fVar14;
+        puVar11 = ModuleCompartment__GetTrueOffset_m((ModuleCompartment *)*puVar10,&local_68);
+        local_c = local_c + 1;
+        local_50 = puVar11->X * uStack_28 + local_50;
+        uStack_48 = puVar11->Y * uStack_28 + uStack_48;
+        local_20 = puVar11->Z * uStack_28 + local_20;
+        iVar9 = (**(code **)(*(int *)&this->Compartments + 0xc))();
+        dVar6 = uStack_48;
+      } while (local_c < iVar9);
+    }
+    ((slice_view *)&uStack_48)->_4_4_ = *(undefined4 *)((char *)&dVar6 + 4);
+    ((slice_view *)&uStack_48)->_0_4_ = *(undefined4 *)&dVar6;
+    ((slice_view *)&auVar5)->_8_4_ = (undefined4)uStack_48;
+    ((slice_view *)&auVar5)->_0_8_ = local_50;
+    ((slice_view *)&auVar5)->_12_4_ = ((slice_view *)&uStack_48)->_4_4_;
+    puVar12 = (undefined8 *)local_38;
+    ((slice_view *)&auVar1)->_8_4_ = *(undefined4 *)&local_14;
+    ((slice_view *)&auVar1)->_0_8_ = local_14;
+    ((slice_view *)&auVar1)->_12_4_ = (int)((ulonglong)local_14 >> 0x20);
+    (*(auV16_t *)&local_38) = divpd(auVar5,auVar1);
+    uStack_28 = local_20 / local_14;
+  }
+  uVar2 = *(undefined4 *)((int)puVar12 + 4);
+  uVar3 = *(undefined4 *)(puVar12 + 1);
+  uVar4 = *(undefined4 *)((int)puVar12 + 0xc);
+  *(undefined4 *)&__return_storage_ptr__->X = *(undefined4 *)puVar12;
+  *(undefined4 *)((int)&__return_storage_ptr__->X + 4) = uVar2;
+  *(undefined4 *)&__return_storage_ptr__->Y = uVar3;
+  *(undefined4 *)((int)&__return_storage_ptr__->Y + 4) = uVar4;
+  __return_storage_ptr__->Z = (double)puVar12[2];
+  uStack_48 = dVar6;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return __return_storage_ptr__;
 }
 
 
@@ -4250,6 +4394,215 @@ LevelMessages__GetStringPropertyMaxLength(LevelMessages *this,util__ClassMember 
 }
 
 
+//==== 007126a0 007126a0_GetTrueAnomalyFromProjectingStateOnToOrbit_radians ====
+// decompiled by BatchDecomp @ 007126a0 name=GetTrueAnomalyFromProjectingStateOnToOrbit_radians conv=__thiscall body=982
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* public: double __thiscall FixedOrbit__GetTrueAnomalyFromProjectingStateOnToOrbit_radians(struct
+   util__PhysicalState_L_struct_util__Vec3_L_double_G___G)const  */
+
+double __thiscall
+FixedOrbit__GetTrueAnomalyFromProjectingStateOnToOrbit_radians(FixedOrbit *this,undefined4 p1)
+
+{
+  undefined4 stack0xfffffffc;
+  int iVar1;
+  double dVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  undefined4 uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  util__Quaternion_L_double_G_ *puVar10;
+  util__Vec3_L_double_G_ *puVar11;
+  bool bVar12;
+  float10 extraout_ST0;
+  uint uVar13;
+  double dVar14;
+  uint uVar15;
+  double dVar16;
+  double dVar17;
+  undefined1 local_c8[12];
+  undefined4 uStack_bc;
+  undefined4 uStack_b8;
+  undefined4 uStack_b4;
+  double dStack_b0;
+  undefined1 local_a8[16];
+  util__Vec3_L_double_G_ local_88;
+  undefined1 local_70[16];
+  double local_60;
+  double local_58;
+  undefined4 local_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined8 local_40;
+  double dStack_38;
+  undefined1 local_30[16];
+  double local_20;
+  double local_18;
+  undefined8 local_10;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  bVar12 = ((undefined1 *)&(this->GetVelocityStateConstant_km__s_MemoizedValue))[0] == '\0';
+  if (bVar12) {
+    iVar1 = *(int *)&this->GetOrbitalPeriod_s_MemoizedValue;
+    local_10 = (double)CONCAT44(iVar1 + 1,(undefined4)local_10);
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)(((char *)&(this->FixedOrbitMemoizationHandlerInstance))+ 8),
+               (int *)((int)&local_10 + 4));
+    bVar12 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)
+                        (((char *)&(this->FixedOrbitMemoizationHandlerInstance))+ 8),iVar1);
+    if (bVar12) {
+      *(code **)(*(int *)(((char *)&(this->FixedOrbitMemoizationHandlerInstance))+ 0xc) + -4 +
+                *(int *)&this->GetOrbitalPeriod_s_MemoizedValue * 4) =
+           SpacecraftComponent__GetDesiredOrientation_Clear;
+    }
+    puVar10 = GetFullRotator_MemoizedFunction(this,(util__Quaternion_L_double_G_ *)local_c8);
+    local_88.Z = (double)CONCAT71(((slice_view *)&local_88.Z)->_1_7_,1);
+    uVar3 = *(undefined4 *)((int)&puVar10->X + 4);
+    uVar4 = *(undefined4 *)&puVar10->Y;
+    uVar5 = *(undefined4 *)((int)&puVar10->Y + 4);
+    uVar6 = *(undefined4 *)&puVar10->Z;
+    uVar7 = *(undefined4 *)((int)&puVar10->Z + 4);
+    uVar8 = *(undefined4 *)&puVar10->W;
+    uVar9 = *(undefined4 *)((int)&puVar10->W + 4);
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 8) = *(undefined4 *)&puVar10->X;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0xc) = uVar3;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x10) = uVar4;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x14) = uVar5;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x18) = uVar6;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x1c) = uVar7;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x20) = uVar8;
+    *(undefined4 *)(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x24) = uVar9;
+    *(double *)&this->GetVelocityStateConstant_km__s_MemoizedValue = local_88.Z;
+    bVar12 = ((undefined1 *)&(this->GetVelocityStateConstant_km__s_MemoizedValue))[0] == '\0';
+  }
+  if (bVar12) {
+    util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                    "IsValid()",(undefined1 *)0x0);
+    DebugBreak();
+  }
+memcpy(&(local_70), &(*(undefined1 (*) [16])(((char *)&(this->GetFullRotator_MemoizedValue))+ 8)), 16);
+memcpy(&(local_a8), &(*(undefined1 (*) [16])(((char *)&(this->GetFullRotator_MemoizedValue))+ 0x18)), 16);
+  dVar17 = ((slice_view *)&local_70)->_8_8_;
+  dVar16 = ((slice_view *)&local_a8)->_8_8_;
+  dVar2 = ((slice_view *)&local_70)->_0_8_;
+  dVar14 = ((slice_view *)&local_a8)->_0_8_;
+  ((slice_view *)&local_30)->_0_8_ = dVar2 * dVar2 + dVar17 * dVar17 + dVar14 * dVar14 + dVar16 * dVar16;
+  uVar13 = (uint)__xmm_80000000000000008000000000000000;
+  uVar15 = (uint)((ulonglong)__xmm_80000000000000008000000000000000 >> 0x20);
+  local_10 = dVar16 / (double)((slice_view *)&local_30)->_0_8_;
+  local_40 = (double)CONCAT44(((slice_view *)&local_70)->_4_4_ ^ uVar15,((slice_view *)&local_70)->_0_4_ ^ uVar13) /
+             (double)((slice_view *)&local_30)->_0_8_;
+  dStack_38 = (double)CONCAT44(((slice_view *)&local_70)->_12_4_ ^ uVar15,((slice_view *)&local_70)->_8_4_ ^ uVar13) /
+              (double)((slice_view *)&local_30)->_0_8_;
+  ((slice_view *)&local_30)->_0_8_ =
+       (double)CONCAT44(((slice_view *)&local_a8)->_4_4_ ^ uVar15,((slice_view *)&local_a8)->_0_4_ ^ uVar13) / (double)((slice_view *)&local_30)->_0_8_;
+  ((slice_view *)&local_30)->_8_8_ = local_10;
+  if (((((!NAN(dVar2)) && (!NAN(dVar17))) && (!NAN(dVar14))) && ((!NAN(dVar16) && (!NAN(local_40))))
+      ) && ((!NAN(dStack_38) && ((!NAN((double)((slice_view *)&local_30)->_0_8_) && (!NAN(local_10))))))) {
+    bVar12 = IsNumericallyValid(this);
+    if (bVar12) goto LAB_0071285f;
+  }
+  util__LogAssert("\\mac\\home\\documents\\code\\cde\\cde\\strategic\\astrodynamics.cpp",0x13b,
+                  "FullRotator.IsValid() && InverseRotator.IsValid() && IsNumericallyValid()",
+                  (undefined1 *)0x0);
+  DebugBreak();
+LAB_0071285f:
+  puVar11 = util__GetMouseRayHit(&local_88,(undefined4)local_40,((slice_view *)&local_40)->_4_4_);
+  local_50 = *(undefined4 *)&puVar11->X;
+  uStack_4c = *(undefined4 *)((int)&puVar11->X + 4);
+  uStack_48 = *(undefined4 *)&puVar11->Y;
+  uStack_44 = *(undefined4 *)((int)&puVar11->Y + 4);
+  local_20 = puVar11->Z;
+  puVar11 = util__GetMouseRayHit((util__Vec3_L_double_G_ *)(local_c8 + 8),(undefined4)local_40,((slice_view *)&local_40)->_4_4_);
+  dVar2 = puVar11->Y;
+  ((slice_view *)&local_30)->_0_8_ = puVar11->X;
+  ((slice_view *)&local_30)->_8_8_ = puVar11->Y;
+  local_10 = puVar11->Z;
+  ((slice_view *)&local_88.X)->_0_4_ = ___xmm_3ff00000000000003ff0000000000000;
+  ((slice_view *)&local_88.X)->_4_4_ = _UNK_0091d494;
+  ((slice_view *)&local_88.Y)->_0_4_ = (undefined4)DAT_0091d498;
+  ((slice_view *)&local_88.Y)->_4_4_ = ((slice_view *)&DAT_0091d498)->_4_4_;
+  local_88.Z = 0.0;
+  local_60 = util__Abs((undefined1 *)&local_88.Z);
+  local_18 = util__Abs((undefined1 *)&local_88.Y);
+  local_58 = util__Abs((undefined1 *)&local_88);
+  ((slice_view *)&local_30)->_0_8_ = local_58 * (double)((slice_view *)&local_30)->_0_8_;
+  ((slice_view *)&local_30)->_8_8_ = 0;
+  local_18 = dVar2 * local_18;
+  local_10 = local_10 * local_60;
+  puVar11 = util__GetMouseRayHit((util__Vec3_L_double_G_ *)(local_c8 + 8),((slice_view *)&local_70)->_0_4_,((slice_view *)&local_70)->_4_4_)
+  ;
+  local_50 = *(undefined4 *)&puVar11->X;
+  uStack_4c = *(undefined4 *)((int)&puVar11->X + 4);
+  uStack_48 = *(undefined4 *)&puVar11->Y;
+  uStack_44 = *(undefined4 *)((int)&puVar11->Y + 4);
+  local_20 = puVar11->Z;
+  puVar11 = util__GetMouseRayHit(&local_88,((slice_view *)&local_70)->_0_4_,((slice_view *)&local_70)->_4_4_);
+  ((slice_view *)&local_c8)->_0_8_ = puVar11->Z;
+  ((slice_view *)&local_c8)->_8_4_ = local_50;
+  uStack_bc = uStack_4c;
+  uStack_b8 = uStack_48;
+  uStack_b4 = uStack_44;
+  dStack_b0 = local_20;
+  GetTrueAnomalyFromCoplanarState_radians(this,*(undefined4 *)&puVar11->X);
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return (double)extraout_ST0;
+}
+
+
+//==== 00724040 00724040__scalar_deleting_destructor_ ====
+// decompiled by BatchDecomp @ 00724040 name=`scalar_deleting_destructor' conv=__thiscall body=190
+
+/* public: virtual void * __thiscall CelestialObject::`scalar deleting destructor'(unsigned int) */
+
+undefined1 * __thiscall
+CelestialObject___scalar_deleting_destructor_(CelestialObject *this,dword p1)
+
+{
+  void *pvVar1;
+  
+  *(undefined ***)(((char *)&(this->OrbitParameters))+ 0x60) =
+       ((void *)(0x009194a4u));
+  if (*(void **)(((char *)&(this->OrbitParameters))+ 100) != (void *)0x0) {
+    operator_delete__(*(void **)(((char *)&(this->OrbitParameters))+ 100));
+  }
+  *(undefined4 *)(((char *)&(this->OrbitParameters))+ 100) = 0;
+  *(undefined ***)(((char *)&(this->OrbitParameters))+ 0x60) =
+       ((void *)(0x00919488u));
+  *(undefined ***)(((char *)&(this->OrbitParameters))+ 0x18) = ((void *)(0x00919980u));
+  if (*(void **)(((char *)&(this->OrbitParameters))+ 0x1c) != (void *)0x0) {
+    operator_delete__(*(void **)(((char *)&(this->OrbitParameters))+ 0x1c));
+    *(undefined4 *)(((char *)&(this->OrbitParameters))+ 0x1c) = 0;
+  }
+  if (*(ReferenceController **)(((char *)&(this->OrbitParameters))+ 0x10) != (ReferenceController *)0x0) {
+    util__ReferenceController__ReleaseWeakReference(*(ReferenceController **)(((char *)&(this->OrbitParameters))+ 0x10));
+  }
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)
+             &this->GetChildObjectsRecursively_MemoizedValue);
+  util__Darray_class_util__WeakPtr_class_Body______Darray_class_util__WeakPtr_class_Body((Darray_L_class_util__WeakPtr_L_class_Body_G___G_ *)&this->GetChildObjects_MemoizedValue);
+  pvVar1 = *(void **)(((char *)&(this->CelestialObjectMemoizationHandlerInstance))+ 4);
+  *(undefined ***)&this->CelestialObjectMemoizationHandlerInstance =
+       ((void *)(0x00920638u));
+  if (pvVar1 != (void *)0x0) {
+    operator_delete__(pvVar1);
+  }
+  *(undefined4 *)(((char *)&(this->CelestialObjectMemoizationHandlerInstance))+ 4) = 0;
+  *(undefined ***)&this->CelestialObjectMemoizationHandlerInstance =
+       ((void *)(0x00919488u));
+  this->_pad_0x8_2 = (int)((void *)(0x009369e8u));
+  this->_pad_0x0_0 = (int)((void *)(0x0091f68cu));
+  if ((p1 & 1) != 0) {
+    operator_delete(this,0x140);
+  }
+  return (undefined1 *)this;
+}
+
+
 //==== 00727a90 00727a90_GetStateAt ====
 // decompiled by BatchDecomp @ 00727a90 name=GetStateAt conv=__thiscall body=493
 
@@ -4448,8 +4801,49 @@ void __thiscall FleetLocation__FleetLocation(FleetLocation *this,FixedOrbit *p1)
 }
 
 
+//==== 0072c320 0072c320_Itinerary ====
+// decompiled by BatchDecomp @ 0072c320 name=Itinerary conv=__thiscall body=120
+
+/* public: __thiscall Itinerary__Itinerary(void) */
+
+void __thiscall Itinerary__Itinerary(Itinerary *this)
+
+{
+  *(undefined4 *)&this->ParentFleet = 0;
+  *(undefined4 *)((int)&this->ParentFleet + 4) = 0;
+  *(undefined ***)&this->ItineraryNodes = ((void *)(0x00938a44u));
+  *(undefined4 *)(((char *)&(this->ItineraryNodes))+ 4) = 0;
+  *(undefined4 *)(((char *)&(this->ItineraryNodes))+ 8) = 0;
+  *(undefined4 *)(((char *)&(this->ItineraryNodes))+ 0xc) = 0;
+  FixedOrbit__FixedOrbit((FixedOrbit *)&this->FinalOrbit);
+  *(undefined1 *)&this->FinalJoinFleet = 0;
+  this->FinalMatchedOrbit = false;
+  (*(char (*)[10])((char *)this + 265))[0] = 0;
+  (*(char (*)[10])((char *)this + 265))[1] = 0;
+  (*(char (*)[10])((char *)this + 265))[2] = 0;
+  (*(char (*)[10])((char *)this + 265))[3] = 0;
+  (*(char (*)[10])((char *)this + 265))[4] = 0;
+  (*(char (*)[10])((char *)this + 265))[5] = 0;
+  (*(char (*)[10])((char *)this + 265))[6] = 0;
+  *(undefined4 *)&this->ActiveLowerTime_s = 0;
+  *(undefined4 *)((int)&this->ActiveLowerTime_s + 4) = 0;
+  (*(char (*)[8])((char *)this + 288))[0] = 0;
+  (*(char (*)[8])((char *)this + 288))[1] = 0;
+  (*(char (*)[8])((char *)this + 288))[2] = 0;
+  (*(char (*)[8])((char *)this + 288))[3] = 0;
+  (*(char (*)[8])((char *)this + 288))[4] = 0;
+  (*(char (*)[8])((char *)this + 288))[5] = 0;
+  (*(char (*)[8])((char *)this + 288))[6] = 0;
+  (*(char (*)[8])((char *)this + 288))[7] = 0;
+  ItineraryNode__ItineraryNode((ItineraryNode *)&this[1].ItineraryNodes);
+  ((undefined1 *)&(this[2].FinalOrbit))[0x18] = 0;
+  ((undefined1 *)&(this[2].FinalOrbit))[0x20] = 0;
+  return;
+}
+
+
 //==== 00733810 00733810_IsCapitalShipFleet_Memoize ====
-// decompiled by BatchDecomp @ 00733810 name=Fleet_IsCapitalShipFleet_Memoize conv=__thiscall body=380
+// decompiled by BatchDecomp @ 00733810 name=Fleet__IsCapitalShipFleet_Memoize conv=__thiscall body=380
 
 /* public: void __thiscall Fleet__IsCapitalShipFleet_Memoize(void)const  */
 
@@ -4534,6 +4928,24 @@ memcpy(&(local_10->IsMissileFleet_MemoizedValue), &(((slice_view *)&local_c)->_2
   }
   __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
   return;
+}
+
+
+//==== 00736c00 00736c00_operator_ ====
+// decompiled by BatchDecomp @ 00736c00 name=operator= conv=__thiscall body=50
+
+/* public: class util__Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_bool_G___G & __thiscall
+   util__Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_bool_G___G___operator_(class util__Maybe_L_struct____util__tuple2_L_struct_ItineraryNode_bool_G___G const &) */
+
+undefined1 * __thiscall
+util_Maybe_struct_util_tuple2_struct_ItineraryNode_bool_operator
+          (Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_C_bool_G___G_ *this,undefined1 *p1)
+
+{
+  ItineraryNode__operator_((ItineraryNode *)this,(ItineraryNode *)p1);
+memcpy(&(this[0x150]), &(*(Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_Cbool_G___G_ *)(p1 + 0x150)), 16);
+memcpy(&(this[0x158]), &(*(Maybe_L_struct_util__tuple2_L_struct_ItineraryNode_Cbool_G___G_ *)(p1 + 0x158)), 16);
+  return this;
 }
 
 
@@ -5438,6 +5850,119 @@ util_Darray_struct_util_tuple2_struct_ItineraryNode_enum_ItineraryMarker_Type_Se
 }
 
 
+//==== 0079c1e0 0079c1e0_GetLagrangeOrbit ====
+// decompiled by BatchDecomp @ 0079c1e0 name=GetLagrangeOrbit conv=__thiscall body=372
+
+/* public: struct LibrationOrbit __thiscall OrbitUI__GetLagrangeOrbit(void)const  */
+
+LibrationOrbit * __thiscall
+OrbitUI__GetLagrangeOrbit(OrbitUI *this,LibrationOrbit *__return_storage_ptr__)
+
+{
+  char cVar1;
+  ReferenceController *pRVar2;
+  int *piVar3;
+  longlong lVar4;
+  undefined4 uVar5;
+  undefined4 uVar6;
+  undefined4 uVar7;
+  LibrationOrbit *pLVar8;
+  bool bVar9;
+  int in_EAX;
+  undefined3 extraout_var;
+  int iVar10;
+  undefined4 *puVar11;
+  undefined4 *puVar12;
+  LibrationOrbit local_2b0;
+  LibrationOrbit local_158;
+  int local_8;
+  
+  pRVar2 = *(ReferenceController **)((int)&this->Orbitee + 4);
+  if (pRVar2 != (ReferenceController *)0x0) {
+    bVar9 = util__ReferenceController__IsDataStillValid(pRVar2);
+    in_EAX = CONCAT31(extraout_var,bVar9);
+    if (!bVar9) {
+      *(undefined4 *)&this->Orbitee = 0;
+    }
+  }
+  piVar3 = *(int **)&this->Orbitee;
+  LibrationOrbit__LibrationOrbit(&local_158);
+  iVar10 = (**(code **)(*piVar3 + 4))(&local_2b0);
+  pLVar8 = __return_storage_ptr__;
+  cVar1 = *(char *)(iVar10 + 0x150);
+  __return_storage_ptr__->_pad_0x0_0 = (int)((void *)(0x0091f404u));
+  if (cVar1 != '\0') {
+    in_EAX = iVar10;
+  }
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->LibrationOrbitMemoizationHandlerInstance))+ 0xc) = 0;
+  *(undefined ***)&__return_storage_ptr__->LibrationOrbitMemoizationHandlerInstance =
+       ((void *)(0x009234fcu));
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->LibrationOrbitMemoizationHandlerInstance))+ 4) = 0;
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->LibrationOrbitMemoizationHandlerInstance))+ 8) = 0;
+  *(undefined4 *)(((char *)&(__return_storage_ptr__->LibrationOrbitMemoizationHandlerInstance))+ 0xc) =
+       *(undefined4 *)(in_EAX + 0x14);
+  local_8 = in_EAX;
+  __return_storage_ptr__ = (LibrationOrbit *)(**(code **)(*(int *)(in_EAX + 8) + 0xc))();
+  util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&pLVar8->LibrationOrbitMemoizationHandlerInstance,
+             (int *)&__return_storage_ptr__);
+  lVar4 = (ulonglong)*(uint *)(((char *)&(pLVar8->LibrationOrbitMemoizationHandlerInstance))+ 0xc) * 4;
+  __return_storage_ptr__ =
+       (LibrationOrbit *)(-(uint)((int)((ulonglong)lVar4 >> 0x20) != 0) | (uint)lVar4);
+  puVar11 = (undefined4 *)operator_new__((uint)__return_storage_ptr__);
+  if (puVar11 == (undefined4 *)0x0) {
+    puVar11 = (undefined4 *)0x0;
+  }
+  else {
+    memset(puVar11,0,__return_storage_ptr__);
+  }
+  iVar10 = local_8;
+  *(undefined4 **)(((char *)&(pLVar8->LibrationOrbitMemoizationHandlerInstance))+ 4) = puVar11;
+  puVar12 = *(undefined4 **)(in_EAX + 0xc);
+  if (puVar12 != puVar12 + *(int *)(in_EAX + 0x10)) {
+    do {
+      *puVar11 = *puVar12;
+      puVar12 = puVar12 + 1;
+      puVar11 = puVar11 + 1;
+    } while (puVar12 != (undefined4 *)(*(int *)(in_EAX + 0xc) + *(int *)(in_EAX + 0x10) * 4));
+  }
+  *(undefined4 *)&pLVar8->MainBody = *(undefined4 *)(local_8 + 0x18);
+  pRVar2 = *(ReferenceController **)(local_8 + 0x1c);
+  *(ReferenceController **)((int)&pLVar8->MainBody + 4) = pRVar2;
+  if (pRVar2 != (ReferenceController *)0x0) {
+    util__ReferenceController__AddWeakReference(pRVar2);
+  }
+  pLVar8->LagrangePointID = *(int *)(iVar10 + 0x20);
+  *(undefined8 *)&pLVar8->StateAtEpoch = *(undefined8 *)(iVar10 + 0x28);
+  uVar5 = *(undefined4 *)(iVar10 + 0x34);
+  uVar6 = *(undefined4 *)(iVar10 + 0x38);
+  uVar7 = *(undefined4 *)(iVar10 + 0x3c);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 8) = *(undefined4 *)(iVar10 + 0x30);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0xc) = uVar5;
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x10) = uVar6;
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x14) = uVar7;
+  uVar5 = *(undefined4 *)(iVar10 + 0x44);
+  uVar6 = *(undefined4 *)(iVar10 + 0x48);
+  uVar7 = *(undefined4 *)(iVar10 + 0x4c);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x18) = *(undefined4 *)(iVar10 + 0x40);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x1c) = uVar5;
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x20) = uVar6;
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x24) = uVar7;
+  uVar5 = *(undefined4 *)(iVar10 + 0x54);
+  uVar6 = *(undefined4 *)(iVar10 + 0x58);
+  uVar7 = *(undefined4 *)(iVar10 + 0x5c);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x28) = *(undefined4 *)(iVar10 + 0x50);
+  *(undefined4 *)(((char *)&(pLVar8->StateAtEpoch))+ 0x2c) = uVar5;
+  *(undefined4 *)(*(char (*)[4])((char *)pLVar8 + 88)) = uVar6;
+  *(undefined4 *)&pLVar8->GetActualOrbit_MemoizedValue = uVar7;
+  FixedOrbit__FixedOrbit((FixedOrbit *)(((char *)&(pLVar8->GetActualOrbit_MemoizedValue))+ 4),(FixedOrbit *)(iVar10 + 0x60))
+  ;
+  *(undefined1 *)&pLVar8[1]._pad_0x0_0 = *(undefined1 *)(iVar10 + 0x148);
+  LibrationOrbit_LibrationOrbit__o2(&local_2b0);
+  LibrationOrbit_LibrationOrbit__o2(&local_158);
+  return pLVar8;
+}
+
+
 //==== 0079c360 0079c360_GetLagrangePointAndTangent_km ====
 // decompiled by BatchDecomp @ 0079c360 name=GetLagrangePointAndTangent_km conv=__thiscall body=1180
 
@@ -6187,6 +6712,137 @@ memcpy(&(*param_1), &(auVar2), 16);
 }
 
 
+//==== 007b30a0 007b30a0_GetCollisionAABB_MemoizedFunction ====
+// decompiled by BatchDecomp @ 007b30a0 name=Body_GetCollisionAABB_MemoizedFunction conv=__thiscall body=429
+
+/* private: struct util__AABB_L_struct_util__Vec3_L_double_G___G __thiscall
+   Body__GetCollisionAABB_MemoizedFunction(void)const  */
+
+double * __thiscall Body__GetCollisionAABB_MemoizedFunction(Body *this)
+
+{
+  undefined4 stack0xfffffffc;
+  double dVar1;
+  double dVar2;
+  undefined1 auVar3[16];
+  undefined1 auVar4[16];
+  undefined1 auVar5[16];
+  double dVar6;
+  bool bVar7;
+  int iVar8;
+  undefined4 *puVar9;
+  undefined4 uVar10;
+  undefined4 uVar11;
+  double dVar12;
+  double dVar13;
+  double dVar14;
+  double *in_stack_00000004;
+  undefined4 local_38;
+  undefined4 uStack_34;
+  undefined8 uStack_30;
+  undefined4 uStack_2c;
+  double local_24;
+  char local_1c;
+  double local_14;
+  int local_c;
+  uint local_8;
+  
+  local_8 = __security_cookie ^ (uint)&stack0xfffffffc;
+  if ((*(char (*)[14])((char *)this + 322))[6] == 0) {
+    iVar8 = *(int *)(((char *)&(this->BodyMemoizationHandlerInstance))+ 8);
+    local_c = iVar8 + 1;
+    util__Darray_class_util__Reflectable____SetSize((Darray_L_util__Reflectable_P_G_ *)&this->BodyMemoizationHandlerInstance,&local_c);
+    bVar7 = util__Darray_enum_GraphicsResource__Type___CheckSize((Darray_L_GraphicsResource__Type_G_ *)&this->BodyMemoizationHandlerInstance,
+                       iVar8);
+    if (bVar7) {
+      *(code **)(*(int *)(((char *)&(this->BodyMemoizationHandlerInstance))+ 4) + -4 +
+                *(int *)(((char *)&(this->BodyMemoizationHandlerInstance))+ 8) * 4) = GetRadius_km_Clear;
+    }
+    local_c = 0;
+    local_14 = 0.0;
+    iVar8 = (**(code **)(*(int *)(((char *)&(this->Components))+ 10) + 0xc))();
+    if (local_c < iVar8) {
+      do {
+        puVar9 = (undefined4 *)(*(code *)**(undefined4 **)(((char *)&(this->Components))+ 10))(&local_c);
+        (**(code **)(*(int *)*puVar9 + 0x5c))(&local_24);
+        if (local_1c != '\0') {
+          uVar10 = *(undefined4 *)&local_14;
+          uVar11 = *(undefined4 *)((char *)&local_14 + 4);
+          if (local_14 <= local_24) {
+            uVar10 = *(undefined4 *)&local_24;
+            uVar11 = *(undefined4 *)((char *)&local_24 + 4);
+          }
+          local_14 = (double)CONCAT44(uVar11,uVar10);
+        }
+        local_c = local_c + 1;
+        iVar8 = (**(code **)(*(int *)(((char *)&(this->Components))+ 10) + 0xc))();
+      } while (local_c < iVar8);
+    }
+    ((slice_view *)&uStack_30)->_0_4_ = ((unsigned)(1) | ((unsigned)(((slice_view *)&uStack_30)->_1_3_[0] | (((slice_view *)&uStack_30)->_1_3_[1] << 8) | (((slice_view *)&uStack_30)->_1_3_[2] << 16)) << 8));
+    local_38 = *(undefined4 *)&local_14;
+    uStack_34 = *(undefined4 *)((char *)&local_14 + 4);
+    *(undefined4 *)(((char *)&(this->GetUnrotatedCenterOfMass_km_MemoizedValue))+ 0x1e) = local_38;
+    *(undefined4 *)((*(char (*)[14])((char *)this + 322)) + 2) = uStack_34;
+    *(undefined4 *)((*(char (*)[14])((char *)this + 322)) + 6) = uStack_30;
+    *(undefined4 *)((*(char (*)[14])((char *)this + 322)) + 10) = uStack_2c;
+    if ((*(char (*)[14])((char *)this + 322))[6] == 0) {
+      util__LogAssert("\\mac\\home\\documents\\code\\utilities\\utilities\\core\\maybe.h",0x13,
+                      "IsValid()",(undefined1 *)0x0);
+      DebugBreak();
+    }
+  }
+memcpy(&(auVar3), &(*(undefined1 (*) [16])((*(char (*)[46])((char *)this + 502)) + 10)), 16);
+  dVar14 = ((slice_view *)&auVar3)->_0_8_;
+  iVar8 = 0x230;
+  dVar1 = *(double *)(((char *)&(this->GetUnrotatedCenterOfMass_km_MemoizedValue))+ 0x1e);
+  if (((undefined1 *)&(this->Orientation))[2] == '\0') {
+    iVar8 = 0x200;
+  }
+  dVar2 = *(double *)((*(char (*)[46])((char *)this + 502)) + 0x1a);
+  dVar13 = ((slice_view *)&auVar3)->_8_8_;
+memcpy(&(auVar4), &(*(undefined1 (*) [16])(((char *)&(this->BodyMemoizationHandlerInstance))+ iVar8 + -8)), 16);
+memcpy(&(auVar5), &(*(undefined1 (*) [16])(((char *)&(this->BodyMemoizationHandlerInstance))+ iVar8 + 8)), 16);
+  dVar12 = ((slice_view *)&auVar4)->_8_8_;
+  dVar6 = ((slice_view *)&auVar4)->_0_8_;
+  uVar10 = ((slice_view *)&auVar3)->_0_4_;
+  uVar11 = ((slice_view *)&auVar3)->_4_4_;
+  if (dVar6 <= dVar14) {
+    uVar10 = ((slice_view *)&auVar4)->_0_4_;
+    uVar11 = ((slice_view *)&auVar4)->_4_4_;
+  }
+  if (dVar14 <= dVar6) {
+    dVar14 = dVar6;
+  }
+  *in_stack_00000004 = (double)CONCAT44(uVar11,uVar10) - dVar1;
+  uVar10 = ((slice_view *)&auVar3)->_8_4_;
+  uVar11 = ((slice_view *)&auVar3)->_12_4_;
+  if (dVar12 <= dVar13) {
+    uVar10 = ((slice_view *)&auVar4)->_8_4_;
+    uVar11 = ((slice_view *)&auVar4)->_12_4_;
+  }
+  if (dVar13 <= dVar12) {
+    dVar13 = dVar12;
+  }
+  in_stack_00000004[1] = (double)CONCAT44(uVar11,uVar10) - dVar1;
+  dVar6 = ((slice_view *)&auVar5)->_0_8_;
+  uVar10 = *(undefined4 *)&dVar2;
+  uVar11 = (int)((ulonglong)dVar2 >> 0x20);
+  if (dVar6 <= dVar2) {
+    uVar10 = ((slice_view *)&auVar5)->_0_4_;
+    uVar11 = ((slice_view *)&auVar5)->_4_4_;
+  }
+  if (dVar2 <= dVar6) {
+    dVar2 = dVar6;
+  }
+  in_stack_00000004[2] = (double)CONCAT44(uVar11,uVar10) - dVar1;
+  in_stack_00000004[3] = dVar14 + dVar1;
+  in_stack_00000004[4] = dVar13 + dVar1;
+  in_stack_00000004[5] = dVar2 + dVar1;
+  __security_check_cookie(local_8 ^ (uint)&stack0xfffffffc);
+  return in_stack_00000004;
+}
+
+
 //==== 007c8360 007c8360_FUN_007c8360 ====
 /* r25w19 own-auto-extern elided: extern undefined4 FUN_007c8360(); /* K&R auto(v2): 判读返回类型——x87 返回值改 float10 * / */
 
@@ -6859,70 +7515,6 @@ memcpy(&(local_98), &(*pauVar4), 16);
   }
   __security_check_cookie(local_14 ^ (uint)&stack0xfffffff0);
   return;
-}
-
-
-//==== 0082ef20 0082ef20__scalar_deleting_destructor_ ====
-// decompiled by BatchDecomp @ 0082ef20 name=`scalar_deleting_destructor' conv=__thiscall body=259
-
-/* public: virtual void * __thiscall HUDTactical::`scalar deleting destructor'(unsigned int) */
-
-undefined1 * __thiscall HUDTactical___scalar_deleting_destructor_(HUDTactical *this,dword p1)
-
-{
-  void *pvVar1;
-  ReferenceController *pRVar2;
-  
-  pvVar1 = *(void **)(((char *)&((this->MainCombatNotifier).PopupNotifiers))+ 0xc);
-  *(undefined ***)(((char *)&((this->MainCombatNotifier).PopupNotifiers))+ 8) =
-       ((void *)(0x0093f088u));
-  if (pvVar1 != (void *)0x0) {
-    operator_delete__(pvVar1);
-  }
-  *(undefined4 *)(((char *)&((this->MainCombatNotifier).PopupNotifiers))+ 0xc) = 0;
-  *(undefined ***)(((char *)&((this->MainCombatNotifier).PopupNotifiers))+ 8) =
-       ((void *)(0x00919488u));
-  util__Darray_class_util__SharedPtr_struct_BalloonPopup______Darray_class_util__SharedPtr_struct_BalloonPopup((Darray_L_class_util__SharedPtr_L_struct_BalloonPopup_G___G_ *)((*(char (*)[49])((char *)this + 409)) + 0x2b));
-  pRVar2 = *(ReferenceController **)((int)&this->EnemyShipList + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  pRVar2 = *(ReferenceController **)((int)&this->AlliedShipList + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  pRVar2 = *(ReferenceController **)((int)&this->ShipFullList + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  pRVar2 = *(ReferenceController **)((int)&this->ModuleUI + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  pRVar2 = *(ReferenceController **)((int)&this->SpacecraftUI + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  pRVar2 = *(ReferenceController **)((int)&this->MinimapUI + 4);
-  if (pRVar2 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference(pRVar2);
-  }
-  this->_pad_0x0_0 = (int)((void *)(0x0091d1e0u));
-  this->_pad_0x158_86 = (int)((void *)(0x0091d1bcu));
-  if ((SharedPtr_L_struct_UIWidget_G_ *)this->_pad_0x15c_87 != (SharedPtr_L_struct_UIWidget_G_ *)0x0) {
-    util__SharedPtr_L_struct_UIWidget_G____vector_deleting_destructor
-              ((SharedPtr_L_struct_UIWidget_G_ *)this->_pad_0x15c_87,3);
-  }
-  this->_pad_0x15c_87 = 0;
-  this->_pad_0x158_86 = (int)((void *)(0x00919488u));
-  if ((ReferenceController *)this->_pad_0x154_85 != (ReferenceController *)0x0) {
-    util__ReferenceController__ReleaseWeakReference((ReferenceController *)this->_pad_0x154_85);
-  }
-  UIAttributes___UIAttributes((UIAttributes *)&this->_pad_0x8_2);
-  if ((p1 & 1) != 0) {
-    operator_delete(this,0x1e8);
-  }
-  return (undefined1 *)this;
 }
 
 
